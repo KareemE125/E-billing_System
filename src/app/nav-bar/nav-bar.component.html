@@ -1,0 +1,19 @@
+<nav class="bg-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex-shrink-0">
+                <a class="text-white" href="#">Logo</a>
+            </div>
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-4">
+                    <a class="text-gray-300 hover:text-white" href="#">About Us</a>
+                    <ng-container *ngIf="isLoggedIn">
+                        <a class="text-gray-300 hover:text-white" href="#">Electricity</a>
+                        <a class="text-gray-300 hover:text-white" href="#">Water</a>
+                        <a class="text-gray-300 hover:text-white" href="#">Telephones</a>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
