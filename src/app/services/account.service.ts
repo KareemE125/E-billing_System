@@ -32,4 +32,23 @@ export class AccountService {
   sendMessage(message: String) {
     return this.messageTobeSent.next(message);
   }
+
+
+/////// >>>>> User get using firebase example <<<<< /////////////////
+
+  // userAddedSubject = new Subject<string>();
+
+  // addUserToFirestore(user: any): void {
+  //   firebase.firestore().collection('users').add(user)
+  //     .then((docRef) => {
+  //       console.log("Document written with ID: ", docRef.id);
+  //       return this.userAddedSubject.next(docRef.id);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error adding document: ", error);
+  //     });
+  // }
+  
+/////////////////////////////////////////////////////////////////////
+
 }

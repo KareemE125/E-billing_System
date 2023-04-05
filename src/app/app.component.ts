@@ -29,4 +29,21 @@ export class AppComponent implements OnInit {
   }
 
 
+/////// >>>>> User get using firebase example <<<<< /////////////////
+  
+  // constructor(private userService: UserService) {}
+
+  // addUser(): void {
+  //   const user = {
+  //     name: 'John Doe',
+  //     email: 'john@example.com'
+  //   };
+  //   this.userService.addUserToFirestore(user);
+  //   this.userService.userAddedSubject.subscribe((id) => {
+  //     console.log(`New user added with ID: ${id}`);
+  //   });
+  // }
+  
+/////////////////////////////////////////////////////////////////////
+
 }
