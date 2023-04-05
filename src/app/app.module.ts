@@ -6,13 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ServiceCardComponent } from './service-card/service-card.component';
-import { AccountService } from './account.service';
+import { AccountService } from './services/account.service';
+import { ChildComponent } from './child/child.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    ServiceCardComponent
+    ServiceCardComponent,
+    ChildComponent
   ],
   imports: [
     BrowserModule,

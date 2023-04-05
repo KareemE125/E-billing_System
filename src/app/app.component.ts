@@ -1,5 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { AccountService } from './account.service';
+import { AccountService } from './services/account.service';
 import { User } from './models/user.model';
 
 @Component({
@@ -15,11 +15,17 @@ export class AppComponent implements OnInit {
 
   userList: User[] = [];
 
+  messageToShow: String = '';
+
   constructor(private accountService: AccountService) {
   }
 
   ngOnInit(): void {
     this.userList = this.accountService.getUsers()
+
+    this.accountService.messageTobeSent.subscribe((msg) => {
+      this.messageToShow = msg;
+    });
   }
 
 

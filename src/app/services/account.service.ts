@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { User } from './models/user.model';
+import { User } from '../models/user.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { User } from './models/user.model';
 export class AccountService {
 
   usersList: User[] = [];
+  messageTobeSent = new Subject<String>();
 
   constructor() { }
 
@@ -24,5 +26,10 @@ export class AccountService {
     ]
 
     return this.usersList
+  }
+
+
+  sendMessage(message: String) {
+    return this.messageTobeSent.next(message);
   }
 }

@@ -1,5 +1,8 @@
 <app-nav-bar />
 
+<app-child/>
+<div class="shadow-md border border-black border-2 m-4 rounded-md p-4">{{messageToShow}}</div>
+
 <section class="m-4">
   <h1 class="text-3xl font-bold mb-4">User List</h1>
   <ul class="border shadow-md rounded-lg mb-4" *ngFor="let user of userList">
