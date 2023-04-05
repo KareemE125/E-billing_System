@@ -6,12 +6,14 @@
             </div>
             <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-4">
-                    <a class="text-gray-300 hover:text-white" href="#">About Us</a>
                     <ng-container *ngIf="isLoggedIn">
-                        <a class="text-gray-300 hover:text-white" href="#">Electricity</a>
-                        <a class="text-gray-300 hover:text-white" href="#">Water</a>
-                        <a class="text-gray-300 hover:text-white" href="#">Telephones</a>
-                    </ng-container>
+                        <a class="text-gray-300 hover:text-white" routerLink="/child">Show Child</a>
+                        <a class="text-gray-300 hover:text-white" routerLink="/">Electricity</a>
+                        <a class="text-gray-300 hover:text-white" routerLink="#">Water</a>
+                        <a class="text-gray-300 hover:text-white" routerLink="#">Telephones</a>
+                    </ng-container>                    
+                    <a class="text-gray-300 hover:text-white" routerLink="#">About Us</a>
+
                 </div>
             </div>
         </div>
