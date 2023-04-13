@@ -6,6 +6,7 @@ import { dummy_users } from '../dummy-data/user-list';
 @Injectable({
   providedIn: 'root'
 })
+//this service is responsible signing in and singing up
 export class AccountService {
 
   usersList: User[] = [];
