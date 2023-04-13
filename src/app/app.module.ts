@@ -8,13 +8,15 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ServiceCardComponent } from './service-card/service-card.component';
 import { AccountService } from './services/account.service';
 import { ChildComponent } from './child/child.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     ServiceCardComponent,
-    ChildComponent
+    ChildComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
