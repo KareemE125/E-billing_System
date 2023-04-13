@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from '../models/user.model';
+import { dummy_users } from '../dummy-data/user-list';
+import { User } from '../models/users/user.model';
 import { AccountService } from '../services/account.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AccountService } from '../services/account.service';
 })
 
 export class ParentComponent {
-  userList: User[] = [];
+  userList: User[] = dummy_users;
 
   messageToShow: String = '';
 

@@ -1,10 +1,10 @@
 export interface Common {
     id: string, //auto generated
-    name: string,
-    email: string,
-    phoneNumber: string,
-    password: string,
-    address: Address
+    name: string,   //required
+    email: string,  //required
+    phoneNumber: string,    //required
+    password: string,       //required
+    address: Address | null   //not required
 }
 
 export interface Address {

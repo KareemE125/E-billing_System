@@ -1,6 +1,7 @@
 import { User } from "../models/users/user.model";
+import { dummy_serviceProviders } from "./service-providers-list";
 
-const users: User[] = [
+export const dummy_users: User[] = [
     {
         id: '1',
         name: 'John Doe',
@@ -15,10 +16,11 @@ const users: User[] = [
         },
         waterBills: [
             {
-                id: '1',
-                billDate: new Date('2022-03-15'),
-                dueDate: new Date('2022-04-05'),
-                amount: 50.75,
+                year: 2023,
+                month: 1,
+                usage: 100,
+                penalty: 0,
+                total: 100,
                 isPaid: true
             }
         ],
@@ -40,19 +42,25 @@ const users: User[] = [
         waterBills: [],
         telephoneBills: [
             {
-                id: '1',
-                billDate: new Date('2022-03-01'),
-                dueDate: new Date('2022-03-21'),
-                amount: 35.50,
-                isPaid: true
+                year: 2023,
+                month: 2,
+                usage: 200,
+                penalty: 20,
+                total: 220,
+                isPaid: true,
+                serviceProvider: dummy_serviceProviders[0],
+                offerName: dummy_serviceProviders[0].offers[0].name
             },
             {
-                id: '2',
-                billDate: new Date('2022-04-01'),
-                dueDate: new Date('2022-04-21'),
-                amount: 35.50,
-                isPaid: false
-            }
+                year: 2023,
+                month: 2,
+                usage: 200,
+                penalty: 40,
+                total: 240,
+                isPaid: true,
+                serviceProvider: dummy_serviceProviders[0],
+                offerName: dummy_serviceProviders[0].offers[1].name
+            },
         ],
         electrictyBills: []
     },
@@ -72,18 +80,12 @@ const users: User[] = [
         telephoneBills: [],
         electrictyBills: [
             {
-                id: '1',
-                billDate: new Date('2022-03-01'),
-                dueDate: new Date('2022-03-21'),
-                amount: 80.25,
+                year: 2023,
+                month: 1,
+                usage: 100,
+                penalty: 0,
+                total: 100,
                 isPaid: true
-            },
-            {
-                id: '2',
-                billDate: new Date('2022-04-01'),
-                dueDate: new Date('2022-04-21'),
-                amount: 85.50,
-                isPaid: false
             }
         ]
     },
@@ -104,3 +106,4 @@ const users: User[] = [
         electrictyBills: []
     }
 ]
+

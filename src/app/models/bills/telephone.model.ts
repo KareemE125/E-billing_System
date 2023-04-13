@@ -5,3 +5,5 @@ export interface TelephoneBill extends CommonBill {
     serviceProvider: ServiceProvider,
     offerName: string
 }
+
+//all fields are required
