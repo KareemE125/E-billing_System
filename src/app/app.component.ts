@@ -8,24 +8,10 @@ import { User } from './models/users/user.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
   title = 'E-Billing_System';
 
-  username: string = ""
-  password: string = ""
-
-  userList: User[] = [];
-
-  messageToShow: String = '';
-
-  constructor(private accountService: AccountService) {
-  }
-
   ngOnInit(): void {
-    this.userList = this.accountService.getUsers()
-
-    this.accountService.messageTobeSent.subscribe((msg) => {
-      this.messageToShow = msg;
-    });
   }
 
 
@@ -45,5 +31,7 @@ export class AppComponent implements OnInit {
   // }
 
   /////////////////////////////////////////////////////////////////////
+
+ 
 
 }

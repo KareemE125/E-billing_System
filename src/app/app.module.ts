@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,8 @@ import { ServiceCardComponent } from './service-card/service-card.component';
 import { AccountService } from './services/account.service';
 import { ChildComponent } from './child/child.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { ParentComponent } from './parent/parent.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,15 @@ import { LoginComponent } from './login/login.component';
     NavBarComponent,
     ServiceCardComponent,
     ChildComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    ParentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]
