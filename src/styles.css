@@ -4,5 +4,5 @@
 @import 'tailwindcss/utilities';
 
 .border{
-    border: 2px solid rgb(30, 30, 30) !important;
+    border: 1px solid rgb(74, 74, 74) !important;
 }
