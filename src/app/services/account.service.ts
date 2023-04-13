@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user.model';
+import { User } from '../models/users/user.model';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class AccountService {
   constructor() { }
 
 
-  getUsers() : User[] {
+  getUsers(): User[] {
     this.usersList = [
       {
         id: "1001",
@@ -34,7 +34,7 @@ export class AccountService {
   }
 
 
-/////// >>>>> User get using firebase example <<<<< /////////////////
+  /////// >>>>> User get using firebase example <<<<< /////////////////
 
   // userAddedSubject = new Subject<string>();
 
@@ -48,7 +48,7 @@ export class AccountService {
   //       console.error("Error adding document: ", error);
   //     });
   // }
-  
-/////////////////////////////////////////////////////////////////////
+
+  /////////////////////////////////////////////////////////////////////
 
 }

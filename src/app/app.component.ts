@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { AccountService } from './services/account.service';
-import { User } from './models/user.model';
+import { User } from './models/users/user.model';
 
 @Component({
   selector: 'app-root',
@@ -29,8 +29,8 @@ export class AppComponent implements OnInit {
   }
 
 
-/////// >>>>> User get using firebase example <<<<< /////////////////
-  
+  /////// >>>>> User get using firebase example <<<<< /////////////////
+
   // constructor(private userService: UserService) {}
 
   // addUser(): void {
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   //     console.log(`New user added with ID: ${id}`);
   //   });
   // }
-  
-/////////////////////////////////////////////////////////////////////
+
+  /////////////////////////////////////////////////////////////////////
 
 }
