@@ -1,6 +1,6 @@
-import { Common } from "./common.model";
+import { CommonUser } from "./common.model";
 
-export interface ServiceProvider extends Common {
+export interface ServiceProvider extends CommonUser {
     offers: Offer[]
 }
 //all fields are required

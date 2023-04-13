@@ -1,4 +1,4 @@
-export interface Common {
+export interface CommonUser {
     id: string, //auto generated
     name: string,   //required
     email: string,  //required

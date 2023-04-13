@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/users/user.model';
 import { Subject } from 'rxjs';
+import { dummy_users } from '../dummy-data/user-list';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,7 @@ export class AccountService {
 
 
   getUsers(): User[] {
-    this.usersList = [
-      
-    ]
-
+    this.usersList = dummy_users
     return this.usersList
   }
 

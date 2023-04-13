@@ -1,5 +1,5 @@
-import { Common } from "./common.model";
+import { CommonUser } from "./common.model";
 
-export interface Admin extends Common {
+export interface Admin extends CommonUser {
 
 }
