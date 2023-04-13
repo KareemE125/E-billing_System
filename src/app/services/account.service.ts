@@ -15,14 +15,7 @@ export class AccountService {
 
   getUsers(): User[] {
     this.usersList = [
-      {
-        id: "1001",
-        name: "User One"
-      },
-      {
-        id: "1002",
-        name: "User Two"
-      },
+      
     ]
 
     return this.usersList
