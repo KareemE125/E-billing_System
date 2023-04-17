@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ErrorsService } from '../services/errors.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,12 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  errs: any;
+
+  constructor(private errService: ErrorsService, private formBuilder: FormBuilder) {
+    this.errs = errService.getErrors().LoginErrors
+
+    //we keep the validators.email and .pattern even in the sign in form, to prevent a server request if it is guaranteed to fail
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.minLength(8), Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z]).{8,}$')]]
