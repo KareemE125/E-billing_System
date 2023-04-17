@@ -10,20 +10,20 @@ import { AccountService } from '../services/account.service';
 })
 
 export class ParentComponent {
-  userList: User[] = dummy_users;
+   userList: User[] = dummy_users;
 
-  messageToShow: String = '';
+   messageToShow: String = '';
 
-  constructor(private accountService: AccountService) {
-  }
+  // constructor(private accountService: AccountService) {
+  // }
 
-  ngOnInit(): void {
-    this.userList = this.accountService.getUsers()
+  // ngOnInit(): void {
+  //   this.userList = this.accountService.getUsers()
 
-    this.accountService.messageTobeSent.subscribe((msg) => {
-      this.messageToShow = msg;
-    });
-  }
+  //   this.accountService.messageTobeSent.subscribe((msg) => {
+  //     this.messageToShow = msg;
+  //   });
+  // }
 
 
   /////// >>>>> User get using firebase example <<<<< /////////////////
