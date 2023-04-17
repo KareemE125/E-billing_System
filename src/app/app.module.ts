@@ -13,7 +13,6 @@ import { HomeComponent } from './home/home.component';
 import { ParentComponent } from './parent/parent.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { TableComponent } from './table/table.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
 import { WaterComponent } from './water/water.component';
 import { ElectricityComponent } from './electricity/electricity.component';
@@ -25,6 +24,8 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
+import { UserTableComponent } from './user-table/user-table.component';
+import { AdminTableComponent } from './admin-table/table.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     ParentComponent,
     SignUpComponent,
     AboutUsComponent,
-    TableComponent,
+    UserTableComponent,
+    AdminTableComponent,
     AddOfferComponent,
     WaterComponent,
     ElectricityComponent,
