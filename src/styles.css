@@ -6,3 +6,7 @@
 .border{
     border: 1px solid rgb(74, 74, 74) !important;
 }
+
+.border-t{
+    border-top: 1px solid rgb(229, 229, 229) !important;
+}
