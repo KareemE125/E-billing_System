@@ -15,6 +15,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TableComponent } from './table/table.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
+import { WaterComponent } from './water/water.component';
+import { ElectricityComponent } from './electricity/electricity.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +30,15 @@ import { AddOfferComponent } from './add-offer/add-offer.component';
     SignUpComponent,
     AboutUsComponent,
     TableComponent,
-    AddOfferComponent
+    AddOfferComponent,
+    WaterComponent,
+    ElectricityComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]

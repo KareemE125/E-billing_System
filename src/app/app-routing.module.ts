@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
+import { WaterComponent } from './water/water.component';
+import { ElectricityComponent } from './electricity/electricity.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,8 +15,9 @@ const routes: Routes = [
   { path: 'child', component: ChildComponent },
   { path: 'login', component: LoginComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'service_provider/addoffer', component: AddOfferComponent }
-
+  { path: 'service_provider/addoffer', component: AddOfferComponent },
+  { path: 'water', component: WaterComponent },
+  { path: 'Electricity', component: ElectricityComponent }
 
 ];
 

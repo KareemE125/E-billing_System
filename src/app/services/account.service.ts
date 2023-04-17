@@ -11,7 +11,9 @@ import { dummy_users } from '../dummy-data/user-list';
 export class AccountService {
 
   currentUserType: UserType = UserType.User;
-
+GetUsersEnum():any {
+  return UserType;
+}
   // usersList: User[] = [];
   // messageTobeSent = new Subject<String>();
 
@@ -48,7 +50,7 @@ export class AccountService {
 
 }
 
-enum UserType {
+  enum UserType {
   Admin,
   User,
   ServiceProvider
