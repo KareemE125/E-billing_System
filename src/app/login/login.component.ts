@@ -36,6 +36,10 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       // perform login action
+      console.log({
+        email: this.email?.value,
+        password: this.password?.value
+      });
     } else {
 
       this.loginForm.markAllAsTouched();

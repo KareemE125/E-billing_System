@@ -1,0 +1,97 @@
+<div class="flex pt-20 justify-center">
+    <div class="w-full max-w-md p-8  border rounded-md shadow-lg">
+        <h1 class="text-3xl font-bold mb-8 text-center">Add Offer</h1>
+        <form [formGroup]="addOfferForm" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="offerName">Offer Name</label>
+                <input formControlName="offerName"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="offerName" name="offerName" type="text" placeholder="Enter the offer name">
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="offerName!['invalid'] && (offerName!['dirty'] || offerName!['touched'])">
+                    <div *ngIf="offerName!['errors']!['required']">{{errs.OfferName.Required}}</div>
+                    <div *ngIf="offerName!['errors']!['minlength']">{{errs.OfferName.MinLength}}</div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="offerStatus">Offer Status</label>
+                <select class="w-full sm:w-auto bg-gray-200 border rounded-lg px-2 py-2" id="offerStatus"
+                    formControlName="offerStatus">
+                    <option *ngFor="let offer of offerStatuses" value="{{offer}}">{{offer}}</option>
+                </select>
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="offerStatus!['invalid'] && (offerStatus!['dirty'] || offerStatus!['touched'])">
+                    <div *ngIf="offerStatus!['errors']!['required']">
+                        {{errs.OfferStatus.Required}}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 font-bold mb-2" for="internetQuantityOrPrice">{{offerStatus?.value ==
+                    "Pre Paid" ? "Internet Quantity in Megabytes" : "Price per Megabyte"}}</label>
+
+                <input formControlName="internetQuantityOrPrice"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="internetQuantityOrPrice" name="internetQuantityOrPrice" type="text"
+                    [placeholder]="offerStatus?.value == 'Pre Paid' ? 'Enter the internet quantity' : 'Enter the price per megabyte'">
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="internetQuantityOrPrice!['invalid'] && (internetQuantityOrPrice!['dirty'] || internetQuantityOrPrice!['touched'])">
+                    <div *ngIf="internetQuantityOrPrice!['errors']!['required']">
+                        {{errs.internetQuantityOrPrice.Required}}</div>
+
+                </div>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 font-bold mb-2" for="minutesQuantityOrPrice">{{offerStatus?.value ==
+                    "Pre Paid" ? "Minutes Quantity" : "Price per Minute"}}</label>
+                <input formControlName="minutesQuantityOrPrice"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="minutesQuantityOrPrice" name="minutesQuantityOrPrice" type="text"
+                    [placeholder]="offerStatus?.value == 'Pre Paid' ? 'Enter the minutes quantity' : 'Enter the price per minute'">
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="minutesQuantityOrPrice!['invalid'] && (minutesQuantityOrPrice!['dirty'] || minutesQuantityOrPrice!['touched'])">
+                    <div *ngIf="minutesQuantityOrPrice!['errors']!['required']">{{errs.minutesQuantityOrPrice.Required}}
+                    </div>
+                    <div *ngIf="minutesQuantityOrPrice!['errors']!['minlength']">{{errs.minutesQuantityOrPrice.Length}}
+                    </div>
+                    <div *ngIf="minutesQuantityOrPrice!['errors']!['maxLength']">{{errs.minutesQuantityOrPrice.Length}}
+                    </div>
+                </div>
+            </div>
+
+            <!--todo: if postpaid, price should be disabled and set as Per Usage
+            Make sure to handle errors properly as well-->
+            <div class="mb-6">
+                <label class="block text-gray-700 font-bold mb-2" for="price">Price</label>
+                <input formControlName="price"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="price" name="price" type="text" placeholder="Enter your phone number">
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="price!['invalid'] && (price!['dirty'] || price!['touched'])">
+                    <div *ngIf="price!['errors']!['required']">{{errs.price.Required}}</div>
+                    <div *ngIf="price!['errors']!['minlength']">{{errs.price.Length}}</div>
+                    <div *ngIf="price!['errors']!['maxLength']">{{errs.price.Length}}</div>
+                </div>
+            </div>
+
+
+
+            <div class="w-full flex items-center justify-center mt-6">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">
+                    Sign Up
+                </button>
+            </div>
+
+            <div class="w-full flex items-center justify-center pt-5">
+                <p>
+                    Already have an account?
+                    <a class="text-blue-700 hover:text-yellow-500 font-bold underline" routerLink="/login">Log In</a>
+                    now
+                </p>
+            </div>
+
+        </form>
+    </div>
+</div>

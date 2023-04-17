@@ -7,10 +7,13 @@ export interface ServiceProvider extends CommonUser {
 
 export interface Offer {
     name: string,
-    internetQuantity: number | "PerUsage",
-    minutesQuantity: number | "PerUsage",
-    price: number,
-    status: "PostPaid" | "PrePaid",
+    internetQuantityOrPrice: number,  //internetQuantity in mbs if prepaid, and price per mb if postpaid
+    minutesQuantityOrPrice: number, //minutesQuantity  if prepaid, and price per min if postpaid
+    price: number | "Per Usage",
+    status: "Pre Paid" | "Post Paid",
 }
 
 //all fields are required
+
+export let offerStatuses: string[] = ["Pre Paid", "Post Paid"]
+

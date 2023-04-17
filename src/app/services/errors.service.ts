@@ -41,6 +41,20 @@ export class ErrorsService {
           MinLength: _lenErrAtLeast("Password", 8),
           Pattern: "Password must contain at least one uppercase and one lowercase letter."
         }
+      },
+      AddOfferErrors: {
+        OfferName: {
+          Required: _reqErr("Offer Name"),
+          MinLength: _lenErrAtLeast("Offer Name", 3),
+        },
+        Password: {
+          Required: _reqErr("Password"),
+          MinLength: _lenErrAtLeast("Password", 8),
+          Pattern: "Password must contain at least one uppercase and one lowercase letter."
+        },
+        OfferStatus: {
+          Required: "Please select an option."
+        }
       }
     }
   }
