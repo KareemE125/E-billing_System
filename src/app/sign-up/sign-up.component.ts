@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonUser } from '../models/users/common.model';
 import { Admin } from '../models/users/admin.model';
 import { User } from '../models/users/user.model';
+import { ErrorsService } from '../services/errors.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,8 +22,12 @@ export class SignUpComponent {
     address: null,
   };
 
+  errs: any;
 
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private errService: ErrorsService, private formBuilder: FormBuilder) {
+    this.errs = errService.getErrors().SignUpErrors
+
     this.signUpForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.minLength(8), Validators.email]],
