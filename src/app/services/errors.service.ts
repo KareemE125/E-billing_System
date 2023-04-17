@@ -29,6 +29,18 @@ export class ErrorsService {
           MinLength: _lenErrAtLeast("Password", 8),
           Pattern: "Password must contain at least one uppercase and one lowercase letter."
         }
+      },
+      LoginErrors: {
+        Email: {
+          Required: _reqErr("Email"),
+          MinLength: _lenErrAtLeast("Email", 8),
+          Pattern: _invalidErr("Email")
+        },
+        Password: {
+          Required: _reqErr("Password"),
+          MinLength: _lenErrAtLeast("Password", 8),
+          Pattern: "Password must contain at least one uppercase and one lowercase letter."
+        }
       }
     }
   }

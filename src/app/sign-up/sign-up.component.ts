@@ -22,8 +22,8 @@ export class SignUpComponent {
     address: null,
   };
 
-  errs: any;
 
+  errs: any;
 
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder) {
     this.errs = errService.getErrors().SignUpErrors
