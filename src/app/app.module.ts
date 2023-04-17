@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ParentComponent } from './parent/parent.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 import { TableComponent } from './table/table.component';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { TableComponent } from './table/table.component';
     HomeComponent,
     ParentComponent,
     SignUpComponent,
+    AboutUsComponent,
     TableComponent
   ],
   imports: [
