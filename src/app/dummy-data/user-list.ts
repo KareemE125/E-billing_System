@@ -8,6 +8,7 @@ export const dummy_users: User[] = [
         email: 'johndoe@example.com',
         phoneNumber: '1234567890',
         password: 'password1',
+        wallet: 50,
         address: {
             street: 'Main St',
             buildingNum: 123,
@@ -33,6 +34,7 @@ export const dummy_users: User[] = [
         email: 'janesmith@example.com',
         phoneNumber: '2345678901',
         password: 'password2',
+        wallet: 100,
         address: {
             street: 'Broadway',
             buildingNum: 456,
@@ -70,6 +72,7 @@ export const dummy_users: User[] = [
         email: 'bobjohnson@example.com',
         phoneNumber: '3456789012',
         password: 'password3',
+        wallet: 300,
         address: {
             street: 'Park Ave',
             buildingNum: 789,
@@ -95,6 +98,7 @@ export const dummy_users: User[] = [
         email: 'alicelee@example.com',
         phoneNumber: '4567890123',
         password: 'password4',
+        wallet: 400,
         address: {
             street: 'High St',
             buildingNum: 456,
