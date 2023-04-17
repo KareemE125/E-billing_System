@@ -6,8 +6,19 @@
             </div>
             <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-4">
+                    <a class="text-gray-300 hover:text-white" routerLink="/editUserInfo">Profile</a>
+                    <a class="text-gray-300 hover:text-white" routerLink="/service_provider/addoffer">Add Offer</a>
+                    <a class="text-gray-300 hover:text-white" routerLink="/electricity">Electricity</a>
+                    <a class="text-gray-300 hover:text-white" routerLink="/water">Water</a>
+                    <a class="text-gray-300 hover:text-white" routerLink="/telephone">Telephones</a>
+                    <a class="text-gray-300 hover:text-white" routerLink="/about-us">About Us</a>
+                    <a class="text-gray-300 hover:text-white" routerLink="/home">Home</a>
+                    <a class="text-gray-300 hover:text-white" routerLink="/editServiceProviderInfo">Profile</a>
+                    <a class="text-gray-300 hover:text-white" routerLink="/editAdminInfo">Profile</a>
+                    <a class="text-gray-300 hover:text-white" routerLink="/adminAllUser">AllUser</a>
                     <ng-container *ngIf="isLoggedIn">
-                        <div class="ml-10 flex items-baseline space-x-4" *ngIf="accountService.currentUserType==accountService.GetUsersEnum().User" >
+                        <div class="ml-10 flex items-baseline space-x-4"
+                            *ngIf="accountService.currentUserType==accountService.GetUsersEnum().User">
                             <a class="text-gray-300 hover:text-white" routerLink="/editUserInfo">Profile</a>
                             <a class="text-gray-300 hover:text-white" routerLink="/electricity">Electricity</a>
                             <a class="text-gray-300 hover:text-white" routerLink="/water">Water</a>
@@ -15,25 +26,27 @@
                             <a class="text-gray-300 hover:text-white" routerLink="/about-us">About Us</a>
                         </div>
 
-                        <div class="ml-10 flex items-baseline space-x-4" *ngIf="accountService.currentUserType==accountService.GetUsersEnum().ServiceProvider" >
+                        <div class="ml-10 flex items-baseline space-x-4"
+                            *ngIf="accountService.currentUserType==accountService.GetUsersEnum().ServiceProvider">
                             <a class="text-gray-300 hover:text-white" routerLink="/home">Home</a>
                             <a class="text-gray-300 hover:text-white" routerLink="/editServiceProviderInfo">Profile</a>
                             <a class="text-gray-300 hover:text-white" routerLink="/about-us">About Us</a>
                         </div>
-                        
-                        <div class="ml-10 flex items-baseline space-x-4" *ngIf="accountService.currentUserType==accountService.GetUsersEnum().Admin" >
+
+                        <div class="ml-10 flex items-baseline space-x-4"
+                            *ngIf="accountService.currentUserType==accountService.GetUsersEnum().Admin">
                             <a class="text-gray-300 hover:text-white" routerLink="/editAdminInfo">Profile</a>
                             <a class="text-gray-300 hover:text-white" routerLink="/adminAllUser">AllUser</a>
                             <a class="text-gray-300 hover:text-white" routerLink="/electricity">Electricity</a>
                             <a class="text-gray-300 hover:text-white" routerLink="/water">Water</a>
                             <a class="text-gray-300 hover:text-white" routerLink="/telephone">Telephones</a>
                         </div>
-                        
-                     <a class="text-gray-300 hover:text-white" routerLink="/login">Logout</a>
-                    </ng-container>     
-                    <ng-container *ngIf="!isLoggedIn">               
-                    <a class="text-gray-300 hover:text-white" routerLink="/about-us">About Us</a>
-                    </ng-container>   
+
+                        <a class="text-gray-300 hover:text-white" routerLink="/login">Logout</a>
+                    </ng-container>
+                    <ng-container *ngIf="!isLoggedIn">
+                        <a class="text-gray-300 hover:text-white" routerLink="/about-us">About Us</a>
+                    </ng-container>
                     <!-- <a class="text-gray-300 hover:text-white" routerLink="#">About Us</a> -->
 
                 </div>
