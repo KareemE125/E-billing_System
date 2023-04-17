@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-table',
+  selector: 'admin-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
 
-export class TableComponent implements OnInit {
+export class AdminTableComponent implements OnInit {
 
   userList: User[] = [
     { id: '1', name: 'John Doe', unpaidElectricity: 100, unpaidWater: 50, unpaidTelephone: 75, total: 225 },
@@ -33,10 +33,11 @@ export class TableComponent implements OnInit {
 
     // apply search filter
     if (this.searchText) {
+      this.selectedOption = 'Choose an option'
       const searchTextLower = this.searchText.toLowerCase();
       this.filteredUserList = this.filteredUserList.filter(user => {
-        return user.name.toLowerCase().includes(searchTextLower) 
-              || user.id.toLowerCase().includes(searchTextLower);
+        return user.name.toLowerCase().includes(searchTextLower)
+          || user.id.toLowerCase().includes(searchTextLower);
       });
     }
 
