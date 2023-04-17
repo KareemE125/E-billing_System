@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/users/user.model';
+import { User } from '../../models/users/user.model';
 import { Subject } from 'rxjs';
-import { dummy_users } from '../dummy-data/user-list';
-import { CommonUser } from '../models/users/common.model';
+import { dummy_users } from '../../dummy-data/user-list';
+import { CommonUser } from '../../models/users/common.model';
 
 @Injectable({
   providedIn: 'root'

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonUser } from '../models/users/common.model';
-import { ErrorsService } from '../services/errors.service';
-import { AccountService } from '../services/account.service';
-import { UserService } from '../services/user.service';
-import { AdminService } from '../services/admin.service';
+import { ErrorsService } from '../shared/services/errors.service';
+import { AccountService } from '../shared/services/account.service';
+import { UserService } from '../shared/services/user.service';
+import { AdminService } from '../shared/services/admin.service';
 import { User } from '../models/users/user.model';
 import { ServiceProvider } from '../models/users/serviceProvider.model';
-import { ServiceProviderService } from '../services/service-provider.service';
+import { ServiceProviderService } from '../shared/services/service-provider.service';
 
 @Component({
   selector: 'app-edit-profile-info',
@@ -89,8 +89,8 @@ export class EditProfileInfoComponent {
         let user = this.accService.currentUser as User
         //todo: test this properly
         user = {
-          ...commonUsr,   //edit the commonUsr data
-          ...user     //keep the same User data (ex: electricity bills, and whatnot)
+          ...user,     //keep the same User data (ex: electricity bills, and whatnot)
+          ...commonUsr   //edit the commonUsr data
         }
         console.log("Normal user about to be updated " + JSON.stringify(user));
         this.userService.updateUser(user);
@@ -100,11 +100,11 @@ export class EditProfileInfoComponent {
         let srvProv = this.accService.currentUser as ServiceProvider
         //todo: test this properly
         srvProv = {
-          ...commonUsr,   //edit the commonUsr data
-          ...srvProv     //keep the same srv prov data (offers)
+          ...srvProv,     //keep the same srv prov data (offers)
+          ...commonUsr   //edit the commonUsr data
         }
         console.log("Service Provider about to be updated " + JSON.stringify(srvProv));
-        this.servProvService.addServiceProvider(srvProv);
+        this.servProvService.updateServiceProvider(srvProv);
       }
     } else {
 

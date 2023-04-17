@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ErrorsService } from '../services/errors.service';
+import { ErrorsService } from '../shared/services/errors.service';
 import { Offer, offerStatuses } from '../models/users/serviceProvider.model';
 
 @Component({

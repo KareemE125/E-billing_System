@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "e-billing-system-2d8c6"
+  },
+  "targets": {
+    "e-billing-system-2d8c6": {
+      "hosting": {
+        "E-Billing_System": [
+          "e-billing-system-2d8c6"
+        ]
+      }
+    }
+  }
+}

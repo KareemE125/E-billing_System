@@ -91,6 +91,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "E-Billing_System:build:production",
+            "firebaseProject": "e-billing-system-2d8c6",
+            "firebaseHostingSite": "e-billing-system-2d8c6"
+          }
         }
       }
     }
