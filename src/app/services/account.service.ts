@@ -7,23 +7,26 @@ import { dummy_users } from '../dummy-data/user-list';
   providedIn: 'root'
 })
 //this service is responsible signing in and singing up
+
 export class AccountService {
 
-  usersList: User[] = [];
-  messageTobeSent = new Subject<String>();
+  currentUserType: UserType = UserType.User;
+
+  // usersList: User[] = [];
+  // messageTobeSent = new Subject<String>();
 
   constructor() { }
 
 
-  getUsers(): User[] {
-    this.usersList = dummy_users
-    return this.usersList
-  }
+  // getUsers(): User[] {
+  //   this.usersList = dummy_users
+  //   return this.usersList
+  // }
 
 
-  sendMessage(message: String) {
-    return this.messageTobeSent.next(message);
-  }
+  // sendMessage(message: String) {
+  //   return this.messageTobeSent.next(message);
+  // }
 
 
   /////// >>>>> User get using firebase example <<<<< /////////////////
@@ -43,4 +46,10 @@ export class AccountService {
 
   /////////////////////////////////////////////////////////////////////
 
+}
+
+enum UserType {
+  Admin,
+  User,
+  ServiceProvider
 }

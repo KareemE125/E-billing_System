@@ -33,8 +33,9 @@
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="phoneNumber!['invalid'] && (phoneNumber!['dirty'] || phoneNumber!['touched'])">
                     <div *ngIf="phoneNumber!['errors']!['required']">Phone Number is required.</div>
-                    <div *ngIf="phoneNumber!['errors']!['minlength']">Phone Number must be 11 characters long.</div>
-                    <div *ngIf="phoneNumber!['errors']!['pattern']">Phone Number must contain 11 digits.</div>
+                    <div *ngIf="phoneNumber!['errors']!['minlength']">Phone Number must be 11 digits long.</div>
+                    <div *ngIf="phoneNumber!['errors']!['maxLength']">Phone Number must be 11 digits long.</div>
+                    <div *ngIf="phoneNumber!['errors']!['pattern']">Phone Number is invalid.</div>
                 </div>
             </div>
             <div class="mb-4">

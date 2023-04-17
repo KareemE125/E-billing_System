@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ParentComponent } from './parent/parent.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     HomeComponent,
     ParentComponent,
     SignUpComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

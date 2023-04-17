@@ -72,6 +72,7 @@ export class SignUpComponent {
           email: this.email?.value,
           phoneNumber: this.phoneNumber?.value,
           password: this.password?.value,
+          wallet: 0,
           address: null,
           waterBills: [],
           electrictyBills: [],
