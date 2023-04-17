@@ -8,8 +8,8 @@
                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="name" name="name" type="text" placeholder="Enter your name">
                 <div class="text-red-500 text-xs mt-1" *ngIf="name!['invalid'] && (name!['dirty'] || name!['touched'])">
-                    <div *ngIf="name!['errors']!['required']">Name is required.</div>
-                    <div *ngIf="name!['errors']!['minlength']">Name must be at least 3 characters long.</div>
+                    <div *ngIf="name!['errors']!['required']">{{errs.Name.Required}}</div>
+                    <div *ngIf="name!['errors']!['minlength']">{{errs.Name.MinLength}}</div>
                 </div>
             </div>
             <div class="mb-4">
@@ -19,10 +19,9 @@
                     id="email" name="email" type="text" placeholder="Enter your email">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="email!['invalid'] && (email!['dirty'] || email!['touched'])">
-                    <div *ngIf="email!['errors']!['required']">Email is required.</div>
-                    <div *ngIf="email!['errors']!['minlength']">Email must be at least 8 characters long.</div>
-                    <div *ngIf="email!['errors']!['email']">Email is not valid.</div>
-
+                    <div *ngIf="email!['errors']!['required']">{{errs.Email.Required}}</div>
+                    <div *ngIf="email!['errors']!['minlength']">{{errs.Email.MinLength}}</div>
+                    <div *ngIf="email!['errors']!['email']">{{errs.Email.Pattern}}</div>
                 </div>
             </div>
             <div class="mb-6">
@@ -32,10 +31,10 @@
                     id="phoneNumber" name="phoneNumber" type="text" placeholder="Enter your phone number">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="phoneNumber!['invalid'] && (phoneNumber!['dirty'] || phoneNumber!['touched'])">
-                    <div *ngIf="phoneNumber!['errors']!['required']">Phone Number is required.</div>
-                    <div *ngIf="phoneNumber!['errors']!['minlength']">Phone Number must be 11 digits long.</div>
-                    <div *ngIf="phoneNumber!['errors']!['maxLength']">Phone Number must be 11 digits long.</div>
-                    <div *ngIf="phoneNumber!['errors']!['pattern']">Phone Number is invalid.</div>
+                    <div *ngIf="phoneNumber!['errors']!['required']">{{errs.PhoneNumber.Required}}</div>
+                    <div *ngIf="phoneNumber!['errors']!['minlength']">{{errs.PhoneNumber.Length}}</div>
+                    <div *ngIf="phoneNumber!['errors']!['maxLength']">{{errs.PhoneNumber.Length}}</div>
+                    <div *ngIf="phoneNumber!['errors']!['pattern']">{{errs.PhoneNumber.Pattern}}</div>
                 </div>
             </div>
             <div class="mb-4">
@@ -45,10 +44,9 @@
                     id="password" name="password" type="password" placeholder="Enter your password">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="password!['invalid'] && (password!['dirty'] || password!['touched'])">
-                    <div *ngIf="password!['errors']!['required']">Password is required.</div>
-                    <div *ngIf="password!['errors']!['minlength']">Password must be at least 8 characters long.</div>
-                    <div *ngIf="password!['errors']!['pattern']">
-                        Password must contain at least one uppercase and one lowercase letter.</div>
+                    <div *ngIf="password!['errors']!['required']">{{errs.Password.Required}}</div>
+                    <div *ngIf="password!['errors']!['minlength']">{{errs.Password.MinLength}}</div>
+                    <div *ngIf="password!['errors']!['pattern']">{{errs.Password.Pattern}}</div>
                 </div>
             </div>
 

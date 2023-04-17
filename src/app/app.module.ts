@@ -14,6 +14,8 @@ import { ParentComponent } from './parent/parent.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TableComponent } from './table/table.component';
+import { WaterComponent } from './water/water.component';
+import { ElectricityComponent } from './electricity/electricity.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { TableComponent } from './table/table.component';
     ParentComponent,
     SignUpComponent,
     AboutUsComponent,
-    TableComponent
+    TableComponent,
+    WaterComponent,
+    ElectricityComponent
   ],
   imports: [
     BrowserModule,
