@@ -8,6 +8,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
 import { WaterComponent } from './water/water.component';
 import { ElectricityComponent } from './electricity/electricity.component';
+import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
   { path: 'service_provider/addoffer', component: AddOfferComponent },
   { path: 'water', component: WaterComponent },
-  { path: 'Electricity', component: ElectricityComponent }
+  { path: 'Electricity', component: ElectricityComponent },
+  { path: 'editProfileInfo', component: EditProfileInfoComponent }
 
 ];
 

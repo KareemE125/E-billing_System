@@ -17,6 +17,7 @@ import { TableComponent } from './table/table.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
 import { WaterComponent } from './water/water.component';
 import { ElectricityComponent } from './electricity/electricity.component';
+import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ElectricityComponent } from './electricity/electricity.component';
     TableComponent,
     AddOfferComponent,
     WaterComponent,
-    ElectricityComponent
+    ElectricityComponent,
+    EditProfileInfoComponent
   ],
   imports: [
     BrowserModule,
