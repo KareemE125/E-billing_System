@@ -9,7 +9,10 @@ export class AdminService {
 
   //Todo: add admin to firebase
   addAdmin(admin: Admin) {
-    console.log("Admin service ")
-    console.log(admin);
+    console.log(`Adding admin ${JSON.stringify(admin)} to firebase`)
+  }
+
+  updateAdmin(admin: Admin) {
+    console.log(`Updating admin ${JSON.stringify(admin)} to firebase`)
   }
 }

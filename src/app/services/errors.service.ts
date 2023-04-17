@@ -67,6 +67,9 @@ export class ErrorsService {
           Required: _reqErr("Price field"),
           Pattern: _invalidErr("Number")
         }
+      },
+      EditProfileInfoErrors: {
+
       }
     }
   }

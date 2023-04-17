@@ -10,7 +10,9 @@ export class UserService {
 
   //Todo: add user to firebase
   addUser(user: User) {
-    console.log("User service ")
-    console.log(user);
+    console.log(`Adding user ${JSON.stringify(user)} to firebase`)
+  }
+  updateUser(user: User) {
+    console.log(`Updating user ${JSON.stringify(user)} to firebase`)
   }
 }
