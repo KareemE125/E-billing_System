@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { WaterComponent } from './water/water.component';
+import { ElectricityComponent } from './electricity/electricity.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'child', component: ChildComponent },
   { path: 'login', component: LoginComponent },
   {path:'about-us',component:AboutUsComponent},
-  {path:'water',component:WaterComponent}
+  {path:'water',component:WaterComponent},
+  {path:'Electricity',component:ElectricityComponent}
 
 ];
 
