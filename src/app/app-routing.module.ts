@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
   { path: 'service_provider/addoffer', component: AddOfferComponent },
   { path: 'water', component: WaterComponent },
-  { path: 'Electricity', component: ElectricityComponent },
+  { path: 'electricity', component: ElectricityComponent },
   { path: 'editProfileInfo', component: EditProfileInfoComponent }
 
 ];
