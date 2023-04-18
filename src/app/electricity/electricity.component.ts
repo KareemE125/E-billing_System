@@ -8,6 +8,8 @@ import { CommonBill } from '../models/bills/commonBill.model';
 })
 export class ElectricityComponent {
 
+  tableUnit:string = "kWh";
+  
   infoList: CommonBill[] = [
     {
       year: 2021, month: 9 , total: 500, isPaid: false, penalty: 20, usage: 890

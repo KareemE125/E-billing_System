@@ -10,7 +10,7 @@ import {CommonBill} from '../models/bills/commonBill.model'
 export class UserTableComponent implements OnInit {
 
   @Input() infoList: CommonBill[] = [];
-  tableUnit:string = "kWh";
+  @Input() tableUnit:string = "kWh";
   
   filteredInfoList: CommonBill[] = [];
 
