@@ -10,8 +10,8 @@ export class DatabaseTestComponent {
   private userService: UserService;
   constructor(userService: UserService) {
     this.userService = userService;
-    
     this.testCreateUser();
+    this.testGetAllUsers();
   }
     
   
@@ -33,4 +33,17 @@ export class DatabaseTestComponent {
     console.log('New user created: ', newUser);
   }
 
+  async testGetAllUsers() {
+    console.log('Getting all users...');
+    try {
+      const users = await this.userService.getAllUsers();
+      if (users !== null && users.length > 0) {
+        console.log("User index 0: ",users[0].name);
+      }
+      // console.log('All users: ', users);
+    } catch (error) {
+      console.log('Error getting all users:', error);
+    }
+  }
+  
 }
