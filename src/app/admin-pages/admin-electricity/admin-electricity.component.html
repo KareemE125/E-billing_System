@@ -1,1 +1,61 @@
-<p>admin-electricity works!</p>
+<main class="w-3/4 m-auto">
+    <section class="w-full text-sm mx-auto">
+        <div class="bg-gray-100 rounded-lg shadow-lg">
+            <div class="px-6 py-4">
+                <h2 class="text-2xl font-bold mb-8 text-center">All Electricity Status</h2>
+                <div class="flex flex-wrap justify-between items-center mb-4">
+                    <div>
+                        <span>Search: </span>
+                        <input type="text" class="w-full sm:w-auto bg-white border rounded-lg px-2 py-1 mb-2 sm:mb-0"
+                            [(ngModel)]="searchText" (keyup)="filterUsers()" placeholder="Search...">
+                    </div>
+                    <div>
+                        <span>Filter: </span>
+                        <select class="w-full sm:w-auto bg-white border rounded-lg px-0 py-1"
+                            [(ngModel)]="selectedOption" [value]="selectedOption" (change)="filterUsers()">
+                            <option selected disabled>Choose an option</option>
+                            <option value="paid">Paid</option>
+                            <option value="unpaid">Unpaid</option>
+                            <option value="penalty">Penalty</option>
+                            <option value="notPenalty">Not Penalty</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="bg-white p-2 rounded-lg mt-8 max-h-96 overflow-y-auto">
+                    <table class="w-full bg-white">
+                        <thead>
+                            <tr>
+                                <th class="text-left py-2">ID</th>
+                                <th class="text-left py-2">Name</th>
+                                <th class="text-left py-2">Year/Month</th>
+                                <th class="text-left py-2">Usage</th>
+                                <th class="text-left py-2">Penalty</th>
+                                <th class="text-left py-2">Total</th>
+                                <th class="text-left py-2">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of filteredUserList">
+                                <td class="border-t px-4 py-2">{{user.id}}</td>
+                                <td class="border-t px-4 py-2">{{user.name}}</td>
+                                <td class="border-t px-4 py-2">{{user.year}}/{{user.month}}</td>
+                                <td class="border-t px-4 py-2">{{user.usage}} {{tableUnit}}</td>
+                                <td class="border-t px-4 py-2">{{user.penalty}}</td>
+                                <td class="border-t px-4 py-2">{{user.total}}</td>
+                                <td class="border-t py-2">
+                                    <p class="pl-3" *ngIf="user.isPaid==false">
+                                        Not Paid
+                                    </p>
+                                    <p class="pl-3" *ngIf="user.isPaid==true">
+                                        Paid
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</main>
