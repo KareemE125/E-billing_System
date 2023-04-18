@@ -15,8 +15,8 @@ import { ServiceProviderService } from '../shared/services/service-provider.serv
   styleUrls: ['./edit-profile-info.component.css']
 })
 export class EditProfileInfoComponent {
-  signUpForm: FormGroup;
-
+  editProfileInfo: FormGroup;
+  currUser?: CommonUser;
 
   errs: any;
 
@@ -25,47 +25,48 @@ export class EditProfileInfoComponent {
     private servProvService: ServiceProviderService) {
     this.errs = errService.getErrors().EditProfileInfoErrors
 
-    this.signUpForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.minLength(8), Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^01[0125][0-9]{8}$')]], //add a pattern where all are numbers
-      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z]).{8,}$')]],
-      isAdminChecked: [false]
-
+    this.currUser = accService.currentUser
+    this.editProfileInfo = this.formBuilder.group({
+      name: [this.currUser?.name, [Validators.required, Validators.minLength(3)]],
+      email: [this.currUser?.email],  //email is disabled
+      phoneNumber: [this.currUser?.phoneNumber, [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^01[0125][0-9]{8}$')]], //pattern for all positive numbers
+      password: [this.currUser?.password, [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z]).{8,}$')]],
+      street: [this.currUser?.address?.street, [Validators.minLength(3)]],
+      buildingNum: [this.currUser?.address?.buildingNum, [Validators.pattern('^[1-9][0-9]*$')]], //pattern for all positive integers
+      city: [this.currUser?.address?.city, [Validators.minLength(3)]],
+      country: [this.currUser?.address?.country, [Validators.minLength(3)]],
     });
   }
 
   get name() {
-    return this.signUpForm.get('name');
+    return this.editProfileInfo.get('name');
   }
   get email() {
-    return this.signUpForm.get('email');
+    return this.editProfileInfo.get('email');
   }
   get phoneNumber() {
-    return this.signUpForm.get('phoneNumber');
+    return this.editProfileInfo.get('phoneNumber');
   }
   get password() {
-    return this.signUpForm.get('password');
+    return this.editProfileInfo.get('password');
   }
   get street() {
-    return this.signUpForm.get('street');
+    return this.editProfileInfo.get('street');
   }
   get buildingNum() {
-    return this.signUpForm.get('buildingNum');
+    return this.editProfileInfo.get('buildingNum');
   }
   get city() {
-    return this.signUpForm.get('city');
+    return this.editProfileInfo.get('city');
   }
   get country() {
-    return this.signUpForm.get('country');
+    return this.editProfileInfo.get('country');
   }
-
-
 
 
 
   onSubmit() {
-    if (this.signUpForm.valid) {
+    if (this.editProfileInfo.valid) {
       const commonUsr: CommonUser = {
         id: this.accService.currentUser?.id || "", //get the current user id
         name: this.name?.value,
@@ -108,7 +109,7 @@ export class EditProfileInfoComponent {
       }
     } else {
 
-      this.signUpForm.markAllAsTouched();
+      this.editProfileInfo.markAllAsTouched();
     }
   }
 }

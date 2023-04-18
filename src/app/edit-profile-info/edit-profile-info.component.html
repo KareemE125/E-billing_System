@@ -1,1 +1,117 @@
-<p>edit-profile-info works!</p>
+<div class="flex justify-center">
+    <div class="w-3/4 p-8  border rounded-md shadow-lg">
+        <h1 class="text-3xl font-bold mb-8 text-center">Edit Your Information</h1>
+        <form [formGroup]="editProfileInfo" (ngSubmit)="onSubmit()" class="w-full">
+            <div class="flex justify-around gap-20 w-full">
+                <section class="border p-4 rounded-md shadow-lg">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2" for="name">Name</label>
+                        <input formControlName="name"
+                            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="name" name="name" type="text" placeholder="Enter your name">
+                        <div class="text-red-500 text-xs mt-1"
+                            *ngIf="name!['invalid'] && (name!['dirty'] || name!['touched'])">
+                            <div *ngIf="name!['errors']!['required']">{{errs.Name.Required}}</div>
+                            <div *ngIf="name!['errors']!['minlength']">{{errs.Name.MinLength}}</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2" for="email">Email</label>
+                        <input readonly [class.disabled]="true" formControlName="email"
+                            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="email" name="email" type="text" placeholder="Enter your email">
+                        <!--add a style to show that it is disabled-->
+
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2" for="phoneNumber">Phone Number</label>
+                        <input formControlName="phoneNumber"
+                            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="phoneNumber" name="phoneNumber" type="text" placeholder="Enter your phone number">
+                        <div class="text-red-500 text-xs mt-1"
+                            *ngIf="phoneNumber!['invalid'] && (phoneNumber!['dirty'] || phoneNumber!['touched'])">
+                            <div *ngIf="phoneNumber!['errors']!['required']">{{errs.PhoneNumber.Required}}</div>
+                            <div *ngIf="phoneNumber!['errors']!['minlength']">{{errs.PhoneNumber.Length}}</div>
+                            <div *ngIf="phoneNumber!['errors']!['maxLength']">{{errs.PhoneNumber.Length}}</div>
+                            <div *ngIf="phoneNumber!['errors']!['pattern']">{{errs.PhoneNumber.Pattern}}</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2" for="password">Password</label>
+                        <input formControlName="password"
+                            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="password" name="password" type="password" placeholder="Enter your password">
+                        <div class="text-red-500 text-xs mt-1"
+                            *ngIf="password!['invalid'] && (password!['dirty'] || password!['touched'])">
+                            <div *ngIf="password!['errors']!['required']">{{errs.Password.Required}}</div>
+                            <div *ngIf="password!['errors']!['minlength']">{{errs.Password.MinLength}}</div>
+                            <div *ngIf="password!['errors']!['pattern']">{{errs.Password.Pattern}}</div>
+                        </div>
+                    </div>
+                </section>
+                <section class="border p-4 rounded-md shadow-lg">
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2" for="street">Street</label>
+                        <input formControlName="street"
+                            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="street" name="street" type="text" placeholder="Enter your phone number">
+                        <div class="text-red-500 text-xs mt-1"
+                            *ngIf="street!['invalid'] && (street!['dirty'] || street!['touched'])">
+                            <div *ngIf="street!['errors']!['minlength']">{{errs.Street.MinLength}}</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2" for="buildingNum">Building Number</label>
+                        <input formControlName="buildingNum"
+                            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="buildingNum" name="buildingNum" type="buildingNum"
+                            placeholder="Enter your building number">
+                        <div class="text-red-500 text-xs mt-1"
+                            *ngIf="buildingNum!['invalid'] && (buildingNum!['dirty'] || buildingNum!['touched'])">
+                            <div *ngIf="buildingNum!['errors']!['pattern']">{{errs.BuildingNum.Pattern}}</div>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2" for="city">City</label>
+                        <input formControlName="city"
+                            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="city" name="city" type="text" placeholder="Enter your city">
+                        <div class="text-red-500 text-xs mt-1"
+                            *ngIf="city!['invalid'] && (city!['dirty'] || city!['touched'])">
+                            <div *ngIf="city!['errors']!['minlength']">{{errs.City.MinLength}}</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2" for="country">Country</label>
+                        <input formControlName="country"
+                            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="country" name="country" type="country" placeholder="Enter your country">
+                        <div class="text-red-500 text-xs mt-1"
+                            *ngIf="country!['invalid'] && (country!['dirty'] || country!['touched'])">
+                            <div *ngIf="country!['errors']!['minlength']">{{errs.Country.MinLength}}</div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="w-full flex items-center justify-center mt-6">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">
+                    Save
+                </button>
+            </div>
+
+
+        </form>
+    </div>
+</div>

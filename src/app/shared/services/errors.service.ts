@@ -27,7 +27,7 @@ export class ErrorsService {
         Password: {
           Required: _reqErr("Password"),
           MinLength: _lenErrAtLeast("Password", 8),
-          Pattern: "Password must contain at least one uppercase and one lowercase letter."
+          Pattern: _passErr()
         }
       },
       LoginErrors: {
@@ -39,7 +39,7 @@ export class ErrorsService {
         Password: {
           Required: _reqErr("Password"),
           MinLength: _lenErrAtLeast("Password", 8),
-          Pattern: "Password must contain at least one uppercase and one lowercase letter."
+          Pattern: _passErr()
         }
       },
       AddOfferErrors: {
@@ -50,7 +50,7 @@ export class ErrorsService {
         Password: {
           Required: _reqErr("Password"),
           MinLength: _lenErrAtLeast("Password", 8),
-          Pattern: "Password must contain at least one uppercase and one lowercase letter."
+          Pattern: _passErr()
         },
         OfferStatus: {
           Required: "Please select an option."
@@ -69,7 +69,32 @@ export class ErrorsService {
         }
       },
       EditProfileInfoErrors: {
-
+        Name: {
+          Required: _reqErr("Name"),
+          MinLength: _lenErrAtLeast("Name", 3)
+        },
+        PhoneNumber: {
+          Required: _reqErr("Phone Number"),
+          Length: _lenErrEqual("Phone Number", 11),  //used for minLength and maxLength,
+          Pattern: _invalidErr("Phone Number")
+        },
+        Password: {
+          Required: _reqErr("Password"),
+          MinLength: _lenErrAtLeast("Password", 8),
+          Pattern: _passErr()
+        },
+        Street: {
+          MinLength: _lenErrAtLeast("Street", 3),
+        },
+        BuildingNum: {
+          Pattern: _invalidErr("Number")
+        },
+        City: {
+          MinLength: _lenErrAtLeast("City", 3),
+        },
+        Country: {
+          MinLength: _lenErrAtLeast("Country", 3),
+        }
       }
     }
   }
@@ -85,4 +110,7 @@ function _lenErrAtLeast(fieldName: string, len: number): string {
 }
 function _invalidErr(fieldName: string): string {
   return `${fieldName} is invalid.`
+}
+function _passErr(): string {
+  return "Password must contain at least one uppercase and one lowercase letter."
 }
