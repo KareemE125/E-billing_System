@@ -28,9 +28,11 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { UserTableComponent } from './user-table/user-table.component';
-import { AdminTableComponent } from './admin-table/table.component';
+import { AdminTableComponent } from './admin-pages/admin-table/table.component';
 import { DatabaseTestComponent } from './database-test/database-test.component';
 import { FooterComponent } from './footer/footer.component';
+import { ManageComponent } from './admin-pages/manage/manage.component';
+import { AllUsersComponent } from './admin-pages/all-users/all-users.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { FooterComponent } from './footer/footer.component';
     ModalComponent,
     EditProfileInfoComponent,
     DatabaseTestComponent,
-    FooterComponent
+    FooterComponent,
+    ManageComponent,
+    AllUsersComponent
   ],
   imports: [
     BrowserModule,

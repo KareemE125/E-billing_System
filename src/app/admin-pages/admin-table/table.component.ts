@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../all-users/all-users.component';
+
 
 @Component({
   selector: 'admin-table',
@@ -8,13 +10,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class AdminTableComponent implements OnInit {
 
-  userList: User[] = [
-    { id: '1', name: 'John Doe', unpaidElectricity: 100, unpaidWater: 50, unpaidTelephone: 75, total: 225 },
-    { id: '2', name: 'Jane Doe', unpaidElectricity: 75, unpaidWater: 100, unpaidTelephone: 50, total: 225 },
-    { id: '3', name: 'zzz', unpaidElectricity: 0, unpaidWater: 100, unpaidTelephone: 50, total: 225 },
-    { id: '4', name: 'xXx', unpaidElectricity: 0, unpaidWater: 100, unpaidTelephone: 50, total: 225 },
-    // add more users as needed
-  ];
+  @Input() userList: User[] = [];
+
   filteredUserList: User[] = [];
 
   searchText = '';
@@ -41,9 +38,7 @@ export class AdminTableComponent implements OnInit {
       });
     }
 
-    console.log('====================================');
-    console.log(this.selectedOption);
-    console.log('====================================');
+
     // apply combobox filter
     if (this.selectedOption) {
       switch (this.selectedOption) {
@@ -68,11 +63,4 @@ export class AdminTableComponent implements OnInit {
     }
   }
 }
-interface User {
-  id: string;
-  name: string;
-  unpaidElectricity: number;
-  unpaidWater: number;
-  unpaidTelephone: number;
-  total: number;
-}
+
