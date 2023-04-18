@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +19,7 @@ import { TableComponent } from './table/table.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
 import { WaterComponent } from './water/water.component';
 import { ElectricityComponent } from './electricity/electricity.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +35,17 @@ import { ElectricityComponent } from './electricity/electricity.component';
     TableComponent,
     AddOfferComponent,
     WaterComponent,
-    ElectricityComponent
+    ElectricityComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTabsModule
+
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]
