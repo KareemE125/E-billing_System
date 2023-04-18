@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ErrorsService } from '../services/errors.service';
+import { ErrorsService } from '../shared/services/errors.service';
 import { Offer, offerStatuses } from '../models/users/serviceProvider.model';
 
 @Component({
@@ -20,9 +20,9 @@ export class AddOfferComponent {
     this.addOfferForm = this.formBuilder.group({
       offerName: ['', [Validators.required, Validators.minLength(3)]],
       offerStatus: ['Pre Paid', [Validators.required]],
-      internetQuantityOrPrice: ['', [Validators.required, Validators.pattern('^[1-9]\d*(\.\d+)?$')]],
-      minutesQuantityOrPrice: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z]).{8,}$')]],
-      price: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z]).{8,}$')]],
+      internetQuantityOrPrice: ['', [Validators.required, Validators.pattern('^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$')]],
+      minutesQuantityOrPrice: ['', [Validators.required, Validators.pattern('^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$')]],
+      price: ['', [Validators.required, Validators.pattern('^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$')]],
     });
   }
 

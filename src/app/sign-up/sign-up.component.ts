@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonUser } from '../models/users/common.model';
 import { Admin } from '../models/users/admin.model';
 import { User } from '../models/users/user.model';
-import { ErrorsService } from '../services/errors.service';
-import { UserService } from '../services/user.service';
-import { AdminService } from '../services/admin.service';
+import { ErrorsService } from '../shared/services/errors.service';
+import { UserService } from '../shared/services/user.service';
+import { AdminService } from '../shared/services/admin.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -27,10 +27,10 @@ export class SignUpComponent {
 
   errs: any;
 
-  constructor(private errService: ErrorsService, private formBuilder: FormBuilder ,private userService:UserService,private adminService:AdminService) {
+  constructor(private errService: ErrorsService, private formBuilder: FormBuilder, private userService: UserService, private adminService: AdminService) {
     this.errs = errService.getErrors().SignUpErrors
-    this.userService= userService;
-    this.adminService=adminService;
+    this.userService = userService;
+    this.adminService = adminService;
 
     this.signUpForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -63,8 +63,8 @@ export class SignUpComponent {
 
   onSubmit() {
     if (this.signUpForm.valid) {
-      console.log("isAdminChecked " +this.isAdminChecked?.value )
-      if (this.isAdminChecked?.value ) {
+      console.log("isAdminChecked " + this.isAdminChecked?.value)
+      if (this.isAdminChecked?.value) {
         //create an admin
         const admin: Admin = {
           ...this.commonUser,
@@ -93,7 +93,7 @@ export class SignUpComponent {
         console.log("Normal user created " + JSON.stringify(user));
         //call service to add user to db
         this.userService.addUser(user);
-        
+
       }
 
     } else {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { dummy_users } from '../dummy-data/user-list';
 import { User } from '../models/users/user.model';
-import { AccountService } from '../services/account.service';
+import { AccountService } from '../shared/services/account.service';
 
 @Component({
   selector: 'app-parent',
@@ -10,9 +10,9 @@ import { AccountService } from '../services/account.service';
 })
 
 export class ParentComponent {
-   userList: User[] = dummy_users;
+  userList: User[] = dummy_users;
 
-   messageToShow: String = '';
+  messageToShow: String = '';
 
   // constructor(private accountService: AccountService) {
   // }

@@ -7,12 +7,12 @@
                     <span>Search: </span>
                     <input type="text"
                         class="w-full sm:w-auto bg-gray-200 border rounded-lg px-4 py-2 mb-2 sm:mb-0"
-                        [(ngModel)]="searchText" (keyup)="filterUsers()" placeholder="Search...">
+                        [(ngModel)]="searchText"  (keyup)="filterUsers()" placeholder="Search...">
                 </div>
                 <div>
                     <span>Filter: </span>
                     <select class="w-full sm:w-auto bg-gray-200 border rounded-lg px-2 py-2" 
-                            [(ngModel)]="selectedOption" (change)="filterUsers()">
+                            [(ngModel)]="selectedOption" [value]="selectedOption" (change)="filterUsers()">
                         <option selected disabled>Choose an option</option>
                         <option value="unpaidElectricity">Unpaid Electricity</option>
                         <option value="unpaidWater">Unpaid Water</option>

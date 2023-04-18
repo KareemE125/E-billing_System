@@ -9,6 +9,7 @@ import { AddOfferComponent } from './add-offer/add-offer.component';
 import { WaterComponent } from './water/water.component';
 import { ElectricityComponent } from './electricity/electricity.component';
 import { ModalComponent } from './modal/modal.component';
+import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,6 +21,8 @@ const routes: Routes = [
   { path: 'water', component: WaterComponent },
   { path: 'electricity', component: ElectricityComponent },
   { path: 'modal', component: ModalComponent },
+  { path: 'editProfileInfo', component: EditProfileInfoComponent }
+
 ];
 
 @NgModule({

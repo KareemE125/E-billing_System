@@ -1,6 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { AccountService } from './services/account.service';
+import { AccountService } from './shared/services/account.service';
 import { User } from './models/users/user.model';
+import { DbService } from './shared/services/db.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,13 @@ export class AppComponent implements OnInit {
   title = 'E-Billing_System';
 
   ngOnInit(): void {
+    this.db.login("", "")
   }
 
 
   /////// >>>>> User get using firebase example <<<<< /////////////////
 
-  // constructor(private userService: UserService) {}
+  constructor(private db: DbService) { }
 
   // addUser(): void {
   //   const user = {
@@ -32,6 +34,6 @@ export class AppComponent implements OnInit {
 
   /////////////////////////////////////////////////////////////////////
 
- 
+
 
 }

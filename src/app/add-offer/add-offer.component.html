@@ -37,8 +37,9 @@
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="internetQuantityOrPrice!['invalid'] && (internetQuantityOrPrice!['dirty'] || internetQuantityOrPrice!['touched'])">
                     <div *ngIf="internetQuantityOrPrice!['errors']!['required']">
-                        {{errs.internetQuantityOrPrice.Required}}</div>
-
+                        {{errs.InternetQuantityOrPrice.Required}}</div>
+                    <div *ngIf="internetQuantityOrPrice!['errors']!['pattern']">
+                        {{errs.InternetQuantityOrPrice.Pattern}}</div>
                 </div>
             </div>
             <div class="mb-6">
@@ -50,12 +51,10 @@
                     [placeholder]="offerStatus?.value == 'Pre Paid' ? 'Enter the minutes quantity' : 'Enter the price per minute'">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="minutesQuantityOrPrice!['invalid'] && (minutesQuantityOrPrice!['dirty'] || minutesQuantityOrPrice!['touched'])">
-                    <div *ngIf="minutesQuantityOrPrice!['errors']!['required']">{{errs.minutesQuantityOrPrice.Required}}
-                    </div>
-                    <div *ngIf="minutesQuantityOrPrice!['errors']!['minlength']">{{errs.minutesQuantityOrPrice.Length}}
-                    </div>
-                    <div *ngIf="minutesQuantityOrPrice!['errors']!['maxLength']">{{errs.minutesQuantityOrPrice.Length}}
-                    </div>
+                    <div *ngIf="minutesQuantityOrPrice!['errors']!['required']">
+                        {{errs.MinutesQuantityOrPrice.Required}}</div>
+                    <div *ngIf="minutesQuantityOrPrice!['errors']!['pattern']">
+                        {{errs.MinutesQuantityOrPrice.Pattern}}</div>
                 </div>
             </div>
 
@@ -65,12 +64,13 @@
                 <label class="block text-gray-700 font-bold mb-2" for="price">Price</label>
                 <input formControlName="price"
                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="price" name="price" type="text" placeholder="Enter your phone number">
+                    id="price" name="price" type="text" placeholder="Enter the price">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="price!['invalid'] && (price!['dirty'] || price!['touched'])">
-                    <div *ngIf="price!['errors']!['required']">{{errs.price.Required}}</div>
-                    <div *ngIf="price!['errors']!['minlength']">{{errs.price.Length}}</div>
-                    <div *ngIf="price!['errors']!['maxLength']">{{errs.price.Length}}</div>
+                    <div *ngIf="price!['errors']!['required']">
+                        {{errs.Price.Required}}</div>
+                    <div *ngIf="price!['errors']!['pattern']">
+                        {{errs.Price.Pattern}}</div>
                 </div>
             </div>
 

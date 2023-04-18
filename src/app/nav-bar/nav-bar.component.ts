@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import{AccountService}from'../services/account.service'
+import { AccountService } from '../shared/services/account.service'
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -8,6 +8,6 @@ import{AccountService}from'../services/account.service'
 export class NavBarComponent {
   isLoggedIn: boolean = true
 
-  constructor(public accountService:AccountService){}
+  constructor(public accountService: AccountService) { }
 }
 

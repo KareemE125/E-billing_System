@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/users/user.model';
+import { User } from '../../models/users/user.model';
 import { Subject } from 'rxjs';
-import { dummy_users } from '../dummy-data/user-list';
+import { dummy_users } from '../../dummy-data/user-list';
+import { CommonUser } from '../../models/users/common.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +11,31 @@ import { dummy_users } from '../dummy-data/user-list';
 
 export class AccountService {
 
-  currentUserType: UserType = UserType.User;
-GetUsersEnum():any {
-  return UserType;
-}
-  // usersList: User[] = [];
-  // messageTobeSent = new Subject<String>();
+  currentUserType?: UserType = undefined;
+  currentUser?: CommonUser = undefined;
+
+  GetUsersEnum(): any {
+    return UserType;
+  }
+
+  //adminService, serviceProviderService, and userService are all responsible
+  //for setting the current user, or logging him out entirely
+  SetCurrentUser(usr: CommonUser, usrType: UserType): void {
+    this.currentUser = usr
+    this.currentUserType = usrType
+  }
+
 
   constructor() { }
 
+
+  // usersList: User[] = [];
+  // messageTobeSent = new Subject<String>();
 
   // getUsers(): User[] {
   //   this.usersList = dummy_users
   //   return this.usersList
   // }
-
 
   // sendMessage(message: String) {
   //   return this.messageTobeSent.next(message);
@@ -50,7 +61,7 @@ GetUsersEnum():any {
 
 }
 
-  enum UserType {
+enum UserType {
   Admin,
   User,
   ServiceProvider
