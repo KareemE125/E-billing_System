@@ -17,6 +17,7 @@ export const dummy_users: User[] = [
         },
         waterBills: [
             {
+                id: '1',
                 year: 2023,
                 month: 1,
                 usage: 100,
@@ -26,7 +27,7 @@ export const dummy_users: User[] = [
             }
         ],
         telephoneBills: [],
-        electrictyBills: []
+        electricityBills: []
     },
     {
         id: '2',
@@ -44,6 +45,7 @@ export const dummy_users: User[] = [
         waterBills: [],
         telephoneBills: [
             {
+                id: '1',
                 year: 2023,
                 month: 2,
                 usage: 200,
@@ -54,6 +56,7 @@ export const dummy_users: User[] = [
                 offerName: dummy_serviceProviders[0].offers[0].name
             },
             {
+                id: '2',
                 year: 2023,
                 month: 2,
                 usage: 200,
@@ -64,7 +67,7 @@ export const dummy_users: User[] = [
                 offerName: dummy_serviceProviders[0].offers[1].name
             },
         ],
-        electrictyBills: []
+        electricityBills: []
     },
     {
         id: '3',
@@ -81,8 +84,9 @@ export const dummy_users: User[] = [
         },
         waterBills: [],
         telephoneBills: [],
-        electrictyBills: [
+        electricityBills: [
             {
+                id: '1',
                 year: 2023,
                 month: 1,
                 usage: 100,
@@ -107,7 +111,7 @@ export const dummy_users: User[] = [
         },
         waterBills: [],
         telephoneBills: [],
-        electrictyBills: []
+        electricityBills: []
     }
 ]
 
