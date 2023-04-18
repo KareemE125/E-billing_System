@@ -38,9 +38,30 @@ export class UserService {
   }
 
 
-  getAll(): AngularFirestoreCollection<User> {
-    return this.userCollection;
+  async getAllUsers(): Promise<User[] | null> {
+    console.log('Getting all users...');
+    try {
+      const querySnapshot = await this.userCollection.get().toPromise();
+      const users: User[] = [];
+  
+      if (querySnapshot !== undefined) {
+        querySnapshot.forEach((doc) => {
+          if (doc.exists) {
+            console.log('User data:', doc.data());
+            users.push(doc.data() as User);
+          } else {
+            console.log('No such document!');
+          }
+        });
+      }
+  
+      return users;
+    } catch (error) {
+      console.log('Error getting users:', error);
+      return null;
+    }
   }
+  
 
   async getUserById(id: string): Promise<any> {
     console.log('Getting user by id: ', id);
