@@ -28,11 +28,13 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { UserTableComponent } from './user-table/user-table.component';
-import { AdminTableComponent } from './admin-pages/admin-table/table.component';
 import { DatabaseTestComponent } from './database-test/database-test.component';
 import { FooterComponent } from './footer/footer.component';
 import { ManageComponent } from './admin-pages/manage/manage.component';
 import { AllUsersComponent } from './admin-pages/all-users/all-users.component';
+import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-telephone.component';
+import { AdminWaterComponent } from './admin-pages/admin-water/admin-water.component';
+import { AdminElectricityComponent } from './admin-pages/admin-electricity/admin-electricity.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,6 @@ import { AllUsersComponent } from './admin-pages/all-users/all-users.component';
     SignUpComponent,
     AboutUsComponent,
     UserTableComponent,
-    AdminTableComponent,
     AddOfferComponent,
     WaterComponent,
     ElectricityComponent,
@@ -55,7 +56,10 @@ import { AllUsersComponent } from './admin-pages/all-users/all-users.component';
     DatabaseTestComponent,
     FooterComponent,
     ManageComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    AdminWaterComponent,
+    AdminElectricityComponent,
+    AdminTelephoneComponent
   ],
   imports: [
     BrowserModule,
