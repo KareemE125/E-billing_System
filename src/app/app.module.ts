@@ -26,6 +26,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { UserTableComponent } from './user-table/user-table.component';
 import { AdminTableComponent } from './admin-table/table.component';
+import { DatabaseTestComponent } from './database-test/database-test.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AdminTableComponent } from './admin-table/table.component';
     AddOfferComponent,
     WaterComponent,
     ElectricityComponent,
-    EditProfileInfoComponent
+    EditProfileInfoComponent,
+    DatabaseTestComponent
   ],
   imports: [
     BrowserModule,
