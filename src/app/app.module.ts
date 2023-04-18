@@ -30,6 +30,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { UserTableComponent } from './user-table/user-table.component';
 import { AdminTableComponent } from './admin-table/table.component';
 import { DatabaseTestComponent } from './database-test/database-test.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DatabaseTestComponent } from './database-test/database-test.component';
     ElectricityComponent,
     ModalComponent,
     EditProfileInfoComponent,
-    DatabaseTestComponent
+    DatabaseTestComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
