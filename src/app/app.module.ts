@@ -47,8 +47,9 @@ import { DatabaseTestComponent } from './database-test/database-test.component';
     AddOfferComponent,
     WaterComponent,
     ElectricityComponent,
-    ModalComponent
-    EditProfileInfoComponent
+    ModalComponent,
+    EditProfileInfoComponent,
+    DatabaseTestComponent
   ],
   imports: [
     BrowserModule,
