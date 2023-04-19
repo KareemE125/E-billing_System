@@ -5,6 +5,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection
 } from '@angular/fire/compat/firestore'
+import { UserType, AccountService } from './account.service'
 
 @Injectable({
   providedIn: 'root'
@@ -13,31 +14,64 @@ export class UserService {
   private dbPath = '/users'
   userCollection: AngularFirestoreCollection<User>
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private accountService: AccountService) {
     this.userCollection = this.db.collection(this.dbPath)
   }
 
-  addUser(user: User): any {
+  /**
+   * @param user 
+   * @returns user if added successfully, null otherwise
+   */
+  async addUser(user: User): Promise< User | null> {
     const newDocRef = this.userCollection.doc()
     user.id = newDocRef.ref.id
-
-    newDocRef.set({ ...user }).then(async () => {
+    newDocRef.set({ ...user }).then(() => {
       console.log('User added to firebase: ', user)
       return user;
+    }).catch((error) => {
+      console.error('Error adding user to firebase: ', error);
+      return null;
     });
 
+    return null;
   }
 
-  updateUser(user: User): Promise<void> {
-    console.log(`Updating user ${JSON.stringify(user)} to firebase`)
-    return this.userCollection.doc(user.id).update(user)
+  /**
+   * @param user
+   * @returns true if user is updated successfully, null otherwise
+   */
+  async updateUser(user: User): Promise<null | true>{
+    try{
+      console.log(`Updating user ${JSON.stringify(user)} to firebase`)
+      await this.userCollection.doc(user.id).update(user);
+      return true;
+    }
+    catch(error){
+      console.error('Error updating user: ', error);
+      return null;
+    }
   }
 
-  deleteUser(id: string): Promise<void> {
-    return this.userCollection.doc(id).delete()
+
+    /**
+   * @param id (user id) 
+   * @returns true if user is deleted successfully, null otherwise
+   */
+  async deleteUser(id: string): Promise<null | true> {
+   try {
+      await this.userCollection.doc(id).delete();
+      return true;
+    } catch (error) {
+      console.error('Error deleting user: ', error);
+      return null;
+    }
   }
 
 
+  /**
+   * 
+   * @returns all users if found, null otherwise
+   */
   async getAllUsers(): Promise<User[] | null> {
     console.log('Getting all users...');
     try {
@@ -54,7 +88,6 @@ export class UserService {
           }
         });
       }
-
       return users;
     } catch (error) {
       console.log('Error getting users:', error);
@@ -63,7 +96,11 @@ export class UserService {
   }
 
 
-  async getUserById(id: string): Promise<any> {
+  /**
+   * @param id (user id)
+   * @returns user if found, false if not found, null otherwise
+   */
+  async getUserById(id: string): Promise<User | null | false> {
     console.log('Getting user by id: ', id);
     try {
       const userDoc = await this.userCollection.doc(id).get().toPromise();
@@ -73,29 +110,40 @@ export class UserService {
         return userDoc.data() as User;
       } else {
         console.log('No such document!');
-        return null;
+        return false;
       }
     } catch (error) {
       console.log('Error getting user:', error);
+      return null;
     }
   }
 
-  async validateUser(email: string, password:string): Promise<User | false> {
+  /**
+   * @param email
+   * @param password
+   * @returns user if found, false if not found, null otherwise
+   */
+  async validateUser(email: string, password:string): Promise<User | null | false> {
     try {
       const user=await this.getUserByEmail(email);
-      if(user != false && user.password === password){
+      if(user != null && user != false && user.password === password){
           console.log("user is found and password is correct");
+          this.accountService.SetCurrentUser(user,UserType.User);
           return user;
       }
       return false;
     }
     catch (error) {
       console.log('Error getting user:', error);
-      return false;
+      return null;
     }
   }
 
-  async getUserByEmail(email: string):Promise<User | false> {
+  /**
+   * @param email
+   * @returns user if found, false if not found, null otherwise
+   */
+  async getUserByEmail(email: string):Promise<User | null | false> {
     console.log('Getting user by email: ', email);
     try {
       const querySnapshot = await this.userCollection.ref.where('email', '==', email).get();
@@ -108,7 +156,7 @@ export class UserService {
         return false;
       }
     } catch (error) {
-      return false;
+      return null;
     }
   }
 }
