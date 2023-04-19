@@ -67,7 +67,8 @@ export class WaterBillService extends DataService{
       if (users !== null && users.length > 0) {
         const waterBills: WaterBill[] = [];
         users.forEach((user) => {
-          waterBills.push(...user.waterBills);
+          if(user.waterBills)
+            waterBills.push(...user.waterBills);
         });
         return waterBills;
       }
