@@ -15,6 +15,7 @@ import { ManageComponent } from './admin-pages/manage/manage.component';
 import { AdminWaterComponent } from './admin-pages/admin-water/admin-water.component';
 import { AdminElectricityComponent } from './admin-pages/admin-electricity/admin-electricity.component';
 import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-telephone.component';
+import { AddBillComponent } from './add-bill/add-bill.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -31,8 +32,8 @@ const routes: Routes = [
   { path: 'admin-manage', component: ManageComponent },
   { path: 'admin-water', component: AdminWaterComponent },
   { path: 'admin-electricity', component: AdminElectricityComponent },
-  { path: 'admin-telephone', component: AdminTelephoneComponent }
-
+  { path: 'admin-telephone', component: AdminTelephoneComponent },
+  { path: 'add-bill', component: AddBillComponent }
 ];
 
 @NgModule({

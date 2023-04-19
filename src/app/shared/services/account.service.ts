@@ -61,7 +61,7 @@ export class AccountService {
 
 }
 
-enum UserType {
+export enum UserType {
   Admin,
   User,
   ServiceProvider

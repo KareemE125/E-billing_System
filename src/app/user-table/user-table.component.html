@@ -10,8 +10,8 @@
                 </div>
                 <div>
                     <span>Filter: </span>
-                    <select class="w-full sm:w-auto bg-white border rounded-lg px-0 py-1"
-                        [(ngModel)]="selectedOption" [value]="selectedOption" (change)="filterUsers()">
+                    <select class="w-full sm:w-auto bg-white border rounded-lg px-0 py-1" [(ngModel)]="selectedOption"
+                        [value]="selectedOption" (change)="filterUsers()">
                         <option selected disabled>Choose an option</option>
                         <option value="paid">Paid</option>
                         <option value="unpaid">Unpaid</option>
@@ -34,14 +34,12 @@
                     <tbody>
                         <tr *ngFor="let info of filteredInfoList; let i = index">
                             <td class="border-t px-4 py-2">{{info.year}}/{{info.month}}</td>
-                            <td class="border-t px-4 py-2">{{info.usage}} {{tableUnit}}</td>
+                            <td class="border-t px-4 py-2">{{info.units}} {{tableUnit}}</td>
                             <td class="border-t px-4 py-2">{{info.penalty}}</td>
                             <td class="border-t px-4 py-2">{{info.total}}</td>
                             <td class="border-t py-2">
-                                <button *ngIf="info.isPaid==false"
-                                    class="rounded-lg bg-blue-500 text-white px-4 py-1"
-                                    (click)="btnPay(i)"    
-                                >
+                                <button *ngIf="info.isPaid==false" class="rounded-lg bg-blue-500 text-white px-4 py-1"
+                                    (click)="btnPay(i)">
                                     Pay
                                 </button>
                                 <p class="pl-3" *ngIf="info.isPaid==true">

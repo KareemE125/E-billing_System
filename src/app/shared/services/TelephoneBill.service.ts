@@ -8,10 +8,11 @@ import {
     AngularFirestore,
     AngularFirestoreCollection,
 } from "@angular/fire/compat/firestore";
+import { DataService } from "./BillService.service";
 @Injectable({
     providedIn: "root",
 })
-export class BillService {
+export class TelephoneBillService extends DataService {
     private dbPath = "/users";
     userCollection: AngularFirestoreCollection<User>;
     private userService: UserService;
@@ -20,7 +21,7 @@ export class BillService {
         this.userCollection = this.db.collection(this.dbPath);
         this.userService = userService;
     }
-    async addTelephoneBillToUser( userId: string, telephoneBill: WaterBill  ): Promise<any> {
+    async addTelephoneBillToUser(userId: string, telephoneBill: WaterBill): Promise<any> {
         console.log("Adding telephone bills to user: ", userId);
         try {
             const user = await this.userService.getUserById(userId);
@@ -33,7 +34,7 @@ export class BillService {
         }
     }
 
-    async updateTelephoneBill( userId: string, telephoneBill: TelephoneBill ): Promise<any> {
+    async updateTelephoneBill(userId: string, telephoneBill: TelephoneBill): Promise<any> {
         console.log("Updating telephone bill: ", telephoneBill);
         try {
             const user: User = await this.userService.getUserById(userId);

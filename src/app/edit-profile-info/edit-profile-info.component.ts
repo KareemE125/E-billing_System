@@ -29,7 +29,7 @@ export class EditProfileInfoComponent {
     this.editProfileInfo = this.formBuilder.group({
       name: [this.currUser?.name, [Validators.required, Validators.minLength(3)]],
       email: [this.currUser?.email],  //email is disabled
-      phoneNumber: [this.currUser?.phoneNumber, [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^01[0125][0-9]{8}$')]], //pattern for all positive numbers
+      phoneNumber: [this.currUser?.phoneNumber, [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^01[0125][0-9]{8}$')]], //pattern for phone number
       password: [this.currUser?.password, [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z]).{8,}$')]],
       street: [this.currUser?.address?.street, [Validators.minLength(3)]],
       buildingNum: [this.currUser?.address?.buildingNum, [Validators.pattern('^[1-9][0-9]*$')]], //pattern for all positive integers

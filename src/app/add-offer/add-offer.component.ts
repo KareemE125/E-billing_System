@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorsService } from '../shared/services/errors.service';
-import { Offer, offerStatuses } from '../models/users/serviceProvider.model';
+import { Offer, telephoneOfferStatuses } from '../models/users/serviceProvider.model';
 
 @Component({
   selector: 'app-add-offer',
@@ -11,7 +11,7 @@ import { Offer, offerStatuses } from '../models/users/serviceProvider.model';
 export class AddOfferComponent {
   addOfferForm: FormGroup;
   errs: any;
-  offerStatuses: string[] = offerStatuses;
+  offerStatuses: string[] = telephoneOfferStatuses;
 
 
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder) {
