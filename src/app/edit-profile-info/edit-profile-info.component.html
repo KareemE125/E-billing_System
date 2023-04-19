@@ -64,8 +64,7 @@
                         <label class="block text-gray-700 font-bold mb-2" for="buildingNum">Building Number</label>
                         <input formControlName="buildingNum"
                             class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="buildingNum" name="buildingNum" type="buildingNum"
-                            placeholder="Enter your building number">
+                            id="buildingNum" name="buildingNum" type="number" placeholder="Enter your building number">
                         <div class="text-red-500 text-xs mt-1"
                             *ngIf="buildingNum!['invalid'] && (buildingNum!['dirty'] || buildingNum!['touched'])">
                             <div *ngIf="buildingNum!['errors']!['pattern']">{{errs.BuildingNum.Pattern}}</div>
@@ -85,7 +84,7 @@
                         <label class="block text-gray-700 font-bold mb-2" for="country">Country</label>
                         <input formControlName="country"
                             class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="country" name="country" type="country" placeholder="Enter your country">
+                            id="country" name="country" type="text" placeholder="Enter your country">
                         <div class="text-red-500 text-xs mt-1"
                             *ngIf="country!['invalid'] && (country!['dirty'] || country!['touched'])">
                             <div *ngIf="country!['errors']!['minlength']">{{errs.Country.MinLength}}</div>
