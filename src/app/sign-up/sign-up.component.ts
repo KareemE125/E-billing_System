@@ -87,7 +87,7 @@ export class SignUpComponent {
           wallet: 0,
           address: null,
           waterBills: [],
-          electrictyBills: [],
+          electricityBills: [],
           telephoneBills: []
         }
         console.log("Normal user created " + JSON.stringify(user));

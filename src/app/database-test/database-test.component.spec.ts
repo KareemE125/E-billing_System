@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalComponent } from './modal.component';
+import { DatabaseTestComponent } from './database-test.component';
 
-describe('ModalComponent', () => {
-  let component: ModalComponent;
-  let fixture: ComponentFixture<ModalComponent>;
+describe('DatabaseTestComponent', () => {
+  let component: DatabaseTestComponent;
+  let fixture: ComponentFixture<DatabaseTestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalComponent ]
+      declarations: [ DatabaseTestComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModalComponent);
+    fixture = TestBed.createComponent(DatabaseTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

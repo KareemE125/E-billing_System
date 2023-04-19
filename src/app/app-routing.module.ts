@@ -10,6 +10,11 @@ import { WaterComponent } from './water/water.component';
 import { ElectricityComponent } from './electricity/electricity.component';
 import { ModalComponent } from './modal/modal.component';
 import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
+import { AllUsersComponent } from './admin-pages/all-users/all-users.component';
+import { ManageComponent } from './admin-pages/manage/manage.component';
+import { AdminWaterComponent } from './admin-pages/admin-water/admin-water.component';
+import { AdminElectricityComponent } from './admin-pages/admin-electricity/admin-electricity.component';
+import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-telephone.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,7 +26,12 @@ const routes: Routes = [
   { path: 'water', component: WaterComponent },
   { path: 'electricity', component: ElectricityComponent },
   { path: 'modal', component: ModalComponent },
-  { path: 'editProfileInfo', component: EditProfileInfoComponent }
+  { path: 'editProfileInfo', component: EditProfileInfoComponent },
+  { path: 'admin-all-users', component: AllUsersComponent },
+  { path: 'admin-manage', component: ManageComponent },
+  { path: 'admin-water', component: AdminWaterComponent },
+  { path: 'admin-electricity', component: AdminElectricityComponent },
+  { path: 'admin-telephone', component: AdminTelephoneComponent }
 
 ];
 

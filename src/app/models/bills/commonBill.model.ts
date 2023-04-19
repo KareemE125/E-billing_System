@@ -4,7 +4,8 @@ export interface CommonBill {
     usage: number,      //0 <= usage <= 100000
     penalty: number,    //0 <= penalty <= 100000
     total: number,      //0 <= total <= 100000
-    isPaid: boolean     //true or false
+    isPaid: boolean,   //true or false
+    id:string
 }
 
 
