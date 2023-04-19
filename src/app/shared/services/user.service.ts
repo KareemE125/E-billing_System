@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core'
 import { User } from '../../models/users/user.model'
-import { WaterBill } from '../../models/bills/water.model'
-import {
-  AngularFirestore,
-  AngularFirestoreCollection
-} from '@angular/fire/compat/firestore'
+import {  AngularFirestore} from '@angular/fire/compat/firestore'
 import { UserType, AccountService } from './account.service'
+import { DataService } from './BillService.service'
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-  private dbPath = '/users'
-  userCollection: AngularFirestoreCollection<User>
+export class UserService extends DataService{
 
-  constructor(private db: AngularFirestore, private accountService: AccountService) {
-    this.userCollection = this.db.collection(this.dbPath)
+  constructor(db: AngularFirestore, private accountService: AccountService) {
+    super(db);
+    this.accountService = accountService;
   }
 
   /**
@@ -52,8 +48,7 @@ export class UserService {
     }
   }
 
-
-    /**
+  /**
    * @param id (user id) 
    * @returns true if user is deleted successfully, null otherwise
    */
