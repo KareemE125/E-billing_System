@@ -15,5 +15,4 @@ export interface Offer {
 
 //all fields are required
 
-export let offerStatuses: string[] = ["Pre Paid", "Post Paid"]
-
+export let telephoneOfferStatuses: string[] = ["Pre Paid", "Post Paid"]
