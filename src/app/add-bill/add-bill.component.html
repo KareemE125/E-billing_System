@@ -1,0 +1,79 @@
+<div class="flex justify-center">
+    <div class="w-full max-w-md p-8  border rounded-md shadow-lg">
+        <h1 class="text-3xl font-bold mb-8 text-center">Sign Up</h1>
+        <form [formGroup]="addBillForm" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="name">Name</label>
+                <input formControlName="name"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="name" name="name" type="text" placeholder="Enter your name">
+                <div class="text-red-500 text-xs mt-1" *ngIf="name!['invalid'] && (name!['dirty'] || name!['touched'])">
+                    <div *ngIf="name!['errors']!['required']">{{errs.Name.Required}}</div>
+                    <div *ngIf="name!['errors']!['minlength']">{{errs.Name.MinLength}}</div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="email">Email</label>
+                <input formControlName="email"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="email" name="email" type="text" placeholder="Enter your email">
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="email!['invalid'] && (email!['dirty'] || email!['touched'])">
+                    <div *ngIf="email!['errors']!['required']">{{errs.Email.Required}}</div>
+                    <div *ngIf="email!['errors']!['minlength']">{{errs.Email.MinLength}}</div>
+                    <div *ngIf="email!['errors']!['email']">{{errs.Email.Pattern}}</div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 font-bold mb-2" for="password">Phone Number</label>
+                <input formControlName="phoneNumber"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="phoneNumber" name="phoneNumber" type="text" placeholder="Enter your phone number">
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="phoneNumber!['invalid'] && (phoneNumber!['dirty'] || phoneNumber!['touched'])">
+                    <div *ngIf="phoneNumber!['errors']!['required']">{{errs.PhoneNumber.Required}}</div>
+                    <div *ngIf="phoneNumber!['errors']!['minlength']">{{errs.PhoneNumber.Length}}</div>
+                    <div *ngIf="phoneNumber!['errors']!['maxLength']">{{errs.PhoneNumber.Length}}</div>
+                    <div *ngIf="phoneNumber!['errors']!['pattern']">{{errs.PhoneNumber.Pattern}}</div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="password">Password</label>
+                <input formControlName="password"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="password" name="password" type="password" placeholder="Enter your password">
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="password!['invalid'] && (password!['dirty'] || password!['touched'])">
+                    <div *ngIf="password!['errors']!['required']">{{errs.Password.Required}}</div>
+                    <div *ngIf="password!['errors']!['minlength']">{{errs.Password.MinLength}}</div>
+                    <div *ngIf="password!['errors']!['pattern']">{{errs.Password.Pattern}}</div>
+                </div>
+            </div>
+
+            <div class="w-full flex items-center justify-center mt-6">
+                <input class="mr-3" type="checkbox" formControlName="isAdminChecked" id="isAdminChecked"
+                    name="isAdminChecked">
+                <span class="font-bold">Admin
+                    Account</span>
+            </div>
+
+
+            <div class="w-full flex items-center justify-center mt-6">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">
+                    Sign Up
+                </button>
+            </div>
+
+            <div class="w-full flex items-center justify-center pt-5">
+                <p>
+                    Already have an account?
+                    <a class="text-blue-700 hover:text-yellow-500 font-bold underline" routerLink="/login">Log In</a>
+                    now
+                </p>
+            </div>
+
+        </form>
+    </div>
+</div>
