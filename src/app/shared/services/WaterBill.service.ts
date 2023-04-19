@@ -3,19 +3,18 @@ import { User } from "../../models/users/user.model";
 import { WaterBill } from "../../models/bills/water.model";
 import { UserService } from "./user.service";
 import { AngularFirestore, AngularFirestoreCollection,} from "@angular/fire/compat/firestore";
+import { DataService } from "./BillService.service";
 @Injectable({
   providedIn: "root",
 })
-export class WaterBillService {
-  private dbPath = "/users";
-  userCollection: AngularFirestoreCollection<User>;
-  private userService: UserService;
+export class WaterBillService extends DataService{
 
-  constructor(private db: AngularFirestore, userService: UserService) {
-    this.userCollection = this.db.collection(this.dbPath);
-    this.userService = userService;
-  }
+    private userService: UserService;
 
+    constructor(db: AngularFirestore, userService: UserService) {
+        super(db);
+        this.userService = userService;
+    }
   /**
    * @param userId 
    * @param waterBill 
@@ -78,5 +77,4 @@ export class WaterBillService {
       return null;
     }
   }
-
 }

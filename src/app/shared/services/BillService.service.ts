@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core'
 @Injectable({
   providedIn: 'root'
 })
-export abstract class BillService {
+export abstract class DataService {
   userCollection: AngularFirestoreCollection<User>
 
   constructor (private db: AngularFirestore) {
