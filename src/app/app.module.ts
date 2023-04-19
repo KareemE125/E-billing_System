@@ -37,7 +37,6 @@ import { AddBillComponent } from './add-bill/add-bill.component';
 import { TabViewComponent } from './tab-view/tab-view.component';
 import { AboutUsComponent } from './user-pages/about-us/about-us.component';
 import { WaterComponent } from './user-pages/water/water.component';
-import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admin-common-table.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +64,6 @@ import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admi
     TabViewComponent,
     AboutUsComponent,
     WaterComponent,
-    AdminCommonTableComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +72,7 @@ import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admi
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    
+
 
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
