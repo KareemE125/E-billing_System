@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommonUser } from '../models/users/common.model';
+import { CommonUser, userTypes } from '../models/users/common.model';
 import { Admin } from '../models/users/admin.model';
 import { User } from '../models/users/user.model';
 import { ErrorsService } from '../shared/services/errors.service';
 import { UserService } from '../shared/services/user.service';
 import { AdminService } from '../shared/services/admin.service';
+import { AccountService } from '../shared/services/account.service';
+import { ServiceProvider } from '../models/users/serviceProvider.model';
+import { ServiceProviderService } from '../shared/services/service-provider.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,20 +18,15 @@ import { AdminService } from '../shared/services/admin.service';
 })
 export class SignUpComponent {
   signUpForm: FormGroup;
-
-  commonUser: CommonUser = {
-    id: "", //auto generated
-    name: "",   //required
-    email: "",  //required
-    phoneNumber: "",    //required
-    password: "",       //required
-    address: null,
-  };
+  userTypesRadioButtons = userTypes; //get the user types for the radio buttons
 
 
   errs: any;
 
-  constructor(private errService: ErrorsService, private formBuilder: FormBuilder, private userService: UserService, private adminService: AdminService) {
+  constructor(private errService: ErrorsService, private formBuilder: FormBuilder,
+    private userService: UserService, private adminService: AdminService,
+    private accService: AccountService, private servProvService: ServiceProviderService,
+    private router: Router) {
     this.errs = errService.getErrors().SignUpErrors
     this.userService = userService;
     this.adminService = adminService;
@@ -37,8 +36,7 @@ export class SignUpComponent {
       email: ['', [Validators.required, Validators.minLength(8), Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^01[0125][0-9]{8}$')]], //add a pattern where all are numbers
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z]).{8,}$')]],
-      isAdminChecked: [false]
-
+      userType: [this.userTypesRadioButtons[0].value.toString(), [Validators.required]]
     });
   }
 
@@ -54,32 +52,33 @@ export class SignUpComponent {
   get password() {
     return this.signUpForm.get('password');
   }
-  get isAdminChecked() {
-    return this.signUpForm.get('isAdminChecked');
+  get userType() {
+    return this.signUpForm.get('userType');
   }
 
 
 
 
-  onSubmit() {
+  async onSubmit() {
     if (this.signUpForm.valid) {
-      console.log("isAdminChecked " + this.isAdminChecked?.value)
-      if (this.isAdminChecked?.value) {
+      const usrTypeVal: number = Number.parseInt(this.userType?.value);
+      if (usrTypeVal === this.accService.GetUsersEnum().Admin) {
         //create an admin
         const admin: Admin = {
-          ...this.commonUser,
+          id: "",
           name: this.name?.value,
           email: this.email?.value,
           phoneNumber: this.phoneNumber?.value,
           password: this.password?.value,
+          address: null,
         }
         console.log("Admin created " + JSON.stringify(admin));
-        this.adminService.addAdmin(admin);
+        await this.adminService.addAdmin(admin);
 
-      } else {
+      } else if (usrTypeVal === this.accService.GetUsersEnum().User) {
         //create a user
         const user: User = {
-          ...this.commonUser,
+          id: "",
           name: this.name?.value,
           email: this.email?.value,
           phoneNumber: this.phoneNumber?.value,
@@ -92,12 +91,25 @@ export class SignUpComponent {
         }
         console.log("Normal user created " + JSON.stringify(user));
         //call service to add user to db
-        this.userService.addUser(user);
-
+        await this.userService.addUser(user);
+      } else if (usrTypeVal === this.accService.GetUsersEnum().ServiceProvider) {
+        //create an serviceProvider
+        const serviceProvider: ServiceProvider = {
+          id: "",
+          name: this.name?.value,
+          email: this.email?.value,
+          phoneNumber: this.phoneNumber?.value,
+          password: this.password?.value,
+          address: null,
+          offers: []
+        }
+        console.log("Service provide3r created " + JSON.stringify(serviceProvider));
+        await this.servProvService.addServiceProvider(serviceProvider);
       }
-
+      //now navigate to the sign in page
+      //todo add a toast that the user has been created
+      this.router.navigate(["/login"])
     } else {
-
       this.signUpForm.markAllAsTouched();
     }
   }

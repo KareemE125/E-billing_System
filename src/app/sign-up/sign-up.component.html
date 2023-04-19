@@ -50,13 +50,17 @@
                 </div>
             </div>
 
-            <div class="w-full flex items-center justify-center mt-6">
-                <input class="mr-3" type="checkbox" formControlName="isAdminChecked" id="isAdminChecked"
-                    name="isAdminChecked">
-                <span class="font-bold">Admin
-                    Account</span>
+            <div class="w-full flex items-center justify-center mt-6 gap-4">
+                <label *ngFor="let radVal of this.userTypesRadioButtons">
+                    <input class="mr-1" type="radio" id="{{radVal.value}}" name="userType" value="{{radVal.value}}"
+                        formControlName="userType">
+                    <span>{{radVal.name}}</span>
+                </label>
             </div>
-
+            <div class="text-red-500 text-xs mt-1"
+                *ngIf="userType!['invalid'] && (userType!['dirty'] || userType!['touched'])">
+                <div *ngIf="userType!['errors']!['required']">{{errs.UserType.Required}}</div>
+            </div>
 
             <div class="w-full flex items-center justify-center mt-6">
                 <button

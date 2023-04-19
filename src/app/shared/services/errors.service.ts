@@ -28,6 +28,9 @@ export class ErrorsService {
           Required: _reqErr("Password"),
           MinLength: _lenErrAtLeast("Password", 8),
           Pattern: _passErr()
+        },
+        UserType: {
+          Required: _reqErr("User Type"),
         }
       },
       LoginErrors: {

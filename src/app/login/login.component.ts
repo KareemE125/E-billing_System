@@ -3,7 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorsService } from '../shared/services/errors.service';
 import { UserService } from '../shared/services/user.service';
 import { WaterBillService } from '../shared/services/WaterBill.service';
-import {User} from '../models/users/user.model';
+import { User } from '../models/users/user.model';
+import { AdminService } from '../shared/services/admin.service';
+import { ServiceProviderService } from '../shared/services/service-provider.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,12 +17,12 @@ import {User} from '../models/users/user.model';
 export class LoginComponent {
 
   loginForm: FormGroup;
-  
+
 
   errs: any;
 
-  constructor(private errService: ErrorsService, private formBuilder: FormBuilder, private userService: UserService, 
-    private waterBillService: WaterBillService) {
+  constructor(private errService: ErrorsService, private formBuilder: FormBuilder, private router: Router, private userService: UserService,
+    private adminService: AdminService, private srvProvService: ServiceProviderService, private waterBillService: WaterBillService) {
     this.errs = errService.getErrors().LoginErrors
 
     //we keep the validators.email and .pattern even in the sign in form, to prevent a server request if it is guaranteed to fail
@@ -40,24 +43,24 @@ export class LoginComponent {
   async onSubmit() {
     if (this.loginForm.valid) {
       // perform login action
-      console.log({
-        email: this.email?.value,
-        password: this.password?.value
-      });
-      const user=await this.userService.validateUser(this.email?.value, this.password?.value);
-      // if(user != null && user !=false){
-      //   const waterBill = {
-      //     year: 2023,     
-      //     month: 10,      
-      //     usage: 100,      
-      //     penalty: 0,   
-      //     total: 1000,     
-      //     isPaid: false,   
-      //     id:'2'
-      //   };
-        // this.waterBillService.addWaterBillToUser(user.id,waterBill);
-        console.log(await this.waterBillService.getAllWaterBills());
-      
+      const user = await this.userService.validateUser(this.email?.value, this.password?.value);
+      const admin = await this.adminService.validateAdmin(this.email?.value, this.password?.value);
+      const serviceProvider = await this.srvProvService.validateServiceProvider(this.email?.value, this.password?.value);
+
+      if (user == null || admin == null || serviceProvider == null) {
+        //no internet
+        //todo show a toast
+      } else if (user) {
+        this.router.navigate(['home'])
+      } else if (admin) {
+        this.router.navigate(['manage'])
+      } else if (serviceProvider) {
+        this.router.navigate(['addoffer'])
+      } else {
+        //todo: show a toast: invalid credentials
+        console.log("invalid credentials");
+      }
+
     } else {
 
       this.loginForm.markAllAsTouched();

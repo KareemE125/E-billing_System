@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/users/user.model';
 import { Subject } from 'rxjs';
 import { dummy_users } from '../../dummy-data/user-list';
-import { CommonUser } from '../../models/users/common.model';
+import { CommonUser, UserType } from '../../models/users/common.model';
 
 @Injectable({
   providedIn: 'root'
@@ -61,8 +61,3 @@ export class AccountService {
 
 }
 
-export enum UserType {
-  Admin,
-  User,
-  ServiceProvider
-}
