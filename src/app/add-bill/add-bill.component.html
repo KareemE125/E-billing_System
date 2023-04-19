@@ -1,0 +1,130 @@
+<div class="flex justify-center">
+    <div class="w-full max-w-md p-8  border rounded-md shadow-lg">
+        <h1 class="text-3xl font-bold mb-8 text-center">Sign Up</h1>
+        <form [formGroup]="addBillForm" (ngSubmit)="onSubmit()">
+            <!--todo: fix the styling-->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="email">Email</label>
+                <input formControlName="email"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="email" name="email" type="text" placeholder="Enter the customer's email">
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="email!['invalid'] && (email!['dirty'] || email!['touched'])">
+                    <div *ngIf="email!['errors']!['required']">{{errs.Email.Required}}</div>
+                    <div *ngIf="email!['errors']!['minlength']">{{errs.Email.MinLength}}</div>
+                    <div *ngIf="email!['errors']!['email']">{{errs.Email.Pattern}}</div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="month">Month</label>
+                <select class="w-full sm:w-auto bg-white border rounded-lg px-2 py-2" id="month"
+                    formControlName="month">
+                    <option *ngFor="let month of months" value="{{month}}">{{month}}</option>
+                </select>
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="month!['invalid'] && (month!['dirty'] || month!['touched'])">
+                    <div *ngIf="month!['errors']!['required']">
+                        {{errs.Month.Required}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="year">Year</label>
+                <select class="w-full sm:w-auto bg-white border rounded-lg px-2 py-2" id="year" formControlName="year">
+                    <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+                </select>
+                <div class="text-red-500 text-xs mt-1" *ngIf="year!['invalid'] && (year!['dirty'] || year!['touched'])">
+                    <div *ngIf="year!['errors']!['required']">
+                        {{errs.Year.Required}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="category">Category</label>
+                <select class="w-full sm:w-auto bg-white border rounded-lg px-2 py-2" id="category"
+                    formControlName="category">
+                    <option *ngFor="let category of billsCategories" value="{{category}}">{{category}}</option>
+                </select>
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="category!['invalid'] && (category!['dirty'] || category!['touched'])">
+                    <div *ngIf="category!['errors']!['required']">
+                        {{errs.Category.Required}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="penalty">Penalty</label>
+                <input formControlName="penalty"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="penalty" name="penalty" type="number" placeholder="Enter the penalty">
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="penalty!['invalid'] && (penalty!['dirty'] || penalty!['touched'])">
+                    <div *ngIf="penalty!['errors']!['required']">
+                        {{errs.Penalty.Required}}</div>
+                    <div *ngIf="penalty!['errors']!['pattern']">
+                        {{errs.Penalty.Pattern}}</div>
+                </div>
+            </div>
+
+
+
+            <div *ngIf="this.category?.value !== 'Telephone'; else waterAndElectricty" class="mb-6">
+                <label class="block text-gray-700 font-bold mb-2" for="units">Units</label>
+                <input formControlName="units"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="units" name="units" type="number" placeholder="Enter the units">
+                <div class="text-red-500 text-xs mt-1"
+                    *ngIf="units!['invalid'] && (units!['dirty'] || units!['touched'])">
+                    <div *ngIf="units!['errors']!['required']">{{errs.Units.Required}}</div>
+                    <div *ngIf="units!['errors']!['pattern']">{{errs.Units.Pattern}}</div>
+                </div>
+            </div>
+
+            <ng-template #waterAndElectricty>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="internetQuantity">Internet Quantity</label>
+                    <input formControlName="internetQuantity"
+                        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="internetQuantity" name="internetQuantity" type="number"
+                        placeholder="Enter the internet quantity units">
+                    <div class="text-red-500 text-xs mt-1"
+                        *ngIf="internetQuantity!['invalid'] && (internetQuantity!['dirty'] || internetQuantity!['touched'])">
+                        <div *ngIf="internetQuantity!['errors']!['required']">{{errs.InternetQuantity.Required}}</div>
+                        <div *ngIf="internetQuantity!['errors']!['pattern']">{{errs.InternetQuantity.Pattern}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-bold mb-2" for="minutesQuantity">Minutes Quantity</label>
+                    <input formControlName="minutesQuantity"
+                        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="minutesQuantity" name="minutesQuantity" type="number"
+                        placeholder="Enter the minutes quantity units">
+                    <div class="text-red-500 text-xs mt-1"
+                        *ngIf="minutesQuantity!['invalid'] && (minutesQuantity!['dirty'] || minutesQuantity!['touched'])">
+                        <div *ngIf="minutesQuantity!['errors']!['required']">{{errs.MinutesQuantity.Required}}</div>
+                        <div *ngIf="minutesQuantity!['errors']!['pattern']">{{errs.MinutesQuantity.Pattern}}
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+
+
+
+            <div class="w-full flex items-center justify-center mt-6">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">
+                    Add Bill
+                </button>
+            </div>
+
+
+        </form>
+    </div>
+</div>
