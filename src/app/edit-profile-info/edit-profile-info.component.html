@@ -1,6 +1,7 @@
 <div class="flex justify-center">
     <div class="w-3/4 p-8  border rounded-md shadow-lg">
-        <h1 class="text-3xl font-bold mb-8 text-center">Edit Your Information</h1>
+        <h1 class="text-3xl font-bold mb-8 text-center">{{this.editProfileInfoTitle}} </h1>
+        <!--todo add the labels for each section-->
         <form [formGroup]="editProfileInfo" (ngSubmit)="onSubmit()" class="w-full">
             <div class="flex justify-around gap-20 w-full">
                 <section class="border p-4 rounded-md shadow-lg">
