@@ -9,29 +9,26 @@ import { DataService } from "./BillService.service";
 })
 export class WaterBillService extends DataService{
 
-    private userService: UserService;
 
-    constructor(db: AngularFirestore, userService: UserService) {
+    constructor(db: AngularFirestore, private userService: UserService) {
         super(db);
-        this.userService = userService;
     }
   /**
    * @param userId 
    * @param waterBill 
    * @returns true if water bill was added to user, false if user not found, null if error
    */
-  async addWaterBillToUser(userId: string, waterBill: WaterBill): Promise<null| boolean> {
+  async addWaterBillToUser(userId: string, waterBill: WaterBill): Promise<null| false | User> {
     console.log("Adding water bills to user: ", userId);
     try {
       const user = await this.userService.getUserById(userId);
       if (user) {
         user.waterBills.push(waterBill);
-        this.userService.updateUser(user);
-        return true;
+        await this.userService.updateUser(user);
       }
-      else return false;
+      return user;
     } catch (error) {
-      console.log("Error adding water bill to user:", error);
+      console.error("Error adding water bill to user:", error);
       return null;
     }
   }
@@ -47,12 +44,16 @@ export class WaterBillService extends DataService{
       const user = await this.userService.getUserById(userId);
       if (user) {
         const index = user.waterBills.findIndex((wb) => wb.id === waterBill.id);
+        if(index === -1){ 
+          console.error("Water bill not found");
+          return null;
+        }
         user.waterBills[index] = waterBill;
         await this.userService.updateUser(user);
       }
       return user;
     } catch (error) {
-      console.log("Error updating water bill:", error);
+      console.error("Error updating water bill:", error);
       return null;
     }
   }

@@ -19,8 +19,8 @@ export class UserService extends DataService{
    * @returns user if added successfully, null otherwise
    */
   async addUser(user: User): Promise< User | null> {
-    const newDocRef = this.userCollection.doc()
-    user.id = newDocRef.ref.id
+    const newDocRef = this.userCollection.doc();
+    user.id = newDocRef.ref.id;
     newDocRef.set({ ...user }).then(() => {
       console.log('User added to firebase: ', user)
       return user;
@@ -76,16 +76,16 @@ export class UserService extends DataService{
       if (querySnapshot !== undefined) {
         querySnapshot.forEach((doc) => {
           if (doc.exists) {
-            console.log('User data:', doc.data());
+            // console.log('User data:', doc.data());
             users.push(doc.data() as User);
           } else {
-            console.log('No such document!');
+            console.error('No such document!');
           }
         });
       }
       return users;
     } catch (error) {
-      console.log('Error getting users:', error);
+      console.error('Error getting users:', error);
       return null;
     }
   }
@@ -104,11 +104,11 @@ export class UserService extends DataService{
         console.log('User data:', userDoc.data());
         return userDoc.data() as User;
       } else {
-        console.log('No such document!');
+        console.error('No such document!');
         return false;
       }
     } catch (error) {
-      console.log('Error getting user:', error);
+      console.error('Error getting user:', error);
       return null;
     }
   }
@@ -144,8 +144,8 @@ export class UserService extends DataService{
       const querySnapshot = await this.userCollection.ref.where('email', '==', email).get();
       if (!querySnapshot.empty) {
         const userDoc = querySnapshot.docs[0];
-        console.log("User is found")
-        console.log('User data:', userDoc.data());
+        console.log("User is found with email: ", email)
+        // console.log('User data:', userDoc.data());
         return userDoc.data() as User;
       } else {
         return false;

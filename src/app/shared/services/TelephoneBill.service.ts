@@ -1,55 +1,74 @@
 import { Injectable } from "@angular/core";
 import { User } from "../../models/users/user.model";
-import { WaterBill } from "../../models/bills/water.model";
 import { TelephoneBill } from "../../models/bills/telephone.model";
-import { ElectricityBill } from "../../models/bills/electricity.model";
+import { AngularFirestore} from "@angular/fire/compat/firestore";
+import { DataService } from "./BillService.service";
 import { UserService } from "./user.service";
-import {
-    AngularFirestore,
-    AngularFirestoreCollection,
-} from "@angular/fire/compat/firestore";
 @Injectable({
     providedIn: "root",
 })
-export class BillService {
-    private dbPath = "/users";
-    userCollection: AngularFirestoreCollection<User>;
-    private userService: UserService;
+export class TelephoneBillService extends DataService{
 
-    constructor(private db: AngularFirestore, userService: UserService) {
-        this.userCollection = this.db.collection(this.dbPath);
+    constructor(db: AngularFirestore,private userService: UserService) {
+        super(db);
         this.userService = userService;
     }
-    async addTelephoneBillToUser( userId: string, telephoneBill: WaterBill  ): Promise<any> {
+
+    /**
+     * 
+     * @param userId 
+     * @param telephoneBill 
+     * @returns true if the telephone bill was added to the user, false if the user was not found, null if there was an error
+     */
+    async addTelephoneBillToUser( userId: string, telephoneBill: TelephoneBill  ):Promise<null| false | User> {
         console.log("Adding telephone bills to user: ", userId);
         try {
             const user = await this.userService.getUserById(userId);
-            if (user) {
+            if (user!= null && user != false) {
                 user.telephoneBills.push(telephoneBill);
-                return this.userService.updateUser(user);
+                await this.userService.updateUser(user);
             }
+            return user;
         } catch (error) {
-            console.log("Error adding telephone bill to user:", error);
+            console.error("Error adding telephone bill to user:", error);
+            return null;
         }
     }
 
-    async updateTelephoneBill( userId: string, telephoneBill: TelephoneBill ): Promise<any> {
+    /**
+     * 
+     * @param userId 
+     * @param telephoneBill 
+     * @returns true if the telephone bill was updated, false if the user was not found, null if there was an error
+     */
+    async updateTelephoneBill( userId: string, telephoneBill: TelephoneBill ): Promise<User | false | null>  {
         console.log("Updating telephone bill: ", telephoneBill);
         try {
-            const user: User = await this.userService.getUserById(userId);
+            const user = await this.userService.getUserById(userId);
             if (user) {
-                const index = user.telephoneBills.findIndex(
-                    (tb) => tb.id === telephoneBill.id
-                );
+                const index = user.telephoneBills.findIndex((tb) => tb.id === telephoneBill.id);
                 user.telephoneBills[index] = telephoneBill;
-                return this.userService.updateUser(user);
+                if(index === -1){ 
+                    console.error("telephone bill not found");
+                    return null;
+                  }
+                await this.userService.updateUser(user);
             }
+            return user;
         } catch (error) {
-            console.log("Error updating telephone bill:", error);
+            console.error("Error updating telephone bill:", error);
+            return null;
         }
     }
 
-    async getAllTelephoneBills(): Promise<TelephoneBill[] | null> {
+    /**
+     * 
+     * @param userId
+     * @param telephoneBillId
+     * @returns all telephone bills, false if no users, null if error
+     * 
+     */
+    async getAllTelephoneBills(): Promise<TelephoneBill[] | null | false> {
         console.log("Getting all telephone bills...");
         try {
             const users = await this.userService.getAllUsers();
@@ -60,7 +79,7 @@ export class BillService {
                 });
                 return telephoneBills;
             }
-            return null;
+            return false;
         } catch (error) {
             console.log("Error getting all telephone bills:", error);
             return null;
