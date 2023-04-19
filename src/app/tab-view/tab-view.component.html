@@ -1,0 +1,14 @@
+<div class="flex flex-col">
+    <nav class="flex">
+        <button class="tab-btn w-full" [class.active-tab]="selectedTab === 'tab1'" (click)="selectTab('tab1')">Tab 1</button>
+        <button class="tab-btn w-full" [class.active-tab]="selectedTab === 'tab2'" (click)="selectTab('tab2')">Tab 2</button>
+    </nav>
+    <div class="flex-1 p-4 border-t">
+        <ng-container *ngIf="selectedTab === 'tab1'">
+            <p>Tab 1 content goes here.</p>
+        </ng-container>
+        <ng-container *ngIf="selectedTab === 'tab2'">
+            <p>Tab 2 content goes here.</p>
+        </ng-container>
+    </div>
+</div>

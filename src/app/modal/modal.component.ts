@@ -5,13 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
 
-  constructor() { }
+  selectedTab = 'tab1';
 
-  ngOnInit(): void {
- 
-   
+  selectTab(tab: string) {
+    this.selectedTab = tab;
   }
 
 }

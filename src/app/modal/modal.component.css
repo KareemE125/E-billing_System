@@ -1,22 +1,56 @@
-.mat-tab-label-active {
-    border-bottom: 2px solid blue;
-  }
-  .center-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Set the height of the container to 100% of the viewport height */
-  }
-  .blue-text {
-    color: blue;
-  }
-  button {
-    background-color: blue;
-    border-radius: 20%;
-    color: white;
-    padding: 5px;
-  }
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-  }
+button:focus {
+  outline: none;
+}
+
+button:active {
+  border-color: transparent;
+}
+
+.tab-btn {
+  padding: 0.5rem 1rem;
+  color: #6B7280;
+  border-color: transparent;
+  border-bottom-width: 2px;
+  border-bottom-color: transparent;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.tab-btn.active-tab {
+  color: #3B82F6;
+  border-bottom-color: #3B82F6;
+}
+
+.tab-btn:not(:last-child) {
+  margin-right: 1rem;
+}
+
+
+/* Form -  Form - Form - Form - Form - Form - Form */
+/* Form -  Form - Form - Form - Form - Form - Form */
+
+input:focus {
+  outline: none;
+  border-color: #1E40AF;
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+input:not(:placeholder-shown) + label {
+  transform: translate(0, -1.5rem) scale(0.75);
+}
+
+input[type="text"] {
+  font-family: inherit;
+}
+
+input[type="text"]::placeholder {
+  color: #A5B4C2;
+  font-size: 0.875rem;
+}
+
+label {
+  transition: transform 0.3s ease-out, color 0.3s ease-out;
+}
