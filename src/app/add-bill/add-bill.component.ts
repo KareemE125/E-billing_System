@@ -21,8 +21,10 @@ export class AddBillComponent implements OnInit {
 
   billsCategories: string[] = billsCategories;
   users?: User[];
+  months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  years: number[] = [2020, 2021, 2022, 2023]
 
-  unitsValidators = [Validators.required, Validators.pattern('^[1-9][0-9]*$')] //pattern for all positive integers
+  unitsValidators = [Validators.required, Validators.pattern('^[0-9]\d*(\.\d+)?$')] //pattern for all positive numbers >= 0
   internetQuantityValidators = [Validators.required, Validators.pattern('^[1-9][0-9]*$')] //pattern for all positive integers
   minutesQuantityValidators = [Validators.required, Validators.pattern('^[1-9][0-9]*$')] //pattern for all positive integers
 
@@ -37,14 +39,14 @@ export class AddBillComponent implements OnInit {
 
     this.addBillForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.minLength(8), Validators.email]],
-      month: ['', [Validators.pattern('^[1-9][0-9]*$')]], //pattern for all positive integers
-      year: ['', [Validators.pattern('^[1-9][0-9]*$')]], //pattern for all positive integers
+      month: [this.months[0], [Validators.pattern('^[1-9][0-9]*$')]], //pattern for all positive integers
+      year: [this.years[0], [Validators.pattern('^[1-9][0-9]*$')]], //pattern for all positive integers
       category: [billsCategories[0], [Validators.required]],
 
-      penalty: ['', [Validators.required, Validators.pattern('^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$')]],
+      penalty: ['', [Validators.required, Validators.pattern('^[0-9]\d*(\.\d+)?$')]], //pattern for all positive numbers >= 0
 
       //optional
-      units: ['', []],
+      units: ['', this.unitsValidators],  //these are present by default
 
       //optional
       internetQuantity: ['', []],
@@ -52,9 +54,8 @@ export class AddBillComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     //todo get all users
-
 
     this.category?.valueChanges.subscribe(cat => {
       if (cat == 'Water' || cat == 'Electricity') {
@@ -80,8 +81,8 @@ export class AddBillComponent implements OnInit {
   get category() { return this.addBillForm.get('category'); }
   get penalty() { return this.addBillForm.get('penalty'); }
   get units() { return this.addBillForm.get('units'); }
-  get telephoneBillStatus() { return this.addBillForm.get('telephoneBillStatus'); }
-  get telephoneServiceProvider() { return this.addBillForm.get('telephoneServiceProvider'); }
+  get internetQuantity() { return this.addBillForm.get('internetQuantity'); }
+  get minutesQuantity() { return this.addBillForm.get('minutesQuantity'); }
 
 
 
@@ -98,6 +99,7 @@ export class AddBillComponent implements OnInit {
 
       }
       const res = await this.userService.getUserByEmail(this.email?.value);
+
       if (!res) {
         //todo throw an error
         return
