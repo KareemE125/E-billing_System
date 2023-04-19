@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core'
 import { User } from '../../models/users/user.model'
-import {  AngularFirestore} from '@angular/fire/compat/firestore'
-import { UserType, AccountService } from './account.service'
+import { AngularFirestore } from '@angular/fire/compat/firestore'
+import { AccountService } from './account.service'
 import { DataService } from './BillService.service'
+import { UserType } from 'src/app/models/users/common.model'
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends DataService{
+export class UserService extends DataService {
 
   constructor(db: AngularFirestore, private accountService: AccountService) {
     super(db);
@@ -18,7 +19,7 @@ export class UserService extends DataService{
    * @param user 
    * @returns user if added successfully, null otherwise
    */
-  async addUser(user: User): Promise< User | null> {
+  async addUser(user: User): Promise<User | null> {
     const newDocRef = this.userCollection.doc();
     user.id = newDocRef.ref.id;
     newDocRef.set({ ...user }).then(() => {
@@ -36,13 +37,13 @@ export class UserService extends DataService{
    * @param user
    * @returns true if user is updated successfully, null otherwise
    */
-  async updateUser(user: User): Promise<null | true>{
-    try{
+  async updateUser(user: User): Promise<null | true> {
+    try {
       console.log(`Updating user ${JSON.stringify(user)} to firebase`)
       await this.userCollection.doc(user.id).update(user);
       return true;
     }
-    catch(error){
+    catch (error) {
       console.error('Error updating user: ', error);
       return null;
     }
@@ -53,7 +54,7 @@ export class UserService extends DataService{
    * @returns true if user is deleted successfully, null otherwise
    */
   async deleteUser(id: string): Promise<null | true> {
-   try {
+    try {
       await this.userCollection.doc(id).delete();
       return true;
     } catch (error) {
@@ -118,13 +119,13 @@ export class UserService extends DataService{
    * @param password
    * @returns user if found, false if not found, null otherwise
    */
-  async validateUser(email: string, password:string): Promise<User | null | false> {
+  async validateUser(email: string, password: string): Promise<User | null | false> {
     try {
-      const user=await this.getUserByEmail(email);
-      if(user != null && user != false && user.password === password){
-          console.log("user is found and password is correct");
-          this.accountService.SetCurrentUser(user,UserType.User);
-          return user as User;
+      const user = await this.getUserByEmail(email);
+      if (user != null && user != false && user.password === password) {
+        console.log("user is found and password is correct");
+        this.accountService.SetCurrentUser(user, UserType.User);
+        return user as User;
       }
       return false;
     }
@@ -138,7 +139,7 @@ export class UserService extends DataService{
    * @param email
    * @returns user if found, false if not found, null otherwise
    */
-  async getUserByEmail(email: string):Promise<User | null | false> {
+  async getUserByEmail(email: string): Promise<User | null | false> {
     console.log('Getting user by email: ', email);
     try {
       const querySnapshot = await this.userCollection.ref.where('email', '==', email).get();
