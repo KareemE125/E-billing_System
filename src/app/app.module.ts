@@ -29,6 +29,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { UserTableComponent } from './user-table/user-table.component';
 import { AdminTableComponent } from './admin-table/table.component';
+import { AddBillComponent } from './add-bill/add-bill.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +47,9 @@ import { AdminTableComponent } from './admin-table/table.component';
     AddOfferComponent,
     WaterComponent,
     ElectricityComponent,
-    ModalComponent
-    EditProfileInfoComponent
+    ModalComponent,
+    EditProfileInfoComponent,
+    AddBillComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,7 @@ import { AdminTableComponent } from './admin-table/table.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
