@@ -15,6 +15,8 @@ export class UserService extends DataService {
     this.accountService = accountService;
   }
 
+  //todo : salah when adding a user, make sure no admin or service provider or other 
+  //user has the same email, if there is, return false
   /**
    * @param user 
    * @returns user if added successfully, null otherwise

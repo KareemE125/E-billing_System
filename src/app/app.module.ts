@@ -11,7 +11,7 @@ import { ServiceCardComponent } from './service-card/service-card.component';
 import { AccountService } from './shared/services/account.service';
 import { ChildComponent } from './child/child.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './user-pages/home/home.component';
+import { UserHomeComponent } from './user-pages/home/user-home.component';
 import { ParentComponent } from './parent/parent.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
@@ -45,7 +45,7 @@ import { WaterComponent } from './user-pages/water/water.component';
     ServiceCardComponent,
     ChildComponent,
     LoginComponent,
-    HomeComponent,
+    UserHomeComponent,
     ParentComponent,
     SignUpComponent,
     UserTableComponent,

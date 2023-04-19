@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChildComponent } from './child/child.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './user-pages/home/home.component';
+import { UserHomeComponent } from './user-pages/home/user-home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AboutUsComponent } from './user-pages/about-us/about-us.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
@@ -18,12 +18,12 @@ import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-tel
 import { AddBillComponent } from './add-bill/add-bill.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: UserHomeComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'child', component: ChildComponent },
   { path: 'login', component: LoginComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'service_provider/addoffer', component: AddOfferComponent },
+  { path: 'addoffer', component: AddOfferComponent },
   { path: 'water', component: WaterComponent },
   { path: 'electricity', component: ElectricityComponent },
   { path: 'modal', component: ModalComponent },
