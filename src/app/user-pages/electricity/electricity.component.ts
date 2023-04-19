@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonBill } from '../models/bills/commonBill.model';
+import { CommonBill } from '../../models/bills/commonBill.model';
 
 @Component({
   selector: 'app-electricity',

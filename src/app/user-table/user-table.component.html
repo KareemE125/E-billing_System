@@ -38,10 +38,13 @@
                             <td class="border-t px-4 py-2">{{info.penalty}}</td>
                             <td class="border-t px-4 py-2">{{info.total}}</td>
                             <td class="border-t py-2">
-                                <button *ngIf="info.isPaid==false" class="rounded-lg bg-blue-500 text-white px-4 py-1"
+                                <!-- <button *ngIf="info.isPaid==false" class="rounded-lg bg-blue-500 text-white px-4 py-1"
                                     (click)="btnPay(i)">
                                     Pay
-                                </button>
+                                </button> -->
+                                <div *ngIf="info.isPaid==false">
+                                    <app-user-pay-modal [rowIndex]="i" />
+                                </div>
                                 <p class="pl-3" *ngIf="info.isPaid==true">
                                     Paid
                                 </p>
