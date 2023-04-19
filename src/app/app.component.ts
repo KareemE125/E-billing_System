@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
   title = 'E-Billing_System';
 
   ngOnInit(): void {
-    this.db.login("", "")
   }
 
 
