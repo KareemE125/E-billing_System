@@ -36,6 +36,7 @@ import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-tel
 import { AdminWaterComponent } from './admin-pages/admin-water/admin-water.component';
 import { AdminElectricityComponent } from './admin-pages/admin-electricity/admin-electricity.component';
 import { AddBillComponent } from './add-bill/add-bill.component';
+import { TabViewComponent } from './tab-view/tab-view.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { AddBillComponent } from './add-bill/add-bill.component';
     AllUsersComponent,
     AdminWaterComponent,
     AdminElectricityComponent,
-    AdminTelephoneComponent
+    AdminTelephoneComponent,
+    TabViewComponent
   ],
   imports: [
     BrowserModule,
