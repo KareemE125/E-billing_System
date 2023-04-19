@@ -1,13 +1,8 @@
 import { Injectable } from "@angular/core";
 import { User } from "../../models/users/user.model";
 import { WaterBill } from "../../models/bills/water.model";
-import { TelephoneBill } from "../../models/bills/telephone.model";
-import { ElectricityBill } from "../../models/bills/electricity.model";
 import { UserService } from "./user.service";
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from "@angular/fire/compat/firestore";
+import { AngularFirestore, AngularFirestoreCollection,} from "@angular/fire/compat/firestore";
 @Injectable({
   providedIn: "root",
 })
@@ -21,39 +16,52 @@ export class WaterBillService {
     this.userService = userService;
   }
 
-  async addWaterBillToUser(userId: string, waterBill: WaterBill): Promise<any> {
+  /**
+   * @param userId 
+   * @param waterBill 
+   * @returns true if water bill was added to user, false if user not found, null if error
+   */
+  async addWaterBillToUser(userId: string, waterBill: WaterBill): Promise<null| boolean> {
     console.log("Adding water bills to user: ", userId);
     try {
       const user = await this.userService.getUserById(userId);
       if (user) {
         user.waterBills.push(waterBill);
-        return this.userService.updateUser(user);
+        this.userService.updateUser(user);
+        return true;
       }
+      else return false;
     } catch (error) {
       console.log("Error adding water bill to user:", error);
+      return null;
     }
   }
 
-
-
-  async updateWaterBill(userId: string, waterBill: WaterBill): Promise<any> {
+  /**
+   * @param userId 
+   * @param waterBill 
+   * @returns true if water bill was deleted from user, false if user not found, null if error
+   */
+  async updateWaterBill(userId: string, waterBill: WaterBill): Promise<User | false | null> {
     console.log("Updating water bill: ", waterBill);
     try {
-      const user: User = await this.userService.getUserById(userId);
+      const user = await this.userService.getUserById(userId);
       if (user) {
         const index = user.waterBills.findIndex((wb) => wb.id === waterBill.id);
         user.waterBills[index] = waterBill;
-        return this.userService.updateUser(user);
+        await this.userService.updateUser(user);
       }
+      return user;
     } catch (error) {
       console.log("Error updating water bill:", error);
+      return null;
     }
   }
 
-
-
-
-  async getAllWaterBills(): Promise<WaterBill[] | null> {
+  /**
+   * @returns all water bills, false if no users, null if error
+   */
+  async getAllWaterBills(): Promise<WaterBill[] | null | false> {
     console.log("Getting all water bills...");
     try {
       const users = await this.userService.getAllUsers();
@@ -64,7 +72,7 @@ export class WaterBillService {
         });
         return waterBills;
       }
-      return null;
+      return false;
     } catch (error) {
       console.log("Error getting all water bills:", error);
       return null;
