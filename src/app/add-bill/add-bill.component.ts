@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorsService } from '../shared/services/errors.service';
-import { Offer, ServiceProvider, telephoneOfferStatuses } from '../models/users/serviceProvider.model';
 import { CommonBill, billsCategories } from '../models/bills/commonBill.model';
 import { User } from 'firebase/auth';
 import { UnitPriceService } from '../shared/services/unit-price.service';
@@ -10,6 +9,7 @@ import { ElectricityBillService } from '../shared/services/ElectricityBill.servi
 import { WaterBillService } from '../shared/services/WaterBill.service';
 import { UserService } from '../shared/services/user.service';
 import { CommonUser } from '../models/users/common.model';
+import { TelephoneBillService } from '../shared/services/TelephoneBill.service';
 
 @Component({
   selector: 'app-add-bill',

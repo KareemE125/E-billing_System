@@ -35,6 +35,7 @@ import { AllUsersComponent } from './admin-pages/all-users/all-users.component';
 import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-telephone.component';
 import { AdminWaterComponent } from './admin-pages/admin-water/admin-water.component';
 import { AdminElectricityComponent } from './admin-pages/admin-electricity/admin-electricity.component';
+import { AddBillComponent } from './add-bill/add-bill.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AdminElectricityComponent } from './admin-pages/admin-electricity/admin
     AboutUsComponent,
     UserTableComponent,
     AddOfferComponent,
+    AddBillComponent,
     WaterComponent,
     ElectricityComponent,
     ModalComponent,
