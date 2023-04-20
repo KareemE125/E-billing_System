@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonBill } from '../../models/bills/commonBill.model';
 import { UnitPriceService } from 'src/app/shared/services/unit-price.service';
 import { WaterBillService } from 'src/app/shared/services/WaterBill.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-water',
@@ -28,16 +29,20 @@ export class WaterComponent {
   ];
 
   constructor(private unitPriceService: UnitPriceService,
-    private waterService: WaterBillService) {
+    private waterService: WaterBillService, private toastService: ToastService) {
 
   }
 
   async ngOnInit(): Promise<void> {
-    let res = await this.waterService.getAllWaterBills();
-    if (res)
-      this.infoList = { ...res }
+    const bills = await this.waterService.getAllWaterBills();
+    if (!bills)
+      this.toastService.showToast(false, 'Unable to get the water bills', '')
+    else this.infoList = { ...bills }
 
-    this.unitPrice = this.unitPriceService.getWaterUnitPrice();
+    const wPrice = await this.unitPriceService.getWaterUnitPrice();
+    if (!wPrice)
+      this.toastService.showToast(false, 'Unable to get the water price', '')
+    else this.unitPrice = wPrice;
 
   }
 }

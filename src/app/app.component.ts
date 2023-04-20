@@ -12,12 +12,12 @@ import { ToastService } from './shared/services/toast.service';
 export class AppComponent implements OnInit {
 
   title = 'E-Billing_System';
-  constructor(private db: DbService, private toastService:ToastService) { }
+  constructor(private db: DbService, private toastService: ToastService) { }
 
-  triggerToast(isSuccess: boolean, title: string, message: string){
+  triggerToast(isSuccess: boolean, title: string, message: string) {
     this.toastService.showToast(isSuccess, title, message)
   }
-  
+
   ngOnInit(): void {
   }
 

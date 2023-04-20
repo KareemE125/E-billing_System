@@ -2,23 +2,23 @@ import { Injectable } from "@angular/core";
 import { User } from "../../models/users/user.model";
 import { WaterBill } from "../../models/bills/water.model";
 import { UserService } from "./user.service";
-import { AngularFirestore, AngularFirestoreCollection,} from "@angular/fire/compat/firestore";
+import { AngularFirestore, AngularFirestoreCollection, } from "@angular/fire/compat/firestore";
 import { DataService } from "./BillService.service";
 @Injectable({
   providedIn: "root",
 })
-export class WaterBillService extends DataService{
+export class WaterBillService extends DataService {
 
 
-    constructor(db: AngularFirestore, private userService: UserService) {
-        super(db);
-    }
+  constructor(db: AngularFirestore, private userService: UserService) {
+    super(db, '/users');
+  }
   /**
    * @param userId 
    * @param waterBill 
    * @returns true if water bill was added to user, false if user not found, null if error
    */
-  async addWaterBillToUser(userId: string, waterBill: WaterBill): Promise<null| false | User> {
+  async addWaterBillToUser(userId: string, waterBill: WaterBill): Promise<null | false | User> {
     console.log("Adding water bills to user: ", userId);
     try {
       const user = await this.userService.getUserById(userId);
@@ -44,7 +44,7 @@ export class WaterBillService extends DataService{
       const user = await this.userService.getUserById(userId);
       if (user) {
         const index = user.waterBills.findIndex((wb) => wb.id === waterBill.id);
-        if(index === -1){ 
+        if (index === -1) {
           console.error("Water bill not found");
           return null;
         }
@@ -68,7 +68,7 @@ export class WaterBillService extends DataService{
       if (users !== null && users.length > 0) {
         const waterBills: WaterBill[] = [];
         users.forEach((user) => {
-          if(user.waterBills)
+          if (user.waterBills)
             waterBills.push(...user.waterBills);
         });
         return waterBills;

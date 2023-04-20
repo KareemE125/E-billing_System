@@ -12,6 +12,7 @@ import { CommonUser } from '../models/users/common.model';
 import { TelephoneBillService } from '../shared/services/TelephoneBill.service';
 import { ServiceProvider } from '../models/users/serviceProvider.model';
 import { ServiceProviderService } from '../shared/services/service-provider.service';
+import { ToastService } from '../shared/services/toast.service';
 @Component({
   selector: 'app-add-bill',
   templateUrl: './add-bill.component.html',
@@ -36,7 +37,7 @@ export class AddBillComponent implements OnInit {
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder,
     private unitPriceService: UnitPriceService, private electricityBillService: ElectricityBillService,
     private waterBillService: WaterBillService, private telephoneBillService: TelephoneBillService,
-    private srvProvService: ServiceProviderService, private userService: UserService) {
+    private srvProvService: ServiceProviderService, private userService: UserService, private toastService: ToastService) {
     this.errs = errService.getErrors().AddBillErrors
 
 
@@ -132,14 +133,32 @@ export class AddBillComponent implements OnInit {
 
 
       if (this.category?.value === 'Water') {
-        commonBill.total += commonBill.units * this.unitPriceService.getWaterUnitPrice();
+        const waterPrice = await this.unitPriceService.getWaterUnitPrice();
+        if (!waterPrice) {
+          this.toastService.showToast(false, 'Unable to get the water price', '')
+          return
+        }
+        commonBill.total += commonBill.units * waterPrice;
         console.log("Water bill created " + JSON.stringify(commonBill));
-        await this.waterBillService.addWaterBillToUser(user.id, commonBill);
+        const billAdded = await this.waterBillService.addWaterBillToUser(user.id, commonBill);
+        if (!billAdded) {
+          this.toastService.showToast(false, 'Unable to add the water bill', '')
+          return
+        }
 
       } else if (this.category?.value === 'Electricity') {
-        commonBill.total += commonBill.units * this.unitPriceService.getElectricityUnitPrice();
+        const electricityPrice = await this.unitPriceService.getElectricityUnitPrice();
+        if (!electricityPrice) {
+          this.toastService.showToast(false, 'Unable to get the electricity price', '')
+          return
+        }
+        commonBill.total += commonBill.units * electricityPrice;
         console.log("Electricity bill created " + JSON.stringify(commonBill));
-        await this.electricityBillService.addElectricityBillToUser(user.id, commonBill);
+        const billAdded = await this.electricityBillService.addElectricityBillToUser(user.id, commonBill);
+        if (!billAdded) {
+          this.toastService.showToast(false, 'Unable to add the electricty bill', '')
+          return
+        }
 
       } else if (this.category?.value === 'Telephone') {
         //create a user
@@ -150,7 +169,11 @@ export class AddBillComponent implements OnInit {
           offerName: vals[1]
         }
         console.log("Telephone bill created " + JSON.stringify(telephoneBill));
-        await this.telephoneBillService.addTelephoneBillToUser(user.id, telephoneBill);
+        const billAdded = await this.telephoneBillService.addTelephoneBillToUser(user.id, telephoneBill);
+        if (!billAdded) {
+          this.toastService.showToast(false, 'Unable to add the telephone bill', '')
+          return
+        }
       }
 
       //todo show a toast that the bill was added
