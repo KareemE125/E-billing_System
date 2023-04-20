@@ -37,4 +37,33 @@ export class ServiceProviderService {
     // }
     return false;
   }
+
+  /**
+ * 
+ * @returns all users if found, null otherwise
+ */
+  async getAllServiceProviders(): Promise<ServiceProvider[] | null> {
+    // console.log('Getting all users...');
+    // try {
+    //   const querySnapshot = await this.userCollection.get().toPromise();
+    //   const users: User[] = [];
+
+    //   if (querySnapshot !== undefined) {
+    //     querySnapshot.forEach((doc) => {
+    //       if (doc.exists) {
+    //         // console.log('User data:', doc.data());
+    //         users.push(doc.data() as User);
+    //       } else {
+    //         console.error('No such document!');
+    //       }
+    //     });
+    //   }
+    //   return users;
+    // } catch (error) {
+    //   console.error('Error getting users:', error);
+    //   return null;
+    // }
+    return null
+  }
+
 }
