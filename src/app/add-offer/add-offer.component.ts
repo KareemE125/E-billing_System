@@ -50,9 +50,9 @@ export class AddOfferComponent {
       //create an offer
       const offer: Offer = {
         name: this.offerName?.value,
-        internetQuantityOrPrice: this.internetQuantityOrPrice?.value,
-        minutesQuantityOrPrice: this.minutesQuantityOrPrice?.value,
-        price: this.price?.value,
+        internetQuantityOrPrice: parseFloat(this.internetQuantityOrPrice?.value),
+        minutesQuantityOrPrice: parseFloat(this.minutesQuantityOrPrice?.value),
+        price: parseFloat(this.price?.value),
         status: this.offerStatus?.value,
       }
       console.log("Offer created " + JSON.stringify(offer));

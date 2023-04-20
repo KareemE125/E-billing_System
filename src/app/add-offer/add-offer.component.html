@@ -32,7 +32,7 @@
 
                 <input formControlName="internetQuantityOrPrice"
                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="internetQuantityOrPrice" name="internetQuantityOrPrice" type="number"
+                    id="internetQuantityOrPrice" name="internetQuantityOrPrice" type="text"
                     [placeholder]="offerStatus?.value == 'Pre Paid' ? 'Enter the internet quantity' : 'Enter the price per megabyte'">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="internetQuantityOrPrice!['invalid'] && (internetQuantityOrPrice!['dirty'] || internetQuantityOrPrice!['touched'])">
@@ -47,7 +47,7 @@
                     "Pre Paid" ? "Minutes Quantity" : "Price per Minute"}}</label>
                 <input formControlName="minutesQuantityOrPrice"
                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="minutesQuantityOrPrice" name="minutesQuantityOrPrice" type="number"
+                    id="minutesQuantityOrPrice" name="minutesQuantityOrPrice" type="text"
                     [placeholder]="offerStatus?.value == 'Pre Paid' ? 'Enter the minutes quantity' : 'Enter the price per minute'">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="minutesQuantityOrPrice!['invalid'] && (minutesQuantityOrPrice!['dirty'] || minutesQuantityOrPrice!['touched'])">
@@ -64,7 +64,7 @@
                 <label class="block text-gray-700 font-bold mb-2" for="price">Price</label>
                 <input formControlName="price"
                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="price" name="price" type="number" placeholder="Enter the price">
+                    id="price" name="price" type="text" placeholder="Enter the price">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="price!['invalid'] && (price!['dirty'] || price!['touched'])">
                     <div *ngIf="price!['errors']!['required']">

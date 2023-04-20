@@ -82,7 +82,7 @@ export class EditProfileInfoComponent implements OnInit {
         password: this.password?.value,
         address: {
           street: this.street?.value,
-          buildingNum: this.buildingNum?.value,
+          buildingNum: parseInt(this.buildingNum?.value),
           city: this.city?.value,
           country: this.country?.value
         }
