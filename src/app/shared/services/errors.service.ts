@@ -28,6 +28,9 @@ export class ErrorsService {
           Required: _reqErr("Password"),
           MinLength: _lenErrAtLeast("Password", 8),
           Pattern: _passErr()
+        },
+        UserType: {
+          Required: _reqErr("User Type"),
         }
       },
       LoginErrors: {
@@ -95,6 +98,46 @@ export class ErrorsService {
         Country: {
           MinLength: _lenErrAtLeast("Country", 3),
         }
+      },
+      AddBillErrors: {
+        Email: {
+          Required: _reqErr("Email"),
+          MinLength: _lenErrAtLeast("Email", 8),
+          Pattern: _invalidErr("Email")
+        },
+        Month: {
+          Required: _reqErr("Month"),
+          Pattern: _invalidErr("Month")
+        },
+        Year: {
+          Required: _reqErr("Year"),
+          Pattern: _invalidErr("Year")
+        },
+        Category: {
+          Required: _reqErr("Category"),
+        },
+        Penalty: {
+          Required: _reqErr("Penalty"),
+          Pattern: _invalidErr("Penalty")
+        },
+        Units: {
+          Required: _reqErr("Units"),
+          Pattern: _invalidErr("Units")
+        },
+        InternetQuantity: {
+          Required: _reqErr("Internet Quantity"),
+          Pattern: _invalidErr("Internet Quantity")
+        },
+        MinutesQuantity: {
+          Required: _reqErr("Minutes Quantity"),
+          Pattern: _invalidErr("Minutes Quantity")
+        },
+        ServProv_offerName: {
+          Required: _reqErr("Service Provider / Offer Name")
+        }
+      },
+      PayWithCardErrors: {
+
       }
     }
   }

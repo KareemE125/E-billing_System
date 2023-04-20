@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonUser } from '../models/users/common.model';
 import { ErrorsService } from '../shared/services/errors.service';
@@ -14,10 +14,9 @@ import { ServiceProviderService } from '../shared/services/service-provider.serv
   templateUrl: './edit-profile-info.component.html',
   styleUrls: ['./edit-profile-info.component.css']
 })
-export class EditProfileInfoComponent {
+export class EditProfileInfoComponent implements OnInit {
   editProfileInfo: FormGroup;
-  currUser?: CommonUser;
-
+  editProfileInfoTitle: string = "Your Information"
   errs: any;
 
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder,
@@ -25,17 +24,25 @@ export class EditProfileInfoComponent {
     private servProvService: ServiceProviderService) {
     this.errs = errService.getErrors().EditProfileInfoErrors
 
-    this.currUser = accService.currentUser
     this.editProfileInfo = this.formBuilder.group({
-      name: [this.currUser?.name, [Validators.required, Validators.minLength(3)]],
-      email: [this.currUser?.email],  //email is disabled
-      phoneNumber: [this.currUser?.phoneNumber, [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^01[0125][0-9]{8}$')]], //pattern for phone number
-      password: [this.currUser?.password, [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z]).{8,}$')]],
-      street: [this.currUser?.address?.street, [Validators.minLength(3)]],
-      buildingNum: [this.currUser?.address?.buildingNum, [Validators.pattern('^[1-9][0-9]*$')]], //pattern for all positive integers
-      city: [this.currUser?.address?.city, [Validators.minLength(3)]],
-      country: [this.currUser?.address?.country, [Validators.minLength(3)]],
+      name: [this.accService.currentUser?.name, [Validators.required, Validators.minLength(3)]],
+      email: [this.accService.currentUser?.email],  //email is disabled
+      phoneNumber: [this.accService.currentUser?.phoneNumber, [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^01[0125][0-9]{8}$')]], //pattern for phone number
+      password: [this.accService.currentUser?.password, [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z]).{8,}$')]],
+      street: [this.accService.currentUser?.address?.street, [Validators.minLength(3)]],
+      buildingNum: [this.accService.currentUser?.address?.buildingNum, [Validators.pattern('^[1-9][0-9]*$')]], //pattern for all positive integers
+      city: [this.accService.currentUser?.address?.city, [Validators.minLength(3)]],
+      country: [this.accService.currentUser?.address?.country, [Validators.minLength(3)]],
     });
+  }
+
+  ngOnInit(): void {
+    if (this.accService.currentUser === this.accService.GetUsersEnum().User)
+      this.editProfileInfoTitle = "User Information"
+    else if (this.accService.currentUser === this.accService.GetUsersEnum().Admin)
+      this.editProfileInfoTitle = "Admin Information"
+    else if (this.accService.currentUser === this.accService.GetUsersEnum().ServiceProvider)
+      this.editProfileInfoTitle = "Service Provider Information"
   }
 
   get name() {
