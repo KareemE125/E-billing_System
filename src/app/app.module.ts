@@ -39,6 +39,7 @@ import { AboutUsComponent } from './user-pages/about-us/about-us.component';
 import { WaterComponent } from './user-pages/water/water.component';
 import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admin-common-table.component';
 import { ToastComponent } from './toast/toast.component';
+import { ToastService } from './shared/services/toast.service';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,6 @@ import { ToastComponent } from './toast/toast.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatTabsModule,
 
 
     AngularFireModule.initializeApp(environment.firebase),
@@ -86,7 +86,7 @@ import { ToastComponent } from './toast/toast.component';
     provideFirestore(() => getFirestore()),
     AngularFirestoreModule
   ],
-  providers: [AccountService],
+  providers: [AccountService,ToastService],
   bootstrap: [AppComponent]
 })
 
