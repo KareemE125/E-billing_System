@@ -10,7 +10,7 @@ import { DataService } from './BillService.service'
 export class UserService extends DataService{
 
   constructor(db: AngularFirestore, private accountService: AccountService) {
-    super(db);
+    super(db,"/users");
     this.accountService = accountService;
   }
 

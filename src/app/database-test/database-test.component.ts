@@ -1,17 +1,23 @@
 import { Component } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { User } from '../models/users/user.model'
+import { WaterBill } from '../models/bills/water.model';
+import { Inject } from '@angular/core';
+
 @Component({
   selector: 'app-database-test',
   templateUrl: './database-test.component.html',
   styleUrls: ['./database-test.component.css']
 })
+
+
 export class DatabaseTestComponent {
   private userService: UserService;
+  // private waterBill:WaterBill;
   constructor(userService: UserService) {
     this.userService = userService;
-    this.testCreateUser();
-    this.testGetAllUsers();
+    // this.testCreateUser();
+    // this.testGetAllUsers();
   }
     
   
@@ -40,10 +46,12 @@ export class DatabaseTestComponent {
       if (users !== null && users.length > 0) {
         console.log("User index 0: ",users[0].name);
       }
-      // console.log('All users: ', users);
+      console.log('All users: ', users);
     } catch (error) {
       console.log('Error getting all users:', error);
     }
   }
+
+
   
 }
