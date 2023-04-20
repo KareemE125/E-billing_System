@@ -124,13 +124,9 @@ export class ErrorsService {
           Required: _reqErr("Units"),
           Pattern: _invalidErr("Units")
         },
-        InternetQuantity: {
-          Required: _reqErr("Internet Quantity"),
-          Pattern: _invalidErr("Internet Quantity")
-        },
-        MinutesQuantity: {
-          Required: _reqErr("Minutes Quantity"),
-          Pattern: _invalidErr("Minutes Quantity")
+        Total: {
+          Required: _reqErr("Total"),
+          Pattern: _invalidErr("Total")
         },
         ServProv_offerName: {
           Required: _reqErr("Service Provider / Offer Name")

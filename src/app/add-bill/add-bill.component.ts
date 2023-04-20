@@ -27,9 +27,8 @@ export class AddBillComponent implements OnInit {
   years: number[] = [2020, 2021, 2022, 2023]
   serviceProv_offers: string[] = []
 
-  unitsValidators = [Validators.required, Validators.pattern('^[0-9]\d*(\.\d+)?$')] //pattern for all positive numbers >= 0
-  internetQuantityValidators = [Validators.required, Validators.pattern('^[1-9][0-9]*$')] //pattern for all positive integers
-  minutesQuantityValidators = [Validators.required, Validators.pattern('^[1-9][0-9]*$')] //pattern for all positive integers
+  unitsValidators = [Validators.required, Validators.pattern(/^[0-9]\d*(\.\d+)?$/)] //pattern for all positive numbers >= 0
+  totalValidators = [Validators.required, Validators.pattern(/^-?\d*[.,]?\d{0,2}$/)] //pattern for all positive integers
   servProv_offerNameValidators = [Validators.required]
 
   errs: any;
@@ -43,18 +42,17 @@ export class AddBillComponent implements OnInit {
 
     this.addBillForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.minLength(8), Validators.email]],
-      month: [this.months[0], [Validators.required, Validators.pattern('^[1-9][0-9]*$')]], //pattern for all positive integers
-      year: [this.years[0], [Validators.required, Validators.pattern('^[1-9][0-9]*$')]], //pattern for all positive integers
+      month: [this.months[0], [Validators.required, Validators.pattern(/^[1-9][0-9]*$/)]], //pattern for all positive integers
+      year: [this.years[0], [Validators.required, Validators.pattern(/^[1-9][0-9]*$/)]], //pattern for all positive integers
       category: [billsCategories[0], [Validators.required]],
 
-      penalty: ['', [Validators.required, Validators.pattern('^(?:0|[1-9]\d*)(?:\.\d+)?$')]], //pattern for all positive numbers >= 0
+      penalty: ['', [Validators.required, Validators.pattern(/^-?\d*[.,]?\d{0,2}$/)]], //pattern for all positive numbers >= 0 with 2 decimal points
 
       //optional
       units: ['', this.unitsValidators],  //these are present by default
 
       //optional
-      internetQuantity: ['', []],
-      minutesQuantity: ['', []],
+      total: ['', []],
       servProv_offerName: ['', []]
     });
   }
@@ -66,19 +64,16 @@ export class AddBillComponent implements OnInit {
       console.log(cat);
       if (cat == 'Water' || cat == 'Electricity') {
         this.addBillForm.controls['units'].setValidators(this.unitsValidators);
-        this.addBillForm.controls['internetQuantity'].clearValidators();
-        this.addBillForm.controls['minutesQuantity'].clearValidators();
+        this.addBillForm.controls['total'].clearValidators();
         this.addBillForm.controls['servProv_offerName'].clearValidators();
       } else if (cat == 'Telephone') {
         this.addBillForm.controls['units'].clearValidators();
-        this.addBillForm.controls['internetQuantity'].setValidators(this.internetQuantityValidators);
-        this.addBillForm.controls['minutesQuantity'].setValidators(this.minutesQuantityValidators);
+        this.addBillForm.controls['total'].setValidators(this.totalValidators);
         this.addBillForm.controls['servProv_offerName'].setValidators(this.servProv_offerNameValidators);
       }
 
       this.addBillForm.controls['units'].updateValueAndValidity();
-      this.addBillForm.controls['internetQuantity'].updateValueAndValidity();
-      this.addBillForm.controls['minutesQuantity'].updateValueAndValidity();
+      this.addBillForm.controls['total'].updateValueAndValidity();
       this.addBillForm.controls['servProv_offerName'].updateValueAndValidity();
 
     });
@@ -106,8 +101,7 @@ export class AddBillComponent implements OnInit {
   get category() { return this.addBillForm.get('category'); }
   get penalty() { return this.addBillForm.get('penalty'); }
   get units() { return this.addBillForm.get('units'); }
-  get internetQuantity() { return this.addBillForm.get('internetQuantity'); }
-  get minutesQuantity() { return this.addBillForm.get('minutesQuantity'); }
+  get total() { return this.addBillForm.get('total'); }
   get servProv_offerName() { return this.addBillForm.get('servProv_offerName') }
 
 
@@ -117,9 +111,9 @@ export class AddBillComponent implements OnInit {
         id: "",
         year: this.year?.value,
         month: this.month?.value,
-        units: this.units?.value,
-        penalty: this.penalty?.value,
-        total: this.penalty?.value, //will add the units later
+        units: parseInt(this.units?.value),
+        penalty: parseFloat(this.penalty?.value),
+        total: parseFloat(this.penalty?.value), //will add the units later
         isPaid: false
 
       }
@@ -161,13 +155,14 @@ export class AddBillComponent implements OnInit {
         }
 
       } else if (this.category?.value === 'Telephone') {
-        //create a user
         const vals: string[] = (this.servProv_offerName?.value as string).split(" / ")
         const telephoneBill: TelephoneBill = {
           ...commonBill,
           serviceProviderName: vals[0],
           offerName: vals[1]
         }
+        commonBill.total += parseFloat(this.total?.value);
+
         console.log("Telephone bill created " + JSON.stringify(telephoneBill));
         const billAdded = await this.telephoneBillService.addTelephoneBillToUser(user.id, telephoneBill);
         if (!billAdded) {

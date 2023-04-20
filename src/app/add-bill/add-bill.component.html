@@ -64,14 +64,13 @@
                 <label class="block text-gray-700 font-bold mb-2" for="penalty">Penalty</label>
                 <input formControlName="penalty"
                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="penalty" name="penalty" type="number" placeholder="Enter the penalty">
-                <p>{{penalty!['errors']!['required'] + " ddd " + penalty!['errors']!['pattern']}}</p>
+                    id="penalty" name="penalty" type="text" placeholder="Enter the penalty">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="penalty!['invalid'] && (penalty!['dirty'] || penalty!['touched'])">
                     <div *ngIf="penalty!['errors']!['required']">
-                        {{errs.Penalty.Required}} r</div>
+                        {{errs.Penalty.Required}}</div>
                     <div *ngIf="penalty!['errors']!['pattern']">
-                        {{errs.Penalty.Pattern}} p</div>
+                        {{errs.Penalty.Pattern}}</div>
                 </div>
             </div>
 
@@ -81,7 +80,7 @@
                 <label class="block text-gray-700 font-bold mb-2" for="units">Units</label>
                 <input formControlName="units"
                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="units" name="units" type="number" placeholder="Enter the units">
+                    id="units" name="units" type="text" placeholder="Enter the units">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="units!['invalid'] && (units!['dirty'] || units!['touched'])">
                     <div *ngIf="units!['errors']!['required']">{{errs.Units.Required}}</div>
@@ -91,29 +90,14 @@
 
             <ng-template #waterAndElectricty>
                 <div class="mb-4">
-                    <label class="block text-gray-700 font-bold mb-2" for="internetQuantity">Internet Quantity</label>
-                    <input formControlName="internetQuantity"
+                    <label class="block text-gray-700 font-bold mb-2" for="total">Total</label>
+                    <input formControlName="total"
                         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="internetQuantity" name="internetQuantity" type="number"
-                        placeholder="Enter the internet quantity units">
+                        id="total" name="total" type="text" placeholder="Enter the total amount">
                     <div class="text-red-500 text-xs mt-1"
-                        *ngIf="internetQuantity!['invalid'] && (internetQuantity!['dirty'] || internetQuantity!['touched'])">
-                        <div *ngIf="internetQuantity!['errors']!['required']">{{errs.InternetQuantity.Required}}</div>
-                        <div *ngIf="internetQuantity!['errors']!['pattern']">{{errs.InternetQuantity.Pattern}}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <label class="block text-gray-700 font-bold mb-2" for="minutesQuantity">Minutes Quantity</label>
-                    <input formControlName="minutesQuantity"
-                        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="minutesQuantity" name="minutesQuantity" type="number"
-                        placeholder="Enter the minutes quantity units">
-                    <div class="text-red-500 text-xs mt-1"
-                        *ngIf="minutesQuantity!['invalid'] && (minutesQuantity!['dirty'] || minutesQuantity!['touched'])">
-                        <div *ngIf="minutesQuantity!['errors']!['required']">{{errs.MinutesQuantity.Required}}</div>
-                        <div *ngIf="minutesQuantity!['errors']!['pattern']">{{errs.MinutesQuantity.Pattern}}
+                        *ngIf="total!['invalid'] && (total!['dirty'] || total!['touched'])">
+                        <div *ngIf="total!['errors']!['required']">{{errs.Total.Required}}</div>
+                        <div *ngIf="total!['errors']!['pattern']">{{errs.Total.Pattern}}
                         </div>
                     </div>
                 </div>
