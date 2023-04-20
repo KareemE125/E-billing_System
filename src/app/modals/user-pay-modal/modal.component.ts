@@ -19,4 +19,11 @@ export class ModalComponent {
   toggleModal() {
     this.showModal = !this.showModal;
   }
+
+  closeModal() {
+    this.showModal = false;
+    console.log('====================================');
+    console.log("ppp");
+    console.log('====================================');
+  }
 }
