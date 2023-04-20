@@ -69,7 +69,7 @@ import { ToastComponent } from './toast/toast.component';
     AdminCommonTableComponent,
     ToastComponent
   ],
-  
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -77,6 +77,7 @@ import { ToastComponent } from './toast/toast.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTabsModule,
+
 
 
     AngularFireModule.initializeApp(environment.firebase),

@@ -12,7 +12,6 @@ import { CommonUser } from '../models/users/common.model';
 import { TelephoneBillService } from '../shared/services/TelephoneBill.service';
 import { ServiceProvider } from '../models/users/serviceProvider.model';
 import { ServiceProviderService } from '../shared/services/service-provider.service';
-
 @Component({
   selector: 'app-add-bill',
   templateUrl: './add-bill.component.html',

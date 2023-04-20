@@ -135,6 +135,8 @@ export class ErrorsService {
         ServProv_offerName: {
           Required: _reqErr("Service Provider / Offer Name")
         }
+      },
+      PayWithCardErrors: {
 
       }
     }
