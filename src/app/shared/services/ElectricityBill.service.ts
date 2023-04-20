@@ -11,7 +11,7 @@ export class ElectricityBillService extends DataService {
 
 
   constructor(db: AngularFirestore, private userService: UserService) {
-    super(db);
+    super(db, "/users");
   }
 
 

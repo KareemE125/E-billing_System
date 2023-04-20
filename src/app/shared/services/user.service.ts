@@ -11,7 +11,7 @@ import { UserType } from 'src/app/models/users/common.model'
 export class UserService extends DataService {
 
   constructor(db: AngularFirestore, private accountService: AccountService) {
-    super(db);
+    super(db,"/users");
     this.accountService = accountService;
   }
 

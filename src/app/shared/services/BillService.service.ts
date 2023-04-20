@@ -12,7 +12,8 @@ import { ElectricityBillService } from './ElectricityBill.service'
 export abstract class DataService {
   userCollection: AngularFirestoreCollection<User>
 
-  constructor(private db: AngularFirestore) {
-    this.userCollection = this.db.collection('/users')
+  constructor(private db: AngularFirestore, collectionName:string) {
+    this.userCollection = this.db.collection(collectionName); 
+      
   }
 }
