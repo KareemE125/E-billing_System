@@ -1,6 +1,7 @@
 <app-nav-bar />
 <section class="m-16 mx-8 mb-8 p-4">
-  <app-user-pay-modal/>
+  <app-toast [title]="'Success!'" [message]="'Your action was completed successfully.'"></app-toast>
+
   <router-outlet></router-outlet>
 </section>
 <app-footer/>

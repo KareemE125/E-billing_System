@@ -38,6 +38,7 @@ import { TabViewComponent } from './tab-view/tab-view.component';
 import { AboutUsComponent } from './user-pages/about-us/about-us.component';
 import { WaterComponent } from './user-pages/water/water.component';
 import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admin-common-table.component';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admi
     TabViewComponent,
     AboutUsComponent,
     WaterComponent,
-    AdminCommonTableComponent
+    AdminCommonTableComponent,
+    ToastComponent
   ],
   
   imports: [
