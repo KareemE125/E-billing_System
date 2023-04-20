@@ -29,6 +29,7 @@
                             <th class="text-left py-2">Penalty</th>
                             <th class="text-left py-2">Total</th>
                             <th class="text-left py-2">Status</th>
+                            <th class="text-left py-2">Download</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +50,11 @@
                                     Paid
                                 </p>
                             </td>
+                            <td 
+                            class="border-t pl-4 py-2 text-blue-500 cursor-pointer hover:text-blue-800"
+                            (click)="dowloadBill(i)"
+                            >Download</td>
+
                         </tr>
                     </tbody>
                 </table>

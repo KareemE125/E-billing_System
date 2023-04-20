@@ -70,8 +70,11 @@ export class UserTableComponent implements OnInit {
 
 
   btnPay(index: number){
-    console.log('====================================');
-    console.log(index);
-    console.log('====================================');
+
+  }
+
+  dowloadBill(index: number){
+
+
   }
 }
