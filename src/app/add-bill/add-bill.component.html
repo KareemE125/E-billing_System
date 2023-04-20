@@ -1,6 +1,6 @@
 <div class="flex justify-center">
     <div class="w-full max-w-md p-8  border rounded-md shadow-lg">
-        <h1 class="text-3xl font-bold mb-8 text-center">Sign Up</h1>
+        <h1 class="text-3xl font-bold mb-8 text-center">Add Bill</h1>
         <form [formGroup]="addBillForm" (ngSubmit)="onSubmit()">
             <!--todo: fix the styling-->
             <div class="mb-4">
@@ -27,6 +27,7 @@
                     <div *ngIf="month!['errors']!['required']">
                         {{errs.Month.Required}}
                     </div>
+                    <div *ngIf="month!['errors']!['pattern']">{{errs.Month.Pattern}}</div>
                 </div>
             </div>
 
@@ -39,6 +40,8 @@
                     <div *ngIf="year!['errors']!['required']">
                         {{errs.Year.Required}}
                     </div>
+                    <div *ngIf="year!['errors']!['pattern']">{{errs.Year.Pattern}}</div>
+
                 </div>
             </div>
 
@@ -56,6 +59,7 @@
                 </div>
             </div>
 
+            <!--todo fix the valdiation here-->
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2" for="penalty">Penalty</label>
                 <input formControlName="penalty"
@@ -64,9 +68,9 @@
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="penalty!['invalid'] && (penalty!['dirty'] || penalty!['touched'])">
                     <div *ngIf="penalty!['errors']!['required']">
-                        {{errs.Penalty.Required}}</div>
+                        {{errs.Penalty.Required}} req</div>
                     <div *ngIf="penalty!['errors']!['pattern']">
-                        {{errs.Penalty.Pattern}}</div>
+                        {{errs.Penalty.Pattern}} pat</div>
                 </div>
             </div>
 
@@ -99,7 +103,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6">
+                <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="minutesQuantity">Minutes Quantity</label>
                     <input formControlName="minutesQuantity"
                         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -109,6 +113,22 @@
                         *ngIf="minutesQuantity!['invalid'] && (minutesQuantity!['dirty'] || minutesQuantity!['touched'])">
                         <div *ngIf="minutesQuantity!['errors']!['required']">{{errs.MinutesQuantity.Required}}</div>
                         <div *ngIf="minutesQuantity!['errors']!['pattern']">{{errs.MinutesQuantity.Pattern}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-bold mb-2" for="servProv_offerName">Service Provider / Offer
+                        Name</label>
+                    <select class="w-full sm:w-auto bg-white border rounded-lg px-2 py-2" id="servProv_offerName"
+                        formControlName="servProv_offerName">
+                        <option *ngFor="let name of serviceProv_offers" value="{{name}}">
+                            {{name}}</option>
+                    </select>
+                    <div class="text-red-500 text-xs mt-1"
+                        *ngIf="servProv_offerName!['invalid'] && (servProv_offerName!['dirty'] || servProv_offerName!['touched'])">
+                        <div *ngIf="servProv_offerName!['errors']!['required']">
+                            {{errs.ServProv_offerName.Required}}
                         </div>
                     </div>
                 </div>

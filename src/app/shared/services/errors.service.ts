@@ -107,9 +107,11 @@ export class ErrorsService {
         },
         Month: {
           Required: _reqErr("Month"),
+          Pattern: _invalidErr("Month")
         },
         Year: {
           Required: _reqErr("Year"),
+          Pattern: _invalidErr("Year")
         },
         Category: {
           Required: _reqErr("Category"),
@@ -129,6 +131,9 @@ export class ErrorsService {
         MinutesQuantity: {
           Required: _reqErr("Minutes Quantity"),
           Pattern: _invalidErr("Minutes Quantity")
+        },
+        ServProv_offerName: {
+          Required: _reqErr("Service Provider / Offer Name")
         }
 
       }
