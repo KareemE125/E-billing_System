@@ -4,13 +4,14 @@
 
 <section *ngIf="showModal">
   <div class="fixed z-50 inset-0 overflow-y-auto">
-    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0" >
-      <div class="fixed inset-0 transition-opacity" aria-hidden="true"  (click)="closeModal()">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 transition-opacity" aria-hidden="true" (click)="closeModal()">
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
       </div>
 
-      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all mt-24">
-      <!-- Add your content here -->
+      <div
+        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all mt-24">
+        <!-- Add your content here -->
         <div class="flex flex-col w-[440px] border-semi rounded-lg shadow-lg">
           <nav class="flex">
             <button class="tab-btn w-full font-bold" [class.active-tab]="selectedTab === 'tab1'"
@@ -22,12 +23,14 @@
 
             <ng-container *ngIf="selectedTab === 'tab1'">
               <div class="w-full px-4 flex gap-4">
-                <div class="w-full text-center rounded-lg border-semi bg-gray-200 py-1"><span ><b>Amount: </b> 1892.56</span></div>
-                <div class="w-full text-center rounded-lg border-semi bg-gray-200 py-1"><span ><b>Wallet: </b> 2500</span></div>             
+                <div class="w-full text-center rounded-lg border-semi bg-gray-200 py-1"><span><b>Amount: </b>
+                    {{amountToPay}}</span></div>
+                <div class="w-full text-center rounded-lg border-semi bg-gray-200 py-1"><span><b>Wallet: </b>
+                    {{wallet}}</span></div>
               </div>
               <div class="text-center px-8 py-6">
                 <p class="mb-3 text-xl font-semibold">Payment Code</p>
-                <p class="text-blue-500 bg-gray-700 px-6 py-1">12993-k88pi-8292iiw</p>
+                <p class="text-blue-500 bg-gray-700 px-6 py-1">{{this.randomPaymentCode}}</p>
 
                 <div class="w-full px-4 flex gap-4 items-center">
                   <button class="bg-blue-500 w-32 mt-4 py-2 px-6 text-white rounded-lg" (click)="toggleModal()">
@@ -36,17 +39,19 @@
                   <div class="mt-2">OR</div>
                   <button class="bg-blue-500 w-32 mt-4 py-2 px-6 text-white rounded-lg" (click)="toggleModal()">
                     Use Wallet
-                  </button>     
+                  </button>
                 </div>
               </div>
             </ng-container>
 
             <ng-container *ngIf="selectedTab === 'tab2'">
               <div class="w-full px-4 flex gap-4">
-                <div class="w-full text-center rounded-lg border-semi bg-gray-200 py-1"><span ><b>Amount: </b> 1892.56</span></div>
-                <div class="w-full text-center rounded-lg border-semi bg-gray-200 py-1"><span ><b>Wallet: </b> 2500</span></div>             
+                <div class="w-full text-center rounded-lg border-semi bg-gray-200 py-1"><span><b>Amount: </b>
+                    1892.56</span></div>
+                <div class="w-full text-center rounded-lg border-semi bg-gray-200 py-1"><span><b>Wallet: </b>
+                    2500</span></div>
               </div>
-              <form class="px-8 py-6 w-96">
+              <form [formGroup]="payWithCardForm" (ngSubmit)="onSubmit()" class="px-8 py-6 w-96">
                 <div class="mb-3">
                   <label class="block text-gray-700 font-bold mb-1" for="credit-card-number">
                     Credit Card Number
@@ -54,6 +59,19 @@
                   <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="credit-card-number" type="text" placeholder="Enter your credit card number">
+                  <label class="block text-gray-700 font-bold mb-2" for="offerName">Offer Name</label>
+
+
+                  <!-- <input formControlName="offerName"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="offerName" name="offerName" type="text" placeholder="Enter the offer name">
+                  <div class="text-red-500 text-xs mt-1"
+                    *ngIf="offerName!['invalid'] && (offerName!['dirty'] || offerName!['touched'])">
+                    <div *ngIf="offerName!['errors']!['required']">{{errs.OfferName.Required}}</div>
+                    <div *ngIf="offerName!['errors']!['minlength']">{{errs.OfferName.MinLength}}</div>
+                  </div> -->
+
+
                 </div>
                 <div class="mb-3">
                   <label class="block text-gray-700 font-bold mb-1" for="cvv">
@@ -94,10 +112,10 @@
                 </button>
               </form>
             </ng-container>
-            
+
           </div>
         </div>
-      <!-- Add your content here -->
+        <!-- Add your content here -->
       </div>
 
     </div>

@@ -70,13 +70,14 @@ import { ToastService } from './shared/services/toast.service';
     AdminCommonTableComponent,
     ToastComponent
   ],
-  
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+
 
 
     AngularFireModule.initializeApp(environment.firebase),
