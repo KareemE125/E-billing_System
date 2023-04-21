@@ -1,9 +1,9 @@
-<div class="flex pt-20 justify-center">
+<div class="flex justify-center">
     <div class="w-full max-w-md p-8  border rounded-md shadow-lg">
-        <h1 class="text-3xl font-bold mb-8 text-center">Add Offer</h1>
+        <h1 class="text-3xl font-bold mb-4 text-center">Add Offer</h1>
         <form [formGroup]="addOfferForm" (ngSubmit)="onSubmit()">
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2" for="offerName">Offer Name</label>
+            <div class="mb-3">
+                <label class="block text-gray-700 font-bold mb-0" for="offerName">Offer Name</label>
                 <input formControlName="offerName"
                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="offerName" name="offerName" type="text" placeholder="Enter the offer name">
@@ -13,9 +13,9 @@
                     <div *ngIf="offerName!['errors']!['minlength']">{{errs.OfferName.MinLength}}</div>
                 </div>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2" for="offerStatus">Offer Status</label>
-                <select class="w-full sm:w-auto bg-gray-200 border rounded-lg px-2 py-2" id="offerStatus"
+            <div class="mb-3">
+                <label class="block text-gray-700 font-bold mb-0" for="offerStatus">Offer Status</label>
+                <select class="w-full sm:w-auto bg-white border rounded-lg px-2 py-2" id="offerStatus"
                     formControlName="offerStatus">
                     <option *ngFor="let offer of offerStatuses" value="{{offer}}">{{offer}}</option>
                 </select>
@@ -26,8 +26,8 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 font-bold mb-2" for="internetQuantityOrPrice">{{offerStatus?.value ==
+            <div class="mb-3">
+                <label class="block text-gray-700 font-bold mb-0" for="internetQuantityOrPrice">{{offerStatus?.value ==
                     "Pre Paid" ? "Internet Quantity in Megabytes" : "Price per Megabyte"}}</label>
 
                 <input formControlName="internetQuantityOrPrice"
@@ -42,8 +42,8 @@
                         {{errs.InternetQuantityOrPrice.Pattern}}</div>
                 </div>
             </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 font-bold mb-2" for="minutesQuantityOrPrice">{{offerStatus?.value ==
+            <div class="mb-3">
+                <label class="block text-gray-700 font-bold mb-0" for="minutesQuantityOrPrice">{{offerStatus?.value ==
                     "Pre Paid" ? "Minutes Quantity" : "Price per Minute"}}</label>
                 <input formControlName="minutesQuantityOrPrice"
                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -60,8 +60,8 @@
 
             <!--todo: if postpaid, price should be disabled and set as Per Usage
             Make sure to handle errors properly as well-->
-            <div class="mb-6">
-                <label class="block text-gray-700 font-bold mb-2" for="price">Price</label>
+            <div class="mb-3">
+                <label class="block text-gray-700 font-bold mb-0" for="price">Price</label>
                 <input formControlName="price"
                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="price" name="price" type="text" placeholder="Enter the price">

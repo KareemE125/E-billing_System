@@ -16,7 +16,7 @@ import { AdminWaterComponent } from './admin-pages/admin-water/admin-water.compo
 import { AdminElectricityComponent } from './admin-pages/admin-electricity/admin-electricity.component';
 import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-telephone.component';
 import { AddBillComponent } from './add-bill/add-bill.component';
-import { SPHomeComponent } from './sphome/sphome.component';
+import { SPHomeComponent } from './sp-pages/sphome/sphome.component';
 import { TelephoneComponent } from './telephone/telephone.component';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { AccountService } from './shared/services/account.service';
