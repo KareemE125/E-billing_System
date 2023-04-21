@@ -38,7 +38,7 @@ import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admi
 import { ToastComponent } from './toast/toast.component';
 import { ToastService } from './shared/services/toast.service';
 import { SPHomeComponent } from './sphome/sphome.component';
-import { TelephoneComponent } from './telephone/telephone.component';
+import { TelephoneComponent } from './user-pages/telephone/telephone.component';
 
 @NgModule({
   declarations: [

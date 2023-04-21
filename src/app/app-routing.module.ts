@@ -10,7 +10,7 @@ import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.
 import { AllUsersComponent } from './admin-pages/all-users/all-users.component';
 import { ManageComponent } from './admin-pages/manage/manage.component';
 import { SPHomeComponent } from './sphome/sphome.component';
-import { TelephoneComponent } from './telephone/telephone.component';
+import { TelephoneComponent } from './user-pages/telephone/telephone.component';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admin-common-table.component';
 
