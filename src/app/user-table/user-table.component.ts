@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {CommonBill} from '../models/bills/commonBill.model'
+import { CommonBill } from '../models/bills/commonBill.model'
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'user-table',
@@ -9,9 +10,10 @@ import {CommonBill} from '../models/bills/commonBill.model'
 
 export class UserTableComponent implements OnInit {
 
+  @Input() type: string = "";
   @Input() infoList: CommonBill[] = [];
-  @Input() tableUnit:string = "kWh";
-  
+  @Input() tableUnit: string = "kWh";
+
   filteredInfoList: CommonBill[] = [];
 
   searchText = '';
@@ -34,8 +36,8 @@ export class UserTableComponent implements OnInit {
       this.selectedOption = 'Choose an option'
       const searchTextLower = this.searchText.toLowerCase();
       this.filteredInfoList = this.filteredInfoList.filter(info => {
-        return info.year.toString().includes(searchTextLower) 
-              || info.month.toString().includes(searchTextLower) ;
+        return info.year.toString().includes(searchTextLower)
+          || info.month.toString().includes(searchTextLower);
       });
     }
 
@@ -69,12 +71,45 @@ export class UserTableComponent implements OnInit {
   }
 
 
-  btnPay(index: number){
+  btnPay(index: number) {
 
   }
 
-  dowloadBill(index: number){
+  dowloadBill(index: number) {
 
+    const fontSize = 12;
+    const fontColor = '#333333';
+    const headerColor = '#007ACC';
+    const headerTextColor = '#FFFFFF';
+    const borderColor = '#CCCCCC';
+    const backgroundColor = '#F0F0F0';
+
+    let info = this.filteredInfoList[index];
+
+    const doc = new jsPDF();
+
+    doc.setFontSize(fontSize);
+    doc.setTextColor(fontColor);
+
+    doc.setFillColor(headerColor);
+    doc.setTextColor(headerTextColor);
+    doc.rect(10, 10, 190, 20, 'F');
+    doc.text(`${this.type} Bill`, 100, 20, { align: 'center' });
+
+    doc.setFillColor(backgroundColor);
+    doc.rect(10, 35, 190, 40, 'F');
+    doc.setTextColor(fontColor);
+    doc.text(`Date: ${info.year}/${info.month}`, 15, 45);
+    doc.text(`Units: ${info.units} ${this.tableUnit}`, 15, 55);
+    doc.text(`Penalty: ${info.penalty}`, 15, 65);
+    doc.text(`Total: ${info.total}`, 15, 75);
+
+    doc.setDrawColor(borderColor);
+    doc.rect(10, 10, 190, 75);
+
+    doc.save(`invoice_${info.year}_${info.month}.pdf`);
 
   }
+
+
 }
