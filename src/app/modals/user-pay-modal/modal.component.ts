@@ -10,6 +10,8 @@ import { ElectricityBillService } from 'src/app/shared/services/ElectricityBill.
 import { WaterBillService } from 'src/app/shared/services/WaterBill.service';
 import { TelephoneBillService } from 'src/app/shared/services/TelephoneBill.service';
 import { ElectricityBill } from 'src/app/models/bills/electricity.model';
+import { UserType } from 'src/app/models/users/common.model';
+import { TelephoneBill } from 'src/app/models/bills/telephone.model';
 
 @Component({
   selector: 'app-user-pay-modal',
@@ -67,25 +69,35 @@ export class ModalComponent {
 
     if (this.selectedTab === 'tab1' || (this.selectedTab === 'tab2' && this.payWithCardForm.valid)) {
       const paymentDate: number = new Date().getTime()
-
+      let user: false | User | null = null;
+      for (let bill of this.billsToPay) {
+        bill.isPaid = true
+        bill.paymentDate = paymentDate
+        bill.paymentMethod = paymentMethod
+      }
 
       if (this.billType === 'Electricty') {
-        let success = true;
-        for (let bill of this.billsToPay) {
-          bill.isPaid = true
-          bill.paymentDate = paymentDate
-          bill.paymentMethod = paymentMethod
-          const res = await this.elecService.updateElectricityBill(this.accService.currentUser?.id ?? "", bill)
-          if (!res) {
-            success = false;
-          }
+        user = await this.elecService.updateElectricityBills(this.accService.currentUser?.id ?? "", this.billsToPay)
+        if (!user) {
+          this.toastService.showToast(false, 'Unable to pay electricity bill', '')
+          return
         }
-        if (!success) {
-          this.toastService.showToast(true, 'Unable to pay electricity bill', '')
+      } else if (this.billType === 'Water') {
+        user = await this.waterService.updateWaterBills(this.accService.currentUser?.id ?? "", this.billsToPay)
+        if (!user) {
+          this.toastService.showToast(false, 'Unable to pay water bill', '')
+          return
+        }
+      } else if (this.billType === 'Telephone') {
+        user = await this.telephoneService.updateTelephoneBills(this.accService.currentUser?.id ?? "", this.billsToPay as TelephoneBill[])
+        if (!user) {
+          this.toastService.showToast(false, 'Unable to pay telephone bill', '')
           return
         }
       }
 
+      //update the current user with the new bills paid
+      this.accService.SetCurrentUser(user as User, UserType.User)
       this.toggleModal()
       this.toastService.showToast(true, 'Bill successfully paid', '')
     } else {
