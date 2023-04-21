@@ -30,9 +30,6 @@ import { DatabaseTestComponent } from './database-test/database-test.component';
 import { FooterComponent } from './footer/footer.component';
 import { ManageComponent } from './admin-pages/manage/manage.component';
 import { AllUsersComponent } from './admin-pages/all-users/all-users.component';
-import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-telephone.component';
-import { AdminWaterComponent } from './admin-pages/admin-water/admin-water.component';
-import { AdminElectricityComponent } from './admin-pages/admin-electricity/admin-electricity.component';
 import { AddBillComponent } from './add-bill/add-bill.component';
 import { TabViewComponent } from './tab-view/tab-view.component';
 import { AboutUsComponent } from './user-pages/about-us/about-us.component';
@@ -41,8 +38,8 @@ import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admi
 import { ToastComponent } from './toast/toast.component';
 import { ToastService } from './shared/services/toast.service';
 import { SPHomeComponent } from './sp-pages/sphome/sphome.component';
-import { TelephoneComponent } from './telephone/telephone.component';
 import { SpTableComponent } from './sp-pages/sp-table/sp-table.component';
+import { TelephoneComponent } from './user-pages/telephone/telephone.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +54,7 @@ import { SpTableComponent } from './sp-pages/sp-table/sp-table.component';
     UserTableComponent,
     AddOfferComponent,
     AddBillComponent,
-    AdminWaterComponent,
+
     ElectricityComponent,
     ModalComponent,
     EditProfileInfoComponent,
@@ -65,8 +62,8 @@ import { SpTableComponent } from './sp-pages/sp-table/sp-table.component';
     FooterComponent,
     ManageComponent,
     AllUsersComponent,
-    AdminElectricityComponent,
-    AdminTelephoneComponent,
+
+
     TabViewComponent,
     AboutUsComponent,
     WaterComponent,
@@ -93,7 +90,7 @@ import { SpTableComponent } from './sp-pages/sp-table/sp-table.component';
     provideFirestore(() => getFirestore()),
     AngularFirestoreModule
   ],
-  providers: [AccountService,ToastService],
+  providers: [AccountService, ToastService],
   bootstrap: [AppComponent]
 })
 

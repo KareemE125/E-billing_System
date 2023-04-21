@@ -107,8 +107,8 @@
                         Name</label>
                     <select class="w-full sm:w-auto bg-white border rounded-lg px-2 py-2" id="servProv_offerName"
                         formControlName="servProv_offerName">
-                        <option *ngFor="let name of serviceProv_offers" value="{{name}}">
-                            {{name}}</option>
+                        <option *ngFor="let off of serviceProv_offers" value="{{ off.svProvName + ' / ' + off.name}}">
+                            {{off.svProvName + ' / ' + off.name}}</option>
                     </select>
                     <div class="text-red-500 text-xs mt-1"
                         *ngIf="servProv_offerName!['invalid'] && (servProv_offerName!['dirty'] || servProv_offerName!['touched'])">

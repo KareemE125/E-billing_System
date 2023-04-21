@@ -7,6 +7,7 @@ export const dummy_offers: Offer[] = [
         minutesQuantityOrPrice: 0.1,
         price: "Per Usage",
         status: "Pre Paid",
+        svProvName: "svProv1"
     },
     {
         name: "Offer A2",
@@ -14,6 +15,8 @@ export const dummy_offers: Offer[] = [
         minutesQuantityOrPrice: 100,
         price: 75,
         status: "Pre Paid",
+        svProvName: "svProv1"
+
     },
     {
         name: "Offer B1",
@@ -21,6 +24,8 @@ export const dummy_offers: Offer[] = [
         minutesQuantityOrPrice: 200,
         price: 100,
         status: "Pre Paid",
+        svProvName: "svProv1"
+
     },
     {
         name: "Offer B2",
@@ -28,6 +33,8 @@ export const dummy_offers: Offer[] = [
         minutesQuantityOrPrice: 50,
         price: 60,
         status: "Pre Paid",
+        svProvName: "svProv1"
+
     },
 ]
 

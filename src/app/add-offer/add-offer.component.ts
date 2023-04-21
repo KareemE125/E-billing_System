@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorsService } from '../shared/services/errors.service';
 import { Offer, telephoneOfferStatuses } from '../models/users/serviceProvider.model';
+import { AccountService } from '../shared/services/account.service';
 
 @Component({
   selector: 'app-add-offer',
@@ -14,7 +15,8 @@ export class AddOfferComponent {
   offerStatuses: string[] = telephoneOfferStatuses;
 
 
-  constructor(private errService: ErrorsService, private formBuilder: FormBuilder) {
+  constructor(private errService: ErrorsService, private accService: AccountService,
+    private formBuilder: FormBuilder) {
     this.errs = errService.getErrors().AddOfferErrors
 
     this.addOfferForm = this.formBuilder.group({
@@ -54,6 +56,7 @@ export class AddOfferComponent {
         minutesQuantityOrPrice: parseFloat(this.minutesQuantityOrPrice?.value),
         price: parseFloat(this.price?.value),
         status: this.offerStatus?.value,
+        svProvName: this.accService.currentUser?.name || "",
       }
       console.log("Offer created " + JSON.stringify(offer));
 
