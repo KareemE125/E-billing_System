@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-sp-table',
@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class SpTableComponent {
 
-  offerList: offerTableRow[] = [
+  @Input() offerList: offerTableRow[] = [
     {
       spOffer: "Premium",
       internet: 10,
@@ -45,6 +45,7 @@ export class SpTableComponent {
     }
   ];
   
+  @Input() ServiceProviderName: string | undefined;
 
   tableInternetUnit: string = "MB";
   tableMinutesUnit: string = "min";
