@@ -30,9 +30,6 @@ import { DatabaseTestComponent } from './database-test/database-test.component';
 import { FooterComponent } from './footer/footer.component';
 import { ManageComponent } from './admin-pages/manage/manage.component';
 import { AllUsersComponent } from './admin-pages/all-users/all-users.component';
-import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-telephone.component';
-import { AdminWaterComponent } from './admin-pages/admin-water/admin-water.component';
-import { AdminElectricityComponent } from './admin-pages/admin-electricity/admin-electricity.component';
 import { AddBillComponent } from './add-bill/add-bill.component';
 import { TabViewComponent } from './tab-view/tab-view.component';
 import { AboutUsComponent } from './user-pages/about-us/about-us.component';
@@ -56,7 +53,7 @@ import { TelephoneComponent } from './telephone/telephone.component';
     UserTableComponent,
     AddOfferComponent,
     AddBillComponent,
-    AdminWaterComponent,
+
     ElectricityComponent,
     ModalComponent,
     EditProfileInfoComponent,
@@ -64,15 +61,15 @@ import { TelephoneComponent } from './telephone/telephone.component';
     FooterComponent,
     ManageComponent,
     AllUsersComponent,
-    AdminElectricityComponent,
-    AdminTelephoneComponent,
+
+
     TabViewComponent,
     AboutUsComponent,
     WaterComponent,
     AdminCommonTableComponent,
     ToastComponent,
     SPHomeComponent,
-    TelephoneComponent
+    TelephoneComponent,
   ],
 
   imports: [
@@ -91,7 +88,7 @@ import { TelephoneComponent } from './telephone/telephone.component';
     provideFirestore(() => getFirestore()),
     AngularFirestoreModule
   ],
-  providers: [AccountService,ToastService],
+  providers: [AccountService, ToastService],
   bootstrap: [AppComponent]
 })
 

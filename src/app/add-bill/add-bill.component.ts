@@ -10,7 +10,7 @@ import { WaterBillService } from '../shared/services/WaterBill.service';
 import { UserService } from '../shared/services/user.service';
 import { CommonUser } from '../models/users/common.model';
 import { TelephoneBillService } from '../shared/services/TelephoneBill.service';
-import { ServiceProvider } from '../models/users/serviceProvider.model';
+import { Offer, ServiceProvider } from '../models/users/serviceProvider.model';
 import { ServiceProviderService } from '../shared/services/service-provider.service';
 import { ToastService } from '../shared/services/toast.service';
 @Component({
@@ -25,7 +25,7 @@ export class AddBillComponent implements OnInit {
   users?: User[];
   months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   years: number[] = [2020, 2021, 2022, 2023]
-  serviceProv_offers: string[] = []
+  serviceProv_offers: Offer[] = []
 
   unitsValidators = [Validators.required, Validators.pattern(/^[0-9]\d*(\.\d+)?$/)] //pattern for all positive numbers >= 0
   totalValidators = [Validators.required, Validators.pattern(/^-?\d*[.,]?\d{0,2}$/)] //pattern for all positive integers
@@ -87,7 +87,7 @@ export class AddBillComponent implements OnInit {
     //init the dropdown of the sv prov and their offers
     for (let sv of servProviders) {
       for (let off of sv.offers) {
-        this.serviceProv_offers.push(sv.name + " / " + off.name)
+        this.serviceProv_offers.push(off)
       }
     }
 
@@ -157,10 +157,13 @@ export class AddBillComponent implements OnInit {
 
       } else if (this.category?.value === 'Telephone') {
         const vals: string[] = (this.servProv_offerName?.value as string).split(" / ")
+        const offer = this.serviceProv_offers.find(e => e.svProvName === vals[0] && e.name == vals[1])
         const telephoneBill: TelephoneBill = {
           ...commonBill,
           serviceProviderName: vals[0],
-          offerName: vals[1]
+          offerName: vals[1],
+          offerInt: offer?.internetQuantityOrPrice || 0,
+          offerMin: offer?.minutesQuantityOrPrice || 0
         }
         commonBill.total += parseFloat(this.total?.value);
 

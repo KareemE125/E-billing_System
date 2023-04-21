@@ -1,4 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonBill } from 'src/app/models/bills/commonBill.model';
+import { TelephoneBill } from 'src/app/models/bills/telephone.model';
+import { User } from 'src/app/models/users/user.model';
+import { ToastService } from 'src/app/shared/services/toast.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-admin-common-table',
@@ -7,25 +13,65 @@ import { Component, Input } from '@angular/core';
 })
 export class AdminCommonTableComponent {
 
-  @Input() type: number = 1;
-  @Input() tableUnit: string = "kWh";
-  @Input() userList: any[] = [];
+  tableType: TableType = TableType.Electricity;
+  tableUnit: string = "kWh";
+  userList: UserTableRow[] = [];
+  filteredUserList: UserTableRow[] = [];
 
 
   tableInternetUnit: string = "MB";
   tableMinutesUnit: string = "min";
 
 
-  filteredUserList: UserTableRow[] = [];
 
   searchText = '';
   selectedOption = 'Choose an option';
 
-  constructor() { }
+  constructor(private route: Router, private usersService: UserService,
+    private toastService: ToastService) {
+  }
 
-  ngOnInit(): void {
+  getTableType(): any {
+    return TableType;
+  }
+
+  async ngOnInit(): Promise<void> {
+    if (this.route.url.includes("water")) {
+      this.tableType = TableType.Water
+      this.tableUnit = "m3";
+    }
+    else if (this.route.url.includes("telephone")) {
+      this.tableType = TableType.Telephone
+      this.tableUnit = "";
+    }
+    else if (this.route.url.includes("electricity")) {
+      this.tableType = TableType.Electricity
+      this.tableUnit = "kWh";
+    }
     // set initial filtered list to full list
+    this.userList = await this.getAllTableRows()
     this.filteredUserList = [...this.userList];
+  }
+
+  async getAllTableRows(): Promise<UserTableRow[]> {
+    const rows: UserTableRow[] = []
+    const users = await this.usersService.getAllUsers();
+    if (!users) {
+      this.toastService.showToast(false, 'Unable to get all users', '')
+      return rows;
+    }
+    for (let user of users) {
+      for (let bill of user.electricityBills) {
+        rows.push(this.mapBillToUserTableRow(user.name, user.id, bill, TableType.Electricity))
+      }
+      for (let bill of user.waterBills) {
+        rows.push(this.mapBillToUserTableRow(user.name, user.id, bill, TableType.Water))
+      }
+      for (let bill of user.telephoneBills) {
+        rows.push(this.mapBillToUserTableRow(user.name, user.id, bill, TableType.Telephone))
+      }
+    }
+    return rows
   }
 
   filterUsers(): void {
@@ -41,7 +87,7 @@ export class AdminCommonTableComponent {
           || user.id.toLowerCase().includes(searchTextLower)
           || user.year.toString().includes(searchTextLower)
           || user.month.toString().includes(searchTextLower)
-          || user?.spOffer?.toLowerCase().toString().includes(searchTextLower);
+          || user.spOfferName?.toLowerCase().toString().includes(searchTextLower);
       });
     }
 
@@ -74,18 +120,53 @@ export class AdminCommonTableComponent {
     }
   }
 
+  mapBillToUserTableRow(userName: string, userId: string, bill: CommonBill, billType: TableType): UserTableRow {
+    const ret: UserTableRow = {
+      id: userId,
+      name: userName,
+      year: bill.year,
+      month: bill.month,
+      usage: bill.units,
+      penalty: bill.penalty,
+      total: bill.total,
+      isPaid: bill.isPaid,
 
+      spOfferName: "",
+      internet: 0,
+      minutes: 0
+    }
+    if (billType == TableType.Telephone) {
+      const tBill: TelephoneBill = bill as TelephoneBill;
+      return {
+        ...ret,
+        spOfferName: tBill.offerName,
+        internet: tBill.offerInt,
+        minutes: tBill.offerMin
+      }
+    } else {
+      return ret
+    }
+  }
 }
+
+export enum TableType {
+  Electricity,
+  Water,
+  Telephone
+}
+
 export interface UserTableRow {
-  spOffer: any;
-  internet: any;
-  minutes: any;
+  spOfferName: string | null;
+  internet: number | null;
+  minutes: number | null;
+
   id: string;
   name: string;
   year: number,
   month: number,
-  usage: any,
+  usage: number,
   penalty: number,
   total: number,
   isPaid: boolean,
 }
+

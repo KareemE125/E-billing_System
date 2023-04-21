@@ -3,10 +3,11 @@
         <div class="bg-gray-100 rounded-lg shadow-lg">
             <div class="px-6 py-4">
                 <h2 class="text-2xl font-bold mb-8 text-center">
-                    <span *ngIf="type === 1; else waterOrTelephone">All Electricity Statuses</span>
+                    <span *ngIf="tableType === getTableType().Electricity; else waterOrTelephone">All Electricity
+                        Statuses</span>
                     <ng-template #waterOrTelephone>
-                        <span *ngIf="type === 2">All Water Statuses</span>
-                        <span *ngIf="type === 3">All Telephone Statuses</span>
+                        <span *ngIf="tableType === tableType === getTableType().Water">All Water Statuses</span>
+                        <span *ngIf="tableType === getTableType().Telephone">All Telephone Statuses</span>
                     </ng-template>
 
                 </h2>
@@ -37,11 +38,12 @@
                                 <th class="text-left py-2">Name</th>
                                 <th class="text-left py-2">Year/Month</th>
 
-                                <th *ngIf="type === 3" class="text-left py-2">SP Offer</th>
-                                <th *ngIf="type === 3" class="text-left py-2">Internet</th>
-                                <th *ngIf="type === 3" class="text-left py-2">Minutes</th>
+                                <th *ngIf="tableType === getTableType().Telephone" class="text-left py-2">SP Offer</th>
+                                <th *ngIf="tableType === getTableType().Telephone" class="text-left py-2">Internet</th>
+                                <th *ngIf="tableType === getTableType().Telephone" class="text-left py-2">Minutes</th>
 
-                                <th *ngIf="type === 1 || type === 2" class="text-left py-2">Usage</th>
+                                <th *ngIf="tableType === getTableType().Electricity || tableType === getTableType().Water"
+                                    class="text-left py-2">Usage</th>
 
                                 <th class="text-left py-2">Penalty</th>
                                 <th class="text-left py-2">Total</th>
@@ -54,13 +56,18 @@
                                 <td class="border-t px-4 py-2">{{user.name}}</td>
                                 <td class="border-t px-4 py-2">{{user.year}}/{{user.month}}</td>
 
-                                <td *ngIf="type === 3" class="border-t px-4 py-2">{{user.spOffer}}</td>
-                                <td *ngIf="type === 3" class="border-t px-4 py-2">{{user.internet}}
+                                <td *ngIf="tableType === getTableType().Telephone" class="border-t px-4 py-2">
+                                    {{user.spOfferName}}</td>
+                                <td *ngIf="tableType === getTableType().Telephone" class="border-t px-4 py-2">
+                                    {{user.internet}}
                                     {{tableInternetUnit}}</td>
-                                <td *ngIf="type === 3" class="border-t px-4 py-2">{{user.minutes}} {{tableMinutesUnit}}
+                                <td *ngIf="tableType === getTableType().Telephone" class="border-t px-4 py-2">
+                                    {{user.minutes}} {{tableMinutesUnit}}
                                 </td>
 
-                                <td *ngIf="type === 1 || type === 2" class="border-t px-4 py-2">{{user.usage}}
+                                <td *ngIf="tableType === getTableType().Electricity || tableType === getTableType().Water"
+                                    class="border-t px-4 py-2">
+                                    {{user.usage}}
                                     {{tableUnit}}</td>
 
                                 <td class="border-t px-4 py-2">{{user.penalty}}</td>
