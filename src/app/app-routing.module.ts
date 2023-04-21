@@ -17,6 +17,7 @@ import { AdminElectricityComponent } from './admin-pages/admin-electricity/admin
 import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-telephone.component';
 import { AddBillComponent } from './add-bill/add-bill.component';
 import { SPHomeComponent } from './sphome/sphome.component';
+import { TelephoneComponent } from './telephone/telephone.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,7 +27,7 @@ const routes: Routes = [
 
   { path: 'water', component: WaterComponent },
   { path: 'electricity', component: ElectricityComponent },
-  { path: 'telephone', component: ElectricityComponent }, //todo
+  { path: 'telephone', component: TelephoneComponent }, //todo
   { path: 'about-us', component: AboutUsComponent },
 
   { path: 'edit-profile-info', component: EditProfileInfoComponent },

@@ -17,12 +17,17 @@ import { ServiceProviderService } from '../shared/services/service-provider.serv
 export class EditProfileInfoComponent implements OnInit {
   editProfileInfo: FormGroup;
   editProfileInfoTitle: string = "Your Information"
+  pendingPayments: number = 0
+  wallet: number = 0
   errs: any;
+  accService: AccountService;
+
 
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder,
-    private accService: AccountService, private userService: UserService, private adminService: AdminService,
+    accService: AccountService, private userService: UserService, private adminService: AdminService,
     private servProvService: ServiceProviderService) {
     this.errs = errService.getErrors().EditProfileInfoErrors
+    this.accService = accService
 
     this.editProfileInfo = this.formBuilder.group({
       name: [this.accService.currentUser?.name, [Validators.required, Validators.minLength(3)]],
@@ -37,12 +42,20 @@ export class EditProfileInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.accService.currentUser === this.accService.GetUsersEnum().User)
+    if (this.accService.currentUserType === this.accService.GetUsersEnum().User) {
       this.editProfileInfoTitle = "User Information"
-    else if (this.accService.currentUser === this.accService.GetUsersEnum().Admin)
+      const tmpUser = this.accService.currentUser as User
+      this.wallet = tmpUser.wallet
+
+      this.pendingPayments = this.accService.getTotalPendingPayments()
+
+    }
+    else if (this.accService.currentUserType === this.accService.GetUsersEnum().Admin)
       this.editProfileInfoTitle = "Admin Information"
-    else if (this.accService.currentUser === this.accService.GetUsersEnum().ServiceProvider)
+    else if (this.accService.currentUserType === this.accService.GetUsersEnum().ServiceProvider)
       this.editProfileInfoTitle = "Service Provider Information"
+
+
   }
 
   get name() {

@@ -2,9 +2,16 @@
     <h1 class="text-center font-bold text-2xl mb-6 "> Water</h1>
     <section class="flex w-full items-start gap-10">
         <div class="w-3/4">
-            <user-table [infoList]="infoList" [tableUnit]="tableUnit" [type]="'Water'"/>
+            <user-table [infoList]="infoList" [tableUnit]="tableUnit" [type]="'Water'" />
         </div>
         <div class="flex flex-col justify-center w-1/4 gap-8 ">
+
+            <div class="w-full text-center p-10 py-8 rounded-lg bg-gray-100">
+                <b class="text-red-500">Pending Payments:</b>
+                <span class="text-center border rounded-lg py-1 px-2 w-fit">
+                    {{pendingPayments}} EGP
+                </span>
+            </div>
 
             <div class="w-full text-center p-10 py-8 rounded-lg bg-gray-100">
                 <p class="mb-6">

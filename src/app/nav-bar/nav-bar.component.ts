@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../shared/services/account.service'
 import { Router } from '@angular/router';
 @Component({
@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  isLoggedIn: boolean = false
+  isLoggedIn: boolean = true
 
   constructor(public accountService: AccountService, private router: Router) {
-    this.isLoggedIn = accountService.isLoggedIn()
+    this.accountService.loggedInSubject.subscribe(val =>
+      this.isLoggedIn = val)
   }
 
   logout(): void {
@@ -19,13 +20,14 @@ export class NavBarComponent {
   }
 
   goToHome(): void {
-    if (!this.isLoggedIn)
+    console.log("go to home " + this.accountService.currentUserType);
+    if (!this.accountService.isLoggedIn())
       this.router.navigate(['/login'])
-    else if (!this.accountService.currentUserType === this.accountService.GetUsersEnum().User)
+    else if (this.accountService.currentUserType === this.accountService.GetUsersEnum().User)
       this.router.navigate(['/home'])
-    else if (!this.accountService.currentUserType === this.accountService.GetUsersEnum().Admin)
+    else if (this.accountService.currentUserType === this.accountService.GetUsersEnum().Admin)
       this.router.navigate(['/admin-manage'])
-    else if (!this.accountService.currentUserType === this.accountService.GetUsersEnum().ServiceProvider)
+    else if (this.accountService.currentUserType === this.accountService.GetUsersEnum().ServiceProvider)
       this.router.navigate(['/sp-home'])
 
 

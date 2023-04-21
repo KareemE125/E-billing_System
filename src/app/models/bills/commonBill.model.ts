@@ -6,7 +6,7 @@ export interface CommonBill {
     total: number,      //0 <= total <= 100000
     isPaid: boolean,   //true or false
     paymentDate: number | "Not Yet",
-    paymentMethod: "Cash" | "Card" | "Wallet" | null,
+    paymentMethod: "Cash" | "Card" | "Wallet" | "Not Yet",
     id: string
 }
 

@@ -3,6 +3,7 @@ import { CommonBill } from '../../models/bills/commonBill.model';
 import { UnitPriceService } from 'src/app/shared/services/unit-price.service';
 import { WaterBillService } from 'src/app/shared/services/WaterBill.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { AccountService } from 'src/app/shared/services/account.service';
 
 @Component({
   selector: 'app-water',
@@ -12,6 +13,7 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 export class WaterComponent {
   tableUnit: string = "m3";
   unitPrice: number = 0;
+  pendingPayments: number = 0
   infoList: CommonBill[] = [
     // {
     //   id: "1", year: 2021, month: 9, total: 500, isPaid: false, penalty: 20, units: 890
@@ -28,12 +30,14 @@ export class WaterComponent {
 
   ];
 
-  constructor(private unitPriceService: UnitPriceService,
+  constructor(private accService: AccountService, private unitPriceService: UnitPriceService,
     private waterService: WaterBillService, private toastService: ToastService) {
 
   }
 
   async ngOnInit(): Promise<void> {
+    this.pendingPayments = this.accService.getPendingWaterPayments()
+
     const bills = await this.waterService.getAllWaterBills();
     if (!bills)
       this.toastService.showToast(false, 'Unable to get the water bills', '')

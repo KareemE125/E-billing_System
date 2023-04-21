@@ -65,7 +65,7 @@ export class ModalComponent {
 
 
 
-  async onSubmit(paymentMethod: "Cash" | "Card" | "Wallet" | null) {
+  async onSubmit(paymentMethod: "Cash" | "Card" | "Wallet" | "Not Yet") {
 
     if (this.selectedTab === 'tab1' || (this.selectedTab === 'tab2' && this.payWithCardForm.valid)) {
       const paymentDate: number = new Date().getTime()

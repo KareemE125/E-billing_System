@@ -115,7 +115,7 @@ export class AddBillComponent implements OnInit {
         penalty: parseFloat(this.penalty?.value),
         total: parseFloat(this.penalty?.value), //will add the units later
         isPaid: false,
-        paymentDate: "Not Yet", paymentMethod: null
+        paymentDate: "Not Yet", paymentMethod: "Not Yet"
 
       }
       const res = await this.userService.getUserByEmail(this.email?.value);
