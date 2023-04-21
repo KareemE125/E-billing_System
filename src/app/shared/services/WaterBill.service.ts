@@ -35,25 +35,28 @@ export class WaterBillService extends DataService {
 
   /**
    * @param userId 
-   * @param waterBill 
-   * @returns true if water bill was deleted from user, false if user not found, null if error
+   * @param waterBills 
+   * @returns true if water bills were updated, false if user not found, null if error
    */
-  async updateWaterBill(userId: string, waterBill: WaterBill): Promise<User | false | null> {
-    console.log("Updating water bill: ", waterBill);
+  async updateWaterBills(userId: string, waterBills: WaterBill[]): Promise<User | false | null> {
+    console.log("Updating water bills: ", waterBills);
     try {
       const user = await this.userService.getUserById(userId);
       if (user) {
-        const index = user.waterBills.findIndex((wb) => wb.id === waterBill.id);
-        if (index === -1) {
-          console.error("Water bill not found");
-          return null;
+
+        for (let bill of waterBills) {
+          const index = user.waterBills.findIndex((wb) => wb.id === bill.id);
+          if (index === -1) {
+            console.error("Water bill not found");
+            return null;
+          }
+          user.waterBills[index] = bill;
         }
-        user.waterBills[index] = waterBill;
         await this.userService.updateUser(user);
       }
       return user;
     } catch (error) {
-      console.error("Error updating water bill:", error);
+      console.error("Error updating water bills:", error);
       return null;
     }
   }

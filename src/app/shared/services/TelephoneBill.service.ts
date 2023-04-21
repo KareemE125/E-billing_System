@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
 import { User } from "../../models/users/user.model";
 import { TelephoneBill } from "../../models/bills/telephone.model";
-import { AngularFirestore} from "@angular/fire/compat/firestore";
+import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { DataService } from "./BillService.service";
 import { UserService } from "./user.service";
 @Injectable({
     providedIn: "root",
 })
-export class TelephoneBillService extends DataService{
+export class TelephoneBillService extends DataService {
 
-    constructor(db: AngularFirestore,private userService: UserService) {
+    constructor(db: AngularFirestore, private userService: UserService) {
         super(db, "/users");
         this.userService = userService;
     }
@@ -20,11 +20,11 @@ export class TelephoneBillService extends DataService{
      * @param telephoneBill 
      * @returns true if the telephone bill was added to the user, false if the user was not found, null if there was an error
      */
-    async addTelephoneBillToUser( userId: string, telephoneBill: TelephoneBill  ):Promise<null| false | User> {
+    async addTelephoneBillToUser(userId: string, telephoneBill: TelephoneBill): Promise<null | false | User> {
         console.log("Adding telephone bills to user: ", userId);
         try {
             const user = await this.userService.getUserById(userId);
-            if (user!= null && user != false) {
+            if (user != null && user != false) {
                 user.telephoneBills.push(telephoneBill);
                 await this.userService.updateUser(user);
             }
@@ -41,22 +41,24 @@ export class TelephoneBillService extends DataService{
      * @param telephoneBill 
      * @returns true if the telephone bill was updated, false if the user was not found, null if there was an error
      */
-    async updateTelephoneBill( userId: string, telephoneBill: TelephoneBill ): Promise<User | false | null>  {
-        console.log("Updating telephone bill: ", telephoneBill);
+    async updateTelephoneBills(userId: string, telephoneBills: TelephoneBill[]): Promise<User | false | null> {
+        console.log("Updating telephone bills: ", telephoneBills);
         try {
             const user = await this.userService.getUserById(userId);
             if (user) {
-                const index = user.telephoneBills.findIndex((tb) => tb.id === telephoneBill.id);
-                user.telephoneBills[index] = telephoneBill;
-                if(index === -1){ 
-                    console.error("telephone bill not found");
-                    return null;
-                  }
+                for (let bill of telephoneBills) {
+                    const index = user.telephoneBills.findIndex((tb) => tb.id === bill.id);
+                    if (index === -1) {
+                        console.error("telephone bill not found");
+                        return null;
+                    }
+                    user.telephoneBills[index] = bill;
+                }
                 await this.userService.updateUser(user);
             }
             return user;
         } catch (error) {
-            console.error("Error updating telephone bill:", error);
+            console.error("Error updating telephone bills:", error);
             return null;
         }
     }

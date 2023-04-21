@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { User } from "../../models/users/user.model";
 import { ElectricityBill } from "../../models/bills/electricity.model";
 import { UserService } from "./user.service";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { DataService } from "./BillService.service";
 @Injectable({
   providedIn: "root",
@@ -20,7 +20,7 @@ export class ElectricityBillService extends DataService {
    * @param electricityBill
    * @returns the user if the electricity bill was added to the user, false if the user was not found, null if there was an error
    */
-  async addElectricityBillToUser(userId: string, electricityBill: ElectricityBill ): Promise<null| false | User> {
+  async addElectricityBillToUser(userId: string, electricityBill: ElectricityBill): Promise<null | false | User> {
     console.log("Adding electricity bills to user: ", userId);
     try {
       const user = await this.userService.getUserById(userId);
@@ -38,25 +38,28 @@ export class ElectricityBillService extends DataService {
   /**
    * 
    * @param userId 
-   * @param electricityBill 
-   * @returns  the user if the electricity bill was updated, false if the user was not found, null if there was an error
+   * @param electricityBills
+   * @returns  the user if the electricity bills were updated, false if the user was not found, null if there was an error
    */
-  async updateElectricityBill( userId: string, electricityBill: ElectricityBill): Promise<User | false | null> {
-    console.log("Updating electricity bill: ", electricityBill);
+  async updateElectricityBills(userId: string, electricityBills: ElectricityBill[]): Promise<User | false | null> {
+    console.log("Updating electricity bills: ", electricityBills);
     try {
-      const user= await this.userService.getUserById(userId);
+      const user = await this.userService.getUserById(userId);
       if (user) {
-        const index = user.electricityBills.findIndex((eb) => eb.id === electricityBill.id);
-        if(index === -1){ 
-          console.error("electricity bill not found");
-          return null;
+        for (let bill of electricityBills) {
+          const index = user.electricityBills.findIndex((eb) => eb.id === bill.id);
+          if (index === -1) {
+            console.error("electricity bill " + bill.id + " not found");
+            return null;
+          }
+          user.electricityBills[index] = bill;
         }
-        user.electricityBills[index] = electricityBill;
+
         await this.userService.updateUser(user);
       }
       return user;
     } catch (error) {
-      console.log("Error updating electricity bill:", error);
+      console.log("Error updating electricity bills:", error);
       return null;
     }
   }
@@ -66,7 +69,7 @@ export class ElectricityBillService extends DataService {
    * 
    * @returns all the electricity bills in the database, false if no users ,null if there was an error
    */
-  async getAllElectricityBills(): Promise<ElectricityBill[] | null| false> {
+  async getAllElectricityBills(): Promise<ElectricityBill[] | null | false> {
     console.log("Getting all ElectricityBills...");
     try {
       const users = await this.userService.getAllUsers();
