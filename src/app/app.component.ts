@@ -3,6 +3,7 @@ import { AccountService } from './shared/services/account.service';
 import { User } from './models/users/user.model';
 import { DbService } from './shared/services/db.service';
 import { ToastService } from './shared/services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +12,12 @@ import { ToastService } from './shared/services/toast.service';
 })
 export class AppComponent implements OnInit {
 
-  title = 'E-Billing_System';
-  constructor(private db: DbService, private toastService: ToastService) { }
+  constructor(private router: Router, private accService: AccountService) { }
 
-  triggerToast(isSuccess: boolean, title: string, message: string) {
-    this.toastService.showToast(isSuccess, title, message)
-  }
 
   ngOnInit(): void {
+    //if (this.accService.currentUser)
+    this.router.navigate(['home'])
   }
 
 

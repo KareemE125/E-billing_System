@@ -16,24 +16,32 @@ import { AdminWaterComponent } from './admin-pages/admin-water/admin-water.compo
 import { AdminElectricityComponent } from './admin-pages/admin-electricity/admin-electricity.component';
 import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-telephone.component';
 import { AddBillComponent } from './add-bill/add-bill.component';
+import { SPHomeComponent } from './sphome/sphome.component';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+
   { path: 'home', component: UserHomeComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'child', component: ChildComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'about-us', component: AboutUsComponent },
-  { path: 'addoffer', component: AddOfferComponent },
+
   { path: 'water', component: WaterComponent },
   { path: 'electricity', component: ElectricityComponent },
-  { path: 'modal', component: ModalComponent },
-  { path: 'editProfileInfo', component: EditProfileInfoComponent },
+  { path: 'telephone', component: ElectricityComponent }, //todo
+  { path: 'about-us', component: AboutUsComponent },
+
+  { path: 'edit-profile-info', component: EditProfileInfoComponent },
   { path: 'admin-all-users', component: AllUsersComponent },
-  { path: 'admin-manage', component: ManageComponent },
   { path: 'admin-water', component: AdminWaterComponent },
   { path: 'admin-electricity', component: AdminElectricityComponent },
   { path: 'admin-telephone', component: AdminTelephoneComponent },
+  { path: 'admin-manage', component: ManageComponent },
+  { path: 'sp-home', component: SPHomeComponent }, //todo
+
+
+
+  { path: 'add-offer', component: AddOfferComponent },
   { path: 'add-bill', component: AddBillComponent }
+
 ];
 
 @NgModule({

@@ -11,6 +11,9 @@ import { CommonUser, UserType } from '../../models/users/common.model';
 
 export class AccountService {
 
+  // currentUserType?: UserType = undefined;
+  // currentUser?: CommonUser = undefined;
+
   currentUserType?: UserType = undefined;
   currentUser?: CommonUser = undefined;
 
@@ -20,9 +23,13 @@ export class AccountService {
 
   //adminService, serviceProviderService, and userService are all responsible
   //for setting the current user, or logging him out entirely
-  SetCurrentUser(usr: CommonUser, usrType: UserType): void {
+  SetCurrentUser(usr: CommonUser | undefined, usrType: UserType | undefined): void {
     this.currentUser = usr
     this.currentUserType = usrType
+  }
+
+  isLoggedIn(): boolean {
+    return this.currentUser != undefined
   }
 
 

@@ -40,6 +40,7 @@ import { WaterComponent } from './user-pages/water/water.component';
 import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admin-common-table.component';
 import { ToastComponent } from './toast/toast.component';
 import { ToastService } from './shared/services/toast.service';
+import { SPHomeComponent } from './sphome/sphome.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ToastService } from './shared/services/toast.service';
     AboutUsComponent,
     WaterComponent,
     AdminCommonTableComponent,
-    ToastComponent
+    ToastComponent,
+    SPHomeComponent
   ],
 
   imports: [
