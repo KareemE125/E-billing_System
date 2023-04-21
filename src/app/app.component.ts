@@ -12,12 +12,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private router: Router, private accService: AccountService) { }
+  constructor(private accService: AccountService) { }
 
 
   ngOnInit(): void {
-    //if (this.accService.currentUser)
-    this.router.navigate(['home'])
+    this.accService.goToHome()
   }
 
 

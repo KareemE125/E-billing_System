@@ -3,6 +3,7 @@ import { User } from '../../models/users/user.model';
 import { Subject } from 'rxjs';
 import { dummy_users } from '../../dummy-data/user-list';
 import { CommonUser, UserType } from '../../models/users/common.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +14,20 @@ export class AccountService {
 
   loggedInSubject: Subject<boolean> = new Subject<boolean>() //for the subscribers
 
-  // currentUserType?: UserType = undefined;
-  // currentUser?: CommonUser = undefined;
+  currentUserType?: UserType = undefined;
+  currentUser?: CommonUser = undefined;
 
-  currentUserType?: UserType = UserType.User;
-  currentUser?: CommonUser = {
-    id: "", //auto generated
-    name: "",   //required
-    email: "",  //required
-    phoneNumber: "",    //required
-    password: "",       //required
-    address: null   //not required
-  };
+  // currentUserType?: UserType = UserType.User;
+  // currentUser?: CommonUser = {
+  //   id: "", //auto generated
+  //   name: "",   //required
+  //   email: "",  //required
+  //   phoneNumber: "",    //required
+  //   password: "",       //required
+  //   address: null   //not required
+  // };
+
+  constructor(private router: Router) { }
 
   _setLoginState(isLogged: boolean) {
     this.loggedInSubject.next(isLogged)
@@ -40,9 +43,28 @@ export class AccountService {
       this._setLoginState(false)
   }
 
+  logout(): void {
+    this.SetCurrentUser(undefined, undefined);
+    this.router.navigate(['/login'])
+  }
+
   isLoggedIn(): boolean {   //for the normal methods
     return this.currentUserType !== undefined
   }
+
+  goToHome(): void {
+    console.log("go to home " + this.currentUserType);
+    if (!this.isLoggedIn())
+      this.router.navigate(['/login'])
+    else if (this.currentUserType === this.GetUsersEnum().User)
+      this.router.navigate(['/home'])
+    else if (this.currentUserType === this.GetUsersEnum().Admin)
+      this.router.navigate(['/admin-manage'])
+    else if (this.currentUserType === this.GetUsersEnum().ServiceProvider)
+      this.router.navigate(['/sp-home'])
+  }
+
+
 
   GetUsersEnum(): any {
     return UserType;
@@ -92,39 +114,6 @@ export class AccountService {
       this.getPendingTelephonePayments() +
       this.getPendingWaterPayments();
   }
-
-  constructor() { }
-
-
-  // usersList: User[] = [];
-  // messageTobeSent = new Subject<String>();
-
-  // getUsers(): User[] {
-  //   this.usersList = dummy_users
-  //   return this.usersList
-  // }
-
-  // sendMessage(message: String) {
-  //   return this.messageTobeSent.next(message);
-  // }
-
-
-  /////// >>>>> User get using firebase example <<<<< /////////////////
-
-  // userAddedSubject = new Subject<string>();
-
-  // addUserToFirestore(user: any): void {
-  //   firebase.firestore().collection('users').add(user)
-  //     .then((docRef) => {
-  //       console.log("Document written with ID: ", docRef.id);
-  //       return this.userAddedSubject.next(docRef.id);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error adding document: ", error);
-  //     });
-  // }
-
-  /////////////////////////////////////////////////////////////////////
 
 }
 

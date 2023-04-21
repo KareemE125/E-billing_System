@@ -10,13 +10,13 @@ export class AdminCommonTableComponent {
   @Input() type: number = 1;
   @Input() tableUnit: string = "kWh";
   @Input() userList: any[] = [];
-  
+
 
   tableInternetUnit: string = "MB";
   tableMinutesUnit: string = "min";
 
 
-  filteredUserList: User[] = [];
+  filteredUserList: UserTableRow[] = [];
 
   searchText = '';
   selectedOption = 'Choose an option';
@@ -76,17 +76,16 @@ export class AdminCommonTableComponent {
 
 
 }
-
-export interface User {
+export interface UserTableRow {
   spOffer: any;
   internet: any;
   minutes: any;
   id: string;
   name: string;
-  year: number,       
-  month: number,      
-  usage: any,      
-  penalty: number,    
-  total: number,     
-  isPaid: boolean, 
+  year: number,
+  month: number,
+  usage: any,
+  penalty: number,
+  total: number,
+  isPaid: boolean,
 }
