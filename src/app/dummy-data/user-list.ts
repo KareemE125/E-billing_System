@@ -23,7 +23,8 @@ export const dummy_users: User[] = [
                 units: 100,
                 penalty: 0,
                 total: 100,
-                isPaid: true
+                isPaid: true,
+                paymentDate: Date.now(), paymentMethod: "Cash"
             }
         ],
         telephoneBills: [],
@@ -53,7 +54,8 @@ export const dummy_users: User[] = [
                 total: 220,
                 isPaid: true,
                 serviceProviderName: dummy_serviceProviders[0].name,
-                offerName: dummy_serviceProviders[0].offers[0].name
+                offerName: dummy_serviceProviders[0].offers[0].name,
+                paymentDate: Date.now(), paymentMethod: "Cash"
             },
             {
                 id: '2',
@@ -64,7 +66,8 @@ export const dummy_users: User[] = [
                 total: 240,
                 isPaid: true,
                 serviceProviderName: dummy_serviceProviders[0].name,
-                offerName: dummy_serviceProviders[0].offers[1].name
+                offerName: dummy_serviceProviders[0].offers[1].name,
+                paymentDate: Date.now(), paymentMethod: "Cash"
             },
         ],
         electricityBills: []
@@ -92,7 +95,8 @@ export const dummy_users: User[] = [
                 units: 100,
                 penalty: 0,
                 total: 100,
-                isPaid: true
+                isPaid: true,
+                paymentDate: Date.now(), paymentMethod: "Cash"
             }
         ]
     },

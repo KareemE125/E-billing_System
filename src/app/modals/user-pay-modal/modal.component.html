@@ -33,11 +33,11 @@
                 <p class="text-blue-500 bg-gray-700 px-6 py-1">{{this.randomPaymentCode}}</p>
 
                 <div class="w-full px-4 flex gap-4 items-center">
-                  <button class="bg-blue-500 w-32 mt-4 py-2 px-6 text-white rounded-lg" (click)="toggleModal()">
+                  <button class="bg-blue-500 w-32 mt-4 py-2 px-6 text-white rounded-lg" (click)="onSubmit('Cash')">
                     Use Code
                   </button>
                   <div class="mt-2">OR</div>
-                  <button class="bg-blue-500 w-32 mt-4 py-2 px-6 text-white rounded-lg" (click)="toggleModal()">
+                  <button class="bg-blue-500 w-32 mt-4 py-2 px-6 text-white rounded-lg" (click)="onSubmit('Wallet')">
                     Use Wallet
                   </button>
                 </div>
@@ -51,63 +51,85 @@
                 <div class="w-full text-center rounded-lg border-semi bg-gray-200 py-1"><span><b>Wallet: </b>
                     2500</span></div>
               </div>
-              <form [formGroup]="payWithCardForm" (ngSubmit)="onSubmit()" class="px-8 py-6 w-96">
+
+              <form [formGroup]="payWithCardForm" (ngSubmit)="onSubmit('Card')" class="px-8 py-6 w-96">
+
+
                 <div class="mb-3">
-                  <label class="block text-gray-700 font-bold mb-1" for="credit-card-number">
+                  <label class="block text-gray-700 font-bold mb-1" for="cardNumber">
                     Credit Card Number
                   </label>
-                  <input
+                  <input formControlName="cardNumber"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="credit-card-number" type="text" placeholder="Enter your credit card number">
-                  <label class="block text-gray-700 font-bold mb-2" for="offerName">Offer Name</label>
+                    id="cardNumber" name="cardNumber" type="text" placeholder="Enter your credit card number">
 
-
-                  <!-- <input formControlName="offerName"
-                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="offerName" name="offerName" type="text" placeholder="Enter the offer name">
                   <div class="text-red-500 text-xs mt-1"
-                    *ngIf="offerName!['invalid'] && (offerName!['dirty'] || offerName!['touched'])">
-                    <div *ngIf="offerName!['errors']!['required']">{{errs.OfferName.Required}}</div>
-                    <div *ngIf="offerName!['errors']!['minlength']">{{errs.OfferName.MinLength}}</div>
-                  </div> -->
-
-
+                    *ngIf="cardNumber!['invalid'] && (cardNumber!['dirty'] || cardNumber!['touched'])">
+                    <div *ngIf="cardNumber!['errors']!['required']">{{errs.CardNumber.Required}}</div>
+                    <div *ngIf="cardNumber!['errors']!['minlength']">{{errs.CardNumber.MinLength}}</div>
+                    <div *ngIf="cardNumber!['errors']!['maxlength']">{{errs.CardNumber.MaxLength}}</div>
+                    <div *ngIf="cardNumber!['errors']!['pattern']">{{errs.CardNumber.Pattern}}</div>
+                  </div>
                 </div>
+
+
                 <div class="mb-3">
                   <label class="block text-gray-700 font-bold mb-1" for="cvv">
                     CVV
                   </label>
-                  <input
+                  <input formControlName="cvv"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="cvv" type="text" placeholder="Enter your CVV">
+                    id="cvv" name="cvv" type="text" placeholder="Enter your CVV">
+                  <div class="text-red-500 text-xs mt-1" *ngIf="cvv!['invalid'] && (cvv!['dirty'] || cvv!['touched'])">
+                    <div *ngIf="cvv!['errors']!['required']">{{errs.CVV.Required}}</div>
+                    <div *ngIf="cvv!['errors']!['minlength']">{{errs.CVV.MinLength}}</div>
+                    <div *ngIf="cvv!['errors']!['maxlength']">{{errs.CVV.MaxLength}}</div>
+                    <div *ngIf="cvv!['errors']!['pattern']">{{errs.CVV.Pattern}}</div>
+                  </div>
                 </div>
+
+
                 <div class="mb-4 flex flex-row">
                   <div class="w-1/2 mr-2">
-                    <label class="block text-gray-700 font-bold mb-1" for="expiry-month">
+                    <label class="block text-gray-700 font-bold mb-1" for="expMonth">
                       Expiry Month
                     </label>
-                    <input
-                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="expiry-month" type="text" placeholder="MM">
+                    <select class="w-full sm:w-auto bg-white border rounded-lg px-2 py-2" id="expMonth"
+                      formControlName="expMonth">
+                      <option *ngFor="let expMonth of months" value="{{expMonth}}">{{expMonth}}</option>
+                    </select>
+
+                    <div class="text-red-500 text-xs mt-1"
+                      *ngIf="expMonth!['invalid'] && (expMonth!['dirty'] || expMonth!['touched'])">
+                      <div *ngIf="expMonth!['errors']!['required']">{{errs.ExpMonth.Required}}</div>
+                      <div *ngIf="expMonth!['errors']!['pattern']">{{errs.ExpMonth.Pattern}}</div>
+                    </div>
                   </div>
-                  <div class="w-1/2 ml-2">
-                    <label class="block text-gray-700 font-bold mb-1" for="expiry-year">
-                      Expiry Year
-                    </label>
-                    <input
-                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="expiry-year" type="text" placeholder="YYYY">
+
+
+                  <div class="mb-4 flex flex-row">
+                    <div class="w-1/2 mr-2">
+                      <label class="block text-gray-700 font-bold mb-1" for="expYear">
+                        Expiry Year
+                      </label>
+                      <select class="w-full sm:w-auto bg-white border rounded-lg px-2 py-2" id="expYear"
+                        formControlName="expYear">
+                        <option *ngFor="let expYear of years" value="{{expYear}}">{{expYear}}</option>
+                      </select>
+                      <div class="text-red-500 text-xs mt-1"
+                        *ngIf="expYear!['invalid'] && (expYear!['dirty'] || expYear!['touched'])">
+                        <div *ngIf="expYear!['errors']!['required']">{{errs.ExpYear.Required}}</div>
+                        <div *ngIf="expYear!['errors']!['pattern']">{{errs.ExpYear.Pattern}}</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="mb-3">
-                  <label class="block text-gray-700 font-bold mb-1" for="amount">
-                    Amount
-                  </label>
-                  <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="amount" type="text" placeholder="Enter the amount">
-                </div>
-                <button class="bg-blue-500 w-full mt-4 py-2 px-6 text-white rounded-lg" (click)="toggleModal()">
+
+
+
+
+                <button class="bg-blue-500 w-full mt-4 py-2 px-6 text-white rounded-lg" type="submit">
+                  >
                   Place Payment
                 </button>
               </form>
@@ -115,7 +137,6 @@
 
           </div>
         </div>
-        <!-- Add your content here -->
       </div>
 
     </div>

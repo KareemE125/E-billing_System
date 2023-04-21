@@ -5,7 +5,9 @@ export interface CommonBill {
     penalty: number,    //0 <= penalty <= 100000
     total: number,      //0 <= total <= 100000
     isPaid: boolean,   //true or false
-    id:string
+    paymentDate: number | "Not Yet",
+    paymentMethod: "Cash" | "Card" | "Wallet" | null,
+    id: string
 }
 
 

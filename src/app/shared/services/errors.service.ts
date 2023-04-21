@@ -133,6 +133,27 @@ export class ErrorsService {
         }
       },
       PayWithCardErrors: {
+        CardNumber: {
+          Required: _reqErr("Card Number"),
+          MinLength: _lenErrAtLeast("Card Number", 16),
+          MaxLength: _lenErrAtMost("Card Number", 19),
+          Pattern: _invalidErr("Card Number")
+        },
+        CVV: {
+          Required: _reqErr("CVV"),
+          MinLength: _lenErrAtLeast("CVV", 3),
+          MaxLength: _lenErrAtMost("CVV", 3),
+          Pattern: _invalidErr("CVV")
+        },
+        ExpMonth: {
+          Required: _reqErr("Expiry Month"),
+          Pattern: _invalidErr("Expiry Month")
+        },
+        ExpYear: {
+          Required: _reqErr("Expiry Year"),
+          Pattern: _invalidErr("Expiry Year")
+        },
+
 
       }
     }
@@ -146,6 +167,9 @@ function _lenErrEqual(fieldName: string, len: number): string {
 }
 function _lenErrAtLeast(fieldName: string, len: number): string {
   return `${fieldName} must be at least ${len} characters long.`
+}
+function _lenErrAtMost(fieldName: string, len: number): string {
+  return `${fieldName} must be at most ${len} characters long.`
 }
 function _invalidErr(fieldName: string): string {
   return `${fieldName} is invalid.`

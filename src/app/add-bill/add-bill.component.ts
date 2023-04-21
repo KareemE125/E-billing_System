@@ -114,7 +114,8 @@ export class AddBillComponent implements OnInit {
         units: parseInt(this.units?.value),
         penalty: parseFloat(this.penalty?.value),
         total: parseFloat(this.penalty?.value), //will add the units later
-        isPaid: false
+        isPaid: false,
+        paymentDate: "Not Yet", paymentMethod: null
 
       }
       const res = await this.userService.getUserByEmail(this.email?.value);
