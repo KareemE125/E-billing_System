@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateFn, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
 import { ChildComponent } from './child/child.component';
 import { LoginComponent } from './login/login.component';
 import { UserHomeComponent } from './user-pages/home/user-home.component';
@@ -18,30 +18,30 @@ import { AdminTelephoneComponent } from './admin-pages/admin-telephone/admin-tel
 import { AddBillComponent } from './add-bill/add-bill.component';
 import { SPHomeComponent } from './sphome/sphome.component';
 import { TelephoneComponent } from './telephone/telephone.component';
+import { AuthGuardService } from './shared/services/auth-guard.service';
+import { AccountService } from './shared/services/account.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
-  { path: 'home', component: UserHomeComponent },
-  { path: 'signup', component: SignUpComponent },
+  { path: 'home', component: UserHomeComponent, canActivate: [AuthGuardService] },
+  { path: 'signup', component: SignUpComponent }, //no guard
 
-  { path: 'water', component: WaterComponent },
-  { path: 'electricity', component: ElectricityComponent },
-  { path: 'telephone', component: TelephoneComponent }, //todo
-  { path: 'about-us', component: AboutUsComponent },
+  { path: 'water', component: WaterComponent, canActivate: [AuthGuardService] },
+  { path: 'electricity', component: ElectricityComponent, canActivate: [AuthGuardService] },
+  { path: 'telephone', component: TelephoneComponent, canActivate: [AuthGuardService] }, //todo
+  { path: 'about-us', component: AboutUsComponent }, //no guard
 
-  { path: 'edit-profile-info', component: EditProfileInfoComponent },
-  { path: 'admin-all-users', component: AllUsersComponent },
-  { path: 'admin-water', component: AdminWaterComponent },
-  { path: 'admin-electricity', component: AdminElectricityComponent },
-  { path: 'admin-telephone', component: AdminTelephoneComponent },
-  { path: 'admin-manage', component: ManageComponent },
-  { path: 'sp-home', component: SPHomeComponent }, //todo
+  { path: 'edit-profile-info', component: EditProfileInfoComponent, canActivate: [AuthGuardService] },
+  { path: 'admin-all-users', component: AllUsersComponent, canActivate: [AuthGuardService] },
+  { path: 'admin-water', component: AdminWaterComponent, canActivate: [AuthGuardService] },
+  { path: 'admin-electricity', component: AdminElectricityComponent, canActivate: [AuthGuardService] },
+  { path: 'admin-telephone', component: AdminTelephoneComponent, canActivate: [AuthGuardService] },
+  { path: 'admin-manage', component: ManageComponent, canActivate: [AuthGuardService] },
+  { path: 'sp-home', component: SPHomeComponent, canActivate: [AuthGuardService] }, //todo
 
 
-
-  { path: 'add-offer', component: AddOfferComponent },
-  { path: 'add-bill', component: AddBillComponent }
+  { path: '**', component: UserHomeComponent }
 
 ];
 
@@ -49,4 +49,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+
+}
