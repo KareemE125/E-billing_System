@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Offer } from 'src/app/models/users/serviceProvider.model';
+import { Offer, ServiceProvider } from 'src/app/models/users/serviceProvider.model';
+import { AccountService } from 'src/app/shared/services/account.service';
+import { ServiceProviderService } from 'src/app/shared/services/service-provider.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-sp-table',
@@ -18,7 +21,6 @@ export class SpTableComponent implements OnChanges {
       this.searchText = ''
       this.selectedOption = 'Choose an option'
     }
-
     changes['serviceProviderName'] && (this.serviceProviderName = changes['serviceProviderName'].currentValue as string)
   }
 
@@ -28,7 +30,8 @@ export class SpTableComponent implements OnChanges {
   searchText = '';
   selectedOption = 'Choose an option';
 
-  constructor() { }
+  constructor(private accService: AccountService, private svProvService: ServiceProviderService,
+    private toastService: ToastService) { }
 
   ngOnInit(): void {
     // set initial filtered list to full list
@@ -69,9 +72,20 @@ export class SpTableComponent implements OnChanges {
     }
   }
 
-  deleteOffer(index: number) {
-    this.offerList.splice(index, 1);
-    this.filteredOfferList = this.offerList;
+  async deleteOffer(index: number) {
+    const sp = this.accService.currentUser as ServiceProvider;
+    const res = await this.svProvService.deleteServiceProviderOffer(sp, this.filteredOfferList[index])
+    if (!res) {
+      this.toastService.showToast(false, "Unable to delete offer from service provider", "")
+    } else {
+      this.toastService.showToast(true, "Offer deleted from service provider " + res.name, "")
+    }
+
+    //no need to edit the offerlist, since the parent is already subscribed, so it will
+    //refresh automatically
+
+    // this.offerList.splice(index, 1);
+    // this.filteredOfferList = this.offerList;
   }
 
 }

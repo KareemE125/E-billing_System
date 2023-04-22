@@ -14,7 +14,7 @@ export class AccountService {
 
   loggedInSubject: Subject<boolean> = new Subject<boolean>() //for the subscribers
 
-  currentUserType?: UserType = UserType.ServiceProvider;
+  currentUserType?: UserType = UserType.User;
   currentUser?: CommonUser = undefined;
 
   // currentUserType?: UserType = UserType.User;

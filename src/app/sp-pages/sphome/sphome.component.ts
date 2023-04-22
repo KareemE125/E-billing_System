@@ -59,7 +59,6 @@ export class SPHomeComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    //todo, need to subscribe to this table
     const res = this.serviceProvService.serviceProviderOffersSubj.subscribe(
       e => {
         console.log("offers changes: " + JSON.stringify(e));
