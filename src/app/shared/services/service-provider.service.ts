@@ -1,12 +1,24 @@
 import { Injectable } from '@angular/core';
-import { ServiceProvider } from '../../models/users/serviceProvider.model';
+import { Offer, ServiceProvider } from '../../models/users/serviceProvider.model';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { DataService } from './BillService.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AccountService } from './account.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceProviderService {
+export class ServiceProviderService extends DataService {
 
-  constructor() { }
+  serviceProviderOffersSubj: Subject<Offer[]> = new Subject<Offer[]>()
+
+  constructor(db: AngularFirestore, private accService: AccountService) {
+    super(db, "/service-providers");
+
+    this.servProvCollection.doc(this.accService.currentUser?.id).valueChanges().subscribe( //"wUImf9zShk8xhw9fhixR"
+      e => this.serviceProviderOffersSubj.next(e?.offers || [])
+    )
+  }
 
   //Todo: add user to firebase
   async addServiceProvider(sp: ServiceProvider): Promise<ServiceProvider | null> {
@@ -66,5 +78,11 @@ export class ServiceProviderService {
     // }
     return null
   }
+
+
+  async getServiceProviderOffersByName(name: string): Promise<Offer[] | null> {
+    return null;
+  }
+
 
 }

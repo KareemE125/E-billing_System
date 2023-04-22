@@ -2,7 +2,8 @@
     <section class="w-full text-sm mx-auto">
         <div class="bg-gray-100 rounded-lg shadow-lg">
             <div class="px-6 py-4">
-                <h2 class="text-2xl font-bold mb-8 text-center"> {{ServiceProviderName? ServiceProviderName: 'Offers'}} </h2>
+                <h2 class="text-2xl font-bold mb-8 text-center"> {{serviceProviderName? serviceProviderName: 'Offers'}}
+                </h2>
                 <div class="flex flex-wrap justify-between items-center mb-4">
                     <div>
                         <span>Search: </span>
@@ -27,7 +28,7 @@
                                 <th class="text-left py-2">SP Offer</th>
                                 <th class="text-left py-2">Internet</th>
                                 <th class="text-left py-2">Minutes</th>
-                                <th  class="text-left py-2">Price</th>
+                                <th class="text-left py-2">Price</th>
                                 <th class="text-left py-2">Status</th>
                                 <th class="text-left py-2">Delete</th>
                             </tr>
@@ -35,13 +36,16 @@
                         <tbody>
                             <tr *ngFor="let offer of filteredOfferList; let i = index">
 
-                                <td class="border-t px-4 py-2">{{offer.spOffer}} </td>
-                                <td class="border-t px-4 py-2">{{offer.internet}} {{tableInternetUnit}} </td>
-                                <td class="border-t px-4 py-2">{{offer.minutes}} {{tableMinutesUnit}} </td>
+                                <td class="border-t px-4 py-2">{{offer.name}} </td>
+                                <td class="border-t px-4 py-2">{{offer.internetQuantityOrPrice}} {{tableInternetUnit}}
+                                </td>
+                                <td class="border-t px-4 py-2">{{offer.minutesQuantityOrPrice}} {{tableMinutesUnit}}
+                                </td>
                                 <td class="border-t px-4 py-2">{{offer.price}}</td>
                                 <td class="border-t px-4 py-2">{{offer.status}}</td>
                                 <td class="border-t py-2">
-                                    <button class="bg-red-600 rounded-lg text-white px-2 py-1" (click)="deleteOffer(i)">Delete</button>
+                                    <button class="bg-red-600 rounded-lg text-white px-2 py-1"
+                                        (click)="deleteOffer(i)">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
