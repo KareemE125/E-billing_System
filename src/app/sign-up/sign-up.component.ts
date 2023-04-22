@@ -10,6 +10,7 @@ import { AccountService } from '../shared/services/account.service';
 import { ServiceProvider } from '../models/users/serviceProvider.model';
 import { ServiceProviderService } from '../shared/services/service-provider.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../shared/services/toast.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -26,7 +27,7 @@ export class SignUpComponent {
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder,
     private userService: UserService, private adminService: AdminService,
     private accService: AccountService, private servProvService: ServiceProviderService,
-    private router: Router) {
+    private router: Router, private toastService: ToastService) {
     this.errs = errService.getErrors().SignUpErrors
     this.userService = userService;
     this.adminService = adminService;
@@ -73,7 +74,13 @@ export class SignUpComponent {
           address: null,
         }
         console.log("Admin created " + JSON.stringify(admin));
-        await this.adminService.addAdmin(admin);
+        const res = await this.adminService.addAdmin(admin);
+        if (!res) {
+          this.toastService.showToast(false, "Unable to add admin at the moment", '')
+        } else {
+          this.toastService.showToast(true, "Admin successfully created", '')
+        }
+
 
       } else if (usrTypeVal === this.accService.GetUsersEnum().User) {
         //create a user
@@ -91,7 +98,12 @@ export class SignUpComponent {
         }
         console.log("Normal user created " + JSON.stringify(user));
         //call service to add user to db
-        await this.userService.addUser(user);
+        const res = await this.userService.addUser(user);
+        if (!res) {
+          this.toastService.showToast(false, "Unable to add user at the moment", '')
+        } else {
+          this.toastService.showToast(true, "User successfully created", '')
+        }
       } else if (usrTypeVal === this.accService.GetUsersEnum().ServiceProvider) {
         //create an serviceProvider
         const serviceProvider: ServiceProvider = {
@@ -104,10 +116,14 @@ export class SignUpComponent {
           offers: []
         }
         console.log("Service provide3r created " + JSON.stringify(serviceProvider));
-        await this.servProvService.addServiceProvider(serviceProvider);
+        const res = await this.servProvService.addServiceProvider(serviceProvider);
+        if (!res) {
+          this.toastService.showToast(false, "Unable to add service provider at the moment", '')
+        } else {
+          this.toastService.showToast(true, "Service provider successfully created", '')
+        }
       }
       //now navigate to the sign in page
-      //todo add a toast that the user has been created
       this.router.navigate(["/login"])
     } else {
       this.signUpForm.markAllAsTouched();

@@ -8,8 +8,9 @@ export class AdminService {
   constructor() { }
 
   //Todo: add admin to firebase
-  addAdmin(admin: Admin) {
+  async addAdmin(admin: Admin): Promise<Admin | null> {
     console.log(`Adding admin ${JSON.stringify(admin)} to firebase`)
+    return null;
   }
 
   updateAdmin(admin: Admin) {

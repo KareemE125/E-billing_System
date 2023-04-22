@@ -9,8 +9,9 @@ export class ServiceProviderService {
   constructor() { }
 
   //Todo: add user to firebase
-  addServiceProvider(sp: ServiceProvider) {
+  async addServiceProvider(sp: ServiceProvider): Promise<ServiceProvider | null> {
     console.log(`Adding ServiceProvider ${JSON.stringify(sp)} to firebase`)
+    return null;
   }
   updateServiceProvider(sp: ServiceProvider) {
     console.log(`Updating ServiceProvider ${JSON.stringify(sp)} to firebase`)

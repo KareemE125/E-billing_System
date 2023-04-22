@@ -11,7 +11,7 @@ import { UserType } from 'src/app/models/users/common.model'
 export class UserService extends DataService {
 
   constructor(db: AngularFirestore, private accountService: AccountService) {
-    super(db,"/users");
+    super(db, "/users");
     this.accountService = accountService;
   }
 
@@ -24,15 +24,14 @@ export class UserService extends DataService {
   async addUser(user: User): Promise<User | null> {
     const newDocRef = this.userCollection.doc();
     user.id = newDocRef.ref.id;
-    newDocRef.set({ ...user }).then(() => {
+    try {
+      await newDocRef.set({ ...user })
       console.log('User added to firebase: ', user)
       return user;
-    }).catch((error) => {
+    } catch (error) {
       console.error('Error adding user to firebase: ', error);
       return null;
-    });
-
-    return null;
+    };
   }
 
   /**

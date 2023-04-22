@@ -17,31 +17,4 @@ export class DbService {
     this.usersCollection = afs.collection<User>('users');
   }
 
-  async login(email: string, password: string) {
-    //login using users document
-    return new Promise<void>((resolve, reject) => {
-      this.usersCollection.ref
-        .where('name', '==', "mohamed")
-        .get()
-        .then((snapshot) => {
-          if (snapshot.empty) {
-            console.log('No matching documents.');
-            resolve()
-            return;
-          }
-
-          snapshot.forEach((doc) => {
-            const x = doc.data();
-
-            console.log(doc.id, '=>', doc.data());
-            resolve();
-          });
-        })
-        .catch((err) => {
-          console.log('Error getting documents', err);
-          reject();
-        });
-    });
-  }
-
 }

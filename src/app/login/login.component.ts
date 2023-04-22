@@ -7,6 +7,7 @@ import { User } from '../models/users/user.model';
 import { AdminService } from '../shared/services/admin.service';
 import { ServiceProviderService } from '../shared/services/service-provider.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../shared/services/toast.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,7 +23,8 @@ export class LoginComponent {
   errs: any;
 
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder, private router: Router, private userService: UserService,
-    private adminService: AdminService, private srvProvService: ServiceProviderService, private waterBillService: WaterBillService) {
+    private adminService: AdminService, private srvProvService: ServiceProviderService, private waterBillService: WaterBillService,
+    private toastService: ToastService) {
     this.errs = errService.getErrors().LoginErrors
 
     //we keep the validators.email and .pattern even in the sign in form, to prevent a server request if it is guaranteed to fail
@@ -49,7 +51,7 @@ export class LoginComponent {
 
       if (user == null || admin == null || serviceProvider == null) {
         //no internet
-        //todo show a toast
+        this.toastService.showToast(false, "Unable to connect to the internet", '')
       } else if (user) {
         this.router.navigate(['home'])
       } else if (admin) {
@@ -57,8 +59,7 @@ export class LoginComponent {
       } else if (serviceProvider) {
         this.router.navigate(['addoffer'])
       } else {
-        //todo: show a toast: invalid credentials
-        console.log("invalid credentials");
+        this.toastService.showToast(false, "Invalid credentials", '')
       }
 
     } else {
