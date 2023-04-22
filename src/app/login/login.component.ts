@@ -8,6 +8,8 @@ import { AdminService } from '../shared/services/admin.service';
 import { ServiceProviderService } from '../shared/services/service-provider.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../shared/services/toast.service';
+import { AccountService } from '../shared/services/account.service';
+import { UserType } from '../models/users/common.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +26,7 @@ export class LoginComponent {
 
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder, private router: Router, private userService: UserService,
     private adminService: AdminService, private srvProvService: ServiceProviderService, private waterBillService: WaterBillService,
-    private toastService: ToastService) {
+    private toastService: ToastService,private accountService: AccountService) {
     this.errs = errService.getErrors().LoginErrors
 
     //we keep the validators.email and .pattern even in the sign in form, to prevent a server request if it is guaranteed to fail
@@ -53,12 +55,19 @@ export class LoginComponent {
         //no internet
         this.toastService.showToast(false, "Unable to connect to the internet", '')
       } else if (user) {
+        console.log("User logged in")
+        this.accountService.SetCurrentUser(user, UserType.User);
         this.router.navigate(['home'])
       } else if (admin) {
+        console.log("Admin logged in")
+        this.accountService.SetCurrentUser(admin, UserType.Admin);
         this.router.navigate(['manage'])
       } else if (serviceProvider) {
-        this.router.navigate(['addoffer'])
+        console.log("Service Provider logged in")
+        this.accountService.SetCurrentUser(serviceProvider, UserType.ServiceProvider);
+        this.router.navigate(['sp-home'])
       } else {
+
         this.toastService.showToast(false, "Invalid credentials", '')
       }
 

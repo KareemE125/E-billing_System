@@ -4,12 +4,13 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { Subject } from 'rxjs';
 import { DataService } from './BillService.service';
 import { AccountService } from './account.service';
+import { off } from 'firebase/database';
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceProviderService extends DataService {
 
-  serviceProviderOffersSubj: Subject<Offer[]> = new Subject<Offer[]>()
+  serviceProviderOffersSubj: Subject<Offer[]> = new Subject<Offer[]>();
 
   constructor(db: AngularFirestore, private accService: AccountService) {
     super(db)
@@ -18,8 +19,7 @@ export class ServiceProviderService extends DataService {
         this.serviceProvidersCollection.doc(curUser.id).valueChanges().subscribe( //"wUImf9zShk8xhw9fhixR"
           e => this.serviceProviderOffersSubj.next(e?.offers || [])
         )
-      }
-    )
+      })
 
   }
 
@@ -35,12 +35,6 @@ export class ServiceProviderService extends DataService {
       return null;
     };
   }
-
-  // async deleteServiceProviderOffer(serviceProvider: ServiceProvider, off: Offer): Promise<ServiceProvider | null> {
-  //   console.log(`Deleting ServiceProviderOffer ${JSON.stringify(serviceProvider)} to firebase`)
-  //   return null;
-  // }
-
 
   async deleteServiceProvider(id: string): Promise<null | true> {
     try {
@@ -72,7 +66,8 @@ export class ServiceProviderService extends DataService {
     try {
       const serviceProvider = await this.getServiceProviderByEmail(email);
       if (serviceProvider != null && serviceProvider != false && serviceProvider.password === password) {
-        console.log("user is found and password is correct");
+        console.log("service provider is found and password is correct");
+
         return serviceProvider as ServiceProvider;
       }
       return false;
@@ -89,9 +84,10 @@ export class ServiceProviderService extends DataService {
       const querySnapshot = await this.serviceProvidersCollection.ref.where('email', '==', email).get();
       if (!querySnapshot.empty) {
         const serviceProviderDoc = querySnapshot.docs[0];
-        console.log("User is found with email: ", email)
+        console.log("service provider is found with email: ", email)
         return serviceProviderDoc.data() as ServiceProvider;
       } else {
+        console.log("service provider is not  found with email: ", email)
         return false;
       }
     } catch (error) {
@@ -125,17 +121,49 @@ export class ServiceProviderService extends DataService {
     }
   }
 
-  async addServiceProviderOffer(sp: ServiceProvider, offer: Offer): Promise<ServiceProvider | null> {
-    return null;
+  async addServiceProviderOffer(serviceProvider: ServiceProvider, offer: Offer): Promise<ServiceProvider | null> {
+    console.log("addServiceProviderOffer ", offer, " to ", serviceProvider.name);
+    try {
+      if (serviceProvider) {
+        serviceProvider.offers.push(offer);
+        await this.updateServiceProvider(serviceProvider);
+      }
+      return serviceProvider;
+    } catch (error) {
+      console.error("Error adding offer to service provider:", error);
+      return null;
+    }
   }
 
-  async deleteServiceProviderOffer(sp: ServiceProvider, off: Offer): Promise<ServiceProvider | null> {
-    console.log(`Deleting ServiceProviderOffer ${JSON.stringify(sp)} to firebase`)
-    return null;
+  async deleteServiceProviderOffer(serviceProvider: ServiceProvider, off: Offer): Promise<ServiceProvider | null> {
+    console.log("deleteServiceProviderOffer");
+    try {
+      if (serviceProvider) {
+        serviceProvider.offers = serviceProvider.offers.filter(o => o.name !== off.name);
+        await this.updateServiceProvider(serviceProvider);
+      }
+      return serviceProvider;
+    } catch (error) {
+      console.error("Error deleting offer from service provider:", error);
+      return null;
+    }
   }
 
   async getServiceProviderOffersByName(name: string): Promise<Offer[] | null> {
-    return null;
+    console.log('Getting serviceProvider offers by name: ', name);
+    try {
+      const querySnapshot = await this.serviceProvidersCollection.ref.where('name', '==', name).get();
+      if (!querySnapshot.empty) {
+        const serviceProviderDoc = querySnapshot.docs[0];
+        console.log("serviceProvider is found with name: ", name)
+        return serviceProviderDoc.data().offers as Offer[];
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error('Error getServiceProviderOffersByName :', error);
+      return null;
+    }
   }
 
 }
