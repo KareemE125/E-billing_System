@@ -1,41 +1,65 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Offer, ServiceProvider } from 'src/app/models/users/serviceProvider.model';
-import { AccountService } from 'src/app/shared/services/account.service';
-import { ServiceProviderService } from 'src/app/shared/services/service-provider.service';
-import { ToastService } from 'src/app/shared/services/toast.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-sp-table',
   templateUrl: './sp-table.component.html',
-  styleUrls: ['./sp-table.component.css'],
+  styleUrls: ['./sp-table.component.css']
 })
-export class SpTableComponent implements OnChanges {
+export class SpTableComponent {
 
-  @Input() offerList: Offer[] = [];
-  @Input() serviceProviderName: string = "";
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['offerList']) {
-      this.offerList = changes['offerList'].currentValue as Offer[]
-      this.filteredOfferList = this.offerList
-      this.searchText = ''
-      this.selectedOption = 'Choose an option'
+  @Input() offerList: offerTableRow[] = [
+    {
+      spOffer: "Premium",
+      internet: 10,
+      minutes: 100,
+      price: 20,
+      status: "Post"
+    },
+    {
+      spOffer: "Basic",
+      internet: 5,
+      minutes: 50,
+      price: 10,
+      status: "Post"
+    },
+    {
+      spOffer: "Gold",
+      internet: 15,
+      minutes: 150,
+      price: 30,
+      status: "Pre"
+    },
+    {
+      spOffer: "Pro",
+      internet: 20,
+      minutes: 200,
+      price: 40,
+      status: "Pre"
+    },
+    {
+      spOffer: "Ultimate",
+      internet: 30,
+      minutes: 300,
+      price: 50,
+      status: "Post"
     }
-    changes['serviceProviderName'] && (this.serviceProviderName = changes['serviceProviderName'].currentValue as string)
-  }
+  ];
+  
+  @Input() ServiceProviderName: string | undefined;
 
   tableInternetUnit: string = "MB";
   tableMinutesUnit: string = "min";
-  filteredOfferList: Offer[] = [];
+
+
+  filteredOfferList: offerTableRow[] = [];
+
   searchText = '';
   selectedOption = 'Choose an option';
 
-  constructor(private accService: AccountService, private svProvService: ServiceProviderService,
-    private toastService: ToastService) { }
+  constructor() { }
 
   ngOnInit(): void {
     // set initial filtered list to full list
-    console.log(this.offerList);
     this.filteredOfferList = [...this.offerList];
   }
 
@@ -48,7 +72,7 @@ export class SpTableComponent implements OnChanges {
       this.selectedOption = 'Choose an option'
       const searchTextLower = this.searchText.toLowerCase();
       this.filteredOfferList = this.filteredOfferList.filter(user => {
-        return user.name.toLowerCase().includes(searchTextLower)
+        return user.spOffer.toLowerCase().includes(searchTextLower)
           || user.status.toLowerCase().includes(searchTextLower);
       });
     }
@@ -58,12 +82,12 @@ export class SpTableComponent implements OnChanges {
       switch (this.selectedOption) {
         case 'post':
           this.filteredOfferList = this.filteredOfferList.filter(info => {
-            return info.status == 'Post Paid';
+            return info.status == 'Post';
           });
           break;
         case 'pre':
           this.filteredOfferList = this.filteredOfferList.filter(info => {
-            return info.status == 'Pre Paid';
+            return info.status == 'Pre';
           });
           break;
         default:
@@ -72,20 +96,16 @@ export class SpTableComponent implements OnChanges {
     }
   }
 
-  async deleteOffer(index: number) {
-    const sp = this.accService.currentUser as ServiceProvider;
-    const res = await this.svProvService.deleteServiceProviderOffer(sp, this.filteredOfferList[index])
-    if (!res) {
-      this.toastService.showToast(false, "Unable to delete offer from service provider", "")
-    } else {
-      this.toastService.showToast(true, "Offer deleted from service provider " + res.name, "")
-    }
-
-    //no need to edit the offerlist, since the parent is already subscribed, so it will
-    //refresh automatically
-
-    // this.offerList.splice(index, 1);
-    // this.filteredOfferList = this.offerList;
+  deleteOffer(index: number){
+    this.offerList.splice(index,1);
+    this.filteredOfferList = this.offerList;
   }
 
+}
+export interface offerTableRow {
+  spOffer: string;
+  internet: number;
+  minutes: number;
+  price: number,
+  status: 'Post' | 'Pre'
 }
