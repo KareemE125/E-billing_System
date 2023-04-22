@@ -124,7 +124,6 @@ export class UserService extends DataService {
       const user = await this.getUserByEmail(email);
       if (user != null && user != false && user.password === password) {
         console.log("user is found and password is correct");
-        this.accountService.SetCurrentUser(user, UserType.User);
         return user as User;
       }
       return false;
