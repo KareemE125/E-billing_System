@@ -92,10 +92,4 @@ export class ServiceProviderService {
     }
   }
 
-
-  async getServiceProviderOffersByName(name: string): Promise<Offer[] | null> {
-    return null;
-  }
-
-
 }
