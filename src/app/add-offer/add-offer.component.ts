@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorsService } from '../shared/services/errors.service';
-import { Offer, telephoneOfferStatuses } from '../models/users/serviceProvider.model';
+import { Offer, ServiceProvider, telephoneOfferStatuses } from '../models/users/serviceProvider.model';
 import { AccountService } from '../shared/services/account.service';
-
+import { ServiceProviderService } from '../shared/services/service-provider.service';
+import { User } from '../models/users/user.model';
+import { ToastService } from '../shared/services/toast.service';
 @Component({
   selector: 'app-add-offer',
   templateUrl: './add-offer.component.html',
@@ -13,12 +15,10 @@ export class AddOfferComponent {
   addOfferForm: FormGroup;
   errs: any;
   offerStatuses: string[] = telephoneOfferStatuses;
-
-
   constructor(private errService: ErrorsService, private accService: AccountService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder, private svProvServie: ServiceProviderService,
+    private toastService: ToastService) {
     this.errs = errService.getErrors().AddOfferErrors
-
     this.addOfferForm = this.formBuilder.group({
       offerName: ['', [Validators.required, Validators.minLength(3)]],
       offerStatus: ['Pre Paid', [Validators.required]],
@@ -27,7 +27,6 @@ export class AddOfferComponent {
       price: ['', [Validators.required, Validators.pattern('^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$')]],
     });
   }
-
   get offerName() {
     return this.addOfferForm.get('offerName');
   }
@@ -43,11 +42,7 @@ export class AddOfferComponent {
   get price() {
     return this.addOfferForm.get('price');
   }
-
-
-
-
-  onSubmit() {
+  async onSubmit(): Promise<void> {
     if (this.addOfferForm.valid) {
       //create an offer
       const offer: Offer = {
@@ -59,7 +54,13 @@ export class AddOfferComponent {
         svProvName: this.accService.currentUser?.name || "",
       }
       console.log("Offer created " + JSON.stringify(offer));
-
+      const sp = this.accService.currentUser as ServiceProvider;
+      const res = await this.svProvServie.addServiceProviderOffer(sp, offer)
+      if (!res) {
+        this.toastService.showToast(false, "Unable to add offer to service provider", "")
+      } else {
+        this.toastService.showToast(true, "Offer added to service provider " + res.name, "")
+      }
     } else {
       this.addOfferForm.markAllAsTouched();
     }

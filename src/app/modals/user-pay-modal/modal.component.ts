@@ -21,7 +21,7 @@ import { TelephoneBill } from 'src/app/models/bills/telephone.model';
 export class ModalComponent implements OnChanges {
 
   @Input() billsToPay: CommonBill[] = [];
-  @Input() billType: 'Water' | 'Electricty' | 'Telephone' = 'Water'
+  @Input() billType: 'Water' | 'Electricity' | 'Telephone' = 'Water'
 
   ngOnChanges(changes: SimpleChanges) {
     //don't need to implement it as no input is expected to change throughout the lifecycle
@@ -78,7 +78,7 @@ export class ModalComponent implements OnChanges {
         bill.paymentMethod = paymentMethod
       }
 
-      if (this.billType === 'Electricty') {
+      if (this.billType === 'Electricity') {
         user = await this.elecService.updateElectricityBills(this.accService.currentUser?.id ?? "", this.billsToPay)
         if (!user) {
           this.toastService.showToast(false, 'Unable to pay electricity bill', '')

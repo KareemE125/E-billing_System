@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Offer, ServiceProvider } from '../../models/users/serviceProvider.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore'
+import { Subject } from 'rxjs';
+import { DataService } from './BillService.service';
+import { AccountService } from './account.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceProviderService {
+export class ServiceProviderService extends DataService {
 
-  serviceProvidersCollection: AngularFirestoreCollection<ServiceProvider>
+  serviceProviderOffersSubj: Subject<Offer[]> = new Subject<Offer[]>()
 
-  constructor(private db: AngularFirestore) {
-    this.serviceProvidersCollection = this.db.collection("/service-providers"); 
-      
+  constructor(db: AngularFirestore, private accService: AccountService) {
+    super(db)
+    this.serviceProvidersCollection.doc(this.accService.currentUser?.id).valueChanges().subscribe( //"wUImf9zShk8xhw9fhixR"
+      e => this.serviceProviderOffersSubj.next(e?.offers || [])
+    )
   }
 
   async addServiceProvider(serviceProvider: ServiceProvider): Promise<ServiceProvider | null> {
@@ -31,6 +36,7 @@ export class ServiceProviderService {
   //   return null;
   // }
 
+
   async deleteServiceProvider(id: string): Promise<null | true> {
     try {
       await this.serviceProvidersCollection.doc(id).delete();
@@ -40,7 +46,7 @@ export class ServiceProviderService {
       return null;
     }
   }
-  async updateServiceProvider(serviceProvider: ServiceProvider): Promise<null | true>  {
+  async updateServiceProvider(serviceProvider: ServiceProvider): Promise<null | true> {
     try {
       console.log(`Updating ServiceProvider ${JSON.stringify(serviceProvider)} to firebase`)
       await this.serviceProvidersCollection.doc(serviceProvider.id).update(serviceProvider);
@@ -52,12 +58,12 @@ export class ServiceProviderService {
     }
   }
 
-/**
-* @param email
-* @param password
-* @returns user if found, false if not found, null otherwise
-*/
-  async validateServiceProvider(email: string, password: string):  Promise<ServiceProvider | null | false>{
+  /**
+  * @param email
+  * @param password
+  * @returns user if found, false if not found, null otherwise
+  */
+  async validateServiceProvider(email: string, password: string): Promise<ServiceProvider | null | false> {
     try {
       const serviceProvider = await this.getServiceProviderByEmail(email);
       if (serviceProvider != null && serviceProvider != false && serviceProvider.password === password) {
@@ -89,9 +95,9 @@ export class ServiceProviderService {
     }
   }
 
-/** 
- * @returns all serviceProviders if found, null otherwise
- */
+  /** 
+   * @returns all serviceProviders if found, null otherwise
+   */
   async getAllServiceProviders(): Promise<ServiceProvider[] | null> {
     console.log('Getting all services providers...');
     try {
@@ -112,6 +118,19 @@ export class ServiceProviderService {
       console.error('Error getting services providers:', error);
       return null;
     }
+  }
+
+  async addServiceProviderOffer(sp: ServiceProvider, offer: Offer): Promise<ServiceProvider | null> {
+    return null;
+  }
+
+  async deleteServiceProviderOffer(sp: ServiceProvider, off: Offer): Promise<ServiceProvider | null> {
+    console.log(`Deleting ServiceProviderOffer ${JSON.stringify(sp)} to firebase`)
+    return null;
+  }
+
+  async getServiceProviderOffersByName(name: string): Promise<Offer[] | null> {
+    return null;
   }
 
 }
