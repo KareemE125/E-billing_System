@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorsService } from '../shared/services/errors.service';
-import { Offer, telephoneOfferStatuses } from '../models/users/serviceProvider.model';
+import { Offer, ServiceProvider, telephoneOfferStatuses } from '../models/users/serviceProvider.model';
 import { AccountService } from '../shared/services/account.service';
+import { ServiceProviderService } from '../shared/services/service-provider.service';
+import { User } from '../models/users/user.model';
+import { ToastService } from '../shared/services/toast.service';
 
 @Component({
   selector: 'app-add-offer',
@@ -16,7 +19,8 @@ export class AddOfferComponent {
 
 
   constructor(private errService: ErrorsService, private accService: AccountService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder, private svProvServie: ServiceProviderService,
+    private toastService: ToastService) {
     this.errs = errService.getErrors().AddOfferErrors
 
     this.addOfferForm = this.formBuilder.group({
@@ -47,7 +51,7 @@ export class AddOfferComponent {
 
 
 
-  onSubmit() {
+  async onSubmit(): Promise<void> {
     if (this.addOfferForm.valid) {
       //create an offer
       const offer: Offer = {
@@ -59,7 +63,13 @@ export class AddOfferComponent {
         svProvName: this.accService.currentUser?.name || "",
       }
       console.log("Offer created " + JSON.stringify(offer));
-
+      const sp = this.accService.currentUser as ServiceProvider;
+      const res = await this.svProvServie.addServiceProviderOffer(sp, offer)
+      if (!res) {
+        this.toastService.showToast(false, "Unable to add offer to service provider", "")
+      } else {
+        this.toastService.showToast(true, "Offer added to service provider " + res.name, "")
+      }
     } else {
       this.addOfferForm.markAllAsTouched();
     }

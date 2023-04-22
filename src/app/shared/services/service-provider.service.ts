@@ -25,6 +25,11 @@ export class ServiceProviderService extends DataService {
     console.log(`Adding ServiceProvider ${JSON.stringify(sp)} to firebase`)
     return null;
   }
+
+  async addServiceProviderOffer(sp: ServiceProvider, off: Offer): Promise<ServiceProvider | null> {
+    console.log(`Adding ServiceProviderOffer ${JSON.stringify(sp)} to firebase`)
+    return null;
+  }
   updateServiceProvider(sp: ServiceProvider) {
     console.log(`Updating ServiceProvider ${JSON.stringify(sp)} to firebase`)
   }
