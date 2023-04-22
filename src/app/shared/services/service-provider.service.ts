@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ServiceProvider } from '../../models/users/serviceProvider.model';
+import { Offer, ServiceProvider } from '../../models/users/serviceProvider.model';
 import { DataService } from './BillService.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore'
 @Injectable({
@@ -20,10 +20,6 @@ export class ServiceProviderService {
     return null;
   }
 
-  async addServiceProviderOffer(sp: ServiceProvider, off: Offer): Promise<ServiceProvider | null> {
-    console.log(`Adding ServiceProviderOffer ${JSON.stringify(sp)} to firebase`)
-    return null;
-  }
   async deleteServiceProviderOffer(sp: ServiceProvider, off: Offer): Promise<ServiceProvider | null> {
     console.log(`Deleting ServiceProviderOffer ${JSON.stringify(sp)} to firebase`)
     return null;
@@ -37,21 +33,37 @@ export class ServiceProviderService {
 * @param password
 * @returns user if found, false if not found, null otherwise
 */
-  async validateServiceProvider(email: string, password: string) {
-    // try {
-    //   const user = await this.getUserByEmail(email);
-    //   if (user != null && user != false && user.password === password) {
-    //     console.log("user is found and password is correct");
-    //     this.accountService.SetCurrentUser(user, UserType.User);
-    //     return user as User;
-    //   }
-    //   return false;
-    // }
-    // catch (error) {
-    //   console.log('Error getting user:', error);
-    //   return null;
-    // }
-    // return false;
+  async validateServiceProvider(email: string, password: string):  Promise<ServiceProvider | null | false>{
+    try {
+      const serviceProvider = await this.getServiceProviderByEmail(email);
+      if (serviceProvider != null && serviceProvider != false && serviceProvider.password === password) {
+        console.log("user is found and password is correct");
+        return serviceProvider as ServiceProvider;
+      }
+      return false;
+    }
+    catch (error) {
+      console.log('Error getting user:', error);
+      return null;
+    }
+  }
+
+  async getServiceProviderByEmail(email: string): Promise<ServiceProvider | null | false> {
+    console.log('Getting user by email: ', email);
+    try {
+      const querySnapshot = await this.serviceProvidersCollection.ref.where('email', '==', email).get();
+      if (!querySnapshot.empty) {
+        const serviceProviderDoc = querySnapshot.docs[0];
+        console.log("User is found with email: ", email)
+        // console.log('User data:', userDoc.data());
+        return serviceProviderDoc.data() as ServiceProvider;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.error('Error service prodiver by email :', error);
+      return null;
+    }
   }
 
 /** 
