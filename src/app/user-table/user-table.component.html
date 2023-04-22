@@ -1,69 +1,114 @@
-<section class="w-full text-sm mx-auto">
-    <div class="bg-gray-100 rounded-lg shadow-lg">
-        <div class="px-6 py-4">
-            <h2 class="text-2xl font-bold mb-8 text-center">Bills</h2>
-            <div class="flex flex-wrap justify-between items-center mb-4">
-                <div>
-                    <span>Search: </span>
-                    <input type="text" class="w-full sm:w-auto bg-white border rounded-lg px-2 py-1 mb-2 sm:mb-0"
-                        [(ngModel)]="searchText" (keyup)="filterUsers()" placeholder="Search...">
+<main class="px-8">
+    <h1 class="text-center font-bold text-2xl mb-6 "> {{tableType}}</h1>
+    <section class="flex w-full items-start gap-10">
+        <div class="w-3/4">
+            <section class="w-full text-sm mx-auto">
+                <div class="bg-gray-100 rounded-lg shadow-lg">
+                    <div class="px-6 py-4">
+                        <h2 class="text-2xl font-bold mb-8 text-center">Bills</h2>
+                        <div class="flex flex-wrap justify-between items-center mb-4">
+                            <div>
+                                <span>Search: </span>
+                                <input type="text"
+                                    class="w-full sm:w-auto bg-white border rounded-lg px-2 py-1 mb-2 sm:mb-0"
+                                    [(ngModel)]="searchText" (keyup)="filterUsers()" placeholder="Search...">
+                            </div>
+                            <div>
+                                <span>Filter: </span>
+                                <select class="w-full sm:w-auto bg-white border rounded-lg px-0 py-1"
+                                    [(ngModel)]="selectedOption" [value]="selectedOption" (change)="filterUsers()">
+                                    <option selected disabled>Choose an option</option>
+                                    <option value="paid">Paid</option>
+                                    <option value="unpaid">Unpaid</option>
+                                    <option value="penalty">Penalty</option>
+                                    <option value="notPenalty">Not Penalty</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="bg-white p-2 rounded-lg mt-8 max-h-80 overflow-y-auto">
+                            <table class="w-full bg-white">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left py-2">Year/Month</th>
+                                        <th class="text-left py-2">Usage</th>
+                                        <th class="text-left py-2">Penalty</th>
+                                        <th class="text-left py-2">Total</th>
+                                        <th class="text-left py-2">Payment Date</th>
+                                        <th class="text-left py-2">Payment Method</th>
+                                        <th class="text-left py-2">Status</th>
+                                        <th class="text-left py-2">Download</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let info of filteredInfoList; let i = index">
+                                        <td class="border-t px-4 py-2">{{info.year}}/{{info.month}}</td>
+                                        <td class="border-t px-4 py-2">{{info.units}} {{tableUnit}}</td>
+                                        <td class="border-t px-4 py-2">{{info.penalty}}</td>
+                                        <td class="border-t px-4 py-2">{{info.total}}</td>
+                                        <td class="border-t px-4 py-2"
+                                            [ngClass]="info.isPaid ? 'text-green-500' : 'text-red-500'">
+                                            {{info.isPaid ? (info.paymentDate | date:'dd/MM/yyyy'): info.paymentDate}}
+                                        </td>
+                                        <td class="border-t px-4 py-2"
+                                            [ngClass]="info.isPaid ? 'text-green-500' : 'text-red-500'">
+                                            {{info.paymentMethod}}</td>
+
+
+                                        <td class="border-t py-2">
+                                            <div *ngIf="info.isPaid==false">
+                                                <app-user-pay-modal [rowIndex]="i" />
+                                            </div>
+                                            <p class="pl-3 text-green-500" *ngIf="info.isPaid==true">
+                                                Paid
+                                            </p>
+                                        </td>
+
+
+                                        <td class="border-t pl-4 py-2 text-blue-500 cursor-pointer hover:text-blue-800"
+                                            (click)="dowloadBill(i)">Download</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <span>Filter: </span>
-                    <select class="w-full sm:w-auto bg-white border rounded-lg px-0 py-1" [(ngModel)]="selectedOption"
-                        [value]="selectedOption" (change)="filterUsers()">
-                        <option selected disabled>Choose an option</option>
-                        <option value="paid">Paid</option>
-                        <option value="unpaid">Unpaid</option>
-                        <option value="penalty">Penalty</option>
-                        <option value="notPenalty">Not Penalty</option>
-                    </select>
+
+            </section>
+        </div>
+        <div class="flex flex-col justify-center w-1/4 gap-8 ">
+
+            <div class="w-full text-center p-10 py-8 rounded-lg bg-gray-100">
+                <b class="text-red-500">Pending Payments:</b>
+                <span class="text-center border rounded-lg py-1 px-2 w-fit">
+                    {{pendingPayments}} EGP
+                </span>
+            </div>
+
+            <div class="w-full text-center p-10 py-8 rounded-lg bg-gray-100">
+                <p class="mb-6">
+                    <b class="text-red-500">Note:</b> Due to current rates, prices are set to
+                    change
+                </p>
+
+                <div class="flex justify-center">
+                    <div class="text-center border rounded-lg py-1 px-2 w-fit">
+                        <p *ngIf="tableType === 'Water'; else electricityBlock">1 Meter Cube = {{unitPrice}} EGP</p>
+                        <ng-template #electricityBlock>
+                            <p>1 KiloWatt = {{this.unitPrice}} EGP</p>
+                        </ng-template>
+                    </div>
                 </div>
             </div>
-            <div class="bg-white p-2 rounded-lg mt-8 max-h-80 overflow-y-auto">
-                <table class="w-full bg-white">
-                    <thead>
-                        <tr>
-                            <th class="text-left py-2">Year/Month</th>
-                            <th class="text-left py-2">Usage</th>
-                            <th class="text-left py-2">Penalty</th>
-                            <th class="text-left py-2">Total</th>
-                            <th class="text-left py-2">Payment Date</th>
-                            <th class="text-left py-2">Payment Method</th>
-                            <th class="text-left py-2">Status</th>
-                            <th class="text-left py-2">Download</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let info of filteredInfoList; let i = index">
-                            <td class="border-t px-4 py-2">{{info.year}}/{{info.month}}</td>
-                            <td class="border-t px-4 py-2">{{info.units}} {{tableUnit}}</td>
-                            <td class="border-t px-4 py-2">{{info.penalty}}</td>
-                            <td class="border-t px-4 py-2">{{info.total}}</td>
-                            <td class="border-t px-4 py-2" [ngClass]="info.isPaid ? 'text-green-500' : 'text-red-500'">
-                                {{info.isPaid ? (info.paymentDate | date:'dd/MM/yyyy'): info.paymentDate}}</td>
-                            <td class="border-t px-4 py-2" [ngClass]="info.isPaid ? 'text-green-500' : 'text-red-500'">
-                                {{info.paymentMethod}}</td>
 
-
-                            <td class="border-t py-2">
-                                <div *ngIf="info.isPaid==false">
-                                    <app-user-pay-modal [rowIndex]="i" />
-                                </div>
-                                <p class="pl-3 text-green-500" *ngIf="info.isPaid==true">
-                                    Paid
-                                </p>
-                            </td>
-
-
-                            <td class="border-t pl-4 py-2 text-blue-500 cursor-pointer hover:text-blue-800"
-                                (click)="dowloadBill(i)">Download</td>
-
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="w-full text-center p-10 py-8 rounded-lg bg-gray-100">
+                <p>
+                    <b class="text-red-500">Warning:</b>
+                    Late bills are automatically penalized with a fixed value of 200 EGP for
+                    each late month after the 30th day of the month.
+                </p>
             </div>
         </div>
-    </div>
+    </section>
 
-</section>
+</main>

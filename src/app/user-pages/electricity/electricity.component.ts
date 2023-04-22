@@ -12,6 +12,7 @@ import { AccountService } from 'src/app/shared/services/account.service';
 })
 export class ElectricityComponent implements OnInit {
 
+  tableType: string = "Electricity"
   tableUnit: string = "kWh";
   unitPrice: number = 0;
   pendingPayments: number = 0

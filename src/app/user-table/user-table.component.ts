@@ -10,9 +10,11 @@ import jsPDF from 'jspdf';
 
 export class UserTableComponent implements OnInit {
 
-  @Input() type: string = "";
+  @Input() tableType: string = "Electricity";
   @Input() infoList: CommonBill[] = [];
   @Input() tableUnit: string = "kWh";
+  @Input() pendingPayments: number = 0;
+  @Input() unitPrice: number = 0;
 
   filteredInfoList: CommonBill[] = [];
 
@@ -94,7 +96,7 @@ export class UserTableComponent implements OnInit {
     doc.setFillColor(headerColor);
     doc.setTextColor(headerTextColor);
     doc.rect(10, 10, 190, 20, 'F');
-    doc.text(`${this.type} Bill`, 100, 20, { align: 'center' });
+    doc.text(`${this.tableType} Bill`, 100, 20, { align: 'center' });
 
     doc.setFillColor(backgroundColor);
     doc.rect(10, 35, 190, 40, 'F');
