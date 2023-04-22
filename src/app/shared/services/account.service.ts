@@ -13,8 +13,9 @@ import { Router } from '@angular/router';
 export class AccountService {
 
   loggedInSubject: Subject<boolean> = new Subject<boolean>() //for the subscribers
+  currentUserSubject: Subject<CommonUser> = new Subject<CommonUser>() //for the subscribers
 
-  currentUserType?: UserType = undefined;
+  currentUserType?: UserType = UserType.User;
   currentUser?: CommonUser = undefined;
 
   // currentUserType?: UserType = UserType.User;
@@ -29,8 +30,11 @@ export class AccountService {
 
   constructor(private router: Router) { }
 
-  _setLoginState(isLogged: boolean) {
+  private _setLoginState(isLogged: boolean) {
     this.loggedInSubject.next(isLogged)
+  }
+  private _setCurrentUserSubject(usr: CommonUser) {
+    this.currentUserSubject.next(usr)
   }
 
   //adminService, serviceProviderService, and userService are all responsible
@@ -41,6 +45,8 @@ export class AccountService {
 
     if (usr === undefined && usrType === undefined)
       this._setLoginState(false)
+    else if (usr)
+      this._setCurrentUserSubject(usr)
   }
 
   logout(): void {

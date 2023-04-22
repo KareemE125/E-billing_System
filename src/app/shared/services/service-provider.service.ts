@@ -13,9 +13,14 @@ export class ServiceProviderService extends DataService {
 
   constructor(db: AngularFirestore, private accService: AccountService) {
     super(db)
-    this.serviceProvidersCollection.doc(this.accService.currentUser?.id).valueChanges().subscribe( //"wUImf9zShk8xhw9fhixR"
-      e => this.serviceProviderOffersSubj.next(e?.offers || [])
+    this.accService.currentUserSubject.subscribe(
+      curUser => {
+        this.serviceProvidersCollection.doc(curUser.id).valueChanges().subscribe( //"wUImf9zShk8xhw9fhixR"
+          e => this.serviceProviderOffersSubj.next(e?.offers || [])
+        )
+      }
     )
+
   }
 
   async addServiceProvider(serviceProvider: ServiceProvider): Promise<ServiceProvider | null> {

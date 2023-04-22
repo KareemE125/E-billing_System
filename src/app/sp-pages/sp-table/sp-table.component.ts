@@ -14,7 +14,7 @@ export class SpTableComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['offerList']) {
       this.offerList = changes['offerList'].currentValue as Offer[]
-      this.filteredOfferList = this.offerList
+      this.filteredOfferList = [...this.offerList]
       this.searchText = ''
       this.selectedOption = 'Choose an option'
     }

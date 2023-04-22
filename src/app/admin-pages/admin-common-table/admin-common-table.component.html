@@ -6,7 +6,7 @@
                     <span *ngIf="tableType === getTableType().Electricity; else waterOrTelephone">All Electricity
                         Statuses</span>
                     <ng-template #waterOrTelephone>
-                        <span *ngIf="tableType === tableType === getTableType().Water">All Water Statuses</span>
+                        <span *ngIf="tableType === getTableType().Water">All Water Statuses</span>
                         <span *ngIf="tableType === getTableType().Telephone">All Telephone Statuses</span>
                     </ng-template>
 

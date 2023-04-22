@@ -19,7 +19,19 @@ export class UserTableComponent implements OnInit, OnChanges {
   @Input() unitPrice: number = 0;
 
   ngOnChanges(changes: SimpleChanges) {
-    //don't need to implement it as no input is expected to change throughout the lifecycle
+    console.log("those are the changes ", changes);
+    if (changes['infoList']) {
+      this.infoList = changes['infoList'].currentValue as CommonBill[]
+      this.filteredInfoList = [...this.infoList]
+      this.searchText = ''
+      this.selectedOption = 'Choose an option'
+    }
+
+    changes['tableType'] && (this.tableType = changes['tableType'].currentValue)
+    changes['tableUnit'] && (this.tableUnit = changes['tableUnit'].currentValue)
+    changes['pendingPayments'] && (this.pendingPayments = changes['pendingPayments'].currentValue)
+    changes['unitPrice'] && (this.unitPrice = changes['unitPrice'].currentValue)
+
   }
 
   filteredInfoList: CommonBill[] = [];
