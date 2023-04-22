@@ -19,6 +19,15 @@ export class ServiceProviderService {
     console.log(`Adding ServiceProvider ${JSON.stringify(sp)} to firebase`)
     return null;
   }
+
+  async addServiceProviderOffer(sp: ServiceProvider, off: Offer): Promise<ServiceProvider | null> {
+    console.log(`Adding ServiceProviderOffer ${JSON.stringify(sp)} to firebase`)
+    return null;
+  }
+  async deleteServiceProviderOffer(sp: ServiceProvider, off: Offer): Promise<ServiceProvider | null> {
+    console.log(`Deleting ServiceProviderOffer ${JSON.stringify(sp)} to firebase`)
+    return null;
+  }
   updateServiceProvider(sp: ServiceProvider) {
     console.log(`Updating ServiceProvider ${JSON.stringify(sp)} to firebase`)
   }
@@ -70,5 +79,11 @@ export class ServiceProviderService {
       return null;
     }
   }
+
+
+  async getServiceProviderOffersByName(name: string): Promise<Offer[] | null> {
+    return null;
+  }
+
 
 }
