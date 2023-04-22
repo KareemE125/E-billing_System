@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Offer, ServiceProvider } from '../../models/users/serviceProvider.model';
-import { DataService } from './BillService.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore'
 @Injectable({
   providedIn: 'root'
@@ -14,21 +13,46 @@ export class ServiceProviderService {
       
   }
 
-  //Todo: add user to firebase
-  async addServiceProvider(sp: ServiceProvider): Promise<ServiceProvider | null> {
-    console.log(`Adding ServiceProvider ${JSON.stringify(sp)} to firebase`)
-    return null;
+  async addServiceProvider(serviceProvider: ServiceProvider): Promise<ServiceProvider | null> {
+    const newDocRef = this.serviceProvidersCollection.doc();
+    serviceProvider.id = newDocRef.ref.id;
+    try {
+      await newDocRef.set({ ...serviceProvider })
+      console.log('ServiceProvider added to firebase: ', serviceProvider)
+      return serviceProvider;
+    } catch (error) {
+      console.error('Error adding user to firebase: ', error);
+      return null;
+    };
   }
 
-  async deleteServiceProviderOffer(sp: ServiceProvider, off: Offer): Promise<ServiceProvider | null> {
-    console.log(`Deleting ServiceProviderOffer ${JSON.stringify(sp)} to firebase`)
-    return null;
+  // async deleteServiceProviderOffer(serviceProvider: ServiceProvider, off: Offer): Promise<ServiceProvider | null> {
+  //   console.log(`Deleting ServiceProviderOffer ${JSON.stringify(serviceProvider)} to firebase`)
+  //   return null;
+  // }
+
+  async deleteServiceProvider(id: string): Promise<null | true> {
+    try {
+      await this.serviceProvidersCollection.doc(id).delete();
+      return true;
+    } catch (error) {
+      console.error('Error deleting serviceProvider: ', error);
+      return null;
+    }
   }
-  updateServiceProvider(sp: ServiceProvider) {
-    console.log(`Updating ServiceProvider ${JSON.stringify(sp)} to firebase`)
+  async updateServiceProvider(serviceProvider: ServiceProvider): Promise<null | true>  {
+    try {
+      console.log(`Updating ServiceProvider ${JSON.stringify(serviceProvider)} to firebase`)
+      await this.serviceProvidersCollection.doc(serviceProvider.id).update(serviceProvider);
+      return true;
+    }
+    catch (error) {
+      console.error('Error updating ServiceProvider: ', error);
+      return null;
+    }
   }
 
-  /**
+/**
 * @param email
 * @param password
 * @returns user if found, false if not found, null otherwise
@@ -49,13 +73,12 @@ export class ServiceProviderService {
   }
 
   async getServiceProviderByEmail(email: string): Promise<ServiceProvider | null | false> {
-    console.log('Getting user by email: ', email);
+    console.log('Getting serviceProvider by email: ', email);
     try {
       const querySnapshot = await this.serviceProvidersCollection.ref.where('email', '==', email).get();
       if (!querySnapshot.empty) {
         const serviceProviderDoc = querySnapshot.docs[0];
         console.log("User is found with email: ", email)
-        // console.log('User data:', userDoc.data());
         return serviceProviderDoc.data() as ServiceProvider;
       } else {
         return false;
@@ -78,7 +101,6 @@ export class ServiceProviderService {
       if (querySnapshot !== undefined) {
         querySnapshot.forEach((doc) => {
           if (doc.exists) {
-            // console.log('User data:', doc.data());
             serviceProviders.push(doc.data() as ServiceProvider);
           } else {
             console.error('No such document!');
