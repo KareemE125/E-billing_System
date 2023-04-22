@@ -12,7 +12,7 @@ import { AccountService } from 'src/app/shared/services/account.service';
 })
 export class ElectricityComponent implements OnInit {
 
-  tableType: string = "Electricity"
+  tableType: 'Water' | 'Electricity' | 'Telephone' = "Electricity"
   tableUnit: string = "kWh";
   unitPrice: number = 0;
   pendingPayments: number = 0
@@ -38,7 +38,7 @@ export class ElectricityComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.pendingPayments = this.accService.getPendingElectrictyPayments()
+    this.pendingPayments = this.accService.getPendingElectricityPayments()
 
 
     const bills = await this.electricityService.getAllElectricityBills();

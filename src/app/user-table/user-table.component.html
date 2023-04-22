@@ -56,7 +56,7 @@
 
                                         <td class="border-t py-2">
                                             <div *ngIf="info.isPaid==false">
-                                                <app-user-pay-modal [rowIndex]="i" />
+                                                <app-user-pay-modal [billsToPay]="billsToPay" [billType]="billType" />
                                             </div>
                                             <p class="pl-3 text-green-500" *ngIf="info.isPaid==true">
                                                 Paid

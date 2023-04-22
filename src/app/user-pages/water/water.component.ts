@@ -11,7 +11,7 @@ import { AccountService } from 'src/app/shared/services/account.service';
   styleUrls: ['./water.component.css']
 })
 export class WaterComponent {
-  tableType: string = "Water"
+  tableType: 'Water' | 'Electricity' | 'Telephone' = "Water"
   tableUnit: string = "m3";
   unitPrice: number = 0;
   pendingPayments: number = 0

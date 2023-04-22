@@ -69,7 +69,7 @@ export class AccountService {
   GetUsersEnum(): any {
     return UserType;
   }
-  getPendingElectrictyPayments(): number {
+  getPendingElectricityPayments(): number {
     let tot: number = 0
     if (this.currentUserType != UserType.User)
       return 0;
@@ -110,7 +110,7 @@ export class AccountService {
 
   getTotalPendingPayments(): number {
 
-    return this.getPendingElectrictyPayments() +
+    return this.getPendingElectricityPayments() +
       this.getPendingTelephonePayments() +
       this.getPendingWaterPayments();
   }

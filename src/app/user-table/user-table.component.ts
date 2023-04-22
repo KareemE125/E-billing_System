@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CommonBill } from '../models/bills/commonBill.model'
 import jsPDF from 'jspdf';
+import { User } from '../models/users/user.model';
+import { AccountService } from '../shared/services/account.service';
 
 @Component({
   selector: 'user-table',
@@ -8,20 +10,28 @@ import jsPDF from 'jspdf';
   styleUrls: ['./user-table.component.css']
 })
 
-export class UserTableComponent implements OnInit {
+export class UserTableComponent implements OnInit, OnChanges {
 
-  @Input() tableType: string = "Electricity";
+  @Input() tableType: 'Water' | 'Electricity' | 'Telephone' = "Electricity";
   @Input() infoList: CommonBill[] = [];
   @Input() tableUnit: string = "kWh";
   @Input() pendingPayments: number = 0;
   @Input() unitPrice: number = 0;
 
+  ngOnChanges(changes: SimpleChanges) {
+    //don't need to implement it as no input is expected to change throughout the lifecycle
+  }
+
   filteredInfoList: CommonBill[] = [];
+  //input for the modal
+  billsToPay: CommonBill[] = [];
+  billType: 'Water' | 'Electricity' | 'Telephone' = 'Water'
+
 
   searchText = '';
   selectedOption = 'Choose an option';
 
-  constructor() { }
+  constructor(private accService: AccountService) { }
 
   ngOnInit(): void {
     // set initial filtered list to full list
@@ -73,7 +83,10 @@ export class UserTableComponent implements OnInit {
   }
 
 
-  btnPay(index: number) {
+  async btnPay(index: number) {
+    //todo: open modal and pass it its inputs
+    this.billsToPay = [this.filteredInfoList[index]]
+    this.billType = this.tableType
 
   }
 
@@ -86,7 +99,7 @@ export class UserTableComponent implements OnInit {
     const borderColor = '#CCCCCC';
     const backgroundColor = '#F0F0F0';
 
-    let info = this.filteredInfoList[index];
+    const info = this.filteredInfoList[index];
 
     const doc = new jsPDF();
 
@@ -105,6 +118,9 @@ export class UserTableComponent implements OnInit {
     doc.text(`Units: ${info.units} ${this.tableUnit}`, 15, 55);
     doc.text(`Penalty: ${info.penalty}`, 15, 65);
     doc.text(`Total: ${info.total}`, 15, 75);
+    doc.text(`Payment Method: ${info.paymentMethod}`, 15, 85);
+    doc.text(`Payment Date: ${new Date(info.paymentDate).toLocaleDateString()}`, 15, 95);
+
 
     doc.setDrawColor(borderColor);
     doc.rect(10, 10, 190, 75);

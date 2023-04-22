@@ -151,7 +151,7 @@ export class AddBillComponent implements OnInit {
         console.log("Electricity bill created " + JSON.stringify(commonBill));
         const billAdded = await this.electricityBillService.addElectricityBillToUser(user.id, commonBill);
         if (!billAdded) {
-          this.toastService.showToast(false, 'Unable to add the electricty bill', '')
+          this.toastService.showToast(false, 'Unable to add the electricity bill', '')
           return
         }
 

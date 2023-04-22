@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { ErrorsService } from 'src/app/shared/services/errors.service';
@@ -18,12 +18,14 @@ import { TelephoneBill } from 'src/app/models/bills/telephone.model';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent {
+export class ModalComponent implements OnChanges {
 
-  @Input() rowIndex: number = 0;
   @Input() billsToPay: CommonBill[] = [];
   @Input() billType: 'Water' | 'Electricty' | 'Telephone' = 'Water'
 
+  ngOnChanges(changes: SimpleChanges) {
+    //don't need to implement it as no input is expected to change throughout the lifecycle
+  }
   selectedTab: 'tab1' | 'tab2' = 'tab1';
   randomPaymentCode: string;
   showModal = false;
@@ -110,6 +112,9 @@ export class ModalComponent {
     this.selectedTab = tab;
   }
 
+  openModal() {
+    this.showModal = true;
+  }
   toggleModal() {
     this.showModal = !this.showModal;
   }
