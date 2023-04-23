@@ -11,6 +11,7 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 export class SpTableComponent implements OnChanges {
   @Input() offerList: Offer[] = [];
   @Input() serviceProviderName: string = "";
+  @Input() isUser: boolean = false;
   ngOnChanges(changes: SimpleChanges) {
     console.log("those are the changes ", changes);
     if (changes['offerList']) {

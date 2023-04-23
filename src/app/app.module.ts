@@ -38,8 +38,8 @@ import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admi
 import { ToastComponent } from './toast/toast.component';
 import { ToastService } from './shared/services/toast.service';
 import { SPHomeComponent } from './sp-pages/sphome/sphome.component';
-import { SpTableComponent } from './sp-pages/sp-table/sp-table.component';
 import { TelephoneComponent } from './user-pages/telephone/telephone.component';
+import { SpTableComponent } from './sp-pages/sp-table/sp-table.component';
 
 @NgModule({
   declarations: [

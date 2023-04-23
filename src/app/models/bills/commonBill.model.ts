@@ -7,7 +7,8 @@ export interface CommonBill {
     isPaid: boolean,   //true or false
     paymentDate: number | "Not Yet",
     paymentMethod: "Cash" | "Card" | "Wallet" | "Not Yet",
-    id: string
+    id: string,
+    offer?: string, // if user telephone bill
 }
 
 

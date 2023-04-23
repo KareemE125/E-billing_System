@@ -30,6 +30,9 @@
                                 <thead>
                                     <tr>
                                         <th class="text-left py-2">Year/Month</th>
+                                        <th *ngIf="tableType=='Telephone'" class="text-left py-2">
+                                            Offer Name
+                                        </th>
                                         <th class="text-left py-2">Usage</th>
                                         <th class="text-left py-2">Penalty</th>
                                         <th class="text-left py-2">Total</th>
@@ -42,6 +45,9 @@
                                 <tbody>
                                     <tr *ngFor="let info of filteredInfoList; let i = index">
                                         <td class="border-t px-4 py-2">{{info.year}}/{{info.month}}</td>
+                                        <td  *ngIf="tableType=='Telephone'" class="border-t px-4 py-2">
+                                            {{info.offer}}
+                                        </td>
                                         <td class="border-t px-4 py-2">{{info.units}} {{tableUnit}}</td>
                                         <td class="border-t px-4 py-2">{{info.penalty}}</td>
                                         <td class="border-t px-4 py-2">{{info.total}}</td>
@@ -80,12 +86,12 @@
 
             <div class="w-full text-center p-10 py-8 rounded-lg bg-gray-100">
                 <b class="text-red-500">Pending Payments:</b>
-                <span class="text-center border rounded-lg py-1 px-2 w-fit">
+                <span class="text-center border rounded-lg py-1 px-2 ml-2 w-fit">
                     {{pendingPayments}} EGP
                 </span>
             </div>
 
-            <div class="w-full text-center p-10 py-8 rounded-lg bg-gray-100">
+            <div *ngIf="tableType!='Telephone'" class="w-full text-center p-10 py-8 rounded-lg bg-gray-100">
                 <p class="mb-6">
                     <b class="text-red-500">Note:</b> Due to current rates, prices are set to
                     change
@@ -101,7 +107,7 @@
                 </div>
             </div>
 
-            <div class="w-full text-center p-10 py-8 rounded-lg bg-gray-100">
+            <div *ngIf="tableType!='Telephone'" class="w-full text-center p-10 py-8 rounded-lg bg-gray-100">
                 <p>
                     <b class="text-red-500">Warning:</b>
                     Late bills are automatically penalized with a fixed value of 200 EGP for
