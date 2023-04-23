@@ -4,6 +4,11 @@ import { User } from './models/users/user.model';
 import { DbService } from './shared/services/db.service';
 import { ToastService } from './shared/services/toast.service';
 import { Router } from '@angular/router';
+import { ServiceProvider } from './models/users/serviceProvider.model';
+import { getDummyServiceProviders, getDummyUsers } from './dummy-data/seed-database';
+import { ServiceProviderService } from './shared/services/service-provider.service';
+import { AdminService } from './shared/services/admin.service';
+import { UserService } from './shared/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -12,29 +17,24 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private accService: AccountService) { }
+  constructor(private accService: AccountService, private servProvService: ServiceProviderService,
+    private userService: UserService, private adminService: AdminService) { }
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.accService.goToHome()
+    if (false)
+      await this.seed()
   }
 
+  async seed(): Promise<void> {
+    const prov: ServiceProvider[] = getDummyServiceProviders()
+    for (let p of prov) await this.servProvService.addServiceProvider(p);
 
-  /////// >>>>> User get using firebase example <<<<< /////////////////
+    const users: User[] = getDummyUsers()
+    for (let u of users) await this.userService.addUser(u);
 
-
-  // addUser(): void {
-  //   const user = {
-  //     name: 'John Doe',
-  //     email: 'john@example.com'
-  //   };
-  //   this.userService.addUserToFirestore(user);
-  //   this.userService.userAddedSubject.subscribe((id) => {
-  //     console.log(`New user added with ID: ${id}`);
-  //   });
-  // }
-
-  /////////////////////////////////////////////////////////////////////
+  }
 
 
 

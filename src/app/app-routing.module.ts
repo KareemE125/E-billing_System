@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'sp-home', component: SPHomeComponent, canActivate: [AuthGuardService] }, //todo
 
 
-  { path: '**', component: UserHomeComponent }
+  { path: '**', component: LoginComponent }
 
 ];
 

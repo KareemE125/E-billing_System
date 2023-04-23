@@ -6,14 +6,13 @@
                 <div class="flex flex-wrap justify-between items-center mb-4">
                     <div>
                         <span>Search: </span>
-                        <input type="text"
-                            class="w-full sm:w-auto bg-white border rounded-lg px-2 py-1 mb-2 sm:mb-0"
-                            [(ngModel)]="searchText"  (keyup)="filterUsers()" placeholder="Search...">
+                        <input type="text" class="w-full sm:w-auto bg-white border rounded-lg px-2 py-1 mb-2 sm:mb-0"
+                            [(ngModel)]="searchText" (keyup)="filterUsers()" placeholder="Search...">
                     </div>
                     <div>
                         <span>Filter: </span>
-                        <select class="w-full sm:w-auto bg-white border rounded-lg p-1" 
-                                [(ngModel)]="selectedOption" [value]="selectedOption" (change)="filterUsers()">
+                        <select class="w-full sm:w-auto bg-white border rounded-lg p-1" [(ngModel)]="selectedOption"
+                            [value]="selectedOption" (change)="filterUsers()">
                             <option selected disabled>Choose an option</option>
                             <option value="unpaidElectricity">Unpaid Electricity</option>
                             <option value="unpaidWater">Unpaid Water</option>
@@ -37,16 +36,23 @@
                             <tr *ngFor="let user of filteredUserList">
                                 <td class="border-t px-4 py-2">{{user.id}}</td>
                                 <td class="border-t px-4 py-2">{{user.name}}</td>
-                                <td class="border-t px-4 py-2">{{user.unpaidElectricity}}</td>
-                                <td class="border-t px-4 py-2">{{user.unpaidWater}}</td>
-                                <td class="border-t px-4 py-2">{{user.unpaidTelephone}}</td>
-                                <td class="border-t px-4 py-2">{{user.total}}</td>
+                                <td class="border-t px-4 py-2"
+                                    [ngClass]="user.unpaidElectricity? 'text-red-500' : 'text-green-500'">
+                                    {{user.unpaidElectricity}}</td>
+                                <td class="border-t px-4 py-2"
+                                    [ngClass]="user.unpaidWater? 'text-red-500' : 'text-green-500'">{{user.unpaidWater}}
+                                </td>
+                                <td class="border-t px-4 py-2"
+                                    [ngClass]="user.unpaidTelephone? 'text-red-500' : 'text-green-500'">
+                                    {{user.unpaidTelephone}}</td>
+                                <td class="border-t px-4 py-2"
+                                    [ngClass]="user.total? 'text-red-500' : 'text-green-500'">{{user.total}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    
+
     </section>
 </main>

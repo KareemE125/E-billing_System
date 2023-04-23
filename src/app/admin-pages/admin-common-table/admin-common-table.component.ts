@@ -60,15 +60,22 @@ export class AdminCommonTableComponent {
       this.toastService.showToast(false, 'Unable to get all users', '')
       return rows;
     }
+
     for (let user of users) {
-      for (let bill of user.electricityBills) {
-        rows.push(this.mapBillToUserTableRow(user.name, user.id, bill, TableType.Electricity))
+      if (this.tableType == TableType.Electricity) {
+        for (let bill of user.electricityBills) {
+          rows.push(this.mapBillToUserTableRow(user.name, user.id, bill, TableType.Electricity))
+        }
       }
-      for (let bill of user.waterBills) {
-        rows.push(this.mapBillToUserTableRow(user.name, user.id, bill, TableType.Water))
+      if (this.tableType == TableType.Water) {
+        for (let bill of user.waterBills) {
+          rows.push(this.mapBillToUserTableRow(user.name, user.id, bill, TableType.Water))
+        }
       }
-      for (let bill of user.telephoneBills) {
-        rows.push(this.mapBillToUserTableRow(user.name, user.id, bill, TableType.Telephone))
+      if (this.tableType == TableType.Telephone) {
+        for (let bill of user.telephoneBills) {
+          rows.push(this.mapBillToUserTableRow(user.name, user.id, bill, TableType.Telephone))
+        }
       }
     }
     return rows

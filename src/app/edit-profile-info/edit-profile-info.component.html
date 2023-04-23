@@ -69,7 +69,7 @@
                             <label class="block text-gray-700 font-bold mb-2" for="street">Street</label>
                             <input formControlName="street"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="street" name="street" type="text" placeholder="Enter your phone number">
+                                id="street" name="street" type="text" placeholder="Enter your street">
                             <div class="text-red-500 text-xs mt-1"
                                 *ngIf="street!['invalid'] && (street!['dirty'] || street!['touched'])">
                                 <div *ngIf="street!['errors']!['minlength']">{{errs.Street.MinLength}}</div>

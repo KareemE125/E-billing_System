@@ -26,7 +26,7 @@ export class LoginComponent {
 
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder, private router: Router, private userService: UserService,
     private adminService: AdminService, private srvProvService: ServiceProviderService, private waterBillService: WaterBillService,
-    private toastService: ToastService,private accountService: AccountService) {
+    private toastService: ToastService, private accountService: AccountService) {
     this.errs = errService.getErrors().LoginErrors
 
     //we keep the validators.email and .pattern even in the sign in form, to prevent a server request if it is guaranteed to fail
@@ -61,7 +61,7 @@ export class LoginComponent {
       } else if (admin) {
         console.log("Admin logged in")
         this.accountService.SetCurrentUser(admin, UserType.Admin);
-        this.router.navigate(['manage'])
+        this.router.navigate(['admin-manage'])
       } else if (serviceProvider) {
         console.log("Service Provider logged in")
         this.accountService.SetCurrentUser(serviceProvider, UserType.ServiceProvider);

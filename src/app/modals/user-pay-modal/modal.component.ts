@@ -24,7 +24,13 @@ export class ModalComponent implements OnChanges {
   @Input() billType: 'Water' | 'Electricity' | 'Telephone' = 'Water'
 
   ngOnChanges(changes: SimpleChanges) {
-    //don't need to implement it as no input is expected to change throughout the lifecycle
+    console.log("those are the changes ", changes);
+    if (changes['billsToPay']) {
+      this.billsToPay = Object.keys(changes['billsToPay'].currentValue).map(key => {
+        return changes['billsToPay'].currentValue[key];
+      })
+    }
+    changes['billType'] && (this.billType = changes['billType'].currentValue)
   }
   selectedTab: 'tab1' | 'tab2' = 'tab1';
   randomPaymentCode: string;

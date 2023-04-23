@@ -80,7 +80,7 @@ export class AddBillComponent implements OnInit {
 
     const servProviders = await this.srvProvService.getAllServiceProviders();
     if (servProviders == null) {
-      //todo show toast showing errors
+      this.toastService.showToast(false, "Unable to load all service providers", '')
       return;
     }
 
@@ -120,8 +120,12 @@ export class AddBillComponent implements OnInit {
       }
       const res = await this.userService.getUserByEmail(this.email?.value);
 
-      if (!res) {
-        //todo throw an error with toast
+      if (res === null) {
+        this.toastService.showToast(false, "Unable to validate user email", '')
+        return
+      }
+      if (res === false) {
+        this.toastService.showToast(false, "Incorrect user email", '')
         return
       }
       const user: CommonUser = { ...res }
@@ -176,6 +180,8 @@ export class AddBillComponent implements OnInit {
       }
 
       //todo show a toast that the bill was added
+      this.toastService.showToast(true, 'Bill successfully added', '')
+      this.addBillForm.reset()
     } else {
 
       this.addBillForm.markAllAsTouched();

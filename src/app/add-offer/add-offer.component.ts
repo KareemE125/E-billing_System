@@ -61,6 +61,7 @@ export class AddOfferComponent {
       } else {
         this.toastService.showToast(true, "Offer added to service provider " + res.name, "")
       }
+      this.addOfferForm.reset()
     } else {
       this.addOfferForm.markAllAsTouched();
     }
