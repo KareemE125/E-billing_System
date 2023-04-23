@@ -45,11 +45,11 @@ export class UnitPriceService {
       return null;
     }
   }
-  setWaterUnitPrice(): void {
-    return;
+  async setWaterUnitPrice(value: number): Promise<number | null | false> {
+    return null;
   }
 
-  setElectricityUnitPrice(): void {
-    return;
+  async setElectricityUnitPrice(value: number): Promise<number | null | false> {
+    return null;
   }
 }
