@@ -89,4 +89,18 @@ export class TelephoneBillService extends DataService {
             return null;
         }
     }
+
+    async getUserTelephoneBillsById(userId: string): Promise<TelephoneBill[] | null | false> {
+        console.log("Getting getUserTelephoneBillsById...");
+        try {
+            const user = await this.userService.getUserById(userId);
+            if (user) {
+                return user.telephoneBills;
+            }
+            return false;
+        } catch (error) {
+            console.error("Error getting user telephone bills:", error);
+            return null;
+        }
+    }
 }

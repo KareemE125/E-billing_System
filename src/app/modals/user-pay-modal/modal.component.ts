@@ -31,6 +31,8 @@ export class ModalComponent implements OnChanges {
       })
     }
     changes['billType'] && (this.billType = changes['billType'].currentValue)
+
+    console.log(this.billsToPay);
   }
   selectedTab: 'tab1' | 'tab2' = 'tab1';
   randomPaymentCode: string;

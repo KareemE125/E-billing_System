@@ -1,5 +1,5 @@
-<button class="bg-blue-500 py-1 px-4 text-white rounded-lg" (click)="toggleModal()">
-  Pay
+<button class="bg-blue-500 py-1 px-4 text-white rounded-lg" (click)="openModal()">
+  {{this.billsToPay.length > 1 ? 'Pay Multiple Bills' : 'Pay' }}
 </button>
 
 <section *ngIf="showModal">

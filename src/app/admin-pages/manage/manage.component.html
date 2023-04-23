@@ -2,8 +2,8 @@
     <h1 class="text-center text-3xl font-bold m-4">Manage</h1>
     <div class="flex gap-8 w-full">
 
-    <section class="w-full flex-[2]">
-        <app-add-bill />
+        <section class="w-full flex-[2]">
+            <app-add-bill />
         </section>
         <section class="w-full flex-[1]  flex flex-col gap-8">
             <div class="w-full text-center p-10 py-8 rounded-lg border">
@@ -13,11 +13,12 @@
                         <label class="block text-gray-700 font-bold mb-2" for="electricityUnit">Electricity Unit</label>
                         <input formControlName="electricityUnit"
                             class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="electricityUnit" name="electricityUnit" type="number"
+                            id="electricityUnit" name="electricityUnit" type="text"
                             placeholder="Enter the Electricity Unit">
                         <div class="text-red-500 text-xs mt-1"
                             *ngIf="electricityUnit!['invalid'] && (electricityUnit!['dirty'] || electricityUnit!['touched'])">
-                            <div *ngIf="electricityUnit!['errors']!['required']">Unit is required</div>
+                            <div *ngIf="electricityUnit!['errors']!['required']">{{errs.ElectricityUnit.Required}}</div>
+                            <div *ngIf="electricityUnit!['errors']!['pattern']">{{errs.ElectricityUnit.Pattern}}</div>
 
                         </div>
                     </div>
@@ -39,10 +40,11 @@
                         <label class="block text-gray-700 font-bold mb-2" for="waterUnit">Water Unit</label>
                         <input formControlName="waterUnit"
                             class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="waterUnit" name="waterUnit" type="number" placeholder="Enter the Water Unit">
+                            id="waterUnit" name="waterUnit" type="text" placeholder="Enter the Water Unit">
                         <div class="text-red-500 text-xs mt-1"
                             *ngIf="waterUnit!['invalid'] && (waterUnit!['dirty'] || waterUnit!['touched'])">
-                            <div *ngIf="waterUnit!['errors']!['required']">Unit is required</div>
+                            <div *ngIf="waterUnit!['errors']!['required']">{{errs.WaterUnit.Required}}</div>
+                            <div *ngIf="waterUnit!['errors']!['pattern']">{{errs.WaterUnit.Pattern}}</div>
 
                         </div>
                     </div>

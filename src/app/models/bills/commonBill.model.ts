@@ -8,7 +8,6 @@ export interface CommonBill {
     paymentDate: number | "Not Yet",
     paymentMethod: "Cash" | "Card" | "Wallet" | "Not Yet",
     id: string,
-    offer?: string, // if user telephone bill
 }
 
 

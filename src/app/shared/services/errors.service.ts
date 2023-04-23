@@ -153,8 +153,17 @@ export class ErrorsService {
           Required: _reqErr("Expiry Year"),
           Pattern: _invalidErr("Expiry Year")
         },
+      },
+      AdminManageErrors: {
+        ElectricityUnit: {
+          Required: _reqErr("Electricity Unit"),
+          Pattern: _invalidErr("Electricity Unit")
+        },
+        WaterUnit: {
+          Required: _reqErr("Water Unit"),
+          Pattern: _invalidErr("Water Unit")
 
-
+        }
       }
     }
   }
