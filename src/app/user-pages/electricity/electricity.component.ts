@@ -40,7 +40,6 @@ export class ElectricityComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.pendingPayments = this.accService.getPendingElectricityPayments()
 
-
     const bills = await this.electricityService.getUserElectricityBillsById(this.accService.currentUser?.id!);
     if (!bills)
       this.toastService.showToast(false, 'Unable to get the electricity bills', '')

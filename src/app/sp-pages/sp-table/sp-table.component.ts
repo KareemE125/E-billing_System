@@ -23,6 +23,7 @@ export class SpTableComponent implements OnChanges {
       this.selectedOption = 'Choose an option'
     }
     changes['serviceProviderName'] && (this.serviceProviderName = changes['serviceProviderName'].currentValue as string)
+    changes['isUser'] && (this.isUser = changes['isUser'].currentValue)
   }
   tableInternetUnit: string = "MB";
   tableMinutesUnit: string = "min";

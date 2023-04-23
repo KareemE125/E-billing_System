@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonBill } from 'src/app/models/bills/commonBill.model';
 import { Offer } from 'src/app/models/users/serviceProvider.model';
-import { ElectricityBillService } from 'src/app/shared/services/ElectricityBill.service';
 import { TelephoneBillService } from 'src/app/shared/services/TelephoneBill.service';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
@@ -24,7 +23,6 @@ export class TelephoneComponent {
   // Tab One
   tableType: 'Water' | 'Electricity' | 'Telephone' = "Telephone"
   tableUnit: string = "Units";
-  unitPrice: number = 0;
   pendingPayments: number = 0
 
   infoList: CommonBill[] = [
@@ -50,30 +48,24 @@ export class TelephoneComponent {
   async ngOnInit(): Promise<void> {
     this.pendingPayments = this.accService.getPendingTelephonePayments()
 
-    // ******** Not complete functions
 
-    // const bills = await this.telephoneService.getAllTelephoneBills(this.accService.currentUser?.id!);
-    // if (!bills)
-    //   this.toastService.showToast(false, 'Unable to get the electricity bills', '')
-    // else this.infoList = { ...bills }
-
-    // const ePrice = await this.unitPriceService.getTelephoneUnitPrice();
-    // if (!ePrice)
-    //   this.toastService.showToast(false, 'Unable to get the electricity price', '')
-    // else this.unitPrice = ePrice;
+    const bills = await this.telephoneService.getUserTelephoneBillsById(this.accService.currentUser?.id!);
+    if (!bills)
+      this.toastService.showToast(false, 'Unable to get the telephone bills', '')
+    else this.infoList = [...bills]
 
   }
 
   // Tab Two
-  isUser: boolean = true
+
   spNames: string[] = ["We", "Vodafone", "Etisalat"]
 
   offer: Offer[] = [
     {
-      svProvName: "We", name: "Premium", internetQuantityOrPrice: 10, minutesQuantityOrPrice: 100, price: 20,status: "Post Paid"
+      svProvName: "We", name: "Premium", internetQuantityOrPrice: 10, minutesQuantityOrPrice: 100, price: 20, status: "Post Paid"
     },
     {
-      svProvName: "We", name: "Basic", internetQuantityOrPrice: 5,  minutesQuantityOrPrice: 50, price: 10,status: "Post Paid"
+      svProvName: "We", name: "Basic", internetQuantityOrPrice: 5, minutesQuantityOrPrice: 50, price: 10, status: "Post Paid"
     },
     {
       svProvName: "We", name: "Gold", internetQuantityOrPrice: 15, minutesQuantityOrPrice: 150, price: 30, status: "Pre Paid"

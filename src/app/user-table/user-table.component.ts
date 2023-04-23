@@ -101,7 +101,7 @@ export class UserTableComponent implements OnInit, OnChanges {
 
 
   async btnPay(index: number) {
-    //todo: open modal and pass it its inputs
+    //open modal and pass it its inputs
     this.billsToPay = [this.filteredInfoList[index]]
     this.billType = this.tableType
 
@@ -152,25 +152,27 @@ export class UserTableComponent implements OnInit, OnChanges {
   showPayMultipleBtn: boolean = false;
   selectedRows: boolean[] = [];
 
-  payMultipleBtnClick() {
+  payMultipleSelections() {
     let payList: CommonBill[] = [];
-    this.selectedRows.forEach((row,i) => {
-      if (row) {  
+    this.selectedRows.forEach((row, i) => {
+      if (row) {
         payList.push(this.infoList[i])
       }
     })
 
-    console.log('====================================');
-    console.log(payList);
-    console.log('====================================');
+    this.billsToPay = [...payList]
+    this.billType = this.tableType
   }
 
 
   toggleSelection() {
     let trueNums: number = 0
     this.selectedRows.forEach(row => {
-      if (row) {  trueNums += 1 }
+      if (row) { trueNums += 1 }
     })
+
+    if (trueNums > 1)
+      this.payMultipleSelections()
 
     this.showPayMultipleBtn = trueNums > 1 ? true : false
   }
