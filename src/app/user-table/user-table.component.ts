@@ -147,4 +147,33 @@ export class UserTableComponent implements OnInit, OnChanges {
   }
 
 
+  // === Pay Multiple ===
+
+  showPayMultipleBtn: boolean = false;
+  selectedRows: boolean[] = [];
+
+  payMultipleBtnClick() {
+    let payList: CommonBill[] = [];
+    this.selectedRows.forEach((row,i) => {
+      if (row) {  
+        payList.push(this.infoList[i])
+      }
+    })
+
+    console.log('====================================');
+    console.log(payList);
+    console.log('====================================');
+  }
+
+
+  toggleSelection() {
+    let trueNums: number = 0
+    this.selectedRows.forEach(row => {
+      if (row) {  trueNums += 1 }
+    })
+
+    this.showPayMultipleBtn = trueNums > 1 ? true : false
+  }
+
+
 }

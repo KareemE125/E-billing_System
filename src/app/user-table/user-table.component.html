@@ -6,6 +6,7 @@
                 <div class="bg-gray-100 rounded-lg shadow-lg">
                     <div class="px-6 py-4">
                         <h2 class="text-2xl font-bold mb-8 text-center">Bills</h2>
+
                         <div class="flex flex-wrap justify-between items-center mb-4">
                             <div>
                                 <span>Search: </span>
@@ -25,58 +26,74 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="bg-white p-2 rounded-lg mt-8 max-h-80 overflow-y-auto">
-                            <table class="w-full bg-white">
-                                <thead>
-                                    <tr>
-                                        <th class="text-left py-2">Year/Month</th>
-                                        <th *ngIf="tableType=='Telephone'" class="text-left py-2">
-                                            Offer Name
-                                        </th>
-                                        <th class="text-left py-2">Usage</th>
-                                        <th class="text-left py-2">Penalty</th>
-                                        <th class="text-left py-2">Total</th>
-                                        <th class="text-left py-2">Payment Date</th>
-                                        <th class="text-left py-2">Payment Method</th>
-                                        <th class="text-left py-2">Status</th>
-                                        <th class="text-left py-2">Download</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let info of filteredInfoList; let i = index">
-                                        <td class="border-t px-4 py-2">{{info.year}}/{{info.month}}</td>
-                                        <td  *ngIf="tableType=='Telephone'" class="border-t px-4 py-2">
-                                            {{info.offer}}
-                                        </td>
-                                        <td class="border-t px-4 py-2">{{info.units}} {{tableUnit}}</td>
-                                        <td class="border-t px-4 py-2">{{info.penalty}}</td>
-                                        <td class="border-t px-4 py-2">{{info.total}}</td>
-                                        <td class="border-t px-4 py-2"
-                                            [ngClass]="info.isPaid ? 'text-green-500' : 'text-red-500'">
-                                            {{info.isPaid ? (info.paymentDate | date:'dd/MM/yyyy'): info.paymentDate}}
-                                        </td>
-                                        <td class="border-t px-4 py-2"
-                                            [ngClass]="info.isPaid ? 'text-green-500' : 'text-red-500'">
-                                            {{info.paymentMethod}}</td>
+
+                        <section class="relative">
+                            <div *ngIf="showPayMultipleBtn"
+                                class="flex justify-center mb-4 absolute top-[-32px] left-0 right-0">
+                                <button (click)="payMultipleBtnClick()"
+                                    class="bg-gradient-to-r from-blue-500 via-green-500 to-yellow-300 font-semibold rounded-lg  text-white px-6 py-2">Pay Multiple</button>
+                            </div>
+                            <div class="bg-white p-2 rounded-lg mt-8 max-h-80 overflow-y-auto ">
+
+                                <table class="w-full bg-white">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left py-2"></th>
+                                            <th class="text-left py-2">Year/Month</th>
+                                            <th *ngIf="tableType=='Telephone'" class="text-left py-2">
+                                                Offer Name
+                                            </th>
+                                            <th class="text-left py-2">Usage</th>
+                                            <th class="text-left py-2">Penalty</th>
+                                            <th class="text-left py-2">Total</th>
+                                            <th class="text-left py-2">Payment Date</th>
+                                            <th class="text-left py-2">Payment Method</th>
+                                            <th class="text-left py-2">Status</th>
+                                            <th class="text-left py-2">Download</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let info of filteredInfoList; let i = index">
+                                            <td class="border-t px-4 py-2">
+                                                <input type="checkbox" [(ngModel)]="selectedRows[i]"
+                                                    (change)="toggleSelection()">
+                                            </td>
+                                            <td class="border-t px-4 py-2">{{info.year}}/{{info.month}}</td>
+                                            <td *ngIf="tableType=='Telephone'" class="border-t px-4 py-2">
+                                                {{info.offer}}
+                                            </td>
+                                            <td class="border-t px-4 py-2">{{info.units}} {{tableUnit}}</td>
+                                            <td class="border-t px-4 py-2">{{info.penalty}}</td>
+                                            <td class="border-t px-4 py-2">{{info.total}}</td>
+                                            <td class="border-t px-4 py-2"
+                                                [ngClass]="info.isPaid ? 'text-green-500' : 'text-red-500'">
+                                                {{info.isPaid ? (info.paymentDate | date:'dd/MM/yyyy'):
+                                                info.paymentDate}}
+                                            </td>
+                                            <td class="border-t px-4 py-2"
+                                                [ngClass]="info.isPaid ? 'text-green-500' : 'text-red-500'">
+                                                {{info.paymentMethod}}</td>
 
 
-                                        <td class="border-t py-2">
-                                            <div *ngIf="info.isPaid==false">
-                                                <app-user-pay-modal [billsToPay]="billsToPay" [billType]="billType" />
-                                            </div>
-                                            <p class="pl-3 text-green-500" *ngIf="info.isPaid==true">
-                                                Paid
-                                            </p>
-                                        </td>
+                                            <td class="border-t py-2">
+                                                <div *ngIf="info.isPaid==false">
+                                                    <app-user-pay-modal [billsToPay]="billsToPay"
+                                                        [billType]="billType" />
+                                                </div>
+                                                <p class="pl-3 text-green-500" *ngIf="info.isPaid==true">
+                                                    Paid
+                                                </p>
+                                            </td>
 
 
-                                        <td class="border-t pl-4 py-2 text-blue-500 cursor-pointer hover:text-blue-800"
-                                            (click)="dowloadBill(i)">Download</td>
+                                            <td class="border-t pl-4 py-2 text-blue-500 cursor-pointer hover:text-blue-800"
+                                                (click)="dowloadBill(i)">Download</td>
 
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
