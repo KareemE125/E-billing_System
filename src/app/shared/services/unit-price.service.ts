@@ -11,7 +11,7 @@ export class UnitPriceService {
   unitPriceCollection: AngularFirestoreCollection<UnitPrice>;
 
   constructor(private db: AngularFirestore) {
-    this.unitPriceCollection = this.db.collection("/unitPrice");
+    this.unitPriceCollection = this.db.collection("/unitPrices");
   }
 
   async getWaterUnitPrice(): Promise<number | null | false> {
@@ -30,7 +30,7 @@ export class UnitPriceService {
     }
   }
 
-  async getElectricityUnitPrice():  Promise<number | null | false> {
+  async getElectricityUnitPrice(): Promise<number | null | false> {
     try {
       const querySnapshot = await this.unitPriceCollection.ref
         .where("unit", "==", "Electricity")

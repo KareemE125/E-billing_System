@@ -4,6 +4,8 @@ import { ElectricityBill } from "../../models/bills/electricity.model";
 import { UserService } from "./user.service";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { DataService } from "./BillService.service";
+import * as uuid from 'uuid';
+
 @Injectable({
   providedIn: "root",
 })
@@ -25,6 +27,7 @@ export class ElectricityBillService extends DataService {
     try {
       const user = await this.userService.getUserById(userId);
       if (user) {
+        electricityBill.id = uuid.v4()
         user.electricityBills.push(electricityBill);
         await this.userService.updateUser(user);
       }
@@ -82,7 +85,25 @@ export class ElectricityBillService extends DataService {
       }
       return false;
     } catch (error) {
-      console.error("Error getting all telephone bills:", error);
+      console.error("Error getting all electricity bills:", error);
+      return null;
+    }
+  }
+
+  /**
+   * 
+   * @returns all the user electricity bills in the database, false if no users ,null if there was an error
+   */
+  async getUserElectricityBillsById(userId: string): Promise<ElectricityBill[] | null | false> {
+    console.log("Getting getUserElectricityBills...");
+    try {
+      const user = await this.userService.getUserById(userId);
+      if (user) {
+        return user.electricityBills;
+      }
+      return false;
+    } catch (error) {
+      console.error("Error getting user electricity bills:", error);
       return null;
     }
   }

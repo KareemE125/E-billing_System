@@ -12,8 +12,11 @@ export class SpTableComponent implements OnChanges {
   @Input() offerList: Offer[] = [];
   @Input() serviceProviderName: string = "";
   ngOnChanges(changes: SimpleChanges) {
+    console.log("those are the changes ", changes);
     if (changes['offerList']) {
-      this.offerList = changes['offerList'].currentValue as Offer[]
+      this.offerList = Object.keys(changes['offerList'].currentValue).map(key => {
+        return changes['offerList'].currentValue[key];
+      })
       this.filteredOfferList = [...this.offerList]
       this.searchText = ''
       this.selectedOption = 'Choose an option'

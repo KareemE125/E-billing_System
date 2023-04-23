@@ -4,6 +4,8 @@ import { TelephoneBill } from "../../models/bills/telephone.model";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { DataService } from "./BillService.service";
 import { UserService } from "./user.service";
+import * as uuid from 'uuid';
+
 @Injectable({
     providedIn: "root",
 })
@@ -24,6 +26,7 @@ export class TelephoneBillService extends DataService {
         try {
             const user = await this.userService.getUserById(userId);
             if (user != null && user != false) {
+                telephoneBill.id = uuid.v4()
                 user.telephoneBills.push(telephoneBill);
                 await this.userService.updateUser(user);
             }

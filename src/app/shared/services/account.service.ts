@@ -15,7 +15,7 @@ export class AccountService {
   loggedInSubject: Subject<boolean> = new Subject<boolean>() //for the subscribers
   currentUserSubject: Subject<CommonUser> = new Subject<CommonUser>() //for the subscribers
 
-  currentUserType?: UserType = UserType.User;
+  currentUserType?: UserType = undefined;
   currentUser?: CommonUser = undefined;
 
   // currentUserType?: UserType = UserType.User;
@@ -43,10 +43,15 @@ export class AccountService {
     this.currentUser = usr
     this.currentUserType = usrType
 
-    if (usr === undefined && usrType === undefined)
+    console.log("call to set current user with type: ", usrType, " and data: ", usr);
+
+    if (usr === undefined && usrType === undefined) {
       this._setLoginState(false)
-    else if (usr)
-      this._setCurrentUserSubject(usr)
+    }
+    else {
+      this._setCurrentUserSubject(usr!)
+      this._setLoginState(true)
+    }
   }
 
   logout(): void {

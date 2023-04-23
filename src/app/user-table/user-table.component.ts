@@ -21,10 +21,15 @@ export class UserTableComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     console.log("those are the changes ", changes);
     if (changes['infoList']) {
-      this.infoList = changes['infoList'].currentValue as CommonBill[]
+      this.infoList = Object.keys(changes['infoList'].currentValue).map(key => {
+        return changes['infoList'].currentValue[key];
+      })
       this.filteredInfoList = [...this.infoList]
       this.searchText = ''
       this.selectedOption = 'Choose an option'
+
+      console.log(JSON.stringify(this.infoList));
+      console.log(JSON.stringify(this.filteredInfoList));
     }
 
     changes['tableType'] && (this.tableType = changes['tableType'].currentValue)
