@@ -45,11 +45,53 @@ export class UnitPriceService {
       return null;
     }
   }
+
+  async getUnitPriceById(id: string): Promise<UnitPrice | null | false> {
+    try {
+      const querySnapshot = await this.unitPriceCollection.ref.where('id', '==', id).get();
+      if (!querySnapshot.empty) {
+        const unitPriceDoc = querySnapshot.docs[0];
+        return unitPriceDoc.data() as UnitPrice;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return null;
+    }
+  }
   async setWaterUnitPrice(value: number): Promise<number | null | false> {
-    return null;
+    try {
+      const waterUnitPrice = await this.getUnitPriceById("1");
+      if(waterUnitPrice != null && waterUnitPrice != false){
+        waterUnitPrice.price=value;
+        await this.unitPriceCollection.doc(waterUnitPrice.id).update(waterUnitPrice);
+        console.log("waterUnitPrice is updated to: ", waterUnitPrice);
+        return value;
+      }
+      else{
+        return false;
+      }
+    } catch (error) {
+      return null;
+    }
   }
 
+
+
   async setElectricityUnitPrice(value: number): Promise<number | null | false> {
-    return null;
+    try {
+      const electricityUnitPrice = await this.getUnitPriceById("2");
+      if(electricityUnitPrice != null && electricityUnitPrice != false){
+        electricityUnitPrice.price=value;
+        await this.unitPriceCollection.doc(electricityUnitPrice.id).update(electricityUnitPrice);
+        console.log("electricityUnitPrice is updated to: ", electricityUnitPrice);
+        return value;
+      }
+      else{
+        return false;
+      }
+    } catch (error) {
+      return null;
+    }
   }
 }

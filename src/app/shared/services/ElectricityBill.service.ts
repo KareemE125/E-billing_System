@@ -90,10 +90,7 @@ export class ElectricityBillService extends DataService {
     }
   }
 
-  /**
-   * 
-   * @returns all the user electricity bills in the database, false if no users ,null if there was an error
-   */
+
   async getUserElectricityBillsById(userId: string): Promise<ElectricityBill[] | null | false> {
     console.log("Getting getUserElectricityBills...");
     try {
@@ -107,4 +104,6 @@ export class ElectricityBillService extends DataService {
       return null;
     }
   }
+
+  
 }

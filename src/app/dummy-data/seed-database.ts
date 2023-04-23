@@ -1,6 +1,7 @@
 import { User } from "../models/users/user.model";
 import { Offer } from "../models/users/serviceProvider.model";
 import { ServiceProvider } from "../models/users/serviceProvider.model";
+import { Admin } from "../models/users/admin.model";
 
 export function getDummyUsers(): User[] {
     const users: User[] = [
@@ -319,3 +320,50 @@ export function getDummyServiceProviders(): ServiceProvider[] {
 
     return serviceProviders;
 }
+
+export function getDummyAdmins(): Admin[] {
+    const admins: Admin[] = [
+        {
+            id: '15635645',
+            name: 'admin',
+            email: 'admin@gmail.com',
+            password: 'Admin123456##',
+            phoneNumber: '01000000000',
+            address: {
+                street: 'street',
+                buildingNum: 1,
+                city: 'string',
+                country: 'string'
+            }
+        },
+        {
+            id: '156356452',
+            name: 'admin2',
+            email: 'admin2@gmail.com',
+            password: 'Admin123456##',
+            phoneNumber: '01000000000',
+            address: {
+                street: 'street',
+                buildingNum: 1,
+                city: 'string',
+                country: 'string'
+            }
+        },
+        {
+            id: '156356452',
+            name: 'admin3',
+            email: 'admin3@gmail.com',
+            password: 'Admin123456##',
+            phoneNumber: '01000000000',
+            address: {
+                street: 'street',
+                buildingNum: 1,
+                city: 'string',
+                country: 'string'
+            }
+        }
+        
+    ];
+
+    return admins;
+    }
