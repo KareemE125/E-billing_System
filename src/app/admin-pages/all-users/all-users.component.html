@@ -14,6 +14,7 @@
                         <select class="w-full sm:w-auto bg-white border rounded-lg p-1" [(ngModel)]="selectedOption"
                             [value]="selectedOption" (change)="filterUsers()">
                             <option selected disabled>Choose an option</option>
+                            <option value="none">None</option>
                             <option value="unpaidElectricity">Unpaid Electricity</option>
                             <option value="unpaidWater">Unpaid Water</option>
                             <option value="unpaidTelephone">Unpaid Telephone</option>
@@ -27,7 +28,7 @@
                                 <th class="text-left py-2">ID</th>
                                 <th class="text-left py-2">Name</th>
                                 <th class="text-left py-2">Unpaid Electricity</th>
-                                <th class="text-left py-2">Unpaid water</th>
+                                <th class="text-left py-2">Unpaid Water</th>
                                 <th class="text-left py-2">Unpaid Telephone</th>
                                 <th class="text-left py-2">Total</th>
                             </tr>

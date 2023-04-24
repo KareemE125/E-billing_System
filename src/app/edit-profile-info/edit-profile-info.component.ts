@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommonUser } from '../models/users/common.model';
+import { CommonUser, UserType } from '../models/users/common.model';
 import { ErrorsService } from '../shared/services/errors.service';
 import { AccountService } from '../shared/services/account.service';
 import { UserService } from '../shared/services/user.service';
@@ -85,7 +85,7 @@ export class EditProfileInfoComponent implements OnInit {
 
 
 
-  onSubmit() {
+  async onSubmit(): Promise<void> {
     if (this.editProfileInfo.valid) {
       const commonUsr: CommonUser = {
         id: this.accService.currentUser?.id || "", //get the current user id
@@ -95,15 +95,19 @@ export class EditProfileInfoComponent implements OnInit {
         password: this.password?.value,
         address: {
           street: this.street?.value,
-          buildingNum: parseInt(this.buildingNum?.value),
+          buildingNum: parseInt(this.buildingNum?.value ?? 0),
           city: this.city?.value,
           country: this.country?.value
         }
       };
+      if (commonUsr.address && !commonUsr.address?.buildingNum) commonUsr.address.buildingNum = 0
+
       if (this.accService.currentUserType == this.accService.GetUsersEnum().Admin) {
         //update the admin
         console.log("Admin about to be updated " + JSON.stringify(commonUsr));
-        this.adminService.updateAdmin(commonUsr);
+        if (await this.adminService.updateAdmin(commonUsr))
+          this.accService.SetCurrentUser(commonUsr, UserType.Admin)
+
 
       } else if (this.accService.currentUserType == this.accService.GetUsersEnum().User) {
         //update the user
@@ -114,7 +118,9 @@ export class EditProfileInfoComponent implements OnInit {
           ...commonUsr   //edit the commonUsr data
         }
         console.log("Normal user about to be updated " + JSON.stringify(user));
-        this.userService.updateUser(user);
+        if (await this.userService.updateUser(user))
+          this.accService.SetCurrentUser(user, UserType.User)
+
 
       } else if (this.accService.currentUserType == this.accService.GetUsersEnum().ServiceProvider) {
         //update the service provider
@@ -125,7 +131,8 @@ export class EditProfileInfoComponent implements OnInit {
           ...commonUsr   //edit the commonUsr data
         }
         console.log("Service Provider about to be updated " + JSON.stringify(srvProv));
-        this.servProvService.updateServiceProvider(srvProv);
+        if (await this.servProvService.updateServiceProvider(srvProv))
+          this.accService.SetCurrentUser(srvProv, UserType.ServiceProvider)
       }
     } else {
 

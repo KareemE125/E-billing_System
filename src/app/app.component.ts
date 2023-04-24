@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
     const users: User[] = getDummyUsers()
     for (let u of users) await this.userService.addUser(u);
 
-    const admins : Admin[]=getDummyAdmins();
+    const admins: Admin[] = getDummyAdmins();
     for (let a of admins) await this.adminService.addAdmin(a);
   }
 

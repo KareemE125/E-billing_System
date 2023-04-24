@@ -52,7 +52,7 @@
                             <label class="block text-gray-700 font-bold mb-2" for="password">Password</label>
                             <input formControlName="password"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="password" name="password" type="password" placeholder="Enter your password">
+                                id="password" name="password" type="text" placeholder="Enter your password">
                             <div class="text-red-500 text-xs mt-1"
                                 *ngIf="password!['invalid'] && (password!['dirty'] || password!['touched'])">
                                 <div *ngIf="password!['errors']!['required']">{{errs.Password.Required}}</div>

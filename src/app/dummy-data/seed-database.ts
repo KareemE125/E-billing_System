@@ -2,14 +2,15 @@ import { User } from "../models/users/user.model";
 import { Offer } from "../models/users/serviceProvider.model";
 import { ServiceProvider } from "../models/users/serviceProvider.model";
 import { Admin } from "../models/users/admin.model";
+import * as uuid from 'uuid';
 
 export function getDummyUsers(): User[] {
     const users: User[] = [
         {
-            id: '15555555',
+            id: uuid.v4(),
             name: 'user',
             email: 'user@gmail.com',
-            password: 'Test123456##',
+            password: "passwordD",//: 'Test123456##',
             phoneNumber: '01000000000',
             address: {
                 street: 'street',
@@ -17,7 +18,7 @@ export function getDummyUsers(): User[] {
                 city: 'string',
                 country: 'string'
             },
-            wallet: 10000,
+            wallet: 3000,
             waterBills: [
                 {
                     year: 1,       //1990 <= year <= 2022
@@ -28,7 +29,7 @@ export function getDummyUsers(): User[] {
                     isPaid: true,   //true or false
                     paymentDate: 1,
                     paymentMethod: 'Cash',
-                    id: '122354'
+                    id: uuid.v4(),
                 }
             ],
             telephoneBills: [
@@ -41,7 +42,7 @@ export function getDummyUsers(): User[] {
                     isPaid: true,   //true or false
                     paymentDate: 1,
                     paymentMethod: 'Cash',
-                    id: '122354',
+                    id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[0].name,
                     offerName: getDummyServiceProviders()[0].offers[0].name,
                     offerMin: getDummyServiceProviders()[0].offers[0].minutesQuantityOrPrice,
@@ -56,7 +57,7 @@ export function getDummyUsers(): User[] {
                     isPaid: true,   //true or false
                     paymentDate: 1,
                     paymentMethod: 'Cash',
-                    id: '122354',
+                    id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[1].name,
                     offerName: getDummyServiceProviders()[1].offers[1].name,
                     offerMin: getDummyServiceProviders()[1].offers[1].minutesQuantityOrPrice,
@@ -73,7 +74,7 @@ export function getDummyUsers(): User[] {
                     isPaid: true,   //true or false
                     paymentDate: 1,
                     paymentMethod: 'Cash',
-                    id: '122354'
+                    id: uuid.v4(),
                 },
                 {
                     year: 1,       //1990 <= year <= 2022
@@ -84,16 +85,15 @@ export function getDummyUsers(): User[] {
                     isPaid: false,   //true or false
                     paymentDate: 'Not Yet',
                     paymentMethod: 'Not Yet',
-                    id: '122354'
+                    id: uuid.v4(),
                 }
             ]
         },
         {
-            id: '1',
-            name: 'John Doe',
+            id: uuid.v4(), name: 'John Doe',
             email: 'johndoe@example.com',
             phoneNumber: '01000000000',
-            password: 'passwordD1',
+            password: "passwordD",//password: 'passwordD1',
             wallet: 50,
             address: {
                 street: 'Main St',
@@ -103,8 +103,7 @@ export function getDummyUsers(): User[] {
             },
             waterBills: [
                 {
-                    id: '1',
-                    year: 2023,
+                    id: uuid.v4(), year: 2023,
                     month: 1,
                     units: 100,
                     penalty: 0,
@@ -114,8 +113,7 @@ export function getDummyUsers(): User[] {
                     paymentMethod: "Cash"
                 },
                 {
-                    id: '2',
-                    year: 2023,
+                    id: uuid.v4(), year: 2023,
                     month: 1,
                     units: 100,
                     penalty: 0,
@@ -129,11 +127,10 @@ export function getDummyUsers(): User[] {
             electricityBills: []
         },
         {
-            id: '2',
-            name: 'Jane Smith',
+            id: uuid.v4(), name: 'Jane Smith',
             email: 'janesmith@example.com',
             phoneNumber: '01000000000',
-            password: 'passwordD2',
+            password: "passwordD",//password: 'passwordD2',
             wallet: 100,
             address: {
                 street: 'Broadway',
@@ -144,8 +141,7 @@ export function getDummyUsers(): User[] {
             waterBills: [],
             telephoneBills: [
                 {
-                    id: '1',
-                    year: 2023,
+                    id: uuid.v4(), year: 2023,
                     month: 2,
                     units: 200,
                     penalty: 20,
@@ -159,8 +155,7 @@ export function getDummyUsers(): User[] {
                     offerInt: getDummyServiceProviders()[0].offers[1].internetQuantityOrPrice
                 },
                 {
-                    id: '2',
-                    year: 2023,
+                    id: uuid.v4(), year: 2023,
                     month: 2,
                     units: 200,
                     penalty: 40,
@@ -176,11 +171,10 @@ export function getDummyUsers(): User[] {
             electricityBills: []
         },
         {
-            id: '3',
-            name: 'Bob Johnson',
+            id: uuid.v4(), name: 'Bob Johnson',
             email: 'bobjohnson@example.com',
             phoneNumber: '01000000000',
-            password: 'passwordD3',
+            password: "passwordD",//password: 'passwordD3',
             wallet: 300,
             address: {
                 street: 'Park Ave',
@@ -192,8 +186,7 @@ export function getDummyUsers(): User[] {
             telephoneBills: [],
             electricityBills: [
                 {
-                    id: '1',
-                    year: 2023,
+                    id: uuid.v4(), year: 2023,
                     month: 1,
                     units: 100,
                     penalty: 0,
@@ -202,8 +195,7 @@ export function getDummyUsers(): User[] {
                     paymentDate: Date.now(), paymentMethod: "Wallet"
                 },
                 {
-                    id: '2',
-                    year: 2023,
+                    id: uuid.v4(), year: 2023,
                     month: 1,
                     units: 100,
                     penalty: 0,
@@ -215,11 +207,10 @@ export function getDummyUsers(): User[] {
             ]
         },
         {
-            id: '4',
-            name: 'Alice Lee',
+            id: uuid.v4(), name: 'Alice Lee',
             email: 'alicelee@example.com',
             phoneNumber: '01000000000',
-            password: 'passworDd4',
+            password: "passwordD",//password: 'passworDd4',
             wallet: 400,
             address: {
                 street: 'High St',
@@ -283,11 +274,11 @@ export function getDummyServiceProviders(): ServiceProvider[] {
 
     const serviceProviders: ServiceProvider[] = [
         {
-            id: "1",
+            id: uuid.v4(),
             name: "Provider A",
-            email: "providera@example.com",
+            email: "serviceprovider@gmail.com",
             phoneNumber: "01000000000",
-            password: "passwordD",
+            password: "passwordD",//password: "passwordD",
             address: {
                 street: "123 Main Street",
                 buildingNum: 1,
@@ -300,11 +291,10 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             ],
         },
         {
-            id: "2",
-            name: "Provider B",
+            id: uuid.v4(), name: "Provider B",
             email: "providerb@example.com",
             phoneNumber: "01000000000",
-            password: "passwordD",
+            password: "passwordD",//password: "passwordD",
             address: {
                 street: "456 Main Street",
                 buildingNum: 2,
@@ -324,10 +314,9 @@ export function getDummyServiceProviders(): ServiceProvider[] {
 export function getDummyAdmins(): Admin[] {
     const admins: Admin[] = [
         {
-            id: '15635645',
-            name: 'admin',
+            id: uuid.v4(), name: 'admin',
             email: 'admin@gmail.com',
-            password: 'Admin123456##',
+            password: "passwordD",//password: 'Admin123456##',
             phoneNumber: '01000000000',
             address: {
                 street: 'street',
@@ -337,10 +326,9 @@ export function getDummyAdmins(): Admin[] {
             }
         },
         {
-            id: '156356452',
-            name: 'admin2',
+            id: uuid.v4(), name: 'admin2',
             email: 'admin2@gmail.com',
-            password: 'Admin123456##',
+            password: "passwordD",//password: 'Admin123456##',
             phoneNumber: '01000000000',
             address: {
                 street: 'street',
@@ -350,10 +338,9 @@ export function getDummyAdmins(): Admin[] {
             }
         },
         {
-            id: '156356452',
-            name: 'admin3',
+            id: uuid.v4(), name: 'admin3',
             email: 'admin3@gmail.com',
-            password: 'Admin123456##',
+            password: "passwordD",//password: 'Admin123456##',
             phoneNumber: '01000000000',
             address: {
                 street: 'street',
@@ -362,8 +349,7 @@ export function getDummyAdmins(): Admin[] {
                 country: 'string'
             }
         }
-        
-    ];
 
+    ];
     return admins;
-    }
+}

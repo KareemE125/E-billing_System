@@ -111,9 +111,9 @@ export class AddBillComponent implements OnInit {
         id: "",
         year: this.year?.value,
         month: this.month?.value,
-        units: parseInt(this.units?.value),
-        penalty: parseFloat(this.penalty?.value),
-        total: parseFloat(this.penalty?.value), //will add the units later
+        units: parseInt(this.units?.value ?? 0),
+        penalty: parseFloat(this.penalty?.value ?? 0),
+        total: parseFloat(this.penalty?.value ?? 0), //will add the units later
         isPaid: false,
         paymentDate: "Not Yet", paymentMethod: "Not Yet"
 
@@ -167,7 +167,8 @@ export class AddBillComponent implements OnInit {
           serviceProviderName: vals[0],
           offerName: vals[1],
           offerInt: offer?.internetQuantityOrPrice || 0,
-          offerMin: offer?.minutesQuantityOrPrice || 0
+          offerMin: offer?.minutesQuantityOrPrice || 0,
+          units: 0, //no units in telephone bill
         }
         commonBill.total += parseFloat(this.total?.value);
 

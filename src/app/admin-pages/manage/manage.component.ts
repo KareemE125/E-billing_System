@@ -70,7 +70,6 @@ export class ManageComponent implements OnInit {
       }
 
       this.toastService.showToast(true, 'Unit successfully set', '')
-      this.setElectricityUnitForm.reset()
     } else {
 
       this.setElectricityUnitForm.markAllAsTouched();
@@ -92,7 +91,6 @@ export class ManageComponent implements OnInit {
       }
 
       this.toastService.showToast(true, 'Unit successfully set', '')
-      this.setWaterUnitForm.reset()
     } else {
 
       this.setWaterUnitForm.markAllAsTouched();
