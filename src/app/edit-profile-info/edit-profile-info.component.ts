@@ -8,6 +8,7 @@ import { AdminService } from '../shared/services/admin.service';
 import { User } from '../models/users/user.model';
 import { ServiceProvider } from '../models/users/serviceProvider.model';
 import { ServiceProviderService } from '../shared/services/service-provider.service';
+import { PendingPaymentsUpdateService } from '../shared/services/pending-payments-update.service';
 
 @Component({
   selector: 'app-edit-profile-info',
@@ -25,7 +26,7 @@ export class EditProfileInfoComponent implements OnInit {
 
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder,
     accService: AccountService, private userService: UserService, private adminService: AdminService,
-    private servProvService: ServiceProviderService) {
+    private servProvService: ServiceProviderService, private pendingPaymentsService: PendingPaymentsUpdateService) {
     this.errs = errService.getErrors().EditProfileInfoErrors
     this.accService = accService
 
@@ -47,7 +48,12 @@ export class EditProfileInfoComponent implements OnInit {
       const tmpUser = this.accService.currentUser as User
       this.wallet = tmpUser.wallet
 
+
       this.pendingPayments = this.accService.getTotalPendingPayments()
+      //not really needed here
+      this.pendingPaymentsService.updatePendingPaymentsSubj.subscribe(e => {
+        this.pendingPayments = this.accService.getTotalPendingPayments()
+      })
 
     }
     else if (this.accService.currentUserType === this.accService.GetUsersEnum().Admin)

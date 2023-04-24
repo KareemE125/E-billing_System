@@ -13,6 +13,7 @@ import { ElectricityBill } from 'src/app/models/bills/electricity.model';
 import { UserType } from 'src/app/models/users/common.model';
 import { TelephoneBill } from 'src/app/models/bills/telephone.model';
 import { UserService } from 'src/app/shared/services/user.service';
+import { PendingPaymentsUpdateService } from 'src/app/shared/services/pending-payments-update.service';
 
 @Component({
   selector: 'app-user-pay-modal',
@@ -54,7 +55,7 @@ export class ModalComponent implements OnChanges {
     private accService: AccountService, private toastService: ToastService,
     private elecService: ElectricityBillService, private waterService: WaterBillService,
     private userService: UserService,
-    private telephoneService: TelephoneBillService) {
+    private telephoneService: TelephoneBillService, private pendingPaymentsService: PendingPaymentsUpdateService) {
     this.errs = errService.getErrors().PayWithCardErrors
     this.randomPaymentCode = uuid.v4().substring(0, 16);
     this.payWithCardForm = this.formBuilder.group({
@@ -119,8 +120,9 @@ export class ModalComponent implements OnChanges {
         user.wallet -= this.amountToPay
         await this.userService.updateUser(user)
       }
-      //update the current user with the new bills paid
+      //update the current user with the new bills paid and notify the subject of pending payments
       this.accService.SetCurrentUser(user as User, UserType.User)
+      this.pendingPaymentsService.setPendingPaymentsChange()
       this.toggleModal()
       this.toastService.showToast(true, 'Bill successfully paid', '')
     } else {

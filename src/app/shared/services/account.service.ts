@@ -30,6 +30,7 @@ export class AccountService {
 
   constructor(private router: Router) {
     const usr: any = JSON.parse(localStorage.getItem("user") ?? "{}")
+
     if (usr)
       this.SetCurrentUser(usr.user, usr.userType)
 

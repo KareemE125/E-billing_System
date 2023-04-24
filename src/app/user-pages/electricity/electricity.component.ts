@@ -4,6 +4,7 @@ import { UnitPriceService } from 'src/app/shared/services/unit-price.service';
 import { ElectricityBillService } from 'src/app/shared/services/ElectricityBill.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { AccountService } from 'src/app/shared/services/account.service';
+import { PendingPaymentsUpdateService } from 'src/app/shared/services/pending-payments-update.service';
 
 @Component({
   selector: 'app-electricity',
@@ -33,12 +34,16 @@ export class ElectricityComponent implements OnInit {
   ];
 
   constructor(private accService: AccountService, private unitPriceService: UnitPriceService,
-    private electricityService: ElectricityBillService, private toastService: ToastService) {
+    private electricityService: ElectricityBillService, private toastService: ToastService, private pendingPaymentsService: PendingPaymentsUpdateService) {
 
   }
 
   async ngOnInit(): Promise<void> {
     this.pendingPayments = this.accService.getPendingElectricityPayments()
+
+    this.pendingPaymentsService.updatePendingPaymentsSubj.subscribe(e => {
+      this.pendingPayments = this.accService.getPendingElectricityPayments()
+    })
 
     //subscribe to an event to recalculate this function above
 
