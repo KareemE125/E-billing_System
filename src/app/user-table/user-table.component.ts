@@ -100,12 +100,12 @@ export class UserTableComponent implements OnInit, OnChanges {
   }
 
 
-  async btnPay(index: number) {
-    //open modal and pass it its inputs
-    this.billsToPay = [this.filteredInfoList[index]]
-    this.billType = this.tableType
+  // async btnPay(index: number) {
+  //   //open modal and pass it its inputs
+  //   this.billsToPay = [this.filteredInfoList[index]]
+  //   this.billType = this.tableType
 
-  }
+  // }
 
   dowloadBill(index: number) {
 
@@ -120,28 +120,37 @@ export class UserTableComponent implements OnInit, OnChanges {
 
     const doc = new jsPDF();
 
+    // Set font size and color for the document
     doc.setFontSize(fontSize);
     doc.setTextColor(fontColor);
 
+    // Draw the header rectangle with background and text color
     doc.setFillColor(headerColor);
     doc.setTextColor(headerTextColor);
     doc.rect(10, 10, 190, 20, 'F');
     doc.text(`${this.tableType} Bill`, 100, 20, { align: 'center' });
 
+    // Draw the main rectangle with background color
     doc.setFillColor(backgroundColor);
-    doc.rect(10, 35, 190, 40, 'F');
+    doc.rect(10, 35, 190, 85, 'F');
+
+    // Set font color for the text
     doc.setTextColor(fontColor);
+
+    // Add the billing information as text to the document
     doc.text(`Date: ${info.year}/${info.month}`, 15, 45);
     doc.text(`Units: ${info.units} ${this.tableUnit}`, 15, 55);
     doc.text(`Penalty: ${info.penalty}`, 15, 65);
     doc.text(`Total: ${info.total}`, 15, 75);
     doc.text(`Payment Method: ${info.paymentMethod}`, 15, 85);
     doc.text(`Payment Date: ${new Date(info.paymentDate).toLocaleDateString()}`, 15, 95);
+    doc.text(`Is Paid: ${info.isPaid}`, 15, 105);
 
-
+    // Draw the border rectangle
     doc.setDrawColor(borderColor);
-    doc.rect(10, 10, 190, 75);
+    doc.rect(10, 10, 190, 110);
 
+    // Save the PDF with a unique filename
     doc.save(`invoice_${info.year}_${info.month}.pdf`);
 
   }
@@ -171,8 +180,7 @@ export class UserTableComponent implements OnInit, OnChanges {
       if (row) { trueNums += 1 }
     })
 
-    if (trueNums > 1)
-      this.payMultipleSelections()
+    this.payMultipleSelections()
 
     this.showPayMultipleBtn = trueNums > 1 ? true : false
   }

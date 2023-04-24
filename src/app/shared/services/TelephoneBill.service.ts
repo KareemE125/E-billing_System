@@ -52,7 +52,7 @@ export class TelephoneBillService extends DataService {
                     const index = user.telephoneBills.findIndex((tb) => tb.id === bill.id);
                     if (index === -1) {
                         console.error("telephone bill not found");
-                        return null;
+                        continue
                     }
                     user.telephoneBills[index] = bill;
                 }

@@ -62,13 +62,13 @@ export class UnitPriceService {
   async setWaterUnitPrice(value: number): Promise<number | null | false> {
     try {
       const waterUnitPrice = await this.getUnitPriceById("1");
-      if(waterUnitPrice != null && waterUnitPrice != false){
-        waterUnitPrice.price=value;
-        await this.unitPriceCollection.doc(waterUnitPrice.id).update(waterUnitPrice);
+      if (waterUnitPrice != null && waterUnitPrice != false) {
+        waterUnitPrice.price = value;
+        await this.unitPriceCollection.doc("1").update(waterUnitPrice);
         console.log("waterUnitPrice is updated to: ", waterUnitPrice);
         return value;
       }
-      else{
+      else {
         return false;
       }
     } catch (error) {
@@ -81,13 +81,14 @@ export class UnitPriceService {
   async setElectricityUnitPrice(value: number): Promise<number | null | false> {
     try {
       const electricityUnitPrice = await this.getUnitPriceById("2");
-      if(electricityUnitPrice != null && electricityUnitPrice != false){
-        electricityUnitPrice.price=value;
-        await this.unitPriceCollection.doc(electricityUnitPrice.id).update(electricityUnitPrice);
+
+      if (electricityUnitPrice != null && electricityUnitPrice != false) {
+        electricityUnitPrice.price = value;
+        await this.unitPriceCollection.doc("2").update(electricityUnitPrice);
         console.log("electricityUnitPrice is updated to: ", electricityUnitPrice);
         return value;
       }
-      else{
+      else {
         return false;
       }
     } catch (error) {

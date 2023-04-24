@@ -63,6 +63,17 @@ export class SignUpComponent {
   async onSubmit() {
     if (this.signUpForm.valid) {
       const usrTypeVal: number = Number.parseInt(this.userType?.value);
+
+      const adminPresent = await this.adminService.getAdminByEmail(this.email?.value)
+      const userPresent = await this.userService.getUserByEmail(this.email?.value)
+      const serviceProviderPresent = await this.servProvService.getServiceProviderByEmail(this.email?.value)
+
+      if (adminPresent || userPresent || serviceProviderPresent) {
+        this.toastService.showToast(false, "This email already exists, please choose a different one", '')
+        return
+      }
+
+
       if (usrTypeVal === this.accService.GetUsersEnum().Admin) {
         //create an admin
         const admin: Admin = {
@@ -73,6 +84,8 @@ export class SignUpComponent {
           password: this.password?.value,
           address: null,
         }
+
+
         console.log("Admin created " + JSON.stringify(admin));
         const res = await this.adminService.addAdmin(admin);
         if (!res) {

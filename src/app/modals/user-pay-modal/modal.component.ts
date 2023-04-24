@@ -12,6 +12,7 @@ import { TelephoneBillService } from 'src/app/shared/services/TelephoneBill.serv
 import { ElectricityBill } from 'src/app/models/bills/electricity.model';
 import { UserType } from 'src/app/models/users/common.model';
 import { TelephoneBill } from 'src/app/models/bills/telephone.model';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-user-pay-modal',
@@ -22,6 +23,7 @@ export class ModalComponent implements OnChanges {
 
   @Input() billsToPay: CommonBill[] = [];
   @Input() billType: 'Water' | 'Electricity' | 'Telephone' = 'Water'
+  @Input() canBeUsedAsIsMultiple: boolean = false
 
   ngOnChanges(changes: SimpleChanges) {
     console.log("those are the changes ", changes);
@@ -29,10 +31,11 @@ export class ModalComponent implements OnChanges {
       this.billsToPay = Object.keys(changes['billsToPay'].currentValue).map(key => {
         return changes['billsToPay'].currentValue[key];
       })
+      this.ngOnInit()
     }
     changes['billType'] && (this.billType = changes['billType'].currentValue)
+    changes['canBeUsedAsIsMultiple'] && (this.canBeUsedAsIsMultiple = changes['canBeUsedAsIsMultiple'].currentValue)
 
-    console.log(this.billsToPay);
   }
   selectedTab: 'tab1' | 'tab2' = 'tab1';
   randomPaymentCode: string;
@@ -50,6 +53,7 @@ export class ModalComponent implements OnChanges {
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder,
     private accService: AccountService, private toastService: ToastService,
     private elecService: ElectricityBillService, private waterService: WaterBillService,
+    private userService: UserService,
     private telephoneService: TelephoneBillService) {
     this.errs = errService.getErrors().PayWithCardErrors
     this.randomPaymentCode = uuid.v4().substring(0, 16);
@@ -63,6 +67,7 @@ export class ModalComponent implements OnChanges {
 
   ngOnInit(): void {
     this.wallet = (this.accService.currentUser as User).wallet;
+    this.amountToPay = 0;
     for (let bill of this.billsToPay) {
       this.amountToPay += bill.total
     }
@@ -80,11 +85,14 @@ export class ModalComponent implements OnChanges {
     if (this.selectedTab === 'tab1' || (this.selectedTab === 'tab2' && this.payWithCardForm.valid)) {
       const paymentDate: number = new Date().getTime()
       let user: false | User | null = null;
+      console.log({ bp: this.billsToPay });
       for (let bill of this.billsToPay) {
         bill.isPaid = true
         bill.paymentDate = paymentDate
         bill.paymentMethod = paymentMethod
       }
+
+
 
       if (this.billType === 'Electricity') {
         user = await this.elecService.updateElectricityBills(this.accService.currentUser?.id ?? "", this.billsToPay)
@@ -98,6 +106,7 @@ export class ModalComponent implements OnChanges {
           this.toastService.showToast(false, 'Unable to pay water bill', '')
           return
         }
+
       } else if (this.billType === 'Telephone') {
         user = await this.telephoneService.updateTelephoneBills(this.accService.currentUser?.id ?? "", this.billsToPay as TelephoneBill[])
         if (!user) {
@@ -106,6 +115,10 @@ export class ModalComponent implements OnChanges {
         }
       }
 
+      if (user && paymentMethod === "Wallet") {
+        user.wallet -= this.amountToPay
+        await this.userService.updateUser(user)
+      }
       //update the current user with the new bills paid
       this.accService.SetCurrentUser(user as User, UserType.User)
       this.toggleModal()

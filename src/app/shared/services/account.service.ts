@@ -28,7 +28,12 @@ export class AccountService {
   //   address: null   //not required
   // };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    const usr: any = JSON.parse(localStorage.getItem("user") ?? "{}")
+    if (usr)
+      this.SetCurrentUser(usr.user, usr.userType)
+
+  }
 
   private _setLoginState(isLogged: boolean) {
     this.loggedInSubject.next(isLogged)
@@ -51,12 +56,14 @@ export class AccountService {
     else {
       this._setCurrentUserSubject(usr!)
       this._setLoginState(true)
+      localStorage.setItem("user", JSON.stringify({ userType: usrType, user: usr }))
     }
   }
 
   logout(): void {
     this.SetCurrentUser(undefined, undefined);
     this.router.navigate(['/login'])
+    localStorage.removeItem("user")
   }
 
   isLoggedIn(): boolean {   //for the normal methods

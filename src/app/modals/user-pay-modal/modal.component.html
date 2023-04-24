@@ -1,5 +1,5 @@
 <button class="bg-blue-500 py-1 px-4 text-white rounded-lg" (click)="openModal()">
-  {{this.billsToPay.length > 1 ? 'Pay Multiple Bills' : 'Pay' }}
+  {{this.canBeUsedAsIsMultiple && this.billsToPay.length > 1 ? 'Pay Multiple Bills' : 'Pay' }}
 </button>
 
 <section *ngIf="showModal">
@@ -37,7 +37,8 @@
                     Use Code
                   </button>
                   <div class="mt-2">OR</div>
-                  <button class="bg-blue-500 w-32 mt-4 py-2 px-6 text-white rounded-lg" (click)="onSubmit('Wallet')">
+                  <button [disabled]="amountToPay > wallet" [ngClass]="amountToPay > wallet ? 'bg-gray-500':''"
+                    class="bg-blue-500 w-32 mt-4 py-2 px-6 text-white rounded-lg" (click)="onSubmit('Wallet')">
                     Use Wallet
                   </button>
                 </div>
@@ -129,7 +130,7 @@
 
 
                 <button class="bg-blue-500 w-full mt-4 py-2 px-6 text-white rounded-lg" type="submit">
-                  >
+
                   Place Payment
                 </button>
               </form>

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonBill } from 'src/app/models/bills/commonBill.model';
-import { Offer } from 'src/app/models/users/serviceProvider.model';
+import { Offer, ServiceProvider } from 'src/app/models/users/serviceProvider.model';
 import { TelephoneBillService } from 'src/app/shared/services/TelephoneBill.service';
 import { AccountService } from 'src/app/shared/services/account.service';
+import { ServiceProviderService } from 'src/app/shared/services/service-provider.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { UnitPriceService } from 'src/app/shared/services/unit-price.service';
 
@@ -41,40 +42,31 @@ export class TelephoneComponent {
   ];
 
   constructor(private accService: AccountService, private unitPriceService: UnitPriceService,
-    private telephoneService: TelephoneBillService, private toastService: ToastService) {
+    private telephoneService: TelephoneBillService, private srvProvService: ServiceProviderService,
+    private toastService: ToastService) {
 
   }
 
   async ngOnInit(): Promise<void> {
     this.pendingPayments = this.accService.getPendingTelephonePayments()
 
-
     const bills = await this.telephoneService.getUserTelephoneBillsById(this.accService.currentUser?.id!);
     if (!bills)
       this.toastService.showToast(false, 'Unable to get the telephone bills', '')
     else this.infoList = [...bills]
 
+
+    const sps = await this.srvProvService.getAllServiceProviders()
+    if (!sps) {
+      this.toastService.showToast(false, 'Unable to get all the service providers', '')
+    } else {
+      this.srvProvs = sps
+    }
+
   }
 
   // Tab Two
 
-  spNames: string[] = ["We", "Vodafone", "Etisalat"]
+  srvProvs: ServiceProvider[] = []
 
-  offer: Offer[] = [
-    {
-      svProvName: "We", name: "Premium", internetQuantityOrPrice: 10, minutesQuantityOrPrice: 100, price: 20, status: "Post Paid"
-    },
-    {
-      svProvName: "We", name: "Basic", internetQuantityOrPrice: 5, minutesQuantityOrPrice: 50, price: 10, status: "Post Paid"
-    },
-    {
-      svProvName: "We", name: "Gold", internetQuantityOrPrice: 15, minutesQuantityOrPrice: 150, price: 30, status: "Pre Paid"
-    },
-  ]
-
-  offersList = [
-    this.offer,
-    this.offer,
-    this.offer,
-  ]
 }

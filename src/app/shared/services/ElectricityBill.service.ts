@@ -53,7 +53,7 @@ export class ElectricityBillService extends DataService {
           const index = user.electricityBills.findIndex((eb) => eb.id === bill.id);
           if (index === -1) {
             console.error("electricity bill " + bill.id + " not found");
-            return null;
+            continue
           }
           user.electricityBills[index] = bill;
         }
@@ -105,5 +105,5 @@ export class ElectricityBillService extends DataService {
     }
   }
 
-  
+
 }

@@ -16,7 +16,7 @@
                             </div>
                             <div>
                                 <span>Filter: </span>
-                                <select class="w-full sm:w-auto bg-white border rounded-lg px-0 py-1"
+                                <select class="w-full sm:w-auto bg-white border rounded-lg px-2 py-1"
                                     [(ngModel)]="selectedOption" [value]="selectedOption" (change)="filterUsers()">
                                     <option selected disabled>Choose an option</option>
                                     <option value="paid">Paid</option>
@@ -30,7 +30,8 @@
                         <section class="relative">
                             <div *ngIf="showPayMultipleBtn"
                                 class="flex justify-center mb-4 absolute top-[-32px] left-0 right-0">
-                                <app-user-pay-modal [billsToPay]="billsToPay" [billType]="billType" />
+                                <app-user-pay-modal [billsToPay]="billsToPay" [billType]="tableType"
+                                    [canBeUsedAsIsMultiple]="true" />
                                 <!-- <button (click)="payMultipleBtnClick()"
                                     class="bg-gradient-to-r from-blue-500 via-green-500 to-yellow-300 font-semibold rounded-lg  text-white px-6 py-2">Pay
                                     Multiple</button> -->
@@ -79,8 +80,9 @@
 
                                             <td class="border-t py-2">
                                                 <div *ngIf="info.isPaid==false">
-                                                    <app-user-pay-modal [billsToPay]="billsToPay"
-                                                        [billType]="billType" />
+                                                    <app-user-pay-modal
+                                                        [billsToPay]="billsToPay.length === 0 ? [filteredInfoList[i]] : billsToPay"
+                                                        [billType]="tableType" [canBeUsedAsIsMultiple]="false" />
                                                 </div>
                                                 <p class="pl-3 text-green-500" *ngIf="info.isPaid==true">
                                                     Paid

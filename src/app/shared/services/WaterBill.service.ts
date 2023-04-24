@@ -51,7 +51,7 @@ export class WaterBillService extends DataService {
           const index = user.waterBills.findIndex((wb) => wb.id === bill.id);
           if (index === -1) {
             console.error("Water bill not found");
-            return null;
+            continue
           }
           user.waterBills[index] = bill;
         }
