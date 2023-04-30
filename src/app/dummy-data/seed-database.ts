@@ -66,25 +66,36 @@ export function getDummyUsers(): User[] {
             ],
             electricityBills: [
                 {
-                    year: 1,       //1990 <= year <= 2022
+                    year: 2023,       //1990 <= year <= 2022
                     month: 1,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 100,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 150,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
                     units: 1,      //0 <= units <= 100000
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 1,      //0 <= total <= 100000
                     isPaid: true,   //true or false
                     paymentDate: 1,
                     paymentMethod: 'Cash',
-                    id: uuid.v4(),
-                },
-                {
-                    year: 1,       //1990 <= year <= 2022
-                    month: 1,      //1 <= month <= 12
-                    units: 1,      //0 <= units <= 100000
-                    penalty: 1,    //0 <= penalty <= 100000
-                    total: 1,      //0 <= total <= 100000
-                    isPaid: false,   //true or false
-                    paymentDate: 'Not Yet',
-                    paymentMethod: 'Not Yet',
                     id: uuid.v4(),
                 }
             ]
@@ -221,7 +232,353 @@ export function getDummyUsers(): User[] {
             waterBills: [],
             telephoneBills: [],
             electricityBills: []
+        },
+        {
+            id: uuid.v4(), name: 'Salah',
+            email: 'Salah@example.com',
+            phoneNumber: '01102527521',
+            password: "passwordD",//password: 'passworDd4',
+            wallet: 150000,
+            address: {
+                street: 'High St',
+                buildingNum: 456,
+                city: 'Anytown',
+                country: 'USA'
+            },
+            waterBills: [
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 4,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1150,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 5,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 650,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                }
+            ],
+            telephoneBills: [
+                {
+                    year: 1,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[4].name,
+                    offerName: getDummyServiceProviders()[2].offers[4].name,
+                    offerMin: getDummyServiceProviders()[2].offers[4].minutesQuantityOrPrice,
+                    offerInt: getDummyServiceProviders()[2].offers[4].internetQuantityOrPrice
+                },
+                {
+                    year: 1,       //1990 <= year <= 2022
+                    month: 11,      //1 <= month <= 12
+                    units: 11,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                    offerMin: getDummyServiceProviders()[1].offers[1].minutesQuantityOrPrice,
+                    offerInt: getDummyServiceProviders()[1].offers[1].internetQuantityOrPrice
+                }
+            ],
+            electricityBills: [
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 100,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 150,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                }
+            ]
+        },
+        {
+            id: uuid.v4(), name: 'Mezo',
+            email: 'Mezo@example.com',
+            phoneNumber: '01234567890',
+            password: "passwordD",//password: 'passworDd4',
+            wallet: 5000,
+            address: {
+                street: 'High St',
+                buildingNum: 456,
+                city: 'Anytown',
+                country: 'USA'
+            },
+            waterBills: [
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 4,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1150,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 5,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 650,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                }
+            ],
+            telephoneBills: [
+                {
+                    year: 1,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[0].name,
+                    offerName: getDummyServiceProviders()[0].offers[0].name,
+                    offerMin: getDummyServiceProviders()[0].offers[0].minutesQuantityOrPrice,
+                    offerInt: getDummyServiceProviders()[0].offers[0].internetQuantityOrPrice
+                },
+                {
+                    year: 1,       //1990 <= year <= 2022
+                    month: 11,      //1 <= month <= 12
+                    units: 11,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                    offerMin: getDummyServiceProviders()[1].offers[1].minutesQuantityOrPrice,
+                    offerInt: getDummyServiceProviders()[1].offers[1].internetQuantityOrPrice
+                }
+            ],
+            electricityBills: [
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 100,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 150,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                }
+            ]
+        },
+        {
+            id: uuid.v4(), name: 'Kemo',
+            email: 'Kemo@example.com',
+            phoneNumber: '01234567890',
+            password: "passwordD",//password: 'passworDd4',
+            wallet: 10000,
+            address: {
+                street: 'High St',
+                buildingNum: 456,
+                city: 'Anytown',
+                country: 'USA'
+            },
+            waterBills: [
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 4,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1150,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 5,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 650,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                }
+            ],
+            telephoneBills: [
+                {
+                    year: 1,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[0].name,
+                    offerName: getDummyServiceProviders()[0].offers[0].name,
+                    offerMin: getDummyServiceProviders()[0].offers[0].minutesQuantityOrPrice,
+                    offerInt: getDummyServiceProviders()[0].offers[0].internetQuantityOrPrice
+                },
+                {
+                    year: 1,       //1990 <= year <= 2022
+                    month: 11,      //1 <= month <= 12
+                    units: 11,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                    offerMin: getDummyServiceProviders()[1].offers[1].minutesQuantityOrPrice,
+                    offerInt: getDummyServiceProviders()[1].offers[1].internetQuantityOrPrice
+                }
+            ],
+            electricityBills: [
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 100,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 150,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                }
+            ]
         }
+
     ];
 
     return users;
@@ -265,6 +622,24 @@ export function getDummyOffers(): Offer[] {
             svProvName: "Provider B"
 
         },
+        {
+            name: "Offer B3",
+            internetQuantityOrPrice: 50,
+            minutesQuantityOrPrice: 60,
+            price: 70,
+            status: "Pre Paid",
+            svProvName: "Provider B"
+
+        },
+        {
+            name: "Offer B4",
+            internetQuantityOrPrice: 1000,
+            minutesQuantityOrPrice: 1000,
+            price: 1000,
+            status: "Post Paid",
+            svProvName: "Provider B"
+
+        }
     ]
 
     return offers;
@@ -306,6 +681,38 @@ export function getDummyServiceProviders(): ServiceProvider[] {
                 getDummyOffers()[3],
             ],
         },
+        {
+            id: uuid.v4(), name: "Provider B2",
+            email: "providerb2@example.com",
+            phoneNumber: "01000000000",
+            password: "passwordD",//password: "passwordD",
+            address: {
+                street: "456 Main Street",
+                buildingNum: 2,
+                city: "Los Angeles",
+                country: "USA",
+            },
+            offers: [
+                getDummyOffers()[4],
+                getDummyOffers()[5],
+            ],
+        },
+        {
+            id: uuid.v4(), name: "Provider B3",
+            email: "providerb3@example.com",
+            phoneNumber: "01000000000",
+            password: "passwordD",//password: "passwordD",
+            address: {
+                street: "456 Main Street",
+                buildingNum: 2,
+                city: "Los Angeles",
+                country: "USA",
+            },
+            offers: [
+                getDummyOffers()[1],
+                getDummyOffers()[5],
+            ],
+        }
     ];
 
     return serviceProviders;
@@ -340,6 +747,30 @@ export function getDummyAdmins(): Admin[] {
         {
             id: uuid.v4(), name: 'admin3',
             email: 'admin3@gmail.com',
+            password: "passwordD",//password: 'Admin123456##',
+            phoneNumber: '01000000000',
+            address: {
+                street: 'street',
+                buildingNum: 1,
+                city: 'string',
+                country: 'string'
+            }
+        },
+        {
+            id: uuid.v4(), name: 'admin4',
+            email: 'admin4@gmail.com',
+            password: "passwordD",//password: 'Admin123456##',
+            phoneNumber: '01000000000',
+            address: {
+                street: 'street',
+                buildingNum: 1,
+                city: 'string',
+                country: 'string'
+            }
+        },
+        {
+            id: uuid.v4(), name: 'admin5',
+            email: 'admin5@gmail.com',
             password: "passwordD",//password: 'Admin123456##',
             phoneNumber: '01000000000',
             address: {
