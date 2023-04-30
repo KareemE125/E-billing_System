@@ -170,7 +170,7 @@ export class AddBillComponent implements OnInit {
           offerMin: offer?.minutesQuantityOrPrice || 0,
           units: 0, //no units in telephone bill
         }
-        commonBill.total += parseFloat(this.total?.value);
+        telephoneBill.total += parseFloat(this.total?.value);
 
         console.log("Telephone bill created " + JSON.stringify(telephoneBill));
         const billAdded = await this.telephoneBillService.addTelephoneBillToUser(user.id, telephoneBill);
