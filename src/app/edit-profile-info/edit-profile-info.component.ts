@@ -9,6 +9,7 @@ import { User } from '../models/users/user.model';
 import { ServiceProvider } from '../models/users/serviceProvider.model';
 import { ServiceProviderService } from '../shared/services/service-provider.service';
 import { PendingPaymentsUpdateService } from '../shared/services/pending-payments-update.service';
+import { ToastService } from '../shared/services/toast.service';
 
 @Component({
   selector: 'app-edit-profile-info',
@@ -26,7 +27,8 @@ export class EditProfileInfoComponent implements OnInit {
 
   constructor(private errService: ErrorsService, private formBuilder: FormBuilder,
     accService: AccountService, private userService: UserService, private adminService: AdminService,
-    private servProvService: ServiceProviderService, private pendingPaymentsService: PendingPaymentsUpdateService) {
+    private servProvService: ServiceProviderService, private pendingPaymentsService: PendingPaymentsUpdateService,
+    private toastService: ToastService) {
     this.errs = errService.getErrors().EditProfileInfoErrors
     this.accService = accService
 
@@ -111,8 +113,12 @@ export class EditProfileInfoComponent implements OnInit {
       if (this.accService.currentUserType == this.accService.GetUsersEnum().Admin) {
         //update the admin
         console.log("Admin about to be updated " + JSON.stringify(commonUsr));
-        if (await this.adminService.updateAdmin(commonUsr))
+        if (await this.adminService.updateAdmin(commonUsr)) {
           this.accService.SetCurrentUser(commonUsr, UserType.Admin)
+          this.toastService.showToast(true, "Admin details successfully updated", '')
+        } else {
+          this.toastService.showToast(false, "Unable to update admin details", '')
+        }
 
 
       } else if (this.accService.currentUserType == this.accService.GetUsersEnum().User) {
@@ -124,8 +130,12 @@ export class EditProfileInfoComponent implements OnInit {
           ...commonUsr   //edit the commonUsr data
         }
         console.log("Normal user about to be updated " + JSON.stringify(user));
-        if (await this.userService.updateUser(user))
+        if (await this.userService.updateUser(user)) {
           this.accService.SetCurrentUser(user, UserType.User)
+          this.toastService.showToast(true, "User details successfully updated", '')
+        } else {
+          this.toastService.showToast(false, "Unable to update user details", '')
+        }
 
 
       } else if (this.accService.currentUserType == this.accService.GetUsersEnum().ServiceProvider) {
@@ -137,8 +147,12 @@ export class EditProfileInfoComponent implements OnInit {
           ...commonUsr   //edit the commonUsr data
         }
         console.log("Service Provider about to be updated " + JSON.stringify(srvProv));
-        if (await this.servProvService.updateServiceProvider(srvProv))
+        if (await this.servProvService.updateServiceProvider(srvProv)) {
           this.accService.SetCurrentUser(srvProv, UserType.ServiceProvider)
+          this.toastService.showToast(true, "Service provider details successfully updated", '')
+        } else {
+          this.toastService.showToast(false, "Unable to update service provider details", '')
+        }
       }
     } else {
 

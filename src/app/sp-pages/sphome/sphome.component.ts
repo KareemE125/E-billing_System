@@ -57,6 +57,7 @@ export class SPHomeComponent implements OnInit {
     this.serviceProviderName = accService.currentUser?.name || "-";
   }
   async ngOnInit(): Promise<void> {
+    this.offers = await this.serviceProvService.getServiceProviderOffersByName(this.serviceProviderName) || []
     const res = this.serviceProvService.serviceProviderOffersSubj.subscribe(
       e => {
         console.log("offers changes: " + JSON.stringify(e));
