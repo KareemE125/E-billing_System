@@ -46,6 +46,9 @@ export class EditProfileInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
+
     if (this.accService.currentUserType === this.accService.GetUsersEnum().User) {
       this.editProfileInfoTitle = "User Information"
       const tmpUser = this.accService.currentUser as User
@@ -92,9 +95,17 @@ export class EditProfileInfoComponent implements OnInit {
     return this.editProfileInfo.get('country');
   }
 
+  toggleCheckBox() {
+    this.canEditChecked = !this.canEditChecked
+    console.log(this.canEditChecked);
+  }
 
 
   async onSubmit(): Promise<void> {
+    if (!this.canEditChecked) {
+      this.toastService.showToast(false, "Editing not enabled", '')
+      return
+    }
     if (this.editProfileInfo.valid) {
       const commonUsr: CommonUser = {
         id: this.accService.currentUser?.id || "", //get the current user id
@@ -156,8 +167,9 @@ export class EditProfileInfoComponent implements OnInit {
         }
       }
     } else {
-
+      this.toastService.showToast(false, "Invalid form", '')
       this.editProfileInfo.markAllAsTouched();
     }
   }
+
 }

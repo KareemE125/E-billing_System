@@ -28,8 +28,6 @@ export class UserTableComponent implements OnInit, OnChanges {
       this.searchText = ''
       this.selectedOption = 'Choose an option'
 
-      console.log(JSON.stringify(this.infoList));
-      console.log(JSON.stringify(this.filteredInfoList));
     }
 
     changes['tableType'] && (this.tableType = changes['tableType'].currentValue)

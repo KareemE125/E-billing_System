@@ -17,7 +17,8 @@
                     <section class="border p-4 rounded-md shadow-lg">
                         <div class="mb-4">
                             <label class="block text-gray-700 font-bold mb-2" for="name">Name</label>
-                            <input formControlName="name"
+                            <input formControlName="name" [readonly]="!this.canEditChecked"
+                                [class.disabled]="!this.canEditChecked"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="name" name="name" type="text" placeholder="Enter your name">
                             <div class="text-red-500 text-xs mt-1"
@@ -36,7 +37,8 @@
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 font-bold mb-2" for="phoneNumber">Phone Number</label>
-                            <input formControlName="phoneNumber"
+                            <input formControlName="phoneNumber" [readonly]="!this.canEditChecked"
+                                [class.disabled]="!this.canEditChecked"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="phoneNumber" name="phoneNumber" type="text" placeholder="Enter your phone number">
                             <div class="text-red-500 text-xs mt-1"
@@ -49,7 +51,8 @@
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 font-bold mb-2" for="password">Password</label>
-                            <input formControlName="password"
+                            <input formControlName="password" [readonly]="!this.canEditChecked"
+                                [class.disabled]="!this.canEditChecked"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="password" name="password" type="text" placeholder="Enter your password">
                             <div class="text-red-500 text-xs mt-1"
@@ -66,7 +69,8 @@
                     <section class="border p-4 rounded-md shadow-lg">
                         <div class="mb-6">
                             <label class="block text-gray-700 font-bold mb-2" for="street">Street</label>
-                            <input formControlName="street"
+                            <input formControlName="street" [readonly]="!this.canEditChecked"
+                                [class.disabled]="!this.canEditChecked"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="street" name="street" type="text" placeholder="Enter your street">
                             <div class="text-red-500 text-xs mt-1"
@@ -76,7 +80,8 @@
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 font-bold mb-2" for="buildingNum">Building Number</label>
-                            <input formControlName="buildingNum"
+                            <input formControlName="buildingNum" [readonly]="!this.canEditChecked"
+                                [class.disabled]="!this.canEditChecked"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="buildingNum" name="buildingNum" type="text"
                                 placeholder="Enter your building number">
@@ -87,7 +92,8 @@
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 font-bold mb-2" for="city">City</label>
-                            <input formControlName="city"
+                            <input formControlName="city" [readonly]="!this.canEditChecked"
+                                [class.disabled]="!this.canEditChecked"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="city" name="city" type="text" placeholder="Enter your city">
                             <div class="text-red-500 text-xs mt-1"
@@ -97,7 +103,8 @@
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 font-bold mb-2" for="country">Country</label>
-                            <input formControlName="country"
+                            <input formControlName="country" [readonly]="!this.canEditChecked"
+                                [class.disabled]="!this.canEditChecked"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="country" name="country" type="text" placeholder="Enter your country">
                             <div class="text-red-500 text-xs mt-1"
@@ -122,6 +129,11 @@
                     type="submit">
                     Save
                 </button>
+
+                <td class="flex font-bold space-x-3 px-10 py-2">
+                    <input type="checkbox" [checked]="this.canEditChecked" (change)="toggleCheckBox()">
+                    <div class="text-xl"> Edit</div>
+                </td>
             </div>
 
 
