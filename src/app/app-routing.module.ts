@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { UserHomeComponent } from './user-pages/home/user-home.component';
+import { UserHomeComponent } from './pages/user-pages/home/user-home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { AboutUsComponent } from './user-pages/about-us/about-us.component';
-import { WaterComponent } from './user-pages/water/water.component';
-import { ElectricityComponent } from './user-pages/electricity/electricity.component';
+import { AboutUsComponent } from './pages/user-pages/about-us/about-us.component';
+import { WaterComponent } from './pages/user-pages/water/water.component';
+import { ElectricityComponent } from './pages/user-pages/electricity/electricity.component';
 import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
-import { AllUsersComponent } from './admin-pages/all-users/all-users.component';
-import { ManageComponent } from './admin-pages/manage/manage.component';
-import { TelephoneComponent } from './user-pages/telephone/telephone.component';
+import { AllUsersComponent } from './pages/admin-pages/all-users/all-users.component';
+import { ManageComponent } from './pages/admin-pages/manage/manage.component';
+import { TelephoneComponent } from './pages/user-pages/telephone/telephone.component';
 import { AuthGuardService } from './shared/services/auth-guard.service';
-import { AdminCommonTableComponent } from './admin-pages/admin-common-table/admin-common-table.component';
-import { SPHomeComponent } from './sp-pages/sphome/sphome.component';
+import { AdminCommonTableComponent } from './pages/admin-pages/admin-common-table/admin-common-table.component';
+import { SPHomeComponent } from './pages/sp-pages/sphome/sphome.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

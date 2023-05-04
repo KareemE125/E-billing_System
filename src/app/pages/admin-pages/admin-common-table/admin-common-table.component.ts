@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonBill } from 'src/app/models/bills/commonBill.model';
-import { TelephoneBill } from 'src/app/models/bills/telephone.model';
-import { User } from 'src/app/models/users/user.model';
+import { CommonBill } from 'src/app/shared/models/bills/commonBill.model';
+import { TelephoneBill } from 'src/app/shared/models/bills/telephone.model';
+import { User } from 'src/app/shared/models/users/user.model';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { UserService } from 'src/app/shared/services/user.service';
 

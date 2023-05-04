@@ -2,11 +2,11 @@ import {
   AngularFirestoreCollection,
   AngularFirestore
 } from '@angular/fire/compat/firestore'
-import { User } from '../../models/users/user.model'
+import { User } from '../models/users/user.model'
 import { Injectable } from '@angular/core'
 import { ElectricityBillService } from './ElectricityBill.service'
-import { ServiceProvider } from 'src/app/models/users/serviceProvider.model'
-import { Admin } from 'src/app/models/users/admin.model'
+import { ServiceProvider } from 'src/app/shared/models/users/serviceProvider.model'
+import { Admin } from 'src/app/shared/models/users/admin.model'
 
 @Injectable({
   providedIn: 'root'

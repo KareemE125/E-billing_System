@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { User } from "../../models/users/user.model";
-import { WaterBill } from "../../models/bills/water.model";
+import { User } from "../models/users/user.model";
+import { WaterBill } from "../models/bills/water.model";
 import { UserService } from "./user.service";
 import { AngularFirestore, AngularFirestoreCollection, } from "@angular/fire/compat/firestore";
 import { DataService } from "./BillService.service";

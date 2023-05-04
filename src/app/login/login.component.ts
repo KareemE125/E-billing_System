@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorsService } from '../shared/services/errors.service';
 import { UserService } from '../shared/services/user.service';
 import { WaterBillService } from '../shared/services/WaterBill.service';
-import { User } from '../models/users/user.model';
+import { User } from '../shared/models/users/user.model';
 import { AdminService } from '../shared/services/admin.service';
 import { ServiceProviderService } from '../shared/services/service-provider.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../shared/services/toast.service';
 import { AccountService } from '../shared/services/account.service';
-import { UserType } from '../models/users/common.model';
+import { UserType } from '../shared/models/users/common.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

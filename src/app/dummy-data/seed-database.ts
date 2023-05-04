@@ -1,7 +1,7 @@
-import { User } from "../models/users/user.model";
-import { Offer } from "../models/users/serviceProvider.model";
-import { ServiceProvider } from "../models/users/serviceProvider.model";
-import { Admin } from "../models/users/admin.model";
+import { User } from "../shared/models/users/user.model";
+import { Offer } from "../shared/models/users/serviceProvider.model";
+import { ServiceProvider } from "../shared/models/users/serviceProvider.model";
+import { Admin } from "../shared/models/users/admin.model";
 import * as uuid from 'uuid';
 
 export function getDummyUsers(): User[] {
@@ -287,9 +287,9 @@ export function getDummyUsers(): User[] {
                     paymentDate: 1,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
-                    serviceProviderName: getDummyServiceProviders()[4].name,
-                    offerName: getDummyServiceProviders()[2].offers[4].name,
-                    offerUnits: getDummyServiceProviders()[2].offers[4].units
+                    serviceProviderName: getDummyServiceProviders()[2].name,
+                    offerName: getDummyServiceProviders()[2].offers[0].name,
+                    offerUnits: getDummyServiceProviders()[2].offers[0].units
                 },
                 {
                     year: 1,       //1990 <= year <= 2022
@@ -301,9 +301,9 @@ export function getDummyUsers(): User[] {
                     paymentDate: 1,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
-                    serviceProviderName: getDummyServiceProviders()[1].name,
-                    offerName: getDummyServiceProviders()[1].offers[1].name,
-                    offerUnits: getDummyServiceProviders()[1].offers[1].units
+                    serviceProviderName: getDummyServiceProviders()[3].name,
+                    offerName: getDummyServiceProviders()[3].offers[1].name,
+                    offerUnits: getDummyServiceProviders()[3].offers[1].units
                 }
             ],
             electricityBills: [

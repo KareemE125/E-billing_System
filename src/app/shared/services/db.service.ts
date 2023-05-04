@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Admin } from 'src/app/models/users/admin.model';
-import { User } from 'src/app/models/users/user.model';
+import { Admin } from 'src/app/shared/models/users/admin.model';
+import { User } from 'src/app/shared/models/users/user.model';
 
 @Injectable({
   providedIn: 'root'

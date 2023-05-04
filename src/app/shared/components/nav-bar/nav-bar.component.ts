@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../shared/services/account.service'
+import { AccountService } from '../../services/account.service'
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav-bar',

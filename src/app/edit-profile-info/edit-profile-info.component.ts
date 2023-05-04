@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommonUser, UserType } from '../models/users/common.model';
+import { CommonUser, UserType } from '../shared/models/users/common.model';
 import { ErrorsService } from '../shared/services/errors.service';
 import { AccountService } from '../shared/services/account.service';
 import { UserService } from '../shared/services/user.service';
 import { AdminService } from '../shared/services/admin.service';
-import { User } from '../models/users/user.model';
-import { ServiceProvider } from '../models/users/serviceProvider.model';
+import { User } from '../shared/models/users/user.model';
+import { ServiceProvider } from '../shared/models/users/serviceProvider.model';
 import { ServiceProviderService } from '../shared/services/service-provider.service';
 import { PendingPaymentsUpdateService } from '../shared/services/pending-payments-update.service';
 import { ToastService } from '../shared/services/toast.service';

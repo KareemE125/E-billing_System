@@ -2,16 +2,16 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { ErrorsService } from 'src/app/shared/services/errors.service';
-import { User } from 'src/app/models/users/user.model';
-import { CommonBill } from 'src/app/models/bills/commonBill.model';
+import { User } from 'src/app/shared/models/users/user.model';
+import { CommonBill } from 'src/app/shared/models/bills/commonBill.model';
 import * as uuid from 'uuid';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { ElectricityBillService } from 'src/app/shared/services/ElectricityBill.service';
 import { WaterBillService } from 'src/app/shared/services/WaterBill.service';
 import { TelephoneBillService } from 'src/app/shared/services/TelephoneBill.service';
-import { ElectricityBill } from 'src/app/models/bills/electricity.model';
-import { UserType } from 'src/app/models/users/common.model';
-import { TelephoneBill } from 'src/app/models/bills/telephone.model';
+import { ElectricityBill } from 'src/app/shared/models/bills/electricity.model';
+import { UserType } from 'src/app/shared/models/users/common.model';
+import { TelephoneBill } from 'src/app/shared/models/bills/telephone.model';
 import { UserService } from 'src/app/shared/services/user.service';
 import { PendingPaymentsUpdateService } from 'src/app/shared/services/pending-payments-update.service';
 

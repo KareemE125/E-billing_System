@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Offer, ServiceProvider } from '../../models/users/serviceProvider.model';
+import { Offer, ServiceProvider } from '../models/users/serviceProvider.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore'
 import { Subject } from 'rxjs';
 import { DataService } from './BillService.service';

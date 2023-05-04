@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CommonBill } from 'src/app/models/bills/commonBill.model';
-import { Offer, ServiceProvider } from 'src/app/models/users/serviceProvider.model';
+import { CommonBill } from 'src/app/shared/models/bills/commonBill.model';
+import { Offer, ServiceProvider } from 'src/app/shared/models/users/serviceProvider.model';
 import { TelephoneBillService } from 'src/app/shared/services/TelephoneBill.service';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { PendingPaymentsUpdateService } from 'src/app/shared/services/pending-payments-update.service';

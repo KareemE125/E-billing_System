@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Offer } from 'src/app/models/users/serviceProvider.model';
+import { Offer } from 'src/app/shared/models/users/serviceProvider.model';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { ServiceProviderService } from 'src/app/shared/services/service-provider.service';
 import { ToastService } from 'src/app/shared/services/toast.service';

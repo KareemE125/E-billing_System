@@ -1,23 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonBill } from '../../models/bills/commonBill.model';
+import { Component } from '@angular/core';
+import { CommonBill } from '../../../shared/models/bills/commonBill.model';
 import { UnitPriceService } from 'src/app/shared/services/unit-price.service';
-import { ElectricityBillService } from 'src/app/shared/services/ElectricityBill.service';
+import { WaterBillService } from 'src/app/shared/services/WaterBill.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { PendingPaymentsUpdateService } from 'src/app/shared/services/pending-payments-update.service';
 
 @Component({
-  selector: 'app-electricity',
-  templateUrl: './electricity.component.html',
-  styleUrls: ['./electricity.component.css']
+  selector: 'app-water',
+  templateUrl: './water.component.html',
+  styleUrls: ['./water.component.css']
 })
-export class ElectricityComponent implements OnInit {
-
-  tableType: 'Water' | 'Electricity' | 'Telephone' = "Electricity"
-  tableUnit: string = "kWh";
+export class WaterComponent {
+  tableType: 'Water' | 'Electricity' | 'Telephone' = "Water"
+  tableUnit: string = "m3";
   unitPrice: number = 0;
   pendingPayments: number = 0
-
   infoList: CommonBill[] = [
     // {
     //   id: '1', year: 2021, month: 9, total: 500, isPaid: false, penalty: 20, units: 890, paymentDate: "Not Yet", paymentMethod: "Not Yet"
@@ -31,32 +29,31 @@ export class ElectricityComponent implements OnInit {
     // {
     //   id: '1', year: 2023, month: 2, total: 1500, isPaid: true, penalty: 30, units: 230, paymentDate: 1682180396000, paymentMethod: "Cash"
     // }
+
   ];
 
   constructor(private accService: AccountService, private unitPriceService: UnitPriceService,
-    private electricityService: ElectricityBillService, private toastService: ToastService, private pendingPaymentsService: PendingPaymentsUpdateService) {
+    private waterService: WaterBillService, private toastService: ToastService, private pendingPaymentsService: PendingPaymentsUpdateService) {
 
   }
 
   async ngOnInit(): Promise<void> {
-    this.pendingPayments = this.accService.getPendingElectricityPayments()
+
+    this.pendingPayments = this.accService.getPendingWaterPayments()
 
     this.pendingPaymentsService.updatePendingPaymentsSubj.subscribe(e => {
-      this.pendingPayments = this.accService.getPendingElectricityPayments()
+      this.pendingPayments = this.accService.getPendingWaterPayments()
     })
 
-    //subscribe to an event to recalculate this function above
-
-    const bills = await this.electricityService.getUserElectricityBillsById(this.accService.currentUser?.id!);
+    const bills = await this.waterService.getAUserWaterBillsById(this.accService.currentUser?.id!);
     if (!bills)
-      this.toastService.showToast(false, 'Unable to get the electricity bills', '')
+      this.toastService.showToast(false, 'Unable to get the water bills', '')
     else this.infoList = { ...bills }
 
-    const ePrice = await this.unitPriceService.getElectricityUnitPrice();
-    if (!ePrice)
-      this.toastService.showToast(false, 'Unable to get the electricity price', '')
-    else this.unitPrice = ePrice;
+    const wPrice = await this.unitPriceService.getWaterUnitPrice();
+    if (!wPrice)
+      this.toastService.showToast(false, 'Unable to get the water price', '')
+    else this.unitPrice = wPrice;
 
   }
-
 }

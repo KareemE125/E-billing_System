@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { UnitPrice } from "src/app/models/state/unitPrice.model";
+import { UnitPrice } from "src/app/shared/models/state/unitPrice.model";
 import {
   AngularFirestoreCollection,
   AngularFirestore,

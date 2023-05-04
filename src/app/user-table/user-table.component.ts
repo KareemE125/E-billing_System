@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { CommonBill } from '../models/bills/commonBill.model'
+import { CommonBill } from '../shared/models/bills/commonBill.model'
 import jsPDF from 'jspdf';
-import { User } from '../models/users/user.model';
+import { User } from '../shared/models/users/user.model';
 import { AccountService } from '../shared/services/account.service';
 
 @Component({

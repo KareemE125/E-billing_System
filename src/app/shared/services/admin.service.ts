@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Admin } from '../../models/users/admin.model';
+import { Admin } from '../models/users/admin.model';
 import { DataService } from './BillService.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore'
 @Injectable({
@@ -7,7 +7,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore'
 })
 export class AdminService extends DataService {
 
-  constructor(db: AngularFirestore ) {
+  constructor(db: AngularFirestore) {
     super(db);
   }
   async addAdmin(admin: Admin): Promise<Admin | null> {
@@ -23,13 +23,13 @@ export class AdminService extends DataService {
     }
   }
 
-  async updateAdmin(admin: Admin) : Promise<null | true>{
-    try{
+  async updateAdmin(admin: Admin): Promise<null | true> {
+    try {
       console.log(`Updating admin ${JSON.stringify(admin)} to firebase`)
       await this.adminCollection.doc(admin.id).update(admin);
       return true;
     }
-    catch(error){
+    catch (error) {
       console.error('Error updating admin: ', error);
       return null;
     }
