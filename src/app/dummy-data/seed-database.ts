@@ -9,7 +9,7 @@ export function getDummyUsers(): User[] {
         {
             id: uuid.v4(),
             name: 'user',
-            email: 'user@gmail.com',
+            email: 'user1@gmail.com',
             password: "passwordD",//: 'Test123456##',
             phoneNumber: '01000000000',
             address: {

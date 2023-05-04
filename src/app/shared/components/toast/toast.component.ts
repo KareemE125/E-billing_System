@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AccountService } from '../shared/services/account.service';
-import { ToastService } from '../shared/services/toast.service';
+import { AccountService } from '../../services/account.service';
+import { ToastService } from '../../services/toast.service';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { ToastService } from '../shared/services/toast.service';
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.css']
 })
-export class ToastComponent{
+export class ToastComponent {
 
 
   title: string = "";
@@ -17,15 +17,15 @@ export class ToastComponent{
 
   isClosed: boolean = true;
 
-  constructor(private toastService:ToastService){
-    this.toastService.toastState.subscribe((state)=>{
+  constructor(private toastService: ToastService) {
+    this.toastService.toastState.subscribe((state) => {
 
-      this.ShowToast(state.isSuccess,state.title,state.message)
+      this.ShowToast(state.isSuccess, state.title, state.message)
     })
   }
 
   ShowToast(isSuccess: boolean, title: string, message: string): void {
-    let localTimeOut: any 
+    let localTimeOut: any
     clearTimeout(localTimeOut)
     this.isClosed = false
     this.isSuccess = isSuccess

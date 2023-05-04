@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './shared/pages/login/login.component';
 import { UserHomeComponent } from './pages/user-pages/home/user-home.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpComponent } from './shared/pages/sign-up/sign-up.component';
 import { AboutUsComponent } from './pages/user-pages/about-us/about-us.component';
 import { WaterComponent } from './pages/user-pages/water/water.component';
 import { ElectricityComponent } from './pages/user-pages/electricity/electricity.component';
-import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
+import { EditProfileInfoComponent } from './shared/pages/edit-profile-info/edit-profile-info.component';
 import { AllUsersComponent } from './pages/admin-pages/all-users/all-users.component';
 import { ManageComponent } from './pages/admin-pages/manage/manage.component';
 import { TelephoneComponent } from './pages/user-pages/telephone/telephone.component';

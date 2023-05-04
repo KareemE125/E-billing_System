@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommonUser, userTypes } from '../shared/models/users/common.model';
-import { Admin } from '../shared/models/users/admin.model';
-import { User } from '../shared/models/users/user.model';
-import { ErrorsService } from '../shared/services/errors.service';
-import { UserService } from '../shared/services/user.service';
-import { AdminService } from '../shared/services/admin.service';
-import { AccountService } from '../shared/services/account.service';
-import { ServiceProvider } from '../shared/models/users/serviceProvider.model';
-import { ServiceProviderService } from '../shared/services/service-provider.service';
+import { CommonUser, userTypes } from '../../models/users/common.model';
+import { Admin } from '../../models/users/admin.model';
+import { User } from '../../models/users/user.model';
+import { ErrorsService } from '../../services/errors.service';
+import { UserService } from '../../services/user.service';
+import { AdminService } from '../../services/admin.service';
+import { AccountService } from '../../services/account.service';
+import { ServiceProvider } from '../../models/users/serviceProvider.model';
+import { ServiceProviderService } from '../../services/service-provider.service';
 import { Router } from '@angular/router';
-import { ToastService } from '../shared/services/toast.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-sign-up',

@@ -128,6 +128,18 @@ export class AddBillComponent implements OnInit {
         this.toastService.showToast(false, "Incorrect user email", '')
         return
       }
+
+      // add a penalty of 200 to the bill in 2 cases
+      // the bill year is less than the current year
+      // or
+      // the bill year is the same as this year, but the bill month is less than the current month
+      const curDate = new Date()
+      const penaltyAdded: boolean = (curDate.getFullYear() > commonBill.year) || (
+        curDate.getFullYear() >= commonBill.year && curDate.getMonth() > commonBill.month
+      )
+      const penaltyToAdd: number = penaltyAdded ? 200 : 0;
+      commonBill.penalty += penaltyToAdd;
+
       const user: CommonUser = { ...res }
 
 
@@ -179,8 +191,10 @@ export class AddBillComponent implements OnInit {
         }
       }
 
-      //todo show a toast that the bill was added
-      this.toastService.showToast(true, 'Bill successfully added', '')
+      const penaltyMessage: string = penaltyAdded ? "additional penalty for late payment of " + penaltyToAdd + " EGP." :
+        "no additional penalty.";
+
+      this.toastService.showToast(true, 'Bill successfully added with  ' + penaltyMessage, '')
       this.addBillForm.reset()
     } else {
 

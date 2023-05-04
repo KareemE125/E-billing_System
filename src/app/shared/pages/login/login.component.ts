@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ErrorsService } from '../shared/services/errors.service';
-import { UserService } from '../shared/services/user.service';
-import { WaterBillService } from '../shared/services/WaterBill.service';
-import { User } from '../shared/models/users/user.model';
-import { AdminService } from '../shared/services/admin.service';
-import { ServiceProviderService } from '../shared/services/service-provider.service';
+import { ErrorsService } from '../../services/errors.service';
+import { UserService } from '../../services/user.service';
+import { WaterBillService } from '../../services/WaterBill.service';
+import { User } from '../../models/users/user.model';
+import { AdminService } from '../../services/admin.service';
+import { ServiceProviderService } from '../../services/service-provider.service';
 import { Router } from '@angular/router';
-import { ToastService } from '../shared/services/toast.service';
-import { AccountService } from '../shared/services/account.service';
-import { UserType } from '../shared/models/users/common.model';
+import { ToastService } from '../../services/toast.service';
+import { AccountService } from '../../services/account.service';
+import { UserType } from '../../models/users/common.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
