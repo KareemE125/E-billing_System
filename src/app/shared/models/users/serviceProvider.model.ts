@@ -8,8 +8,8 @@ export interface ServiceProvider extends CommonUser {
 export interface Offer {
     svProvName: string,
     name: string,
-    units: number,
-    price: number,
+    units: number | "Per Usage",    //undefined if post paid
+    priceOrPricePerUnit: number,    //undefined if post paid
     status: "Pre Paid" | "Post Paid",
 }
 

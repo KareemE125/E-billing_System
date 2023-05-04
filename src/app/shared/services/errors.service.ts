@@ -120,10 +120,10 @@ export class ErrorsService {
           Required: _reqErr("Units"),
           Pattern: _invalidErr("Units")
         },
-        // Total: {
-        //   Required: _reqErr("Total"),
-        //   Pattern: _invalidErr("Total")
-        // },
+        UnitsUsage: {
+          Required: _reqErr("Units usage"),
+          Pattern: _invalidErr("Units usage")
+        },
         ServProv_offerName: {
           Required: _reqErr("Service Provider / Offer Name")
         }

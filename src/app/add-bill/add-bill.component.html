@@ -85,11 +85,11 @@
 
 
 
-            <div *ngIf="this.category?.value !== 'Telephone'; else waterAndElectricity" class="mb-6">
+            <div *ngIf="this.category?.value !== 'Telephone'; else telephone" class="mb-6">
                 <label class="block text-gray-700 font-bold mb-2" for="units">Units</label>
                 <input formControlName="units"
-                    class="appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
-                    id="units" name="units" type="text" placeholder="Enter the units" [value]="">
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="units" name="units" type="text" placeholder="Enter the units">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="units!['invalid'] && (units!['dirty'] || units!['touched'])">
                     <div *ngIf="units!['errors']!['required']">{{errs.Units.Required}}</div>
@@ -97,12 +97,34 @@
                 </div>
             </div>
 
-            <ng-template #waterAndElectricity>
+            <ng-template #telephone>
                 <div class="mb-4">
-                    <label class="block text-gray-700 font-bold mb-2" for="total">Total</label>
-                    <input formControlName="total" readonly [class.disabled]="true"
+                    <label class="block text-gray-700 font-bold mb-2" for="price">Price</label>
+                    <input formControlName="price" [class.disabled]="true" readonly
                         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="total" name="total" type="text" [value]="this.selectedOffer?.price">
+                        id="price" name="price" type="text" [value]="this.selectedOffer?.priceOrPricePerUnit">
+                </div>
+                <div *ngIf="this.selectedOffer?.status === 'Post Paid'">
+                    <label class=" block text-gray-700 font-bold mb-2" for="unitsUsage">Units Usage</label>
+                    <input formControlName="unitsUsage"
+                        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="unitsUsage" name="unitsUsage" type="text" placeholder="Enter the units usage">
+                    <div class="text-red-500 text-xs mt-1"
+                        *ngIf="unitsUsage!['invalid'] && (unitsUsage!['dirty'] || unitsUsage!['touched'])">
+                        <div *ngIf="unitsUsage!['errors']!['required']">{{errs.UnitsUsage.Required}}</div>
+                        <div *ngIf="unitsUsage!['errors']!['pattern']">{{errs.UnitsUsage.Pattern}}</div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="offerStatus">Status</label>
+                    <input readonly [class.disabled]="true"
+                        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="offerStatus" name="offerStatus" type="text" [value]="this.selectedOffer?.status">
                 </div>
 
                 <div class="mb-6">

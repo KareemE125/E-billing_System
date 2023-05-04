@@ -45,7 +45,7 @@ export class AddOfferComponent {
       const offer: Offer = {
         name: this.offerName?.value,
         units: parseFloat(this.offerUnits?.value),
-        price: parseFloat(this.price?.value),
+        priceOrPricePerUnit: parseFloat(this.price?.value),
         status: this.offerStatus?.value,
         svProvName: this.accService.currentUser?.name || "",
       }

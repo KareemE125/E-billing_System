@@ -36,7 +36,7 @@
                             <tr *ngFor="let offer of filteredOfferList; let i = index">
                                 <td class="border-t px-4 py-2">{{offer.name}} </td>
                                 <td class="border-t px-4 py-2">{{offer.units}} Min & MB</td>
-                                <td class="border-t px-4 py-2">{{offer.price}}</td>
+                                <td class="border-t px-4 py-2">{{offer.priceOrPricePerUnit}}</td>
                                 <td class="border-t px-4 py-2">{{offer.status}}</td>
                                 <td *ngIf="!isUser" class="border-t py-2">
                                     <button class="bg-red-600 rounded-lg text-white px-2 py-1"

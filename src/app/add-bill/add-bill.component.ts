@@ -29,7 +29,7 @@ export class AddBillComponent implements OnInit {
   selectedOffer?: Offer | undefined = undefined;
 
   unitsValidators = [Validators.required, Validators.pattern(/^[0-9]\d*(\.\d+)?$/)] //pattern for all positive numbers >= 0
-  totalValidators = [Validators.required, Validators.pattern(/^-?\d*[.,]?\d{0,2}$/)] //pattern for all positive integers
+  unitsUsageValidators = [Validators.required, Validators.pattern(/^-?\d*[.,]?\d{0,2}$/)] //pattern for all positive integers
   servProv_offerNameValidators = [Validators.required]
 
   errs: any;
@@ -53,7 +53,8 @@ export class AddBillComponent implements OnInit {
       units: ['', this.unitsValidators],  //these are present by default
 
       //optional
-      total: ['', []], //disabled
+      price: ['', []],
+      unitsUsage: ['', []],
       servProv_offerName: ['', []]
     });
   }
@@ -65,16 +66,16 @@ export class AddBillComponent implements OnInit {
       console.log(cat);
       if (cat == 'Water' || cat == 'Electricity') {
         this.addBillForm.controls['units'].setValidators(this.unitsValidators);
-        this.addBillForm.controls['total'].clearValidators();
+        this.addBillForm.controls['unitsUsage'].clearValidators();
         this.addBillForm.controls['servProv_offerName'].clearValidators();
       } else if (cat == 'Telephone') {
         this.addBillForm.controls['units'].clearValidators();
-        this.addBillForm.controls['total'].setValidators(this.totalValidators);
+        this.addBillForm.controls['unitsUsage'].setValidators(this.unitsUsageValidators);
         this.addBillForm.controls['servProv_offerName'].setValidators(this.servProv_offerNameValidators);
       }
 
       this.addBillForm.controls['units'].updateValueAndValidity();
-      this.addBillForm.controls['total'].updateValueAndValidity();
+      this.addBillForm.controls['unitsUsage'].updateValueAndValidity();
       this.addBillForm.controls['servProv_offerName'].updateValueAndValidity();
 
     });
@@ -84,7 +85,7 @@ export class AddBillComponent implements OnInit {
       this.toastService.showToast(false, "Unable to load all service providers", '')
       return;
     }
-
+    console.log(servProviders);
     //init the dropdown of the sv prov and their offers
     for (let sv of servProviders) {
       for (let off of sv.offers) {
@@ -102,13 +103,25 @@ export class AddBillComponent implements OnInit {
   get category() { return this.addBillForm.get('category'); }
   get penalty() { return this.addBillForm.get('penalty'); }
   get units() { return this.addBillForm.get('units'); }
-  get total() { return this.addBillForm.get('total'); }
+  get price() { return this.addBillForm.get('price'); }
+  get unitsUsage() { return this.addBillForm.get('unitsUsage') }
   get servProv_offerName() { return this.addBillForm.get('servProv_offerName') }
 
 
   setSelectedOffer(val: any) {
     if (val.selectedIndex >= 0) {
       this.selectedOffer = this.serviceProv_offers[val.selectedIndex]
+
+      if (this.selectedOffer.status === 'Post Paid') {
+        //set the validators since the admin needs to add the units
+        this.addBillForm.controls['unitsUsage'].setValidators(this.unitsUsageValidators);
+      } else {
+        //clear the validators
+        this.addBillForm.controls['unitsUsage'].clearValidators();
+      }
+      this.addBillForm.controls['unitsUsage'].updateValueAndValidity();
+
+
     }
   }
 
@@ -146,6 +159,7 @@ export class AddBillComponent implements OnInit {
       )
       const penaltyToAdd: number = penaltyAdded ? 200 : 0;
       commonBill.penalty += penaltyToAdd;
+      commonBill.total = commonBill.penalty;
 
       const user: CommonUser = { ...res }
 
@@ -179,16 +193,21 @@ export class AddBillComponent implements OnInit {
         }
 
       } else if (this.category?.value === 'Telephone') {
-        const vals: string[] = (this.servProv_offerName?.value as string).split(" / ")
-        const offer = this.serviceProv_offers.find(e => e.svProvName === vals[0] && e.name == vals[1])
+
+
         const telephoneBill: TelephoneBill = {
           ...commonBill,
-          serviceProviderName: vals[0],
-          offerName: vals[1],
-          units: offer?.units || 0,
+          serviceProviderName: this.selectedOffer?.svProvName!,
+          offerName: this.selectedOffer?.name!,
         }
-        telephoneBill.total += parseFloat(this.total?.value);
-
+        if (this.selectedOffer?.status === 'Post Paid') {
+          telephoneBill.units = this.unitsUsage?.value!;
+          telephoneBill.total += telephoneBill.units * this.selectedOffer?.priceOrPricePerUnit!;
+        }
+        else {
+          telephoneBill.units = this.selectedOffer?.units as number;
+          telephoneBill.total += this.selectedOffer?.priceOrPricePerUnit!
+        }
         console.log("Telephone bill created " + JSON.stringify(telephoneBill));
         const billAdded = await this.telephoneBillService.addTelephoneBillToUser(user.id, telephoneBill);
         if (!billAdded) {

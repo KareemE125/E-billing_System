@@ -34,11 +34,11 @@ export function getDummyUsers(): User[] {
             ],
             telephoneBills: [
                 {
-                    year: 1,       //1990 <= year <= 2022
+                    year: 2022,       //1990 <= year <= 2022
                     month: 1,      //1 <= month <= 12
-                    units: getDummyServiceProviders()[0].offers[0].units,
-                    penalty: 1,    //0 <= penalty <= 100000
-                    total: 1,      //0 <= total <= 100000
+                    units: 1000,
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + 1000 * (getDummyServiceProviders()[0].offers[0].priceOrPricePerUnit),     //0 <= total <= 100000
                     isPaid: true,   //true or false
                     paymentDate: 1,
                     paymentMethod: 'Cash',
@@ -47,14 +47,14 @@ export function getDummyUsers(): User[] {
                     offerName: getDummyServiceProviders()[0].offers[0].name,
                 },
                 {
-                    year: 1,       //1990 <= year <= 2022
-                    month: 11,      //1 <= month <= 12
-                    units: getDummyServiceProviders()[1].offers[1].units,
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
                     penalty: 11,    //0 <= penalty <= 100000
-                    total: 11,      //0 <= total <= 100000
-                    isPaid: true,   //true or false
-                    paymentDate: 1,
-                    paymentMethod: 'Cash',
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[1].name,
                     offerName: getDummyServiceProviders()[1].offers[1].name,
@@ -148,28 +148,31 @@ export function getDummyUsers(): User[] {
             waterBills: [],
             telephoneBills: [
                 {
-                    id: uuid.v4(), year: 2023,
-                    month: 2,
-                    units: getDummyServiceProviders()[0].offers[1].units,
-                    penalty: 20,
-                    total: 220,
-                    isPaid: true,
-                    serviceProviderName: getDummyServiceProviders()[0].name,
-                    paymentDate: Date.now(),
-                    paymentMethod: "Cash",
-                    offerName: getDummyServiceProviders()[0].offers[1].name,
+                    year: 2022,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: 1000,
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + 1000 * (getDummyServiceProviders()[2].offers[0].priceOrPricePerUnit),     //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[2].name,
+                    offerName: getDummyServiceProviders()[2].offers[0].name,
                 },
                 {
-                    id: uuid.v4(), year: 2023,
-                    month: 2,
-                    units: getDummyServiceProviders()[1].offers[0].units,
-                    penalty: 40,
-                    total: 240,
-                    isPaid: true,
-                    serviceProviderName: getDummyServiceProviders()[1].name,
-                    paymentDate: Date.now(), paymentMethod: "Cash",
-                    offerName: getDummyServiceProviders()[1].offers[0].name,
-                },
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[3].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[3].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[3].name,
+                    offerName: getDummyServiceProviders()[3].offers[1].name,
+                }
             ],
             electricityBills: []
         },
@@ -274,30 +277,30 @@ export function getDummyUsers(): User[] {
             ],
             telephoneBills: [
                 {
-                    year: 1,       //1990 <= year <= 2022
+                    year: 2022,       //1990 <= year <= 2022
                     month: 1,      //1 <= month <= 12
-                    units: getDummyServiceProviders()[2].offers[0].units,
-                    penalty: 1,    //0 <= penalty <= 100000
-                    total: 1,      //0 <= total <= 100000
+                    units: 1000,
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + 1000 * (getDummyServiceProviders()[0].offers[0].priceOrPricePerUnit),     //0 <= total <= 100000
                     isPaid: true,   //true or false
                     paymentDate: 1,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
-                    serviceProviderName: getDummyServiceProviders()[2].name,
-                    offerName: getDummyServiceProviders()[2].offers[0].name,
+                    serviceProviderName: getDummyServiceProviders()[0].name,
+                    offerName: getDummyServiceProviders()[0].offers[0].name,
                 },
                 {
-                    year: 1,       //1990 <= year <= 2022
-                    month: 11,      //1 <= month <= 12
-                    units: getDummyServiceProviders()[3].offers[1].units,
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
                     penalty: 11,    //0 <= penalty <= 100000
-                    total: 11,      //0 <= total <= 100000
-                    isPaid: true,   //true or false
-                    paymentDate: 1,
-                    paymentMethod: 'Cash',
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
                     id: uuid.v4(),
-                    serviceProviderName: getDummyServiceProviders()[3].name,
-                    offerName: getDummyServiceProviders()[3].offers[1].name,
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
                 }
             ],
             electricityBills: [
@@ -385,11 +388,11 @@ export function getDummyUsers(): User[] {
             ],
             telephoneBills: [
                 {
-                    year: 1,       //1990 <= year <= 2022
+                    year: 2022,       //1990 <= year <= 2022
                     month: 1,      //1 <= month <= 12
-                    units: getDummyServiceProviders()[0].offers[0].units,
-                    penalty: 1,    //0 <= penalty <= 100000
-                    total: 1,      //0 <= total <= 100000
+                    units: 1000,
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + 1000 * (getDummyServiceProviders()[0].offers[0].priceOrPricePerUnit),     //0 <= total <= 100000
                     isPaid: true,   //true or false
                     paymentDate: 1,
                     paymentMethod: 'Cash',
@@ -398,14 +401,14 @@ export function getDummyUsers(): User[] {
                     offerName: getDummyServiceProviders()[0].offers[0].name,
                 },
                 {
-                    year: 1,       //1990 <= year <= 2022
-                    month: 11,      //1 <= month <= 12
-                    units: getDummyServiceProviders()[1].offers[1].units,
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
                     penalty: 11,    //0 <= penalty <= 100000
-                    total: 11,      //0 <= total <= 100000
-                    isPaid: true,   //true or false
-                    paymentDate: 1,
-                    paymentMethod: 'Cash',
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[1].name,
                     offerName: getDummyServiceProviders()[1].offers[1].name,
@@ -496,11 +499,11 @@ export function getDummyUsers(): User[] {
             ],
             telephoneBills: [
                 {
-                    year: 1,       //1990 <= year <= 2022
+                    year: 2022,       //1990 <= year <= 2022
                     month: 1,      //1 <= month <= 12
-                    units: getDummyServiceProviders()[0].offers[0].units,
-                    penalty: 1,    //0 <= penalty <= 100000
-                    total: 1,      //0 <= total <= 100000
+                    units: 1000,
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + 1000 * (getDummyServiceProviders()[0].offers[0].priceOrPricePerUnit),     //0 <= total <= 100000
                     isPaid: true,   //true or false
                     paymentDate: 1,
                     paymentMethod: 'Cash',
@@ -509,14 +512,14 @@ export function getDummyUsers(): User[] {
                     offerName: getDummyServiceProviders()[0].offers[0].name,
                 },
                 {
-                    year: 1,       //1990 <= year <= 2022
-                    month: 11,      //1 <= month <= 12
-                    units: getDummyServiceProviders()[1].offers[1].units,      //0 <= units <= 100000
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 1,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
                     penalty: 11,    //0 <= penalty <= 100000
-                    total: 11,      //0 <= total <= 100000
-                    isPaid: true,   //true or false
-                    paymentDate: 1,
-                    paymentMethod: 'Cash',
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[1].name,
                     offerName: getDummyServiceProviders()[1].offers[1].name,
@@ -584,15 +587,15 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             offers: [
                 {
                     name: "WE Offer 1",
-                    units: 1000,
-                    price: 100,
+                    units: "Per Usage",
+                    priceOrPricePerUnit: 0.1,
                     status: "Post Paid",
                     svProvName: "WE"
                 },
                 {
                     name: "WE Offer 2",
                     units: 1500,
-                    price: 140,
+                    priceOrPricePerUnit: 140,
                     status: "Pre Paid",
                     svProvName: "WE"
                 }
@@ -613,15 +616,15 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             offers: [
                 {
                     name: "Vodafone Offer 1",
-                    units: 1700,
-                    price: 160,
+                    units: "Per Usage",
+                    priceOrPricePerUnit: 0.1,
                     status: "Post Paid",
                     svProvName: "Vodafone"
                 },
                 {
                     name: "Vodafone Offer 2",
                     units: 2000,
-                    price: 180,
+                    priceOrPricePerUnit: 180,
                     status: "Pre Paid",
                     svProvName: "Vodafone"
                 }
@@ -642,16 +645,16 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             offers: [
                 {
                     name: "Etisalat Offer 1",
-                    units: 500,
-                    price: 50,
-                    status: "Pre Paid",
+                    units: "Per Usage",
+                    priceOrPricePerUnit: 0.2,
+                    status: "Post Paid",
                     svProvName: "Etisalat"
                 },
                 {
                     name: "Etisalat Offer 2",
                     units: 1300,
-                    price: 110,
-                    status: "Post Paid",
+                    priceOrPricePerUnit: 110,
+                    status: "Pre Paid",
                     svProvName: "Etisalat"
                 }
             ],
@@ -670,16 +673,16 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             offers: [
                 {
                     name: "Orange Offer 1",
-                    units: 2000,
-                    price: 190,
-                    status: "Pre Paid",
+                    units: "Per Usage",
+                    priceOrPricePerUnit: 0.1,
+                    status: "Post Paid",
                     svProvName: "Orange"
                 },
                 {
                     name: "Orange Offer 2",
                     units: 2500,
-                    price: 220,
-                    status: "Post Paid",
+                    priceOrPricePerUnit: 220,
+                    status: "Pre Paid",
                     svProvName: "Orange"
                 }
             ],

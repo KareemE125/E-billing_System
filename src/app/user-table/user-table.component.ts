@@ -138,12 +138,14 @@ export class UserTableComponent implements OnInit, OnChanges {
     doc.setTextColor(fontColor);
 
     // Add the billing information as text to the document
+    const paymentDate: string = !info.isPaid ? "Not Yet" : new Date(info.paymentDate).toLocaleDateString()
+
     doc.text(`Date: ${info.year}/${info.month}`, 15, 45);
     doc.text(`Units: ${info.units} ${this.tableUnit}`, 15, 55);
     doc.text(`Penalty: ${info.penalty}`, 15, 65);
     doc.text(`Total: ${info.total}`, 15, 75);
     doc.text(`Payment Method: ${info.paymentMethod}`, 15, 85);
-    doc.text(`Payment Date: ${new Date(info.paymentDate).toLocaleDateString()}`, 15, 95);
+    doc.text(`Payment Date: ${paymentDate}`, 15, 95);
     doc.text(`Is Paid: ${info.isPaid}`, 15, 105);
 
     // Draw the border rectangle
@@ -183,6 +185,8 @@ export class UserTableComponent implements OnInit, OnChanges {
     this.payMultipleSelections()
 
     this.showPayMultipleBtn = trueNums > 1 ? true : false
+
+
   }
 
 
