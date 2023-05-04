@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/shared/services/account.service';
 import { ErrorsService } from 'src/app/shared/services/errors.service';
@@ -24,7 +24,7 @@ export class ModalComponent implements OnChanges {
 
   @Input() billsToPay: CommonBill[] = [];
   @Input() billType: 'Water' | 'Electricity' | 'Telephone' = 'Water'
-  @Input() canBeUsedAsIsMultiple: boolean = false
+  @Output() modalClosedEvent = new EventEmitter<void>();
 
   ngOnChanges(changes: SimpleChanges) {
     console.log("those are the changes ", changes);
@@ -35,7 +35,6 @@ export class ModalComponent implements OnChanges {
       this.ngOnInit()
     }
     changes['billType'] && (this.billType = changes['billType'].currentValue)
-    changes['canBeUsedAsIsMultiple'] && (this.canBeUsedAsIsMultiple = changes['canBeUsedAsIsMultiple'].currentValue)
 
   }
   selectedTab: 'tab1' | 'tab2' = 'tab1';
@@ -83,6 +82,7 @@ export class ModalComponent implements OnChanges {
 
   async onSubmit(paymentMethod: "Cash" | "Card" | "Wallet" | "Not Yet") {
 
+
     if (this.selectedTab === 'tab1' || (this.selectedTab === 'tab2' && this.payWithCardForm.valid)) {
       const paymentDate: number = new Date().getTime()
       let user: false | User | null = null;
@@ -123,7 +123,7 @@ export class ModalComponent implements OnChanges {
       //update the current user with the new bills paid and notify the subject of pending payments
       this.accService.SetCurrentUser(user as User, UserType.User)
       this.pendingPaymentsService.setPendingPaymentsChange()
-      this.toggleModal()
+      this.closeModal()
       this.toastService.showToast(true, 'Bill successfully paid', '')
     } else {
 
@@ -136,13 +136,16 @@ export class ModalComponent implements OnChanges {
   }
 
   openModal() {
+    if (this.billsToPay.length === 0) {
+      this.toastService.showToast(false, "No bills selected to pay", "")
+      return
+    }
+
     this.showModal = true;
-  }
-  toggleModal() {
-    this.showModal = !this.showModal;
   }
 
   closeModal() {
     this.showModal = false;
+    this.modalClosedEvent.emit()
   }
 }

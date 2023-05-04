@@ -40,6 +40,7 @@ export class UserTableComponent implements OnInit, OnChanges {
   filteredInfoList: CommonBill[] = [];
   //input for the modal
   billsToPay: CommonBill[] = [];
+  selectedRows: boolean[] = [];
   billType: 'Water' | 'Electricity' | 'Telephone' = 'Water'
 
 
@@ -52,6 +53,13 @@ export class UserTableComponent implements OnInit, OnChanges {
     // set initial filtered list to full list
     this.filteredInfoList = [...this.infoList];
 
+  }
+
+  modalClosed(): void {
+    console.log("modal has been closed");
+    this.billsToPay = []
+    for (let i = 0; i < this.selectedRows.length; i++)
+      this.selectedRows[i] = false
   }
 
   filterUsers(): void {
@@ -156,12 +164,11 @@ export class UserTableComponent implements OnInit, OnChanges {
   }
 
 
-  // === Pay Multiple ===
 
-  showPayMultipleBtn: boolean = false;
-  selectedRows: boolean[] = [];
 
-  payMultipleSelections() {
+
+
+  toggleSelection() {
     let payList: CommonBill[] = [];
     this.selectedRows.forEach((row, i) => {
       if (row) {
@@ -171,20 +178,6 @@ export class UserTableComponent implements OnInit, OnChanges {
 
     this.billsToPay = [...payList]
     this.billType = this.tableType
-  }
-
-
-  toggleSelection() {
-    let trueNums: number = 0
-    this.selectedRows.forEach(row => {
-      if (row) { trueNums += 1 }
-    })
-
-    this.payMultipleSelections()
-
-    this.showPayMultipleBtn = trueNums > 1 ? true : false
-
-
   }
 
 
