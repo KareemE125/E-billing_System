@@ -80,6 +80,25 @@ export class AddBillComponent implements OnInit {
 
     });
 
+    this.servProv_offerName?.valueChanges.subscribe(
+      val => {
+        const vals: string[] = (val as string).split(" / ")
+        const offer = this.serviceProv_offers.find(e => e.svProvName === vals[0] && e.name == vals[1])
+        if (offer) {
+          this.selectedOffer = offer
+
+          if (this.selectedOffer.status === 'Post Paid') {
+            //set the validators since the admin needs to add the units
+            this.addBillForm.controls['unitsUsage'].setValidators(this.unitsUsageValidators);
+          } else {
+            //clear the validators
+            this.addBillForm.controls['unitsUsage'].clearValidators();
+          }
+          this.addBillForm.controls['unitsUsage'].updateValueAndValidity();
+        }
+
+      })
+
     const servProviders = await this.srvProvService.getAllServiceProviders();
     if (servProviders == null) {
       this.toastService.showToast(false, "Unable to load all service providers", '')
@@ -107,23 +126,6 @@ export class AddBillComponent implements OnInit {
   get unitsUsage() { return this.addBillForm.get('unitsUsage') }
   get servProv_offerName() { return this.addBillForm.get('servProv_offerName') }
 
-
-  setSelectedOffer(val: any) {
-    if (val.selectedIndex >= 0) {
-      this.selectedOffer = this.serviceProv_offers[val.selectedIndex]
-
-      if (this.selectedOffer.status === 'Post Paid') {
-        //set the validators since the admin needs to add the units
-        this.addBillForm.controls['unitsUsage'].setValidators(this.unitsUsageValidators);
-      } else {
-        //clear the validators
-        this.addBillForm.controls['unitsUsage'].clearValidators();
-      }
-      this.addBillForm.controls['unitsUsage'].updateValueAndValidity();
-
-
-    }
-  }
 
   async onSubmit() {
     if (this.addBillForm.valid) {
