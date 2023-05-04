@@ -26,6 +26,7 @@ export class AddBillComponent implements OnInit {
   months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   years: number[] = [2020, 2021, 2022, 2023]
   serviceProv_offers: Offer[] = []
+  selectedOffer?: Offer | undefined = undefined;
 
   unitsValidators = [Validators.required, Validators.pattern(/^[0-9]\d*(\.\d+)?$/)] //pattern for all positive numbers >= 0
   totalValidators = [Validators.required, Validators.pattern(/^-?\d*[.,]?\d{0,2}$/)] //pattern for all positive integers
@@ -52,7 +53,7 @@ export class AddBillComponent implements OnInit {
       units: ['', this.unitsValidators],  //these are present by default
 
       //optional
-      total: ['', []],
+      total: ['', []], //disabled
       servProv_offerName: ['', []]
     });
   }
@@ -90,7 +91,7 @@ export class AddBillComponent implements OnInit {
         this.serviceProv_offers.push(off)
       }
     }
-
+    console.log(this.serviceProv_offers);
 
   }
 
@@ -104,6 +105,12 @@ export class AddBillComponent implements OnInit {
   get total() { return this.addBillForm.get('total'); }
   get servProv_offerName() { return this.addBillForm.get('servProv_offerName') }
 
+
+  setSelectedOffer(val: any) {
+    if (val.selectedIndex >= 0) {
+      this.selectedOffer = this.serviceProv_offers[val.selectedIndex]
+    }
+  }
 
   async onSubmit() {
     if (this.addBillForm.valid) {
@@ -178,8 +185,7 @@ export class AddBillComponent implements OnInit {
           ...commonBill,
           serviceProviderName: vals[0],
           offerName: vals[1],
-          offerUnits: offer?.units || 0,
-          units: 0, //no units in telephone bill
+          units: offer?.units || 0,
         }
         telephoneBill.total += parseFloat(this.total?.value);
 

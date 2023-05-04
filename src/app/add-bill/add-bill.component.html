@@ -88,8 +88,8 @@
             <div *ngIf="this.category?.value !== 'Telephone'; else waterAndElectricity" class="mb-6">
                 <label class="block text-gray-700 font-bold mb-2" for="units">Units</label>
                 <input formControlName="units"
-                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="units" name="units" type="text" placeholder="Enter the units">
+                    class="appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                    id="units" name="units" type="text" placeholder="Enter the units" [value]="">
                 <div class="text-red-500 text-xs mt-1"
                     *ngIf="units!['invalid'] && (units!['dirty'] || units!['touched'])">
                     <div *ngIf="units!['errors']!['required']">{{errs.Units.Required}}</div>
@@ -100,22 +100,16 @@
             <ng-template #waterAndElectricity>
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="total">Total</label>
-                    <input formControlName="total"
+                    <input formControlName="total" readonly [class.disabled]="true"
                         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="total" name="total" type="text" placeholder="Enter the total amount">
-                    <div class="text-red-500 text-xs mt-1"
-                        *ngIf="total!['invalid'] && (total!['dirty'] || total!['touched'])">
-                        <div *ngIf="total!['errors']!['required']">{{errs.Total.Required}}</div>
-                        <div *ngIf="total!['errors']!['pattern']">{{errs.Total.Pattern}}
-                        </div>
-                    </div>
+                        id="total" name="total" type="text" [value]="this.selectedOffer?.price">
                 </div>
 
                 <div class="mb-6">
                     <label class="block text-gray-700 font-bold mb-2" for="servProv_offerName">Service Provider / Offer
                         Name</label>
                     <select class="w-full sm:w-auto bg-white border rounded-lg px-2 py-2" id="servProv_offerName"
-                        formControlName="servProv_offerName">
+                        formControlName="servProv_offerName" (change)="setSelectedOffer($event.target)">
                         <option *ngFor="let off of serviceProv_offers" value="{{ off.svProvName + ' / ' + off.name}}">
                             {{off.svProvName + ' / ' + off.name}}</option>
                     </select>
