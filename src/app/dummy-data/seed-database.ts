@@ -650,8 +650,8 @@ export function getDummyServiceProviders(): ServiceProvider[] {
     const serviceProviders: ServiceProvider[] = [
         {
             id: uuid.v4(),
-            name: "Provider A",
-            email: "serviceprovider@gmail.com",
+            name: "WE",
+            email: "WE@gmail.com",
             phoneNumber: "01000000000",
             password: "passwordD",//password: "passwordD",
             address: {
@@ -666,8 +666,9 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             ],
         },
         {
-            id: uuid.v4(), name: "Provider B",
-            email: "providerb@example.com",
+            id: uuid.v4(), 
+            name: "Vodafone",
+            email: "Vodafone@example.com",
             phoneNumber: "01000000000",
             password: "passwordD",//password: "passwordD",
             address: {
@@ -682,8 +683,9 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             ],
         },
         {
-            id: uuid.v4(), name: "Provider B2",
-            email: "providerb2@example.com",
+            id: uuid.v4(),
+             name: "Etisalat",
+            email: "Etisalat@example.com",
             phoneNumber: "01000000000",
             password: "passwordD",//password: "passwordD",
             address: {
@@ -698,8 +700,8 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             ],
         },
         {
-            id: uuid.v4(), name: "Provider B3",
-            email: "providerb3@example.com",
+            id: uuid.v4(), name: "Orange",
+            email: "Orange@example.com",
             phoneNumber: "01000000000",
             password: "passwordD",//password: "passwordD",
             address: {
