@@ -137,7 +137,7 @@ export function getDummyUsers(): User[] {
         },
         {
             id: uuid.v4(), name: 'John Doe',
-            email: 'johndoe@example.com',
+            email: 'johndoe@gmail.com',
             phoneNumber: '01000000000',
             password: "passwordD",//password: 'passwordD1',
             wallet: 50,
@@ -214,7 +214,7 @@ export function getDummyUsers(): User[] {
         },
         {
             id: uuid.v4(), name: 'Jane Smith',
-            email: 'janesmith@example.com',
+            email: 'janesmith@gmail.com',
             phoneNumber: '01000000000',
             password: "passwordD",//password: 'passwordD2',
             wallet: 100,
@@ -296,7 +296,7 @@ export function getDummyUsers(): User[] {
         },
         {
             id: uuid.v4(), name: 'Bob Johnson',
-            email: 'bobjohnson@example.com',
+            email: 'bobjohnson@gmail.com',
             phoneNumber: '01000000000',
             password: "passwordD",//password: 'passwordD3',
             wallet: 300,
@@ -372,7 +372,7 @@ export function getDummyUsers(): User[] {
         },
         {
             id: uuid.v4(), name: 'Alice Lee',
-            email: 'alicelee@example.com',
+            email: 'alicelee@gmail.com',
             phoneNumber: '01000000000',
             password: "passwordD",//password: 'passworDd4',
             wallet: 400,
@@ -388,7 +388,7 @@ export function getDummyUsers(): User[] {
         },
         {
             id: uuid.v4(), name: 'Salah',
-            email: 'Salah@example.com',
+            email: 'Salah@gmail.com',
             phoneNumber: '01102527521',
             password: "passwordD",//password: 'passworDd4',
             wallet: 150000,
@@ -538,7 +538,7 @@ export function getDummyUsers(): User[] {
         },
         {
             id: uuid.v4(), name: 'Mezo',
-            email: 'Mezo@example.com',
+            email: 'Mezo@gmail.com',
             phoneNumber: '01234567890',
             password: "passwordD",//password: 'passworDd4',
             wallet: 5000,
@@ -688,7 +688,7 @@ export function getDummyUsers(): User[] {
         },
         {
             id: uuid.v4(), name: 'Kemo',
-            email: 'Kemo@example.com',
+            email: 'Kemo@gmail.com',
             phoneNumber: '01234567890',
             password: "passwordD",//password: 'passworDd4',
             wallet: 10000,
@@ -879,7 +879,7 @@ export function getDummyServiceProviders(): ServiceProvider[] {
         {
             id: uuid.v4(),
             name: "Vodafone",
-            email: "vodafone@example.com",
+            email: "vodafone@gmail.com",
             phoneNumber: "01000000000",
             password: "passwordD",//password: "passwordD",
             address: {
@@ -908,7 +908,7 @@ export function getDummyServiceProviders(): ServiceProvider[] {
         {
             id: uuid.v4(),
             name: "Etisalat",
-            email: "etisalat@example.com",
+            email: "etisalat@gmail.com",
             phoneNumber: "01000000000",
             password: "passwordD",//password: "passwordD",
             address: {
@@ -936,7 +936,7 @@ export function getDummyServiceProviders(): ServiceProvider[] {
         },
         {
             id: uuid.v4(), name: "Orange",
-            email: "orange@example.com",
+            email: "orange@gmail.com",
             phoneNumber: "01000000000",
             password: "passwordD",//password: "passwordD",
             address: {

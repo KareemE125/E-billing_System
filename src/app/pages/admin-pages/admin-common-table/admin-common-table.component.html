@@ -50,8 +50,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let user of filteredUserList">
-                                <td class="border-t px-4 py-2">{{user.id}}</td>
+                            <tr *ngFor="let user of filteredUserList; let idx = index;">
+                                <td class="border-t px-4 py-2">{{idx + 1}}</td>
                                 <td class="border-t px-4 py-2">{{user.name}}</td>
                                 <td class="border-t px-4 py-2">{{user.year}}/{{user.month}}</td>
 
