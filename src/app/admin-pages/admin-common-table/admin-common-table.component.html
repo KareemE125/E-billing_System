@@ -42,7 +42,7 @@
                                 <th *ngIf="tableType === getTableType().Telephone" class="text-left py-2">Units</th>
 
                                 <th *ngIf="tableType === getTableType().Electricity || tableType === getTableType().Water"
-                                    class="text-left py-2">Usage</th>
+                                    class="text-left py-2">Units</th>
 
                                 <th class="text-left py-2">Penalty</th>
                                 <th class="text-left py-2">Total</th>
@@ -63,7 +63,7 @@
 
                                 <td *ngIf="tableType === getTableType().Electricity || tableType === getTableType().Water"
                                     class="border-t px-4 py-2">
-                                    {{user.usage}}
+                                    {{user.units}}
                                     {{tableUnit}}</td>
 
                                 <td class="border-t px-4 py-2">{{user.penalty}}</td>

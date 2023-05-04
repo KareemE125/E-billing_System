@@ -130,13 +130,12 @@ export class AdminCommonTableComponent {
       name: userName,
       year: bill.year,
       month: bill.month,
-      usage: bill.units,
       penalty: bill.penalty,
       total: bill.total,
       isPaid: bill.isPaid,
 
       spOfferName: "",
-      units: 0,
+      units: bill.units,
     }
     if (billType == TableType.Telephone) {
       const tBill: TelephoneBill = bill as TelephoneBill;
@@ -165,7 +164,6 @@ export interface UserTableRow {
   name: string;
   year: number,
   month: number,
-  usage: number,
   penalty: number,
   total: number,
   isPaid: boolean,
