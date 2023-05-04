@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models/users/user.model';
 import { Subject } from 'rxjs';
-import { dummy_users } from '../../dummy-data/user-list';
 import { CommonUser, UserType } from '../../models/users/common.model';
 import { Router } from '@angular/router';
 

@@ -9,10 +9,8 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ServiceCardComponent } from './service-card/service-card.component';
 import { AccountService } from './shared/services/account.service';
-import { ChildComponent } from './child/child.component';
 import { LoginComponent } from './login/login.component';
 import { UserHomeComponent } from './user-pages/home/user-home.component';
-import { ParentComponent } from './parent/parent.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
 import { ElectricityComponent } from './user-pages/electricity/electricity.component';
@@ -46,10 +44,8 @@ import { SpTableComponent } from './sp-pages/sp-table/sp-table.component';
     AppComponent,
     NavBarComponent,
     ServiceCardComponent,
-    ChildComponent,
     LoginComponent,
     UserHomeComponent,
-    ParentComponent,
     SignUpComponent,
     UserTableComponent,
     AddOfferComponent,

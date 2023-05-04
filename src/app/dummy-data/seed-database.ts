@@ -575,59 +575,6 @@ export function getDummyUsers(): User[] {
 }
 
 
-export function getDummyOffers(): Offer[] {
-    const offers: Offer[] = [
-        {
-            name: "Offer A1",
-            units: 0.1,
-            price: "Per Usage",
-            status: "Post Paid",
-            svProvName: "Provider A"
-        },
-        {
-            name: "Offer A2",
-            units: 50,
-            price: 75,
-            status: "Pre Paid",
-            svProvName: "Provider A"
-
-        },
-        {
-            name: "Offer B1",
-            units: 100,
-            price: 100,
-            status: "Pre Paid",
-            svProvName: "Provider B"
-
-        },
-        {
-            name: "Offer B2",
-            units: 20,
-            price: 60,
-            status: "Pre Paid",
-            svProvName: "Provider B"
-
-        },
-        {
-            name: "Offer B3",
-            units: 50,
-            price: 70,
-            status: "Pre Paid",
-            svProvName: "Provider B"
-
-        },
-        {
-            name: "Offer B4",
-            units: 1000,
-            price: 1000,
-            status: "Post Paid",
-            svProvName: "Provider B"
-
-        }
-    ]
-
-    return offers;
-}
 
 export function getDummyServiceProviders(): ServiceProvider[] {
 
@@ -647,15 +594,15 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             offers: [
                 {
                     name: "WE Offer 1",
-                    units: 0.1,
-                    price: "Per Usage",
+                    units: 1000,
+                    price: 100,
                     status: "Post Paid",
                     svProvName: "WE"
                 },
                 {
                     name: "WE Offer 2",
-                    units: 0.5,
-                    price: "Per Usage",
+                    units: 1500,
+                    price: 140,
                     status: "Pre Paid",
                     svProvName: "WE"
                 }
@@ -676,15 +623,15 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             offers: [
                 {
                     name: "Vodafone Offer 2",
-                    units: 0.5,
-                    price: "Per Usage",
+                    units: 1700,
+                    price: 160,
                     status: "Post Paid",
                     svProvName: "Vodafone"
                 },
                 {
                     name: "Vodafone Offer 2",
-                    units: 0.8,
-                    price: "Per Usage",
+                    units: 2000,
+                    price: 180,
                     status: "Pre Paid",
                     svProvName: "Vodafone"
                 }
@@ -705,15 +652,15 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             offers: [
                 {
                     name: "Etisalat Offer 2",
-                    units: 0.5,
-                    price:70,
+                    units: 500,
+                    price: 50,
                     status: "Pre Paid",
                     svProvName: "Etisalat"
                 },
                 {
                     name: "Etisalat Offer 2",
-                    units: 0.8,
-                    price: "Per Usage",
+                    units: 1300,
+                    price: 110,
                     status: "Post Paid",
                     svProvName: "Etisalat"
                 }
@@ -733,15 +680,15 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             offers: [
                 {
                     name: "Orange Offer 2",
-                    units: 0.5,
-                    price:50,
+                    units: 2000,
+                    price: 190,
                     status: "Pre Paid",
                     svProvName: "Orange"
                 },
                 {
                     name: "Orange Offer 2",
-                    units: 0.8,
-                    price: "Per Usage",
+                    units: 2500,
+                    price: 220,
                     status: "Post Paid",
                     svProvName: "Orange"
                 }

@@ -9,7 +9,7 @@ export interface Offer {
     svProvName: string,
     name: string,
     units: number,
-    price: number | "Per Usage",
+    price: number,
     status: "Pre Paid" | "Post Paid",
 }
 
