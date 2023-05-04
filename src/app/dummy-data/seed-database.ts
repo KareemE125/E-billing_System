@@ -645,8 +645,20 @@ export function getDummyServiceProviders(): ServiceProvider[] {
                 country: "USA",
             },
             offers: [
-                getDummyOffers()[0],
-                getDummyOffers()[1],
+                {
+                    name: "WE Offer 1",
+                    units: 0.1,
+                    price: "Per Usage",
+                    status: "Post Paid",
+                    svProvName: "WE"
+                },
+                {
+                    name: "WE Offer 2",
+                    units: 0.5,
+                    price: "Per Usage",
+                    status: "Pre Paid",
+                    svProvName: "WE"
+                }
             ],
         },
         {
@@ -662,8 +674,20 @@ export function getDummyServiceProviders(): ServiceProvider[] {
                 country: "USA",
             },
             offers: [
-                getDummyOffers()[2],
-                getDummyOffers()[3],
+                {
+                    name: "Vodafone Offer 2",
+                    units: 0.5,
+                    price: "Per Usage",
+                    status: "100",
+                    svProvName: "Vodafone"
+                },
+                {
+                    name: "Vodafone Offer 2",
+                    units: 0.8,
+                    price: "Per Usage",
+                    status: "Pre Paid",
+                    svProvName: "Vodafone"
+                }
             ],
         },
         {
@@ -679,8 +703,20 @@ export function getDummyServiceProviders(): ServiceProvider[] {
                 country: "USA",
             },
             offers: [
-                getDummyOffers()[4],
-                getDummyOffers()[5],
+                {
+                    name: "Etisalat Offer 2",
+                    units: 0.5,
+                    price:70,
+                    status: "Pre Paid",
+                    svProvName: "Etisalat"
+                },
+                {
+                    name: "Etisalat Offer 2",
+                    units: 0.8,
+                    price: "Per Usage",
+                    status: "Post Paid",
+                    svProvName: "Etisalat"
+                }
             ],
         },
         {
@@ -695,8 +731,20 @@ export function getDummyServiceProviders(): ServiceProvider[] {
                 country: "USA",
             },
             offers: [
-                getDummyOffers()[1],
-                getDummyOffers()[5],
+                {
+                    name: "Orange Offer 2",
+                    units: 0.5,
+                    price:50,
+                    status: "Pre Paid",
+                    svProvName: "Orange"
+                },
+                {
+                    name: "Orange Offer 2",
+                    units: 0.8,
+                    price: "Per Usage",
+                    status: "Post Paid",
+                    svProvName: "Orange"
+                }
             ],
         }
     ];
