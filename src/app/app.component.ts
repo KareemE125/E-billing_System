@@ -1,7 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { AccountService } from './shared/services/account.service';
 import { User } from './shared/models/users/user.model';
-import { DbService } from './shared/services/db.service';
 import { ToastService } from './shared/services/toast.service';
 import { Router } from '@angular/router';
 import { ServiceProvider } from './shared/models/users/serviceProvider.model';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Admin } from '../models/users/admin.model';
-import { DataService } from './BillService.service';
+import { DataService } from './DataService.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore'
 @Injectable({
   providedIn: 'root'

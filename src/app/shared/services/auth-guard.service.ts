@@ -10,6 +10,7 @@ export class AuthGuardService implements CanActivate {
   constructor(private accService: AccountService) { }
 
   canActivate() {
+    console.log(this.accService.isLoggedIn());
     return this.accService.isLoggedIn();
   }
 }

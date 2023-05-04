@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { User } from '../models/users/user.model'
 import { AngularFirestore } from '@angular/fire/compat/firestore'
 import { AccountService } from './account.service'
-import { DataService } from './BillService.service'
 import { UserType } from 'src/app/shared/models/users/common.model'
+import { DataService } from './DataService.service'
 
 @Injectable({
   providedIn: 'root'

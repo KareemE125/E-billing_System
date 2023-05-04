@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { User } from "../models/users/user.model";
 import { TelephoneBill } from "../models/bills/telephone.model";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { DataService } from "./BillService.service";
+import { DataService } from "./DataService.service";
 import { UserService } from "./user.service";
 import * as uuid from 'uuid';
 
