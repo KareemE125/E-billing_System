@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/users/user.model';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { CommonUser, UserType } from '../models/users/common.model';
 import { Router } from '@angular/router';
 
@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 
 export class AccountService {
 
-  loggedInSubject: Subject<boolean> = new Subject<boolean>() //for the subscribers
-  currentUserSubject: Subject<CommonUser> = new Subject<CommonUser>() //for the subscribers
+  loggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false) //for the subscribers
+  currentUserSubject: BehaviorSubject<CommonUser | null> = new BehaviorSubject<CommonUser | null>(null) //for the subscribers
 
   currentUserType?: UserType = undefined;
   currentUser?: CommonUser = undefined;
@@ -54,6 +54,7 @@ export class AccountService {
       this._setLoginState(false)
     }
     else {
+      console.log("About to update the current user");
       this._setCurrentUserSubject(usr!)
       this._setLoginState(true)
       localStorage.setItem("user", JSON.stringify({ userType: usrType, user: usr }))

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorsService } from '../shared/services/errors.service';
 import { Offer, ServiceProvider, telephoneOfferStatuses } from '../shared/models/users/serviceProvider.model';
@@ -11,10 +11,12 @@ import { ToastService } from '../shared/services/toast.service';
   templateUrl: './add-offer.component.html',
   styleUrls: ['./add-offer.component.css']
 })
-export class AddOfferComponent {
+export class AddOfferComponent implements OnInit {
   addOfferForm: FormGroup;
   errs: any;
   offerStatuses: string[] = telephoneOfferStatuses;
+  offerUnitsValidators = [Validators.required, Validators.pattern('^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$')]
+
   constructor(private errService: ErrorsService, private accService: AccountService,
     private formBuilder: FormBuilder, private svProvServie: ServiceProviderService,
     private toastService: ToastService) {
@@ -39,16 +41,42 @@ export class AddOfferComponent {
   get price() {
     return this.addOfferForm.get('price');
   }
+
+  ngOnInit(): void {
+    this.offerStatus?.valueChanges.subscribe(
+      val => {
+        console.log(val);
+        if (val) {
+
+          if (this.offerStatus?.value === 'Pre Paid') {
+            //set the validators since the admin needs to add the units
+            this.addOfferForm.controls['offerUnits'].setValidators(this.offerUnitsValidators);
+          } else {
+            //clear the validators
+            this.addOfferForm.controls['offerUnits'].clearValidators();
+          }
+          this.addOfferForm.controls['offerUnits'].updateValueAndValidity();
+        }
+
+      })
+  }
+
   async onSubmit(): Promise<void> {
     if (this.addOfferForm.valid) {
       //create an offer
       const offer: Offer = {
         name: this.offerName?.value,
-        units: parseFloat(this.offerUnits?.value),
+        units: 0,
         priceOrPricePerUnit: parseFloat(this.price?.value),
         status: this.offerStatus?.value,
         svProvName: this.accService.currentUser?.name || "",
       }
+      if (offer.status === 'Post Paid')
+        offer.units = 'Per Usage'
+      else
+        offer.units = parseFloat(this.offerUnits?.value)
+
+
       console.log("Offer created " + JSON.stringify(offer));
       const sp = this.accService.currentUser as ServiceProvider;
       const res = await this.svProvServie.addServiceProviderOffer(sp, offer)

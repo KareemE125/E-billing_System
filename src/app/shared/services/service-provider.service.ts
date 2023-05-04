@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Offer, ServiceProvider } from '../models/users/serviceProvider.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore'
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { DataService } from './BillService.service';
 import { AccountService } from './account.service';
 import { off } from 'firebase/database';
@@ -10,13 +10,13 @@ import { off } from 'firebase/database';
 })
 export class ServiceProviderService extends DataService {
 
-  serviceProviderOffersSubj: Subject<Offer[]> = new Subject<Offer[]>();
+  serviceProviderOffersSubj: BehaviorSubject<Offer[]> = new BehaviorSubject<Offer[]>([]);
 
   constructor(db: AngularFirestore, private accService: AccountService) {
     super(db)
     this.accService.currentUserSubject.subscribe(
       curUser => {
-        this.serviceProvidersCollection.doc(curUser.id).valueChanges().subscribe( //"wUImf9zShk8xhw9fhixR"
+        this.serviceProvidersCollection.doc(curUser?.id).valueChanges().subscribe( //"wUImf9zShk8xhw9fhixR"
           e => this.serviceProviderOffersSubj.next(e?.offers || [])
         )
       })

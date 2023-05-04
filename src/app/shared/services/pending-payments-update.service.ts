@@ -5,7 +5,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class PendingPaymentsUpdateService {
-  updatePendingPaymentsSubj: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true)
+  updatePendingPaymentsSubj: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
   constructor() { }
 
   setPendingPaymentsChange() {
