@@ -678,7 +678,7 @@ export function getDummyServiceProviders(): ServiceProvider[] {
                     name: "Vodafone Offer 2",
                     units: 0.5,
                     price: "Per Usage",
-                    status: "100",
+                    status: "Post Paid",
                     svProvName: "Vodafone"
                 },
                 {
