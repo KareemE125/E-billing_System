@@ -8,7 +8,7 @@ export class ToastService {
 
   constructor() { }
 
-  toastState = new BehaviorSubject<any>(undefined);
+  toastState = new Subject<any>();
 
   showToast(isSuccess: boolean, title: string, message: string) {
     return this.toastState.next({ isSuccess, title, message });

@@ -58,6 +58,45 @@ export function getDummyUsers(): User[] {
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[1].name,
                     offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 4,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
                 }
             ],
             electricityBills: [
@@ -130,7 +169,47 @@ export function getDummyUsers(): User[] {
                     paymentMethod: 'Not Yet'
                 }
             ],
-            telephoneBills: [],
+            telephoneBills: [
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 4,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                }
+            ],
             electricityBills: []
         },
         {
@@ -172,6 +251,45 @@ export function getDummyUsers(): User[] {
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[3].name,
                     offerName: getDummyServiceProviders()[3].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 4,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
                 }
             ],
             electricityBills: []
@@ -189,7 +307,47 @@ export function getDummyUsers(): User[] {
                 country: 'USA'
             },
             waterBills: [],
-            telephoneBills: [],
+            telephoneBills: [
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 4,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                }
+            ],
             electricityBills: [
                 {
                     id: uuid.v4(), year: 2023,
@@ -292,6 +450,45 @@ export function getDummyUsers(): User[] {
                 {
                     year: 2023,       //1990 <= year <= 2022
                     month: 1,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 4,      //1 <= month <= 12
                     units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
                     penalty: 11,    //0 <= penalty <= 100000
                     total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
@@ -412,6 +609,45 @@ export function getDummyUsers(): User[] {
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[1].name,
                     offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 4,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
                 }
             ],
             electricityBills: [
@@ -514,6 +750,45 @@ export function getDummyUsers(): User[] {
                 {
                     year: 2023,       //1990 <= year <= 2022
                     month: 1,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
+                    penalty: 11,    //0 <= penalty <= 100000
+                    total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                    serviceProviderName: getDummyServiceProviders()[1].name,
+                    offerName: getDummyServiceProviders()[1].offers[1].name,
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 4,      //1 <= month <= 12
                     units: getDummyServiceProviders()[1].offers[1].units as number,      //0 <= units <= 100000
                     penalty: 11,    //0 <= penalty <= 100000
                     total: 11 + getDummyServiceProviders()[1].offers[1].priceOrPricePerUnit,      //0 <= total <= 100000

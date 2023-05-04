@@ -22,6 +22,7 @@ export class EditProfileInfoComponent implements OnInit {
   pendingPayments: number = 0
   wallet: number = 0
   errs: any;
+  canEditChecked: boolean = false
   accService: AccountService;
 
 
