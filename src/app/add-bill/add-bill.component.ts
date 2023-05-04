@@ -166,8 +166,7 @@ export class AddBillComponent implements OnInit {
           ...commonBill,
           serviceProviderName: vals[0],
           offerName: vals[1],
-          offerInt: offer?.internetQuantityOrPrice || 0,
-          offerMin: offer?.minutesQuantityOrPrice || 0,
+          offerUnits: offer?.units || 0,
           units: 0, //no units in telephone bill
         }
         telephoneBill.total += parseFloat(this.total?.value);

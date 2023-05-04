@@ -56,8 +56,7 @@ export const dummy_users: User[] = [
                 serviceProviderName: dummy_serviceProviders[0].name,
                 offerName: dummy_serviceProviders[0].offers[0].name,
                 paymentDate: Date.now(), paymentMethod: "Cash",
-                offerMin: 10,
-                offerInt: 10,
+                offerUnits: 10,
             },
             {
                 id: '2',
@@ -70,8 +69,7 @@ export const dummy_users: User[] = [
                 serviceProviderName: dummy_serviceProviders[0].name,
                 offerName: dummy_serviceProviders[0].offers[1].name,
                 paymentDate: Date.now(), paymentMethod: "Cash",
-                offerMin: 10,
-                offerInt: 10,
+                offerUnits: 10,
             },
         ],
         electricityBills: []

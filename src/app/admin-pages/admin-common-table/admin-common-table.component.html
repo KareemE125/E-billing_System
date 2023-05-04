@@ -39,8 +39,7 @@
                                 <th class="text-left py-2">Year/Month</th>
 
                                 <th *ngIf="tableType === getTableType().Telephone" class="text-left py-2">SP Offer</th>
-                                <th *ngIf="tableType === getTableType().Telephone" class="text-left py-2">Internet</th>
-                                <th *ngIf="tableType === getTableType().Telephone" class="text-left py-2">Minutes</th>
+                                <th *ngIf="tableType === getTableType().Telephone" class="text-left py-2">Units</th>
 
                                 <th *ngIf="tableType === getTableType().Electricity || tableType === getTableType().Water"
                                     class="text-left py-2">Usage</th>
@@ -59,11 +58,8 @@
                                 <td *ngIf="tableType === getTableType().Telephone" class="border-t px-4 py-2">
                                     {{user.spOfferName}}</td>
                                 <td *ngIf="tableType === getTableType().Telephone" class="border-t px-4 py-2">
-                                    {{user.internet}}
-                                    {{tableInternetUnit}}</td>
-                                <td *ngIf="tableType === getTableType().Telephone" class="border-t px-4 py-2">
-                                    {{user.minutes}} {{tableMinutesUnit}}
-                                </td>
+                                    {{user.units}}
+                                    Min & MB</td>
 
                                 <td *ngIf="tableType === getTableType().Electricity || tableType === getTableType().Water"
                                     class="border-t px-4 py-2">

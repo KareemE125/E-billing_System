@@ -27,8 +27,7 @@
                         <thead>
                             <tr>
                                 <th class="text-left py-2">SP Offer</th>
-                                <th class="text-left py-2">Internet</th>
-                                <th class="text-left py-2">Minutes</th>
+                                <th class="text-left py-2">Units</th>
                                 <th class="text-left py-2">Price</th>
                                 <th class="text-left py-2">Status</th>
                                 <th *ngIf="!isUser" class="text-left py-2">Delete</th>
@@ -36,10 +35,7 @@
                         <tbody>
                             <tr *ngFor="let offer of filteredOfferList; let i = index">
                                 <td class="border-t px-4 py-2">{{offer.name}} </td>
-                                <td class="border-t px-4 py-2">{{offer.internetQuantityOrPrice}} {{tableInternetUnit}}
-                                </td>
-                                <td class="border-t px-4 py-2">{{offer.minutesQuantityOrPrice}} {{tableMinutesUnit}}
-                                </td>
+                                <td class="border-t px-4 py-2">{{offer.units}} Min & MB</td>
                                 <td class="border-t px-4 py-2">{{offer.price}}</td>
                                 <td class="border-t px-4 py-2">{{offer.status}}</td>
                                 <td *ngIf="!isUser" class="border-t py-2">

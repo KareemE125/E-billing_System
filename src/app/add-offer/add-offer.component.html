@@ -27,36 +27,20 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label class="block text-gray-700 font-bold mb-0" for="internetQuantityOrPrice">{{offerStatus?.value ==
-                    "Pre Paid" ? "Internet Quantity in Megabytes" : "Price per Megabyte"}}</label>
+                <label class="block text-gray-700 font-bold mb-0" for="offerUnits">Units</label>
 
-                <input formControlName="internetQuantityOrPrice"
+                <input formControlName="offerUnits"
                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="internetQuantityOrPrice" name="internetQuantityOrPrice" type="text"
-                    [placeholder]="offerStatus?.value == 'Pre Paid' ? 'Enter the internet quantity' : 'Enter the price per megabyte'">
+                    id="offerUnits" name="offerUnits" type="text" placeholder="Enter the units">
                 <div class="text-red-500 text-xs mt-1"
-                    *ngIf="internetQuantityOrPrice!['invalid'] && (internetQuantityOrPrice!['dirty'] || internetQuantityOrPrice!['touched'])">
-                    <div *ngIf="internetQuantityOrPrice!['errors']!['required']">
-                        {{errs.InternetQuantityOrPrice.Required}}</div>
-                    <div *ngIf="internetQuantityOrPrice!['errors']!['pattern']">
-                        {{errs.InternetQuantityOrPrice.Pattern}}</div>
+                    *ngIf="offerUnits!['invalid'] && (offerUnits!['dirty'] || offerUnits!['touched'])">
+                    <div *ngIf="offerUnits!['errors']!['required']">
+                        {{errs.OfferUnits.Required}}</div>
+                    <div *ngIf="offerUnits!['errors']!['pattern']">
+                        {{errs.OfferUnits.Pattern}}</div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label class="block text-gray-700 font-bold mb-0" for="minutesQuantityOrPrice">{{offerStatus?.value ==
-                    "Pre Paid" ? "Minutes Quantity" : "Price per Minute"}}</label>
-                <input formControlName="minutesQuantityOrPrice"
-                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="minutesQuantityOrPrice" name="minutesQuantityOrPrice" type="text"
-                    [placeholder]="offerStatus?.value == 'Pre Paid' ? 'Enter the minutes quantity' : 'Enter the price per minute'">
-                <div class="text-red-500 text-xs mt-1"
-                    *ngIf="minutesQuantityOrPrice!['invalid'] && (minutesQuantityOrPrice!['dirty'] || minutesQuantityOrPrice!['touched'])">
-                    <div *ngIf="minutesQuantityOrPrice!['errors']!['required']">
-                        {{errs.MinutesQuantityOrPrice.Required}}</div>
-                    <div *ngIf="minutesQuantityOrPrice!['errors']!['pattern']">
-                        {{errs.MinutesQuantityOrPrice.Pattern}}</div>
-                </div>
-            </div>
+
 
             <!--todo: if postpaid, price should be disabled and set as Per Usage
             Make sure to handle errors properly as well-->

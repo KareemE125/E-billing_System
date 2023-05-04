@@ -22,8 +22,7 @@ export class AddOfferComponent {
     this.addOfferForm = this.formBuilder.group({
       offerName: ['', [Validators.required, Validators.minLength(3)]],
       offerStatus: ['Pre Paid', [Validators.required]],
-      internetQuantityOrPrice: ['', [Validators.required, Validators.pattern('^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$')]],
-      minutesQuantityOrPrice: ['', [Validators.required, Validators.pattern('^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$')]],
+      offerUnits: ['', [Validators.required, Validators.pattern('^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$')]],
       price: ['', [Validators.required, Validators.pattern('^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$')]],
     });
   }
@@ -33,12 +32,10 @@ export class AddOfferComponent {
   get offerStatus() {
     return this.addOfferForm.get('offerStatus');
   }
-  get internetQuantityOrPrice() {
-    return this.addOfferForm.get('internetQuantityOrPrice');
+  get offerUnits() {
+    return this.addOfferForm.get('offerUnits');
   }
-  get minutesQuantityOrPrice() {
-    return this.addOfferForm.get('minutesQuantityOrPrice');
-  }
+
   get price() {
     return this.addOfferForm.get('price');
   }
@@ -47,8 +44,7 @@ export class AddOfferComponent {
       //create an offer
       const offer: Offer = {
         name: this.offerName?.value,
-        internetQuantityOrPrice: parseFloat(this.internetQuantityOrPrice?.value),
-        minutesQuantityOrPrice: parseFloat(this.minutesQuantityOrPrice?.value),
+        units: parseFloat(this.offerUnits?.value),
         price: parseFloat(this.price?.value),
         status: this.offerStatus?.value,
         svProvName: this.accService.currentUser?.name || "",

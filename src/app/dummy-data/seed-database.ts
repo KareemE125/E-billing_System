@@ -45,8 +45,7 @@ export function getDummyUsers(): User[] {
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[0].name,
                     offerName: getDummyServiceProviders()[0].offers[0].name,
-                    offerMin: getDummyServiceProviders()[0].offers[0].minutesQuantityOrPrice,
-                    offerInt: getDummyServiceProviders()[0].offers[0].internetQuantityOrPrice
+                    offerUnits: getDummyServiceProviders()[0].offers[0].units
                 },
                 {
                     year: 1,       //1990 <= year <= 2022
@@ -60,8 +59,7 @@ export function getDummyUsers(): User[] {
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[1].name,
                     offerName: getDummyServiceProviders()[1].offers[1].name,
-                    offerMin: getDummyServiceProviders()[1].offers[1].minutesQuantityOrPrice,
-                    offerInt: getDummyServiceProviders()[1].offers[1].internetQuantityOrPrice
+                    offerUnits: getDummyServiceProviders()[1].offers[1].units
                 }
             ],
             electricityBills: [
@@ -162,8 +160,7 @@ export function getDummyUsers(): User[] {
                     paymentDate: Date.now(),
                     paymentMethod: "Cash",
                     offerName: getDummyServiceProviders()[0].offers[1].name,
-                    offerMin: getDummyServiceProviders()[0].offers[1].minutesQuantityOrPrice,
-                    offerInt: getDummyServiceProviders()[0].offers[1].internetQuantityOrPrice
+                    offerUnits: getDummyServiceProviders()[0].offers[1].units
                 },
                 {
                     id: uuid.v4(), year: 2023,
@@ -175,8 +172,7 @@ export function getDummyUsers(): User[] {
                     serviceProviderName: getDummyServiceProviders()[1].name,
                     paymentDate: Date.now(), paymentMethod: "Cash",
                     offerName: getDummyServiceProviders()[1].offers[0].name,
-                    offerMin: getDummyServiceProviders()[1].offers[0].minutesQuantityOrPrice,
-                    offerInt: getDummyServiceProviders()[1].offers[0].internetQuantityOrPrice
+                    offerUnits: getDummyServiceProviders()[1].offers[0].units
                 },
             ],
             electricityBills: []
@@ -293,8 +289,7 @@ export function getDummyUsers(): User[] {
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[4].name,
                     offerName: getDummyServiceProviders()[2].offers[4].name,
-                    offerMin: getDummyServiceProviders()[2].offers[4].minutesQuantityOrPrice,
-                    offerInt: getDummyServiceProviders()[2].offers[4].internetQuantityOrPrice
+                    offerUnits: getDummyServiceProviders()[2].offers[4].units
                 },
                 {
                     year: 1,       //1990 <= year <= 2022
@@ -308,8 +303,7 @@ export function getDummyUsers(): User[] {
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[1].name,
                     offerName: getDummyServiceProviders()[1].offers[1].name,
-                    offerMin: getDummyServiceProviders()[1].offers[1].minutesQuantityOrPrice,
-                    offerInt: getDummyServiceProviders()[1].offers[1].internetQuantityOrPrice
+                    offerUnits: getDummyServiceProviders()[1].offers[1].units
                 }
             ],
             electricityBills: [
@@ -408,8 +402,7 @@ export function getDummyUsers(): User[] {
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[0].name,
                     offerName: getDummyServiceProviders()[0].offers[0].name,
-                    offerMin: getDummyServiceProviders()[0].offers[0].minutesQuantityOrPrice,
-                    offerInt: getDummyServiceProviders()[0].offers[0].internetQuantityOrPrice
+                    offerUnits: getDummyServiceProviders()[0].offers[0].units
                 },
                 {
                     year: 1,       //1990 <= year <= 2022
@@ -423,8 +416,7 @@ export function getDummyUsers(): User[] {
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[1].name,
                     offerName: getDummyServiceProviders()[1].offers[1].name,
-                    offerMin: getDummyServiceProviders()[1].offers[1].minutesQuantityOrPrice,
-                    offerInt: getDummyServiceProviders()[1].offers[1].internetQuantityOrPrice
+                    offerUnits: getDummyServiceProviders()[1].offers[1].units
                 }
             ],
             electricityBills: [
@@ -523,8 +515,7 @@ export function getDummyUsers(): User[] {
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[0].name,
                     offerName: getDummyServiceProviders()[0].offers[0].name,
-                    offerMin: getDummyServiceProviders()[0].offers[0].minutesQuantityOrPrice,
-                    offerInt: getDummyServiceProviders()[0].offers[0].internetQuantityOrPrice
+                    offerUnits: getDummyServiceProviders()[0].offers[0].units
                 },
                 {
                     year: 1,       //1990 <= year <= 2022
@@ -538,8 +529,7 @@ export function getDummyUsers(): User[] {
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[1].name,
                     offerName: getDummyServiceProviders()[1].offers[1].name,
-                    offerMin: getDummyServiceProviders()[1].offers[1].minutesQuantityOrPrice,
-                    offerInt: getDummyServiceProviders()[1].offers[1].internetQuantityOrPrice
+                    offerUnits: getDummyServiceProviders()[1].offers[1].units
                 }
             ],
             electricityBills: [
@@ -589,16 +579,14 @@ export function getDummyOffers(): Offer[] {
     const offers: Offer[] = [
         {
             name: "Offer A1",
-            internetQuantityOrPrice: 0.1,
-            minutesQuantityOrPrice: 0.1,
+            units: 0.1,
             price: "Per Usage",
             status: "Post Paid",
             svProvName: "Provider A"
         },
         {
             name: "Offer A2",
-            internetQuantityOrPrice: 50,
-            minutesQuantityOrPrice: 100,
+            units: 50,
             price: 75,
             status: "Pre Paid",
             svProvName: "Provider A"
@@ -606,8 +594,7 @@ export function getDummyOffers(): Offer[] {
         },
         {
             name: "Offer B1",
-            internetQuantityOrPrice: 100,
-            minutesQuantityOrPrice: 200,
+            units: 100,
             price: 100,
             status: "Pre Paid",
             svProvName: "Provider B"
@@ -615,8 +602,7 @@ export function getDummyOffers(): Offer[] {
         },
         {
             name: "Offer B2",
-            internetQuantityOrPrice: 20,
-            minutesQuantityOrPrice: 50,
+            units: 20,
             price: 60,
             status: "Pre Paid",
             svProvName: "Provider B"
@@ -624,8 +610,7 @@ export function getDummyOffers(): Offer[] {
         },
         {
             name: "Offer B3",
-            internetQuantityOrPrice: 50,
-            minutesQuantityOrPrice: 60,
+            units: 50,
             price: 70,
             status: "Pre Paid",
             svProvName: "Provider B"
@@ -633,8 +618,7 @@ export function getDummyOffers(): Offer[] {
         },
         {
             name: "Offer B4",
-            internetQuantityOrPrice: 1000,
-            minutesQuantityOrPrice: 1000,
+            units: 1000,
             price: 1000,
             status: "Post Paid",
             svProvName: "Provider B"
@@ -651,7 +635,7 @@ export function getDummyServiceProviders(): ServiceProvider[] {
         {
             id: uuid.v4(),
             name: "WE",
-            email: "WE@gmail.com",
+            email: "we@gmail.com",
             phoneNumber: "01000000000",
             password: "passwordD",//password: "passwordD",
             address: {
@@ -666,9 +650,9 @@ export function getDummyServiceProviders(): ServiceProvider[] {
             ],
         },
         {
-            id: uuid.v4(), 
+            id: uuid.v4(),
             name: "Vodafone",
-            email: "Vodafone@example.com",
+            email: "vodafone@example.com",
             phoneNumber: "01000000000",
             password: "passwordD",//password: "passwordD",
             address: {
@@ -684,8 +668,8 @@ export function getDummyServiceProviders(): ServiceProvider[] {
         },
         {
             id: uuid.v4(),
-             name: "Etisalat",
-            email: "Etisalat@example.com",
+            name: "Etisalat",
+            email: "etisalat@example.com",
             phoneNumber: "01000000000",
             password: "passwordD",//password: "passwordD",
             address: {
@@ -701,7 +685,7 @@ export function getDummyServiceProviders(): ServiceProvider[] {
         },
         {
             id: uuid.v4(), name: "Orange",
-            email: "Orange@example.com",
+            email: "orange@example.com",
             phoneNumber: "01000000000",
             password: "passwordD",//password: "passwordD",
             address: {
@@ -724,7 +708,7 @@ export function getDummyAdmins(): Admin[] {
     const admins: Admin[] = [
         {
             id: uuid.v4(), name: 'admin',
-            email: 'admin@gmail.com',
+            email: 'admin1@gmail.com',
             password: "passwordD",//password: 'Admin123456##',
             phoneNumber: '01000000000',
             address: {

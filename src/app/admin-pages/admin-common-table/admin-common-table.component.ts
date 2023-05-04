@@ -19,9 +19,6 @@ export class AdminCommonTableComponent {
   filteredUserList: UserTableRow[] = [];
 
 
-  tableInternetUnit: string = "MB";
-  tableMinutesUnit: string = "min";
-
 
 
   searchText = '';
@@ -139,16 +136,14 @@ export class AdminCommonTableComponent {
       isPaid: bill.isPaid,
 
       spOfferName: "",
-      internet: 0,
-      minutes: 0
+      units: 0,
     }
     if (billType == TableType.Telephone) {
       const tBill: TelephoneBill = bill as TelephoneBill;
       return {
         ...ret,
         spOfferName: tBill.offerName,
-        internet: tBill.offerInt,
-        minutes: tBill.offerMin
+        units: tBill.units,
       }
     } else {
       return ret
@@ -164,8 +159,7 @@ export enum TableType {
 
 export interface UserTableRow {
   spOfferName: string | null;
-  internet: number | null;
-  minutes: number | null;
+  units: number | null;
 
   id: string;
   name: string;

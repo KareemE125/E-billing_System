@@ -58,12 +58,8 @@ export class ErrorsService {
         OfferStatus: {
           Required: "Please select an option."
         },
-        InternetQuantityOrPrice: {
-          Required: _reqErr("Internet field"),
-          Pattern: _invalidErr("Number")
-        },
-        MinutesQuantityOrPrice: {
-          Required: _reqErr("Minutes field"),
+        OfferUnits: {
+          Required: _reqErr("Units field"),
           Pattern: _invalidErr("Number")
         },
         Price: {
