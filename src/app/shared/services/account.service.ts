@@ -17,15 +17,7 @@ export class AccountService {
   currentUserType?: UserType = undefined;
   currentUser?: CommonUser = undefined;
 
-  // currentUserType?: UserType = UserType.User;
-  // currentUser?: CommonUser = {
-  //   id: "", //auto generated
-  //   name: "",   //required
-  //   email: "",  //required
-  //   phoneNumber: "",    //required
-  //   password: "",       //required
-  //   address: null   //not required
-  // };
+
 
   constructor(private router: Router) {
     const usr: any = JSON.parse(localStorage.getItem("user") ?? "{}")
@@ -88,6 +80,8 @@ export class AccountService {
   GetUsersEnum(): any {
     return UserType;
   }
+
+
   getPendingElectricityPayments(): number {
     let tot: number = 0
     if (this.currentUserType != UserType.User)

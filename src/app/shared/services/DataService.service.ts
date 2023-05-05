@@ -13,6 +13,7 @@ import { ElectricityBill } from '../models/bills/electricity.model'
 import { WaterBill } from '../models/bills/water.model'
 import { ServiceProvider } from '../models/users/serviceProvider.model'
 import { Admin } from '../models/users/admin.model'
+import { UnitPrice } from '../models/state/unitPrice.model'
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,8 @@ export abstract class DataService {
   userCollection: AngularFirestoreCollection<User>;
   serviceProvidersCollection: AngularFirestoreCollection<ServiceProvider>;
   adminCollection: AngularFirestoreCollection<Admin>;
+  unitPriceCollection: AngularFirestoreCollection<UnitPrice>;
+
 
 
 
@@ -29,6 +32,7 @@ export abstract class DataService {
     this.userCollection = this.db.collection('/users');
     this.serviceProvidersCollection = this.db.collection('/service-providers');
     this.adminCollection = this.db.collection('/admins');
+    this.unitPriceCollection = this.db.collection("/unitPrices");
 
 
 

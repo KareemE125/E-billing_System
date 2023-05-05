@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ErrorsService } from '../shared/services/errors.service';
-import { CommonBill, billsCategories } from '../shared/models/bills/commonBill.model';
+import { ErrorsService } from '../../services/errors.service';
+import { CommonBill, billsCategories } from '../../models/bills/commonBill.model';
 import { User } from 'firebase/auth';
-import { UnitPriceService } from '../shared/services/unit-price.service';
-import { TelephoneBill } from '../shared/models/bills/telephone.model';
-import { ElectricityBillService } from '../shared/services/ElectricityBill.service';
-import { WaterBillService } from '../shared/services/WaterBill.service';
-import { UserService } from '../shared/services/user.service';
-import { CommonUser } from '../shared/models/users/common.model';
-import { TelephoneBillService } from '../shared/services/TelephoneBill.service';
-import { Offer, ServiceProvider } from '../shared/models/users/serviceProvider.model';
-import { ServiceProviderService } from '../shared/services/service-provider.service';
-import { ToastService } from '../shared/services/toast.service';
+import { UnitPriceService } from '../../services/unit-price.service';
+import { TelephoneBill } from '../../models/bills/telephone.model';
+import { ElectricityBillService } from '../../services/ElectricityBill.service';
+import { WaterBillService } from '../../services/WaterBill.service';
+import { UserService } from '../../services/user.service';
+import { CommonUser } from '../../models/users/common.model';
+import { TelephoneBillService } from '../../services/TelephoneBill.service';
+import { Offer, ServiceProvider } from '../../models/users/serviceProvider.model';
+import { ServiceProviderService } from '../../services/service-provider.service';
+import { ToastService } from '../../services/toast.service';
 @Component({
   selector: 'app-add-bill',
   templateUrl: './add-bill.component.html',

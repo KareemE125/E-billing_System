@@ -1,8 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { CommonBill } from '../shared/models/bills/commonBill.model'
 import jsPDF from 'jspdf';
-import { User } from '../shared/models/users/user.model';
-import { AccountService } from '../shared/services/account.service';
+import { CommonBill } from '../../models/bills/commonBill.model';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'user-table',

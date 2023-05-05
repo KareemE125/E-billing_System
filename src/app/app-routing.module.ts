@@ -22,7 +22,7 @@ const routes: Routes = [
 
   { path: 'water', component: WaterComponent, canActivate: [AuthGuardService] },
   { path: 'electricity', component: ElectricityComponent, canActivate: [AuthGuardService] },
-  { path: 'telephone', component: TelephoneComponent, canActivate: [AuthGuardService] }, //todo
+  { path: 'telephone', component: TelephoneComponent, canActivate: [AuthGuardService] },
   { path: 'about-us', component: AboutUsComponent }, //no guard
 
   { path: 'edit-profile-info', component: EditProfileInfoComponent, canActivate: [AuthGuardService] },
@@ -31,7 +31,9 @@ const routes: Routes = [
   { path: 'admin-electricity', component: AdminCommonTableComponent, canActivate: [AuthGuardService] },
   { path: 'admin-telephone', component: AdminCommonTableComponent, canActivate: [AuthGuardService] },
   { path: 'admin-manage', component: ManageComponent, canActivate: [AuthGuardService] },
-  { path: 'sp-home', component: SPHomeComponent, canActivate: [AuthGuardService] }, //todo
+
+
+  { path: 'sp-home', component: SPHomeComponent, canActivate: [AuthGuardService] },
 
 
   { path: '**', component: LoginComponent }

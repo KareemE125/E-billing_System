@@ -4,14 +4,14 @@ import {
   AngularFirestoreCollection,
   AngularFirestore,
 } from "@angular/fire/compat/firestore";
+import { DataService } from "./DataService.service";
 @Injectable({
   providedIn: "root",
 })
-export class UnitPriceService {
-  unitPriceCollection: AngularFirestoreCollection<UnitPrice>;
+export class UnitPriceService extends DataService {
 
-  constructor(private db: AngularFirestore) {
-    this.unitPriceCollection = this.db.collection("/unitPrices");
+  constructor(db: AngularFirestore) {
+    super(db)
   }
 
   async getWaterUnitPrice(): Promise<number | null | false> {

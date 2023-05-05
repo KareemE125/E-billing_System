@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ErrorsService } from '../shared/services/errors.service';
-import { Offer, ServiceProvider, telephoneOfferStatuses } from '../shared/models/users/serviceProvider.model';
-import { AccountService } from '../shared/services/account.service';
-import { ServiceProviderService } from '../shared/services/service-provider.service';
-import { User } from '../shared/models/users/user.model';
-import { ToastService } from '../shared/services/toast.service';
+import { Offer, ServiceProvider, telephoneOfferStatuses } from '../../models/users/serviceProvider.model';
+import { AccountService } from '../../services/account.service';
+import { ServiceProviderService } from '../../services/service-provider.service';
+import { ToastService } from '../../services/toast.service';
+import { ErrorsService } from '../../services/errors.service';
+
 @Component({
   selector: 'app-add-offer',
   templateUrl: './add-offer.component.html',
