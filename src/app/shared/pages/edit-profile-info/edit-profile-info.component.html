@@ -3,6 +3,8 @@
     <div *ngIf="this.accService.currentUserType === this.accService.GetUsersEnum().User"
         class="w-3/4 pb-4 mx-auto flex gap-4">
 
+        <div class="w-full text-center rounded-lg border-semi bg-gray-200 py-2"><span><b>Pending Payments: </b>
+                {{pendingPayments}}</span></div>
         <div class="w-full text-center rounded-lg border-semi bg-gray-200 py-2"><span><b>Wallet: </b>
                 {{wallet}}</span></div>
     </div>

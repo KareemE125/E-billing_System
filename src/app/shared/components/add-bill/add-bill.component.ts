@@ -157,7 +157,7 @@ export class AddBillComponent implements OnInit {
       // the bill year is the same as this year, but the bill month is less than the current month
       const curDate = new Date()
       const penaltyAdded: boolean = (curDate.getFullYear() > commonBill.year) || (
-        curDate.getFullYear() >= commonBill.year && curDate.getMonth() > commonBill.month
+        curDate.getFullYear() >= commonBill.year && curDate.getMonth() + 1 > commonBill.month
       )
       const penaltyToAdd: number = penaltyAdded ? 200 : 0;
       commonBill.penalty += penaltyToAdd;

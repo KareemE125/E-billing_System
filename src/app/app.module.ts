@@ -36,7 +36,6 @@ import { ServiceCardComponent } from './shared/components/service-card/service-c
 import { UserTableComponent } from './shared/components/user-table/user-table.component';
 import { AddOfferComponent } from './shared/components/add-offer/add-offer.component';
 import { ModalComponent } from './shared/components/modals/user-pay-modal/modal.component';
-import { TabViewComponent } from './shared/components/tab-view/tab-view.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +57,6 @@ import { TabViewComponent } from './shared/components/tab-view/tab-view.componen
     AllUsersComponent,
 
 
-    TabViewComponent,
     AboutUsComponent,
     WaterComponent,
     AdminCommonTableComponent,
