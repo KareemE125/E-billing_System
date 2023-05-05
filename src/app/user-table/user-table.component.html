@@ -19,6 +19,7 @@
                                 <select class="w-full sm:w-auto bg-white border rounded-lg px-2 py-1"
                                     [(ngModel)]="selectedOption" [value]="selectedOption" (change)="filterUsers()">
                                     <option selected disabled>Choose an option</option>
+                                    <option value="none">None</option>
                                     <option value="paid">Paid</option>
                                     <option value="unpaid">Unpaid</option>
                                     <option value="penalty">Penalty</option>

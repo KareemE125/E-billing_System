@@ -21,14 +21,69 @@ export function getDummyUsers(): User[] {
             wallet: 3000,
             waterBills: [
                 {
-                    year: 1,       //1990 <= year <= 2022
+                    year: 2022,       //1990 <= year <= 2022
+                    month: 10,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 11,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1680711391000,
+                    paymentMethod: 'Card',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2022,       //1990 <= year <= 2022
+                    month: 11,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 11,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1680711391000,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2022,       //1990 <= year <= 2022
+                    month: 12,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 11,      //0 <= total <= 100000
+                    isPaid: true,   //true or false
+                    paymentDate: 1680711391000,
+                    paymentMethod: 'Cash',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
                     month: 1,      //1 <= month <= 12
                     units: 1,      //0 <= units <= 100000
                     penalty: 1,    //0 <= penalty <= 100000
-                    total: 1,      //0 <= total <= 100000
-                    isPaid: true,   //true or false
-                    paymentDate: 1,
-                    paymentMethod: 'Cash',
+                    total: 11,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 2,      //1 <= month <= 12
+                    units: 2,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 21,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 3,      //1 <= month <= 12
+                    units: 3,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 31,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
                     id: uuid.v4(),
                 }
             ],
@@ -40,7 +95,7 @@ export function getDummyUsers(): User[] {
                     penalty: 11,    //0 <= penalty <= 100000
                     total: 11 + 1000 * (getDummyServiceProviders()[0].offers[0].priceOrPricePerUnit),     //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[0].name,
@@ -128,9 +183,20 @@ export function getDummyUsers(): User[] {
                     units: 1,      //0 <= units <= 100000
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 1,      //0 <= total <= 100000
-                    isPaid: true,   //true or false
-                    paymentDate: 1,
-                    paymentMethod: 'Cash',
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
+                    id: uuid.v4(),
+                },
+                {
+                    year: 2023,       //1990 <= year <= 2022
+                    month: 4,      //1 <= month <= 12
+                    units: 1,      //0 <= units <= 100000
+                    penalty: 1,    //0 <= penalty <= 100000
+                    total: 1,      //0 <= total <= 100000
+                    isPaid: false,   //true or false
+                    paymentDate: 'Not Yet',
+                    paymentMethod: 'Not Yet',
                     id: uuid.v4(),
                 }
             ]
@@ -155,7 +221,7 @@ export function getDummyUsers(): User[] {
                     penalty: 0,
                     total: 100,
                     isPaid: true,
-                    paymentDate: Date.now(),
+                    paymentDate: 1680711391000,
                     paymentMethod: "Cash"
                 },
                 {
@@ -233,7 +299,7 @@ export function getDummyUsers(): User[] {
                     penalty: 11,    //0 <= penalty <= 100000
                     total: 11 + 1000 * (getDummyServiceProviders()[2].offers[0].priceOrPricePerUnit),     //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[2].name,
@@ -356,7 +422,8 @@ export function getDummyUsers(): User[] {
                     penalty: 0,
                     total: 100,
                     isPaid: true,
-                    paymentDate: Date.now(), paymentMethod: "Wallet"
+                    paymentDate: 1680711391000,
+                    paymentMethod: "Wallet"
                 },
                 {
                     id: uuid.v4(), year: 2023,
@@ -406,7 +473,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 1,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 },
@@ -417,7 +484,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 1150,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 },
@@ -428,7 +495,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 650,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 }
@@ -441,7 +508,7 @@ export function getDummyUsers(): User[] {
                     penalty: 11,    //0 <= penalty <= 100000
                     total: 11 + 1000 * (getDummyServiceProviders()[0].offers[0].priceOrPricePerUnit),     //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[0].name,
@@ -530,7 +597,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 1,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 }
@@ -556,7 +623,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 1,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 },
@@ -567,7 +634,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 1150,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 },
@@ -578,7 +645,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 650,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 }
@@ -591,7 +658,7 @@ export function getDummyUsers(): User[] {
                     penalty: 11,    //0 <= penalty <= 100000
                     total: 11 + 1000 * (getDummyServiceProviders()[0].offers[0].priceOrPricePerUnit),     //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[0].name,
@@ -680,7 +747,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 1,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 }
@@ -706,7 +773,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 1,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 },
@@ -717,7 +784,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 1150,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 },
@@ -728,7 +795,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 650,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 }
@@ -741,7 +808,7 @@ export function getDummyUsers(): User[] {
                     penalty: 11,    //0 <= penalty <= 100000
                     total: 11 + 1000 * (getDummyServiceProviders()[0].offers[0].priceOrPricePerUnit),     //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                     serviceProviderName: getDummyServiceProviders()[0].name,
@@ -830,7 +897,7 @@ export function getDummyUsers(): User[] {
                     penalty: 1,    //0 <= penalty <= 100000
                     total: 1,      //0 <= total <= 100000
                     isPaid: true,   //true or false
-                    paymentDate: 1,
+                    paymentDate: 1680711391000,
                     paymentMethod: 'Cash',
                     id: uuid.v4(),
                 }
