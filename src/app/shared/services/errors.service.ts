@@ -50,11 +50,6 @@ export class ErrorsService {
           Required: _reqErr("Offer Name"),
           MinLength: _lenErrAtLeast("Offer Name", 3),
         },
-        Password: {
-          Required: _reqErr("Password"),
-          MinLength: _lenErrAtLeast("Password", 8),
-          Pattern: _passErr()
-        },
         OfferStatus: {
           Required: "Please select an option."
         },
