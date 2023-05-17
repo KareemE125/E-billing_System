@@ -36,3 +36,75 @@
     background-color: #f1f1f1;
   }
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+/* 
+# Switch case in angular
+
+<div [ngSwitch]="condition">
+  <p *ngSwitchCase="'case1'">Content for case 1</p>
+  <p *ngSwitchCase="'case2'">Content for case 2</p>
+  <p *ngSwitchCase="'case3'">Content for case 3</p>
+  <p *ngSwitchDefault>Default content</p>
+</div>
+
+
+# FormGroup in angular
+  public formdata:FormGroup;
+  ngOnInit() { 
+    this.formdata = new FormGroup({
+      Title: new FormControl("Angular Lab", [Validators.required, Validators.minLength(5)])
+    });
+  }
+
+
+# Child Paths in angular
+const routes: Routes = [
+  { path: 'parent', component: ParentComponent, children: [
+    { path: 'child1', component: Child1Component },
+    { path: 'child2', component: Child2Component }
+  ]}
+];
+ 
+# Query Params in angular
+constructor(private router: Router) {}
+
+navigateWithQueryParams() {
+  this.router.navigate(['/example'], { queryParams: {name: "userName" }} );
+}
+  
+
+# Params in angular
+
+const routes: Routes = [
+  { path: 'users/:id', component: UserComponent }
+];
+
+constructor(private route: ActivatedRoute) {}
+
+ngOnInit() {
+  const userId = this.route.snapshot.paramMap.get('id');
+  // Use the userId for further processing
+}
+  
+*/
